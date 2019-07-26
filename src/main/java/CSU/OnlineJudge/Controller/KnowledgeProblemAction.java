@@ -23,11 +23,36 @@ import net.sf.json.JSONObject;
 
 public class KnowledgeProblemAction extends ActionSupport{
 	
-	private KnowledgeProblemService kps = new KnowledgeProblemServiceImpl();
-	private KnowledgeService ks = new KnowledgeServiceImpl();
+	private KnowledgeProblemService kps;
+	private KnowledgeService ks;
 	private KnowledgeProblem kp = new KnowledgeProblem();
-	private ProblemService ps = new ProblemServicempl();
+	private ProblemService ps;
 	
+	
+	public KnowledgeProblemService getKps() {
+		return kps;
+	}
+
+	public void setKps(KnowledgeProblemService kps) {
+		this.kps = kps;
+	}
+
+	public KnowledgeService getKs() {
+		return ks;
+	}
+
+	public void setKs(KnowledgeService ks) {
+		this.ks = ks;
+	}
+
+	public ProblemService getPs() {
+		return ps;
+	}
+
+	public void setPs(ProblemService ps) {
+		this.ps = ps;
+	}
+
 	//添加知识点题目关联
 	public void AddKnowledgeProblem() throws Exception{
 		

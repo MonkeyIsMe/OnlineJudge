@@ -20,10 +20,26 @@ import net.sf.json.JSONObject;
 
 public class WorkProblemAction extends ActionSupport{
 	
-	private ProblemService ps = new ProblemServicempl();
-	private WorkProblemService wps = new WorkProblemServiceImpl();
+	private ProblemService ps;
+	private WorkProblemService wps;
 	private WorkProblem wp = new WorkProblem();
 	
+	public ProblemService getPs() {
+		return ps;
+	}
+
+	public void setPs(ProblemService ps) {
+		this.ps = ps;
+	}
+
+	public WorkProblemService getWps() {
+		return wps;
+	}
+
+	public void setWps(WorkProblemService wps) {
+		this.wps = wps;
+	}
+
 	//根据作业编号查询题目
 	public void QueryPublicProblem() throws Exception{
 		

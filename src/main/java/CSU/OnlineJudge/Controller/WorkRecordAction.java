@@ -16,8 +16,16 @@ import CSU.OnlineJudge.Service.Impl.WorkRecordServiceImpl;
 public class WorkRecordAction extends ActionSupport{
 
 	private WorkRecord wr = new WorkRecord();
-	private WorkRecordService wrs = new WorkRecordServiceImpl();
+	private WorkRecordService wrs;
 	
+	public WorkRecordService getWrs() {
+		return wrs;
+	}
+
+	public void setWrs(WorkRecordService wrs) {
+		this.wrs = wrs;
+	}
+
 	//添加考试，作业的题目记录
 	public void AddWorkRecord() throws Exception{
 		

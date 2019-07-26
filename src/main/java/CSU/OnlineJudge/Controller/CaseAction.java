@@ -17,9 +17,17 @@ import net.sf.json.JSONArray;
 
 public class CaseAction extends ActionSupport{
 	
-	private CaseService cs = new CaseServiceImpl();
+	private CaseService cs;
 	private Case cas = new Case();
 	
+	public CaseService getCs() {
+		return cs;
+	}
+
+	public void setCs(CaseService cs) {
+		this.cs = cs;
+	}
+
 	//添加样例
 	public void AddCase() throws Exception{
 		
@@ -176,7 +184,6 @@ public class CaseAction extends ActionSupport{
 		out.println(ja.toString());
         out.flush(); 
         out.close();
-		
 		
 	}
 }

@@ -21,9 +21,25 @@ import net.sf.json.JSONObject;
 public class WorkCourseAction extends ActionSupport{
 	
 	private WorkCourse wc = new WorkCourse();
-	private WorkCourseService wcs = new WorkCourseServiceImpl();
-	private WorkService ws = new WorkServiceImpl();
+	private WorkCourseService wcs;
+	private WorkService ws;
 	
+	public WorkCourseService getWcs() {
+		return wcs;
+	}
+
+	public void setWcs(WorkCourseService wcs) {
+		this.wcs = wcs;
+	}
+
+	public WorkService getWs() {
+		return ws;
+	}
+
+	public void setWs(WorkService ws) {
+		this.ws = ws;
+	}
+
 	//根据课程查询作业-考试
 	public void QueryWorkByCourseId() throws Exception{
 		

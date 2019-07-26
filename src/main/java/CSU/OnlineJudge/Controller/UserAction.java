@@ -17,9 +17,17 @@ import net.sf.json.JSONObject;
 
 public class UserAction extends ActionSupport{
 	
-	private UserService us = new UserServiceImpl();
+	private UserService us;
 	private User user = new User();
 	
+	public UserService getUs() {
+		return us;
+	}
+
+	public void setUs(UserService us) {
+		this.us = us;
+	}
+
 	//删除用户
 	public void DeleteUser() throws Exception{
 		

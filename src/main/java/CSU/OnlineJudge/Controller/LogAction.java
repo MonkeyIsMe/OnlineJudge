@@ -18,8 +18,20 @@ import net.sf.json.JSONObject;
 public class LogAction extends ActionSupport{
 
 	private Log log = new Log();
-	private LogService ls = new LogServiceImpl();
+	private LogService ls;
 	
+	public LogService getLs() {
+		return ls;
+	}
+
+
+
+	public void setLs(LogService ls) {
+		this.ls = ls;
+	}
+
+
+
 	//添加当天的日志
 	public void AddLog() throws Exception{
 		

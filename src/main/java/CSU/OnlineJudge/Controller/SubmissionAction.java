@@ -18,8 +18,19 @@ import net.sf.json.JSONObject;
 public class SubmissionAction extends ActionSupport{
 
 	private Submission submission =  null;
-	private SubmissionService ss = new SubmissionServiceImpl();
+	private SubmissionService ss;
 	
+	
+	public SubmissionService getSs() {
+		return ss;
+	}
+
+
+	public void setSs(SubmissionService ss) {
+		this.ss = ss;
+	}
+
+
 	public void AddSubmission() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");

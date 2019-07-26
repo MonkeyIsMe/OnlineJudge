@@ -17,9 +17,17 @@ import net.sf.json.JSONObject;
 
 public class ProblemAction extends ActionSupport{
 	
-	private ProblemService ps = new ProblemServicempl();
+	private ProblemService ps;
 	private Problem problem = new Problem();
 	
+	public ProblemService getPs() {
+		return ps;
+	}
+
+	public void setPs(ProblemService ps) {
+		this.ps = ps;
+	}
+
 	//删除题目
 	public void DeleteProblem() throws Exception{
 		

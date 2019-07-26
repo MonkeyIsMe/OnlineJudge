@@ -17,8 +17,16 @@ import net.sf.json.JSONObject;
 public class CourseAction extends ActionSupport{
 
 	private Course course = new Course();
-	private CourseService cs = new CourseServiceImpl();
+	private CourseService cs;
 	
+	public CourseService getCs() {
+		return cs;
+	}
+
+	public void setCs(CourseService cs) {
+		this.cs = cs;
+	}
+
 	//添加课程
 	public void AddCourse() throws Exception{
 		

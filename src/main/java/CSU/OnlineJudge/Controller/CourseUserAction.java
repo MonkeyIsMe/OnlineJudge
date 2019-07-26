@@ -22,9 +22,26 @@ import net.sf.json.JSONObject;
 public class CourseUserAction extends ActionSupport{
 	
 	private CourseUser cu = new CourseUser();
-	private CourseUserService cus = new CourseUserServiceImpl();
-	private CourseService cs = new CourseServiceImpl();
+	private CourseUserService cus;
+	private CourseService cs;
 	
+	
+	public CourseUserService getCus() {
+		return cus;
+	}
+
+	public void setCus(CourseUserService cus) {
+		this.cus = cus;
+	}
+
+	public CourseService getCs() {
+		return cs;
+	}
+
+	public void setCs(CourseService cs) {
+		this.cs = cs;
+	}
+
 	//查询指定学生的课程
 	public void QuerySingleCourseUser() throws Exception{
 		

@@ -18,9 +18,17 @@ import net.sf.json.JSONObject;
 
 public class WorkAction extends ActionSupport{
 	
-	private WorkService ws = new WorkServiceImpl();
+	private WorkService ws;
 	private Work work = new Work();
 	
+	public WorkService getWs() {
+		return ws;
+	}
+
+	public void setWs(WorkService ws) {
+		this.ws = ws;
+	}
+
 	//增加作业-考试
 	public void AddWork() throws Exception{
 		

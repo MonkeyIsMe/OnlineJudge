@@ -16,8 +16,16 @@ import net.sf.json.JSONObject;
 public class KnowledgeAction extends ActionSupport{
 	
 	private Knowledge knowledge = new Knowledge();
-	private KnowledgeService ks = new KnowledgeServiceImpl();
+	private KnowledgeService ks;
 	
+	public KnowledgeService getKs() {
+		return ks;
+	}
+
+	public void setKs(KnowledgeService ks) {
+		this.ks = ks;
+	}
+
 	//添加知识点
 	public void AddKnowledge() throws Exception{
 		
