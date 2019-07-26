@@ -28,6 +28,7 @@ public class ProblemAction extends ActionSupport{
 		this.ps = ps;
 	}
 
+	
 	//删除题目
 	public void DeleteProblem() throws Exception{
 		
