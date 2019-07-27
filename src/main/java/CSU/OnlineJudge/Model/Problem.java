@@ -13,6 +13,7 @@ public class Problem {
 	
 	@Id
 	@Column(name="problem_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ProblemId;  // 主键
 	
 	@Column(name="problem_name")

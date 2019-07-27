@@ -6,7 +6,7 @@ import CSU.OnlineJudge.Model.Work;
 
 public interface WorkService {
 
-	public void addWork(Work work);
+	public int addWork(Work work);
 	
 	public void deleteWork(Work work);
 	

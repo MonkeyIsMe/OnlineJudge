@@ -4,7 +4,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import CSU.OnlineJudge.DAO.CaseDAO;
+import CSU.OnlineJudge.DAO.ProblemDAO;
 import CSU.OnlineJudge.Model.Case;
+import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Service.CaseService;
 
@@ -82,8 +84,15 @@ public class TestSpring {
 		cs.AddCase(cas);
 	}
 	
+	@Resource(name="ProblemDAO")
+	private ProblemDAO pd;
+	
 	@Test
-	public void TestQueryService() {
+	public void TestAddProblem() {
+		Problem problem = new Problem();
+		problem.setProblemName("test add id");
+		int pid = pd.addProblem(problem);
+		System.out.println(pid);
 	}
 	
 	

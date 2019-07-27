@@ -28,9 +28,9 @@ public class ProblemServicempl implements ProblemService{
 		return pd.GetAllProblemByPageSize(row, PageSize);
 	}
 
-	public void AddProblem(Problem problem) {
+	public int AddProblem(Problem problem) {
 		// TODO Auto-generated method stub
-		pd.addProblem(problem);
+		return pd.addProblem(problem);
 	}
 
 	public void DeleteProblem(Problem problem) {

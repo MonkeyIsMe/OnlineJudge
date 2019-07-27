@@ -10,7 +10,7 @@ public interface ProblemService {
 	
 	public List<Problem> GetFlagProblemByPageSize(int row,int PageSize,int flag);
 	
-	public void AddProblem(Problem problem);
+	public int AddProblem(Problem problem);
 	
 	public void DeleteProblem(Problem problem);
 	

@@ -11,6 +11,8 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import CSU.OnlineJudge.Model.Work;
+import CSU.OnlineJudge.Model.WorkProblem;
+import CSU.OnlineJudge.Service.WorkProblemService;
 import CSU.OnlineJudge.Service.WorkService;
 import CSU.OnlineJudge.Service.Impl.WorkServiceImpl;
 import net.sf.json.JSONArray;
@@ -20,7 +22,17 @@ public class WorkAction extends ActionSupport{
 	
 	private WorkService ws;
 	private Work work = new Work();
+	private WorkProblem wp;
+	private WorkProblemService wps;
 	
+	public WorkProblemService getWps() {
+		return wps;
+	}
+
+	public void setWps(WorkProblemService wps) {
+		this.wps = wps;
+	}
+
 	public WorkService getWs() {
 		return ws;
 	}
@@ -47,9 +59,11 @@ public class WorkAction extends ActionSupport{
 		String work_flag = request.getParameter("work_flag");
 		String calss_id = request.getParameter("calss_id");
 		String work_onwer = request.getParameter("work_onwer");
+		String problem_info = request.getParameter("problem_info");
 		
 		int cid = Integer.valueOf(calss_id);
 		
+		JSONArray ja = JSONArray.fromObject(problem_info);
 		
 		work.setWorkName(work_name);
 		work.setWorkInfo(work_info);
@@ -60,7 +74,15 @@ public class WorkAction extends ActionSupport{
 		work.setWorkEndTime(work_endtime);
 		work.setWorkCreatTime(work_createtime);
 		
-		ws.addWork(work);
+		int wid = ws.addWork(work);
+		for(int i = 0; i < ja.size(); i ++) {
+			JSONObject jo = ja.getJSONObject(i);
+			String problem_id = jo.getString("problem_id");
+			int pid = Integer.valueOf(problem_id);
+			wp.setWorkId(wid);
+			wp.setProblemId(pid);
+			wps.addWorkProblem(wp);
+		}
 		
 	}
 	

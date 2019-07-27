@@ -9,17 +9,31 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import CSU.OnlineJudge.Model.Case;
 import CSU.OnlineJudge.Model.Problem;
+import CSU.OnlineJudge.Service.CaseService;
 import CSU.OnlineJudge.Service.ProblemService;
 import CSU.OnlineJudge.Service.Impl.ProblemServicempl;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+
 public class ProblemAction extends ActionSupport{
 	
 	private ProblemService ps;
 	private Problem problem = new Problem();
+	private CaseService cs;
+	private Case cas;
 	
+	
+	public CaseService getCs() {
+		return cs;
+	}
+
+	public void setCs(CaseService cs) {
+		this.cs = cs;
+	}
+
 	public ProblemService getPs() {
 		return ps;
 	}
@@ -81,6 +95,9 @@ public class ProblemAction extends ActionSupport{
 		String problem_flag = request.getParameter("problem_flag");
 		String problem_input = request.getParameter("problem_input");
 		String problem_output = request.getParameter("problem_output");
+		String case_info = request.getParameter("case_info");
+		
+		JSONArray ja = JSONArray.fromObject(case_info);
 		
 		int memory = Integer.valueOf(problem_memory);
 		int time = Integer.valueOf(problem_time);
@@ -109,7 +126,18 @@ public class ProblemAction extends ActionSupport{
 		problem.setProblemInput(problem_input);
 		problem.setProblemOutput(problem_output);
 		
-		ps.AddProblem(problem);
+		int pid = ps.AddProblem(problem);
+		for(int i = 0; i < ja.size(); i ++) {
+			JSONObject jo = ja.getJSONObject(i);
+			String case_input = jo.getString("case_input");
+			String case_output = jo.getString("case_output");
+			String case_flag = jo.getString("case_flag");
+			int cflag = Integer.valueOf(case_flag);
+			cas.setCaseFlag(cflag);
+			cas.setCaseInput(case_input);
+			cas.setCaseOutput(case_output);
+			cs.AddCase(cas);
+		}
 		
 	}
 	

@@ -1,5 +1,6 @@
 package CSU.OnlineJudge.DAO.Impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -17,9 +18,12 @@ import CSU.OnlineJudge.Utils.HibernateUtil;
 @Transactional
 public class ProblemDAOImpl extends HibernateDaoSupport implements ProblemDAO{
 
-	public void addProblem(Problem problem) {
+	public int addProblem(Problem problem) {
 		// TODO Auto-generated method stub
-		getHibernateTemplate().save(problem);
+		super.getHibernateTemplate().save(problem);
+		System.out.println(problem);
+		int id = problem.getProblemId();
+		return id;
 	}
 
 	public void updateProblem(Problem problem) {

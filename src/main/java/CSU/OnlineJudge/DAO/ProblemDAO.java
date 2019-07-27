@@ -1,12 +1,13 @@
 package CSU.OnlineJudge.DAO;
 
+import java.io.Serializable;
 import java.util.List;
 
 import CSU.OnlineJudge.Model.Problem;
 
 public interface ProblemDAO {
 	
-	public void addProblem(Problem problem);
+	public int addProblem(Problem problem);
 	
 	public void updateProblem(Problem problem);
 	

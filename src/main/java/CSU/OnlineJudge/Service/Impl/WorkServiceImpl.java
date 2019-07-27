@@ -22,9 +22,9 @@ public class WorkServiceImpl implements WorkService{
 		this.wd = wd;
 	}
 
-	public void addWork(Work work) {
+	public int addWork(Work work) {
 		// TODO Auto-generated method stub
-		wd.addWork(work);
+		return wd.addWork(work);
 	}
 
 	public void deleteWork(Work work) {

@@ -18,9 +18,11 @@ import CSU.OnlineJudge.Utils.HibernateUtil;
 @Transactional
 public class WorkDAOImpl extends HibernateDaoSupport implements WorkDAO{
 
-	public void addWork(Work work) {
+	public int addWork(Work work) {
 		// TODO Auto-generated method stub
 		getHibernateTemplate().save(work);
+		int id = work.getWorkId();
+		return id;
 	}
 
 	public void deleteWork(Work work) {
