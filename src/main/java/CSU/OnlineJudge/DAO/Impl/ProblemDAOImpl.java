@@ -85,40 +85,32 @@ public class ProblemDAOImpl extends HibernateDaoSupport implements ProblemDAO{
 
 			public List<Problem> doInHibernate(Session session) throws HibernateException {
 				// TODO Auto-generated method stub
-				String hql = "from Problem where problem_flag = ? and problem_name = ?";
+				String hql = "from Problem where problem_flag = ? and problem_name like :ProblemName";
 				Query query = session.createQuery(hql).setFirstResult(
                         (row - 1) * PageSize).setMaxResults(PageSize);
 				query.setParameter(0, flag);
-				query.setParameter(1, ProblemName);
+				query.setString("ProblemName", "%"+ProblemName+"%");
 				List<Problem> list = query.list();
 				return list;
 			}
 		});
 	}
 
-	public List<Problem> VagueByPageSizeWithFlagByPeople(int row, int PageSize, String PeopleName) {
+	public List<Problem> VagueByPageSizeWithFlagByPeople(final int row, final int PageSize, final String PeopleName) {
 		// TODO Auto-generated method stub
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-		Session session = sessionFactory.openSession();
-		List<Problem> list = null;
-		try {
-			session.beginTransaction();
-			String hql = "from Problem where problem_people like :PeopleName";
-			Query query = session.createQuery(hql);
-			query.setFirstResult(PageSize*(row-1));
-			query.setMaxResults(PageSize);
-			query.setString("PeopleName", "%"+PeopleName+"%");
-			list = query.list();
-			session.getTransaction().commit();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			session.getTransaction().rollback();
-			return list;
-		}
-		// TODO Auto-generated method stub
-		session.close();
-		return list;
+		return getHibernateTemplate().execute(new HibernateCallback<List<Problem>>() {
+			
+
+			public List<Problem> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Problem where problem_people like :PeopleName";
+				Query query = session.createQuery(hql).setFirstResult(
+                        (row - 1) * PageSize).setMaxResults(PageSize);
+				query.setString("PeopleName", "%"+PeopleName+"%");
+				List<Problem> list = query.list();
+				return list;
+			}
+		});
 	}
 
 

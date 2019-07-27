@@ -95,6 +95,14 @@ public class TestSpring {
 		System.out.println(pid);
 	}
 	
+	@Test
+	public void TestVagueProblem() {
+		String pname = "id";
+		List<Problem> list = pd.VagueByPageSizeWithFlagByName(1, 2, 0, pname);
+		for(Problem pro : list) {
+			System.out.println(pro.toString());
+		}
+	}
 	
 	@Test
 	public void TestConfiguration() {
