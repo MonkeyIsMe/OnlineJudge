@@ -64,7 +64,7 @@ public class testDAOImpl {
 	@Test
 	public void VagueProblem() {
 		ProblemDAO pd = new ProblemDAOImpl();
-		List<Problem> list = pd.VagueByPageSizeWithFlagByName(1, 5, 1, "1");
+		List<Problem> list = pd.VagueByPageSizeWithFlagByName(1, 5, 1, "0");
 		for(Problem problem : list) {
 			System.out.println(problem.toString());
 		}
