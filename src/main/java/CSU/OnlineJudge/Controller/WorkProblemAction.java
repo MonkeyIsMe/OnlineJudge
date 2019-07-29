@@ -13,7 +13,7 @@ import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.WorkProblem;
 import CSU.OnlineJudge.Service.ProblemService;
 import CSU.OnlineJudge.Service.WorkProblemService;
-import CSU.OnlineJudge.Service.Impl.ProblemServicempl;
+import CSU.OnlineJudge.Service.Impl.ProblemServiceImpl;
 import CSU.OnlineJudge.Service.Impl.WorkProblemServiceImpl;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;

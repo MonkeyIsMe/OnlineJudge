@@ -9,6 +9,7 @@ import CSU.OnlineJudge.Model.Case;
 import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Service.CaseService;
+import net.sf.json.JSONObject;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -21,6 +22,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -93,6 +95,24 @@ public class TestSpring {
 		problem.setProblemName("test add id");
 		int pid = pd.addProblem(problem);
 		System.out.println(pid);
+	}
+	
+	@Test
+	public void QueryOutProblemInfo() {
+		List<Object[]> pro_list = pd.GetProblemOutInfo(1, 3, 1);
+		for(Object[] pro : pro_list) {
+			JSONObject jo = new JSONObject();
+			Object id = pro[0];
+			Object name = pro[1];
+			Object submission = pro[2];
+			Object accept = pro[3];
+			System.out.println(id.toString());
+			jo.put("ProblemId", id);
+			jo.put("ProblemName", name);
+			jo.put("SubmissionTimes",submission);
+			jo.put("AcceptTimes", accept);
+			System.out.println(jo.toString());
+		}
 	}
 	
 	@Test

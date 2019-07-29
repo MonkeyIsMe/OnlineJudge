@@ -13,7 +13,7 @@ import CSU.OnlineJudge.Model.Case;
 import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Service.CaseService;
 import CSU.OnlineJudge.Service.ProblemService;
-import CSU.OnlineJudge.Service.Impl.ProblemServicempl;
+import CSU.OnlineJudge.Service.Impl.ProblemServiceImpl;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -380,5 +380,39 @@ public class ProblemAction extends ActionSupport{
 	    out.close();
 	   }
 	
+	//查询题目列表
+	public void QueryProblemList() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+			
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+			
+		String page = request.getParameter("rows");
+		String size = request.getParameter("size");
+		
+		int row = Integer.valueOf(page);
+		int PageSize = Integer.valueOf(size); 
+		
+		JSONArray ja = new JSONArray();
+		List<Object[]> obj_list = ps.GetProblemOutInfo(row, PageSize, 1);
+		for(Object[]  obj : obj_list) {
+			JSONObject jo = new JSONObject();
+			Object id = obj[0];
+			Object name = obj[1];
+			Object submission = obj[2];
+			Object accept = obj[3];
+			jo.put("ProblemId", id);
+			jo.put("ProblemName", name);
+			jo.put("SubmissionTimes",submission);
+			jo.put("AcceptTimes", accept);
+			ja.add(jo);
+		}
+		out.println(ja.toString());
+	    out.flush(); 
+	    out.close();
+	}
 	
 }

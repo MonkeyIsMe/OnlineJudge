@@ -10,7 +10,7 @@ import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Service.ProblemService;
 
 @Transactional
-public class ProblemServicempl implements ProblemService{
+public class ProblemServiceImpl implements ProblemService{
 
 	private ProblemDAO pd;
 	
@@ -70,6 +70,11 @@ public class ProblemServicempl implements ProblemService{
 	public List<Problem> VagueByPageSizeWithFlagByPeople(int row, int PageSize, String PeopleName) {
 		// TODO Auto-generated method stub
 		return pd.VagueByPageSizeWithFlagByPeople(row, PageSize, PeopleName);
+	}
+
+	public List<Object[]> GetProblemOutInfo(int row, int PageSize, int flag) {
+		// TODO Auto-generated method stub
+		return pd.GetProblemOutInfo(row, PageSize, 1);
 	}
 
 }

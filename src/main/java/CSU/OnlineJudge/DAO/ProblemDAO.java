@@ -22,4 +22,6 @@ public interface ProblemDAO {
 	public List<Problem> VagueByPageSizeWithFlagByName(int row,int PageSize,int flag,String ProblemName);
 	
 	public List<Problem> VagueByPageSizeWithFlagByPeople(int row,int PageSize,String PeopleName);
+	
+	public List<Object[]> GetProblemOutInfo(int row,int PageSize,int flag);
 }

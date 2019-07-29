@@ -12,6 +12,16 @@ public class WorkUserRecordServiceImpl implements WorkUserRecordService{
 
 	private  WorkUserRecordDAO wurd;
 	
+	
+	
+	public WorkUserRecordDAO getWurd() {
+		return wurd;
+	}
+
+	public void setWurd(WorkUserRecordDAO wurd) {
+		this.wurd = wurd;
+	}
+
 	public void addWorkUserRecord(WorkUserRecord wur) {
 		// TODO Auto-generated method stub
 		wurd.addWorkUserRecord(wur);

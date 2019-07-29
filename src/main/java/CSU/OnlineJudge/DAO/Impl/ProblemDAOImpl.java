@@ -112,5 +112,21 @@ public class ProblemDAOImpl extends HibernateDaoSupport implements ProblemDAO{
 		});
 	}
 
+	public List<Object[]> GetProblemOutInfo(final int row, final int PageSize, final int flag) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Object[]>>() {
+
+			public List<Object[]> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "select ProblemId,ProblemName,SubmissionTimes,AcceptTimes  from Problem where problem_flag = ?";
+				Query query = session.createQuery(hql).setFirstResult(
+                        (row - 1) * PageSize).setMaxResults(PageSize);
+				query.setParameter(0, flag);
+				List<Object[]> list = query.list();
+				return list;
+			}
+		});
+	}
+
 
 }

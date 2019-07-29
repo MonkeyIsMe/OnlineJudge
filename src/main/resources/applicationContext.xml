@@ -41,7 +41,51 @@
  	<bean name="CaseService" class="CSU.OnlineJudge.Service.Impl.CaseServiceImpl" >
 		<property name="cd" ref="CaseDAO" ></property>
 	</bean>
-	
+	 <bean name="CodeService" class="CSU.OnlineJudge.Service.Impl.CodeServiceImpl" >
+		<property name="cd" ref="CodeDAO" ></property>
+	</bean>
+	 <bean name="CourseService" class="CSU.OnlineJudge.Service.Impl.CourseServiceImpl" >
+		<property name="cd" ref="CourseDAO" ></property>
+	</bean>
+	 <bean name="CourseUserService" class="CSU.OnlineJudge.Service.Impl.CourseUserServiceImpl" >
+		<property name="cud" ref="CourseUserDAO" ></property>
+	</bean>
+	 <bean name="KnowledgeProblemService" class="CSU.OnlineJudge.Service.Impl.KnowledgeProblemServiceImpl" >
+		<property name="kpd" ref="KnowledgeProblemDAO" ></property>
+	</bean>
+	 <bean name="KnowledgeService" class="CSU.OnlineJudge.Service.Impl.KnowledgeServiceImpl" >
+		<property name="kd" ref="KnowledgeDAO" ></property>
+	</bean>
+	 <bean name="LogService" class="CSU.OnlineJudge.Service.Impl.LogServiceImpl" >
+		<property name="ld" ref="LogDAO" ></property>
+	</bean>
+	 <bean name="ProblemService" class="CSU.OnlineJudge.Service.Impl.ProblemServiceImpl" >
+		<property name="pd" ref="ProblemDAO" ></property>
+	</bean>
+	 <bean name="SubmissionService" class="CSU.OnlineJudge.Service.Impl.SubmissionServiceImpl" >
+		<property name="sd" ref="SubmissionDAO" ></property>
+	</bean>
+	 <bean name="UserService" class="CSU.OnlineJudge.Service.Impl.UserServiceImpl" >
+		<property name="ud" ref="UserDAO" ></property>
+	</bean>
+	 <bean name="WorkCaseRecordService" class="CSU.OnlineJudge.Service.Impl.WorkCaseRecordServiceImpl" >
+		<property name="wcrd" ref="WorkCaseRecordDAO" ></property>
+	</bean>
+	 <bean name="WorkCourseService" class="CSU.OnlineJudge.Service.Impl.WorkCourseServiceImpl" >
+		<property name="wcd" ref="WorkCourseDAO" ></property>
+	</bean>
+	 <bean name="WorkProblemService" class="CSU.OnlineJudge.Service.Impl.WorkProblemServiceImpl" >
+		<property name="wpd" ref="WorkProblemDAO" ></property>
+	</bean>
+	 <bean name="WorkRecordService" class="CSU.OnlineJudge.Service.Impl.WorkRecordServiceImpl" >
+		<property name="wrd" ref="WorkRecordDAO" ></property>
+	</bean>
+	 <bean name="WorkService" class="CSU.OnlineJudge.Service.Impl.WorkServiceImpl" >
+		<property name="wd" ref="WorkDAO" ></property>
+	</bean>
+	 <bean name="WorkUserRecordService" class="CSU.OnlineJudge.Service.Impl.WorkUserRecordServiceImpl" >
+		<property name="wurd" ref="WorkUserRecordDAO" ></property>
+	</bean>
  
 
 	
@@ -89,6 +133,9 @@
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
 	<bean name="WorkUserRecordDAO" class="CSU.OnlineJudge.DAO.Impl.WorkUserRecordDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+		<bean name="CodeDAO" class="CSU.OnlineJudge.DAO.Impl.CodeDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
 	

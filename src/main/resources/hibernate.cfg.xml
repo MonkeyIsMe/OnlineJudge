@@ -55,6 +55,7 @@
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		
 <mapping class="CSU.OnlineJudge.Model.Case" />
+<mapping class="CSU.OnlineJudge.Model.Code" />
 <mapping class="CSU.OnlineJudge.Model.Course" />
 <mapping class="CSU.OnlineJudge.Model.CourseUser" />
 <mapping class="CSU.OnlineJudge.Model.Knowledge" />

@@ -17,7 +17,7 @@ import CSU.OnlineJudge.Service.KnowledgeService;
 import CSU.OnlineJudge.Service.ProblemService;
 import CSU.OnlineJudge.Service.Impl.KnowledgeProblemServiceImpl;
 import CSU.OnlineJudge.Service.Impl.KnowledgeServiceImpl;
-import CSU.OnlineJudge.Service.Impl.ProblemServicempl;
+import CSU.OnlineJudge.Service.Impl.ProblemServiceImpl;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
