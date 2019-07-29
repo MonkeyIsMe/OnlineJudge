@@ -63,7 +63,6 @@ public class ProblemDAOImpl extends HibernateDaoSupport implements ProblemDAO{
 		// TODO Auto-generated method stub
 		
 		return getHibernateTemplate().execute(new HibernateCallback<List<Problem>>() {
-			
 
 			public List<Problem> doInHibernate(Session session) throws HibernateException {
 				// TODO Auto-generated method stub
