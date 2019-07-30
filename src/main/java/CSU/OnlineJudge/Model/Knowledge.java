@@ -2,6 +2,8 @@ package CSU.OnlineJudge.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,6 +16,7 @@ public class Knowledge {
 	
 	@Id
 	@Column(name="knowledge_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int KnowledgeId; //主键
 	
 	@Column(name="knowledge_name")

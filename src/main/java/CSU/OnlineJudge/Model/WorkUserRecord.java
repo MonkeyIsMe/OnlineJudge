@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,6 +18,7 @@ public class WorkUserRecord {
 	
 	@Id
 	@Column(name="wu_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int WorkUserRecordId;// 主键
 	
 	@Column(name="problem_id")

@@ -2,6 +2,8 @@ package CSU.OnlineJudge.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,7 +16,8 @@ public class KnowledgeProblem {
 	
 	@Id
 	@Column(name="kp_id")
-	private int Pid;  // 主键
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int KPid;  // 主键
 	
 	@Column(name="problem_id")
 	private int ProblemId;  // 题目编号
@@ -22,11 +25,12 @@ public class KnowledgeProblem {
 	@Column(name="knowledge_id")
 	private int KnowledgeId; // 知识点编号
 	
-	public int getPid() {
-		return Pid;
+
+	public int getKPid() {
+		return KPid;
 	}
-	public void setPid(int pid) {
-		Pid = pid;
+	public void setKPid(int kPid) {
+		KPid = kPid;
 	}
 	public int getProblemId() {
 		return ProblemId;
@@ -43,7 +47,7 @@ public class KnowledgeProblem {
 	
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
-		jo.put("Pid", this.Pid);
+		jo.put("KPid", this.KPid);
 		jo.put("ProblemId", this.ProblemId);
 		jo.put("KnowledgeId", this.KnowledgeId);
 		return jo;

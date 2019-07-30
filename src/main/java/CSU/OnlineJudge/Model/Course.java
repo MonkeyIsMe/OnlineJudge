@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,6 +18,7 @@ public class Course {
 	
 	@Id
 	@Column(name="course_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int CourseId;  // 主键
 	
 	@Column(name="course_name")
