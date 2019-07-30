@@ -17,15 +17,16 @@ import net.sf.json.JSONArray;
 
 public class CaseAction extends ActionSupport{
 	
-	private CaseService cs;
+	private CaseService CaseService;
 	private Case cas = new Case();
 	
-	public CaseService getCs() {
-		return cs;
+
+	public CaseService getCaseService() {
+		return CaseService;
 	}
 
-	public void setCs(CaseService cs) {
-		this.cs = cs;
+	public void setCaseService(CaseService caseService) {
+		CaseService = caseService;
 	}
 
 	//添加样例
@@ -51,7 +52,7 @@ public class CaseAction extends ActionSupport{
 		cas.setCaseOutput(case_output);
 		cas.setProblemId(pid);
 		
-		cs.AddCase(cas);
+		CaseService.AddCase(cas);
 	}
 	
 	//删除样例
@@ -67,7 +68,7 @@ public class CaseAction extends ActionSupport{
 		String case_id = request.getParameter("case_id");
 		
 		int cid = Integer.valueOf(case_id);
-		cas = cs.QueryCase(cid);
+		cas = CaseService.QueryCase(cid);
 		
 		if(cas == null) {
 			out.println("Fail");
@@ -76,7 +77,7 @@ public class CaseAction extends ActionSupport{
 			return ;
 		}
 		
-		cs.DeleteCase(cas);
+		CaseService.DeleteCase(cas);
 		
 	}
 	
@@ -99,7 +100,7 @@ public class CaseAction extends ActionSupport{
 		int cFlag = Integer.valueOf(case_flag);
 		int pid = Integer.valueOf(problem_id);
 		int cid = Integer.valueOf(case_id);
-		cas = cs.QueryCase(cid);
+		cas = CaseService.QueryCase(cid);
 		if(cas == null) {
 			out.println("Fail");
 			out.flush(); 
@@ -112,7 +113,7 @@ public class CaseAction extends ActionSupport{
 		cas.setCaseOutput(case_output);
 		cas.setProblemId(pid);
 		
-		cs.UpdateCase(cas);
+		CaseService.UpdateCase(cas);
 		
 	}
 	
@@ -130,7 +131,7 @@ public class CaseAction extends ActionSupport{
 		
 		int pid = Integer.valueOf(problem_id);
 		
-		List<Case> CaseList = cs.GetCaseByFlag(pid, 0);
+		List<Case> CaseList = CaseService.GetCaseByFlag(pid, 0);
 		
 		JSONArray ja = JSONArray.fromObject(CaseList);
 		out.println(ja.toString());
@@ -154,7 +155,7 @@ public class CaseAction extends ActionSupport{
 		
 		int pid = Integer.valueOf(problem_id);
 		
-		List<Case> CaseList = cs.GetCaseByFlag(pid, 1);
+		List<Case> CaseList = CaseService.GetCaseByFlag(pid, 1);
 		
 		JSONArray ja = JSONArray.fromObject(CaseList);
 		out.println(ja.toString());
@@ -178,7 +179,7 @@ public class CaseAction extends ActionSupport{
 		
 		int pid = Integer.valueOf(problem_id);
 		
-		List<Case> CaseList = cs.GetProblemCase(pid);
+		List<Case> CaseList = CaseService.GetProblemCase(pid);
 		
 		JSONArray ja = JSONArray.fromObject(CaseList);
 		out.println(ja.toString());

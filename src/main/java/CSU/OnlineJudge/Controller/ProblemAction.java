@@ -20,29 +20,28 @@ import net.sf.json.JSONObject;
 
 public class ProblemAction extends ActionSupport{
 	
-	private ProblemService ps;
+	private ProblemService ProblemService;
 	private Problem problem = new Problem();
-	private CaseService cs;
+	private CaseService CaseService;
 	private Case cas;
-	
-	
-	public CaseService getCs() {
-		return cs;
+
+
+	public CaseService getCaseService() {
+		return CaseService;
 	}
 
-	public void setCs(CaseService cs) {
-		this.cs = cs;
+	public void setCaseService(CaseService caseService) {
+		CaseService = caseService;
 	}
 
-	public ProblemService getPs() {
-		return ps;
+	public ProblemService getProblemService() {
+		return ProblemService;
 	}
 
-	public void setPs(ProblemService ps) {
-		this.ps = ps;
+	public void setProblemService(ProblemService problemService) {
+		ProblemService = problemService;
 	}
 
-	
 	//删除题目
 	public void DeleteProblem() throws Exception{
 		
@@ -56,7 +55,7 @@ public class ProblemAction extends ActionSupport{
 		String problem_id = request.getParameter("problem_id");
 		
 		int pid = Integer.valueOf(problem_id);
-		Problem problem = ps.QueryProblem(pid);
+		Problem problem = ProblemService.QueryProblem(pid);
 		
 		if(problem == null) {
 			out.println("Fail");
@@ -65,7 +64,7 @@ public class ProblemAction extends ActionSupport{
 			return ;
 		}
 		
-		ps.DeleteProblem(problem);
+		ProblemService.DeleteProblem(problem);
 		
 	}
 	
@@ -126,7 +125,7 @@ public class ProblemAction extends ActionSupport{
 		problem.setProblemInput(problem_input);
 		problem.setProblemOutput(problem_output);
 		
-		int pid = ps.AddProblem(problem);
+		int pid = ProblemService.AddProblem(problem);
 		for(int i = 0; i < ja.size(); i ++) {
 			JSONObject jo = ja.getJSONObject(i);
 			String case_input = jo.getString("case_input");
@@ -136,7 +135,7 @@ public class ProblemAction extends ActionSupport{
 			cas.setCaseFlag(cflag);
 			cas.setCaseInput(case_input);
 			cas.setCaseOutput(case_output);
-			cs.AddCase(cas);
+			CaseService.AddCase(cas);
 		}
 		
 	}
@@ -181,7 +180,7 @@ public class ProblemAction extends ActionSupport{
 		
 		
 		int pid = Integer.valueOf(problem_id);
-		problem = ps.QueryProblem(pid);
+		problem = ProblemService.QueryProblem(pid);
 		
 		if(problem == null) {
 			out.println("Fail");
@@ -207,7 +206,7 @@ public class ProblemAction extends ActionSupport{
 		problem.setProblemInput(problem_input);
 		problem.setProblemOutput(problem_output);
 		
-		ps.UpdateProblem(problem);
+		ProblemService.UpdateProblem(problem);
 		
 	}
 	
@@ -227,7 +226,7 @@ public class ProblemAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 			
-		List<Problem> ProblemList = ps.GetFlagProblemByPageSize(row, PageSize, 1);
+		List<Problem> ProblemList = ProblemService.GetFlagProblemByPageSize(row, PageSize, 1);
 			
 		JSONArray ja = JSONArray.fromObject(ProblemList);
 		out.println(ja.toString());
@@ -251,7 +250,7 @@ public class ProblemAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 			
-		List<Problem> ProblemList = ps.GetFlagProblemByPageSize(row, PageSize, 0);
+		List<Problem> ProblemList = ProblemService.GetFlagProblemByPageSize(row, PageSize, 0);
 			
 		JSONArray ja = JSONArray.fromObject(ProblemList);
 		out.println(ja.toString());
@@ -275,7 +274,7 @@ public class ProblemAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 			
-		List<Problem> ProblemList = ps.QueryProblemByPageSize(row, PageSize);
+		List<Problem> ProblemList = ProblemService.QueryProblemByPageSize(row, PageSize);
 			
 		JSONArray ja = JSONArray.fromObject(ProblemList);
 		out.println(ja.toString());
@@ -297,7 +296,7 @@ public class ProblemAction extends ActionSupport{
 			
 		int pid = Integer.valueOf(problem_id);
 			
-		Problem Problem = ps.QueryProblem(pid);
+		Problem Problem = ProblemService.QueryProblem(pid);
 			
 		JSONObject jo = JSONObject.fromObject(Problem);
 		out.println(jo.toString());
@@ -322,7 +321,7 @@ public class ProblemAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 			
-		List<Problem> ProblemList = ps.VagueByPageSizeWithFlagByName(row, PageSize, 1, problem_name);
+		List<Problem> ProblemList = ProblemService.VagueByPageSizeWithFlagByName(row, PageSize, 1, problem_name);
 			
 		JSONArray ja = JSONArray.fromObject(ProblemList);
 		out.println(ja.toString());
@@ -347,7 +346,7 @@ public class ProblemAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 			
-		List<Problem> ProblemList = ps.VagueByPageSizeWithFlagByName(row, PageSize, 0, problem_name);
+		List<Problem> ProblemList = ProblemService.VagueByPageSizeWithFlagByName(row, PageSize, 0, problem_name);
 			
 		JSONArray ja = JSONArray.fromObject(ProblemList);
 		out.println(ja.toString());
@@ -372,7 +371,7 @@ public class ProblemAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 			
-		List<Problem> ProblemList = ps.VagueByPageSizeWithFlagByPeople(row, PageSize, problem_people);
+		List<Problem> ProblemList = ProblemService.VagueByPageSizeWithFlagByPeople(row, PageSize, problem_people);
 			
 		JSONArray ja = JSONArray.fromObject(ProblemList);
 		out.println(ja.toString());
@@ -397,7 +396,7 @@ public class ProblemAction extends ActionSupport{
 		int PageSize = Integer.valueOf(size); 
 		
 		JSONArray ja = new JSONArray();
-		List<Object[]> obj_list = ps.GetProblemOutInfo(row, PageSize, 1);
+		List<Object[]> obj_list = ProblemService.GetProblemOutInfo(row, PageSize, 1);
 		for(Object[]  obj : obj_list) {
 			JSONObject jo = new JSONObject();
 			Object id = obj[0];

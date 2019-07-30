@@ -18,18 +18,17 @@ import net.sf.json.JSONObject;
 public class LogAction extends ActionSupport{
 
 	private Log log = new Log();
-	private LogService ls;
+	private LogService LogService;
 	
-	public LogService getLs() {
-		return ls;
+
+	public LogService getLogService() {
+		return LogService;
 	}
 
 
-
-	public void setLs(LogService ls) {
-		this.ls = ls;
+	public void setLogService(LogService logService) {
+		LogService = logService;
 	}
-
 
 
 	//添加当天的日志
@@ -59,7 +58,7 @@ public class LogAction extends ActionSupport{
 		log.setSubmissionNumber(submission);
 		log.setLogTime(log_time);
 		
-		ls.addLog(log);
+		LogService.addLog(log);
 		
 	}
 	

@@ -22,24 +22,25 @@ import net.sf.json.JSONObject;
 public class CourseUserAction extends ActionSupport{
 	
 	private CourseUser cu = new CourseUser();
-	private CourseUserService cus;
-	private CourseService cs;
+	private CourseUserService CourseUserService;
+	private CourseService CourseService;
 	
 	
-	public CourseUserService getCus() {
-		return cus;
+
+	public CourseUserService getCourseUserService() {
+		return CourseUserService;
 	}
 
-	public void setCus(CourseUserService cus) {
-		this.cus = cus;
+	public void setCourseUserService(CourseUserService courseUserService) {
+		CourseUserService = courseUserService;
 	}
 
-	public CourseService getCs() {
-		return cs;
+	public CourseService getCourseService() {
+		return CourseService;
 	}
 
-	public void setCs(CourseService cs) {
-		this.cs = cs;
+	public void setCourseService(CourseService courseService) {
+		CourseService = courseService;
 	}
 
 	//查询指定学生的课程
@@ -54,12 +55,12 @@ public class CourseUserAction extends ActionSupport{
 		
 		String user_account = request.getParameter("user_account");
 		
-		List<CourseUser> CourseUserList = cus.QueryCourseUserByUserAccount(user_account);
+		List<CourseUser> CourseUserList = CourseUserService.QueryCourseUserByUserAccount(user_account);
 		JSONArray ja = new JSONArray();
 		
 		for(CourseUser courseuser : CourseUserList) {
 			int cid = courseuser.getCourseId();
-			Course course = cs.QueryCourse(cid);
+			Course course = CourseService.QueryCourse(cid);
 			JSONObject jo = JSONObject.fromObject(course);
 			ja.add(jo);
 		}
@@ -83,7 +84,7 @@ public class CourseUserAction extends ActionSupport{
 		String user_account = request.getParameter("user_account");
 		String course_id = request.getParameter("course_id");
 		
-		List<CourseUser> CourseUserList = cus.QueryCourseUserByUserAccount(user_account);
+		List<CourseUser> CourseUserList = CourseUserService.QueryCourseUserByUserAccount(user_account);
 		int cid = Integer.valueOf(course_id);
 		
 		boolean flag = false;
@@ -130,7 +131,7 @@ public class CourseUserAction extends ActionSupport{
 		cu.setUserAccount(user_account);
 		cu.setCourseUserId(uid);
 		
-		cus.addCourseUser(cu);
+		CourseUserService.addCourseUser(cu);
 		
 	}
 	
@@ -148,7 +149,7 @@ public class CourseUserAction extends ActionSupport{
 		
 		int cuid = Integer.valueOf(courseuser_id);
 		
-		cu = cus.queryCourseUser(cuid);
+		cu = CourseUserService.queryCourseUser(cuid);
 		
 		if(cu == null) {
 			out.println("Fail");
@@ -157,6 +158,6 @@ public class CourseUserAction extends ActionSupport{
 			return ;
 		}
 		
-		cus.deleteCourseUser(cu);
+		CourseUserService.deleteCourseUser(cu);
 	}
 }

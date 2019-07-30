@@ -35,7 +35,12 @@
 		</tx:attributes>
 	</tx:advice>
 	
-
+		<!-- action -->
+	<!-- 注意:Action对象作用范围一定是多例的.这样才符合struts2架构 -->
+	<bean name="ProblemAction" class="CSU.OnlineJudge.Controller.ProblemAction" scope="prototype" >
+		<property name="ProblemService" ref="ProblemService" ></property>
+		<property name="CaseService" ref="CaseService" ></property>
+	</bean>
 	
 	<!-- service -->
  	<bean name="CaseService" class="CSU.OnlineJudge.Service.Impl.CaseServiceImpl" >

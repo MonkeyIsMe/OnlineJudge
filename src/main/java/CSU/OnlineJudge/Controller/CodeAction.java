@@ -15,17 +15,17 @@ import net.sf.json.JSONArray;
 
 public class CodeAction extends ActionSupport{
 	
-	private CodeService cs;
+	private CodeService CodeService;
 	private Code code = new Code();
 	
-	
-	
-	public CodeService getCs() {
-		return cs;
+
+
+	public CodeService getCodeService() {
+		return CodeService;
 	}
 
-	public void setCs(CodeService cs) {
-		this.cs = cs;
+	public void setCodeService(CodeService codeService) {
+		CodeService = codeService;
 	}
 
 	//增加一个代码
@@ -46,7 +46,7 @@ public class CodeAction extends ActionSupport{
 		code.setCodeName(code_name);
 		code.setUserAccount(user_account);
 		
-		cs.AddCode(code);
+		CodeService.AddCode(code);
 		
 	}
 	
@@ -64,7 +64,7 @@ public class CodeAction extends ActionSupport{
 		
 		int cid = Integer.valueOf(code_id);
 		
-		code = cs.QueryCode(cid);
+		code = CodeService.QueryCode(cid);
 		
 		if(code == null) {
 			out.println("Fail");
@@ -73,7 +73,7 @@ public class CodeAction extends ActionSupport{
 			return ;
 		}
 		
-		cs.DeleteCode(code);
+		CodeService.DeleteCode(code);
 		
 	}
 	
@@ -93,7 +93,7 @@ public class CodeAction extends ActionSupport{
 		
 		int cid = Integer.valueOf(code_id);
 		
-		code = cs.QueryCode(cid);
+		code = CodeService.QueryCode(cid);
 		
 		code.setCodeInfo(code_info);
 		code.setCodeName(code_name);
@@ -105,7 +105,7 @@ public class CodeAction extends ActionSupport{
 			return ;
 		}
 		
-		cs.UpdateCode(code);
+		CodeService.UpdateCode(code);
 		
 	}
 	
@@ -121,7 +121,7 @@ public class CodeAction extends ActionSupport{
 		
 		String user_account = request.getParameter("user_account");
 		
-		List<Code>  CodeList = cs.QueryCodeByUserAccount(user_account);
+		List<Code>  CodeList = CodeService.QueryCodeByUserAccount(user_account);
 		
 		JSONArray ja = JSONArray.fromObject(CodeList);
 		

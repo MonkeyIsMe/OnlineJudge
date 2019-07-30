@@ -23,34 +23,20 @@ import net.sf.json.JSONObject;
 
 public class KnowledgeProblemAction extends ActionSupport{
 	
-	private KnowledgeProblemService kps;
-	private KnowledgeService ks;
+	private KnowledgeProblemService KnowledgeProblemService;
+	private KnowledgeService KnowledgeService;
 	private KnowledgeProblem kp = new KnowledgeProblem();
-	private ProblemService ps;
+	private ProblemService ProblemService;
 	
 	
-	public KnowledgeProblemService getKps() {
-		return kps;
+
+
+	public KnowledgeProblemService getKnowledgeProblemService() {
+		return KnowledgeProblemService;
 	}
 
-	public void setKps(KnowledgeProblemService kps) {
-		this.kps = kps;
-	}
-
-	public KnowledgeService getKs() {
-		return ks;
-	}
-
-	public void setKs(KnowledgeService ks) {
-		this.ks = ks;
-	}
-
-	public ProblemService getPs() {
-		return ps;
-	}
-
-	public void setPs(ProblemService ps) {
-		this.ps = ps;
+	public void setKnowledgeProblemService(KnowledgeProblemService knowledgeProblemService) {
+		KnowledgeProblemService = knowledgeProblemService;
 	}
 
 	//添加知识点题目关联
@@ -72,7 +58,7 @@ public class KnowledgeProblemAction extends ActionSupport{
 		kp.setKnowledgeId(kid);
 		kp.setProblemId(pid);
 		
-		kps.addKnowledgeProblem(kp);
+		KnowledgeProblemService.addKnowledgeProblem(kp);
 		
 	}
 	
@@ -90,7 +76,7 @@ public class KnowledgeProblemAction extends ActionSupport{
 		
 		int kpid = Integer.valueOf(knowledgeproblem_id);
 		
-		kp = kps.queryKnowledgeProblem(kpid);
+		kp = KnowledgeProblemService.queryKnowledgeProblem(kpid);
 		if(kp == null) {
 			out.println("Fail");
 			out.flush(); 
@@ -98,7 +84,7 @@ public class KnowledgeProblemAction extends ActionSupport{
 			return ;
 		}
 		
-		kps.deleteKnowledgeProblem(kp);
+		KnowledgeProblemService.deleteKnowledgeProblem(kp);
 	}
 	
 	//查询题目关联的知识点
@@ -117,10 +103,10 @@ public class KnowledgeProblemAction extends ActionSupport{
 		
 		JSONArray ja = new JSONArray();
 		
-		List<KnowledgeProblem> KnowledgeProblemList = kps.queryKnowledgeProblemByProblemId(pid);
+		List<KnowledgeProblem> KnowledgeProblemList = KnowledgeProblemService.queryKnowledgeProblemByProblemId(pid);
 		for(KnowledgeProblem know : KnowledgeProblemList) {
 			int kid = know.getKnowledgeId();
-			Knowledge knowledge = ks.queryKnowledge(kid);
+			Knowledge knowledge = KnowledgeService.queryKnowledge(kid);
 			JSONObject jo = JSONObject.fromObject(knowledge);
 			ja.add(jo);
 		}
@@ -147,10 +133,10 @@ public class KnowledgeProblemAction extends ActionSupport{
 		
 		JSONArray ja = new JSONArray();
 		
-		List<KnowledgeProblem> KnowledgeProblemList = kps.queryKnowledgeProblemByKnowledge(kid);
+		List<KnowledgeProblem> KnowledgeProblemList = KnowledgeProblemService.queryKnowledgeProblemByKnowledge(kid);
 		for(KnowledgeProblem pro : KnowledgeProblemList) {
 			int pid = pro.getKnowledgeId();
-			Problem problem = ps.QueryProblem(pid);
+			Problem problem = ProblemService.QueryProblem(pid);
 			JSONObject jo = JSONObject.fromObject(problem);
 			ja.add(jo);
 		}

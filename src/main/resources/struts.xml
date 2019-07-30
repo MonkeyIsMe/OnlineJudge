@@ -7,9 +7,10 @@
 	<!-- #  struts.objectFactory = spring	将action的创建交给spring容器	
 			struts.objectFactory.spring.autoWire = name spring负责装配Action依赖属性
 			-->
-	<constant name="struts.objectFactory" value="spring"></constant>
 
-	<package name="crm" namespace="/" extends="struts-default" >
+<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+	<!-- Action必须放在指定的包名空间中 -->
+	<package name="json"  extends="json-default" namespace="/">
 	
 		<!-- 整合方案1:class属性上仍然配置action的完整类名
 				struts2仍然创建action,由spring负责组装Action中的依赖属性
@@ -19,6 +20,8 @@
 		 		完全由spring管理action生命周期,包括Action的创建
 		 		注意:需要手动组装依赖属性
 		  -->
+		  <action name="QueryProblemList" class="ProblemAction" method="QueryProblemList" >
+		</action>
 	</package>
 </struts>
 	

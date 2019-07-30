@@ -16,15 +16,18 @@ import CSU.OnlineJudge.Service.Impl.WorkRecordServiceImpl;
 public class WorkRecordAction extends ActionSupport{
 
 	private WorkRecord wr = new WorkRecord();
-	private WorkRecordService wrs;
+	private WorkRecordService WorkRecordService;
 	
-	public WorkRecordService getWrs() {
-		return wrs;
+
+	public WorkRecordService getWorkRecordService() {
+		return WorkRecordService;
 	}
 
-	public void setWrs(WorkRecordService wrs) {
-		this.wrs = wrs;
+
+	public void setWorkRecordService(WorkRecordService workRecordService) {
+		WorkRecordService = workRecordService;
 	}
+
 
 	//添加考试，作业的题目记录
 	public void AddWorkRecord() throws Exception{
@@ -57,7 +60,7 @@ public class WorkRecordAction extends ActionSupport{
 		wr.setWorkId(wid);
 		wr.setProblemId(pid);
 
-		wrs.addWorkRecord(wr);
+		WorkRecordService.addWorkRecord(wr);
 		
 	}
 	

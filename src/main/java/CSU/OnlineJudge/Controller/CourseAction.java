@@ -17,14 +17,14 @@ import net.sf.json.JSONObject;
 public class CourseAction extends ActionSupport{
 
 	private Course course = new Course();
-	private CourseService cs;
-	
-	public CourseService getCs() {
-		return cs;
+	private CourseService CourseService;
+
+	public CourseService getCourseService() {
+		return CourseService;
 	}
 
-	public void setCs(CourseService cs) {
-		this.cs = cs;
+	public void setCourseService(CourseService courseService) {
+		CourseService = courseService;
 	}
 
 	//添加课程
@@ -45,7 +45,7 @@ public class CourseAction extends ActionSupport{
 		course.setCourseInfo(course_info);
 		course.setCourseTime(course_time);
 		
-		cs.AddCourse(course);
+		CourseService.AddCourse(course);
 		
 	}
 	
@@ -62,7 +62,7 @@ public class CourseAction extends ActionSupport{
 		String course_id = request.getParameter("course_id");
 		int cid = Integer.valueOf(course_id);
 		
-		course = cs.QueryCourse(cid);
+		course = CourseService.QueryCourse(cid);
 		if(course == null) {
 			out.println("Fail");
 			out.flush(); 
@@ -70,7 +70,7 @@ public class CourseAction extends ActionSupport{
 			return ;
 		}
 		
-		cs.DeleteCourse(course);
+		CourseService.DeleteCourse(course);
 		
 	}
 	
@@ -90,7 +90,7 @@ public class CourseAction extends ActionSupport{
 		String course_id = request.getParameter("course_id");
 		int cid = Integer.valueOf(course_id);
 		
-		course = cs.QueryCourse(cid);
+		course = CourseService.QueryCourse(cid);
 		if(course == null) {
 			out.println("Fail");
 			out.flush(); 
@@ -102,7 +102,7 @@ public class CourseAction extends ActionSupport{
 		course.setCourseInfo(course_info);
 		course.setCourseTime(course_time);
 		
-		cs.UpdateCourse(course);
+		CourseService.UpdateCourse(course);
 		
 	}
 	
@@ -119,7 +119,7 @@ public class CourseAction extends ActionSupport{
 		String course_id = request.getParameter("course_id");
 		int cid = Integer.valueOf(course_id);
 		
-		course = cs.QueryCourse(cid);
+		course = CourseService.QueryCourse(cid);
 		if(course == null) {
 			out.println("Fail");
 			out.flush(); 

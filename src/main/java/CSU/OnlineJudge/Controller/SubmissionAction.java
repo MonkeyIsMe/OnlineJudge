@@ -18,16 +18,18 @@ import net.sf.json.JSONObject;
 public class SubmissionAction extends ActionSupport{
 
 	private Submission submission =  null;
-	private SubmissionService ss;
+	private SubmissionService SubmissionService;
 	
 	
-	public SubmissionService getSs() {
-		return ss;
+
+
+	public SubmissionService getSubmissionService() {
+		return SubmissionService;
 	}
 
 
-	public void setSs(SubmissionService ss) {
-		this.ss = ss;
+	public void setSubmissionService(SubmissionService submissionService) {
+		SubmissionService = submissionService;
 	}
 
 
@@ -66,7 +68,7 @@ public class SubmissionAction extends ActionSupport{
 		submission.setCodeType(submission_type);
 		submission.setProblemId(pid);
 		
-		ss.addSubmission(submission);
+		SubmissionService.addSubmission(submission);
 		
 	}
 	
@@ -84,7 +86,7 @@ public class SubmissionAction extends ActionSupport{
 		
 		int sid = Integer.valueOf(submission_id);
 		
-		submission = ss.querySubmission(sid);
+		submission = SubmissionService.querySubmission(sid);
 		if(submission == null) {
 			out.println("Fail");
 			out.flush(); 
@@ -92,7 +94,7 @@ public class SubmissionAction extends ActionSupport{
 			return ;
 		}
 		
-		ss.deleteSubmission(submission);
+		SubmissionService.deleteSubmission(submission);
 		
 	}
 	
@@ -111,7 +113,7 @@ public class SubmissionAction extends ActionSupport{
 		
 		int sid = Integer.valueOf(submission_id);
 		
-		submission = ss.querySubmission(sid);
+		submission = SubmissionService.querySubmission(sid);
 		if(submission == null) {
 			out.println("Fail");
 			out.flush(); 
@@ -144,7 +146,7 @@ public class SubmissionAction extends ActionSupport{
 		int PageSize = Integer.valueOf(size);
 		
 		
-		List<Submission> SubList = ss.QuerySubmissionByPageSize(row, PageSize);
+		List<Submission> SubList = SubmissionService.QuerySubmissionByPageSize(row, PageSize);
 		
 		JSONArray ja = JSONArray.fromObject(SubList);
 		out.println(ja.toString());
@@ -169,7 +171,7 @@ public class SubmissionAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
-		List<Submission> SubList = ss.QuerySubmissionByPageSizeWithUserAccount(row, PageSize, user_account);
+		List<Submission> SubList = SubmissionService.QuerySubmissionByPageSizeWithUserAccount(row, PageSize, user_account);
 		
 		JSONArray ja = JSONArray.fromObject(SubList);
 		out.println(ja.toString());
@@ -195,7 +197,7 @@ public class SubmissionAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
-		List<Submission> SubList = ss.QuerySubmissionByPageSizeWithResult(row, PageSize, submission_result);
+		List<Submission> SubList = SubmissionService.QuerySubmissionByPageSizeWithResult(row, PageSize, submission_result);
 		
 		JSONArray ja = JSONArray.fromObject(SubList);
 		out.println(ja.toString());
@@ -222,7 +224,7 @@ public class SubmissionAction extends ActionSupport{
 		int PageSize = Integer.valueOf(size);
 		int pid = Integer.valueOf(problem_id);
 		
-		List<Submission> SubList = ss.QuerySubmissionByPageSizeWithProblemId(row, PageSize, pid);
+		List<Submission> SubList = SubmissionService.QuerySubmissionByPageSizeWithProblemId(row, PageSize, pid);
 		
 		JSONArray ja = JSONArray.fromObject(SubList);
 		out.println(ja.toString());
@@ -249,7 +251,7 @@ public class SubmissionAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
-		List<Submission> SubList = ss.QuerySubmissionByPageSizeWithUserAccountResult(row, PageSize, user_account, submission_result);
+		List<Submission> SubList = SubmissionService.QuerySubmissionByPageSizeWithUserAccountResult(row, PageSize, user_account, submission_result);
 		
 		JSONArray ja = JSONArray.fromObject(SubList);
 		out.println(ja.toString());
@@ -277,7 +279,7 @@ public class SubmissionAction extends ActionSupport{
 		int PageSize = Integer.valueOf(size);
 		int pid = Integer.valueOf(problem_id);
 		
-		List<Submission> SubList = ss.QuerySubmissionByPageSizeWithUserAccountProblem(row, PageSize, user_account, pid);
+		List<Submission> SubList = SubmissionService.QuerySubmissionByPageSizeWithUserAccountProblem(row, PageSize, user_account, pid);
 		
 		JSONArray ja = JSONArray.fromObject(SubList);
 		out.println(ja.toString());
@@ -305,7 +307,7 @@ public class SubmissionAction extends ActionSupport{
 		int PageSize = Integer.valueOf(size);
 		int pid = Integer.valueOf(problem_id);
 		
-		List<Submission> SubList = ss.QuerySubmissionByPageSizeWithProblemIdResult(row, PageSize, pid, submission_result);
+		List<Submission> SubList = SubmissionService.QuerySubmissionByPageSizeWithProblemIdResult(row, PageSize, pid, submission_result);
 		
 		JSONArray ja = JSONArray.fromObject(SubList);
 		out.println(ja.toString());
@@ -335,7 +337,7 @@ public class SubmissionAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
-		List<Submission> SubList = ss.QuerySubmissionByPageSizeWithUserAccountResultProblem(row, PageSize, user_account, submission_result, pid);
+		List<Submission> SubList = SubmissionService.QuerySubmissionByPageSizeWithUserAccountResultProblem(row, PageSize, user_account, submission_result, pid);
 		
 		JSONArray ja = JSONArray.fromObject(SubList);
 		out.println(ja.toString());

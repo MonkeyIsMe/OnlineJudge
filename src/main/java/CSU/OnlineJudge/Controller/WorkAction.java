@@ -20,25 +20,27 @@ import net.sf.json.JSONObject;
 
 public class WorkAction extends ActionSupport{
 	
-	private WorkService ws;
+	private WorkService WorkService;
 	private Work work = new Work();
 	private WorkProblem wp;
-	private WorkProblemService wps;
+	private WorkProblemService WorkProblemService;
 	
-	public WorkProblemService getWps() {
-		return wps;
+
+
+	public WorkService getWorkService() {
+		return WorkService;
 	}
 
-	public void setWps(WorkProblemService wps) {
-		this.wps = wps;
+	public void setWorkService(WorkService workService) {
+		WorkService = workService;
 	}
 
-	public WorkService getWs() {
-		return ws;
+	public WorkProblemService getWorkProblemService() {
+		return WorkProblemService;
 	}
 
-	public void setWs(WorkService ws) {
-		this.ws = ws;
+	public void setWorkProblemService(WorkProblemService workProblemService) {
+		WorkProblemService = workProblemService;
 	}
 
 	//增加作业-考试
@@ -74,14 +76,14 @@ public class WorkAction extends ActionSupport{
 		work.setWorkEndTime(work_endtime);
 		work.setWorkCreatTime(work_createtime);
 		
-		int wid = ws.addWork(work);
+		int wid = WorkService.addWork(work);
 		for(int i = 0; i < ja.size(); i ++) {
 			JSONObject jo = ja.getJSONObject(i);
 			String problem_id = jo.getString("problem_id");
 			int pid = Integer.valueOf(problem_id);
 			wp.setWorkId(wid);
 			wp.setProblemId(pid);
-			wps.addWorkProblem(wp);
+			WorkProblemService.addWorkProblem(wp);
 		}
 		
 	}
@@ -99,7 +101,7 @@ public class WorkAction extends ActionSupport{
 		String work_id = request.getParameter("work_id");
 		int wid = Integer.valueOf(work_id);
 		
-		work = ws.queryWork(wid);
+		work = WorkService.queryWork(wid);
 		if(work == null) {
 			out.println("Fail");
 			out.flush(); 
@@ -107,7 +109,7 @@ public class WorkAction extends ActionSupport{
 			return ;
 		}
 		
-		ws.updateWork(work);
+		WorkService.updateWork(work);
 		
 	}
 	
@@ -135,7 +137,7 @@ public class WorkAction extends ActionSupport{
 		int wid = Integer.valueOf(work_id);
 		
 		boolean flag = false;
-		work = ws.queryWork(wid);
+		work = WorkService.queryWork(wid);
 		
 		if(work == null) {
 			out.println("Fail");
@@ -153,7 +155,7 @@ public class WorkAction extends ActionSupport{
 		work.setWorkEndTime(work_endtime);
 		work.setWorkCreatTime(work_createtime);
 		
-		ws.updateWork(work);
+		WorkService.updateWork(work);
 		
 	}
 	
@@ -171,7 +173,7 @@ public class WorkAction extends ActionSupport{
 		
 		int wid = Integer.valueOf(work_id);
 		
-		work = ws.queryWork(wid);
+		work = WorkService.queryWork(wid);
 		if(work == null) {
 			out.println("Fail");
 			out.flush(); 
@@ -202,7 +204,7 @@ public class WorkAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
-		List<Work> WorkList = ws.QueryWorkByPageSize(row, PageSize);
+		List<Work> WorkList = WorkService.QueryWorkByPageSize(row, PageSize);
 		
 		JSONArray ja = JSONArray.fromObject(WorkList);
 		out.println(ja.toString());
@@ -227,7 +229,7 @@ public class WorkAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
-		List<Work> WorkList = ws.QueryHomeworkByPageSize(row, PageSize, 0);
+		List<Work> WorkList = WorkService.QueryHomeworkByPageSize(row, PageSize, 0);
 		
 		JSONArray ja = JSONArray.fromObject(WorkList);
 		out.println(ja.toString());
@@ -253,7 +255,7 @@ public class WorkAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
-		List<Work> WorkList = ws.QueryExamByPageSize(row, PageSize, 1);
+		List<Work> WorkList = WorkService.QueryExamByPageSize(row, PageSize, 1);
 		
 		JSONArray ja = JSONArray.fromObject(WorkList);
 		out.println(ja.toString());
@@ -280,7 +282,7 @@ public class WorkAction extends ActionSupport{
 		int PageSize = Integer.valueOf(size);
 		int cid = Integer.valueOf(class_id);
 		
-		List<Work> WorkList = ws.QueryHomeWorkByPageSizeWithClassId(row, PageSize, cid, 0);
+		List<Work> WorkList = WorkService.QueryHomeWorkByPageSizeWithClassId(row, PageSize, cid, 0);
 		
 		JSONArray ja = JSONArray.fromObject(WorkList);
 		out.println(ja.toString());
@@ -307,7 +309,7 @@ public class WorkAction extends ActionSupport{
 		int PageSize = Integer.valueOf(size);
 		int cid = Integer.valueOf(class_id);
 		
-		List<Work> WorkList = ws.QueryHomeWorkByPageSizeWithClassId(row, PageSize, cid, 1);
+		List<Work> WorkList = WorkService.QueryHomeWorkByPageSizeWithClassId(row, PageSize, cid, 1);
 		
 		JSONArray ja = JSONArray.fromObject(WorkList);
 		out.println(ja.toString());
@@ -334,7 +336,7 @@ public class WorkAction extends ActionSupport{
 		int PageSize = Integer.valueOf(size);
 		int cid = Integer.valueOf(class_id);
 		
-		List<Work> WorkList = ws.QueryWorkByPageSizeWithClassId(row, PageSize, cid);
+		List<Work> WorkList = WorkService.QueryWorkByPageSizeWithClassId(row, PageSize, cid);
 		
 		JSONArray ja = JSONArray.fromObject(WorkList);
 		out.println(ja.toString());
@@ -360,7 +362,7 @@ public class WorkAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
-		List<Work> WorkList = ws.QueryWorkByPageSizeWithOwner(row, PageSize, work_onwer);
+		List<Work> WorkList = WorkService.QueryWorkByPageSizeWithOwner(row, PageSize, work_onwer);
 		
 		JSONArray ja = JSONArray.fromObject(WorkList);
 		out.println(ja.toString());

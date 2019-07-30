@@ -16,14 +16,15 @@ import net.sf.json.JSONObject;
 public class KnowledgeAction extends ActionSupport{
 	
 	private Knowledge knowledge = new Knowledge();
-	private KnowledgeService ks;
+	private KnowledgeService KnowledgeService;
 	
-	public KnowledgeService getKs() {
-		return ks;
+
+	public KnowledgeService getKnowledgeService() {
+		return KnowledgeService;
 	}
 
-	public void setKs(KnowledgeService ks) {
-		this.ks = ks;
+	public void setKnowledgeService(KnowledgeService knowledgeService) {
+		KnowledgeService = knowledgeService;
 	}
 
 	//添加知识点
@@ -42,7 +43,7 @@ public class KnowledgeAction extends ActionSupport{
 		knowledge.setKnowledgeInfo(knowledge_info);
 		knowledge.setKnowledgeName(knowledge_name);
 		
-		ks.addKnowledge(knowledge);
+		KnowledgeService.addKnowledge(knowledge);
 		
 	}
 	
@@ -59,7 +60,7 @@ public class KnowledgeAction extends ActionSupport{
 		String knowledge_id = request.getParameter("knowledge_id");
 		
 		int kid = Integer.valueOf(knowledge_id);
-		Knowledge knowledge = ks.queryKnowledge(kid);
+		Knowledge knowledge = KnowledgeService.queryKnowledge(kid);
 		
 		if(knowledge == null) {
 			out.println("Fail");
@@ -68,7 +69,7 @@ public class KnowledgeAction extends ActionSupport{
 			return ;
 		}
 		
-		ks.deleteKnowledge(knowledge);
+		KnowledgeService.deleteKnowledge(knowledge);
 		
 	}
 	
@@ -85,7 +86,7 @@ public class KnowledgeAction extends ActionSupport{
 		String knowledge_id = request.getParameter("knowledge_id");
 		
 		int kid = Integer.valueOf(knowledge_id);
-		Knowledge knowledge = ks.queryKnowledge(kid);
+		Knowledge knowledge = KnowledgeService.queryKnowledge(kid);
 		
 		if(knowledge == null) {
 			out.println("Fail");
@@ -116,7 +117,7 @@ public class KnowledgeAction extends ActionSupport{
 		String knowledge_name = request.getParameter("knowledge_name");
 		
 		int kid = Integer.valueOf(knowledge_id);
-		knowledge = ks.queryKnowledge(kid);
+		knowledge = KnowledgeService.queryKnowledge(kid);
 		
 		if(knowledge == null) {
 			out.println("Fail");
@@ -128,7 +129,7 @@ public class KnowledgeAction extends ActionSupport{
 		knowledge.setKnowledgeInfo(knowledge_info);
 		knowledge.setKnowledgeName(knowledge_name);
 		
-		ks.updateKnowledge(knowledge);
+		KnowledgeService.updateKnowledge(knowledge);
 		
 	}
 

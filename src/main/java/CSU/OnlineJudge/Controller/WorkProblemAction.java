@@ -20,24 +20,26 @@ import net.sf.json.JSONObject;
 
 public class WorkProblemAction extends ActionSupport{
 	
-	private ProblemService ps;
-	private WorkProblemService wps;
+	private ProblemService ProblemService;
+	private WorkProblemService WorkProblemService;
 	private WorkProblem wp = new WorkProblem();
 	
-	public ProblemService getPs() {
-		return ps;
+	
+
+	public ProblemService getProblemService() {
+		return ProblemService;
 	}
 
-	public void setPs(ProblemService ps) {
-		this.ps = ps;
+	public void setProblemService(ProblemService problemService) {
+		ProblemService = problemService;
 	}
 
-	public WorkProblemService getWps() {
-		return wps;
+	public WorkProblemService getWorkProblemService() {
+		return WorkProblemService;
 	}
 
-	public void setWps(WorkProblemService wps) {
-		this.wps = wps;
+	public void setWorkProblemService(WorkProblemService workProblemService) {
+		WorkProblemService = workProblemService;
 	}
 
 	//根据作业编号查询题目
@@ -56,10 +58,10 @@ public class WorkProblemAction extends ActionSupport{
 		
 		JSONArray ja = new JSONArray();
 		
-		List<WorkProblem> WorkProblemList = wps.QueryWorkProblemByWorkId(wid);
+		List<WorkProblem> WorkProblemList = WorkProblemService.QueryWorkProblemByWorkId(wid);
 		for(WorkProblem wpl :WorkProblemList) {
 			int pid = wpl.getProblemId();
-			Problem problem = ps.QueryProblem(pid);
+			Problem problem = ProblemService.QueryProblem(pid);
 			JSONObject jo = JSONObject.fromObject(problem);
 			ja.add(jo);
 		}
@@ -88,7 +90,7 @@ public class WorkProblemAction extends ActionSupport{
 		wp.setProblemId(pid);
 		wp.setWorkId(wid);
 		
-		wps.addWorkProblem(wp);
+		WorkProblemService.addWorkProblem(wp);
 		
 	}
 	
@@ -106,7 +108,7 @@ public class WorkProblemAction extends ActionSupport{
 		
 		int wpid = Integer.valueOf(workproblem_id);
 		
-		wp = wps.queryWorkProblem(wpid);
+		wp = WorkProblemService.queryWorkProblem(wpid);
 		
 		if(wp == null) {
 			out.println("Fail");
@@ -115,7 +117,7 @@ public class WorkProblemAction extends ActionSupport{
 			return ;
 		}
 		
-		wps.deleteWorkProblem(wp);
+		WorkProblemService.deleteWorkProblem(wp);
 		
 	}
 }

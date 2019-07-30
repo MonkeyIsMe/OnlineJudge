@@ -21,23 +21,25 @@ import net.sf.json.JSONObject;
 public class WorkCourseAction extends ActionSupport{
 	
 	private WorkCourse wc = new WorkCourse();
-	private WorkCourseService wcs;
-	private WorkService ws;
+	private WorkCourseService WorkCourseService;
+	private WorkService WorkService;
 	
-	public WorkCourseService getWcs() {
-		return wcs;
+
+
+	public WorkCourseService getWorkCourseService() {
+		return WorkCourseService;
 	}
 
-	public void setWcs(WorkCourseService wcs) {
-		this.wcs = wcs;
+	public void setWorkCourseService(WorkCourseService workCourseService) {
+		WorkCourseService = workCourseService;
 	}
 
-	public WorkService getWs() {
-		return ws;
+	public WorkService getWorkService() {
+		return WorkService;
 	}
 
-	public void setWs(WorkService ws) {
-		this.ws = ws;
+	public void setWorkService(WorkService workService) {
+		WorkService = workService;
 	}
 
 	//根据课程查询作业-考试
@@ -56,10 +58,10 @@ public class WorkCourseAction extends ActionSupport{
 		
 		JSONArray ja = new JSONArray();
 		
-		List<WorkCourse> WorkList = wcs.QueryWorkCourseByClassId(cid);
+		List<WorkCourse> WorkList = WorkCourseService.QueryWorkCourseByClassId(cid);
 		for(WorkCourse workcourse : WorkList) {
 			int wid = workcourse.getWorkId();
-			Work work = ws.queryWork(wid);
+			Work work = WorkService.queryWork(wid);
 			JSONObject jo = JSONObject.fromObject(work);
 			ja.add(jo);
 		}
@@ -88,7 +90,7 @@ public class WorkCourseAction extends ActionSupport{
 		wc.setCourseId(cid);
 		wc.setWorkId(wid);
 		
-		wcs.addWorkCourse(wc);
+		WorkCourseService.addWorkCourse(wc);
 		
 	}
 	
@@ -106,7 +108,7 @@ public class WorkCourseAction extends ActionSupport{
 		
 		int wcid = Integer.valueOf(workcourse_id);
 		
-		wc = wcs.queryWorkCourse(wcid);
+		wc = WorkCourseService.queryWorkCourse(wcid);
 		
 		if(wc == null) {
 			out.println("Fail");
@@ -115,7 +117,7 @@ public class WorkCourseAction extends ActionSupport{
 			return ;
 		}
 		
-		wcs.deleteWorkCourse(wc);
+		WorkCourseService.deleteWorkCourse(wc);
 		
 	}
 	

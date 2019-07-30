@@ -17,15 +17,15 @@ import net.sf.json.JSONObject;
 
 public class UserAction extends ActionSupport{
 	
-	private UserService us;
+	private UserService UserService;
 	private User user = new User();
 	
-	public UserService getUs() {
-		return us;
+	public UserService getUserService() {
+		return UserService;
 	}
 
-	public void setUs(UserService us) {
-		this.us = us;
+	public void setUserService(UserService userService) {
+		UserService = userService;
 	}
 
 	//删除用户
@@ -41,7 +41,7 @@ public class UserAction extends ActionSupport{
 		String user_id = request.getParameter("user_id");
 		int uid = Integer.valueOf(user_id);
 		
-		user = us.queryUser(uid);
+		user = UserService.queryUser(uid);
 		if(user == null) {
 			out.println("Fail");
 			out.flush(); 
@@ -49,7 +49,7 @@ public class UserAction extends ActionSupport{
 			return ;
 		}
 		
-		us.deleteUser(user);
+		UserService.deleteUser(user);
 	}
 	
 	//更新用户的交题数据
@@ -66,7 +66,7 @@ public class UserAction extends ActionSupport{
 		String submission = request.getParameter("flag");
 		int uid = Integer.valueOf(user_id);
 		
-		user = us.queryUser(uid);
+		user = UserService.queryUser(uid);
 		if(user == null) {
 			out.println("Fail");
 			out.flush(); 
@@ -115,7 +115,7 @@ public class UserAction extends ActionSupport{
 			user.setSubmissionTimes(total);
 		}
 		
-		us.updateUser(user);
+		UserService.updateUser(user);
 	}
 	
 	//查询单个学生
@@ -131,7 +131,7 @@ public class UserAction extends ActionSupport{
 		String user_id = request.getParameter("user_id");
 		int uid = Integer.valueOf(user_id);
 		
-		user = us.queryUser(uid);
+		user = UserService.queryUser(uid);
 		if(user == null) {
 			out.println("Fail");
 			out.flush(); 
@@ -162,7 +162,7 @@ public class UserAction extends ActionSupport{
 		String user_name = request.getParameter("user_name");
 		int uid = Integer.valueOf(user_id);
 		
-		user = us.queryUser(uid);
+		user = UserService.queryUser(uid);
 		if(user == null) {
 			out.println("Fail");
 			out.flush(); 
@@ -174,7 +174,7 @@ public class UserAction extends ActionSupport{
 		user.setUserInfo(user_info);
 		user.setUserName(user_name);
 		
-		us.updateUser(user);
+		UserService.updateUser(user);
 		
 	}
 	
@@ -202,7 +202,7 @@ public class UserAction extends ActionSupport{
 		user.setRuntimeErrorTimes(0);
 		user.setCompileErrorTimes(0);
 		
-		us.addUser(user);
+		UserService.addUser(user);
 		
 	}
 
@@ -222,7 +222,7 @@ public class UserAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
-		List<User> UserList = us.QueryUserByPageSize(row, PageSize);
+		List<User> UserList = UserService.QueryUserByPageSize(row, PageSize);
 		
 		JSONArray ja = JSONArray.fromObject(UserList);
 		out.println(ja.toString());
