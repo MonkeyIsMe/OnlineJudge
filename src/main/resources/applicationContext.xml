@@ -41,6 +41,9 @@
 		<property name="ProblemService" ref="ProblemService" ></property>
 		<property name="CaseService" ref="CaseService" ></property>
 	</bean>
+		<bean name="CaseAction" class="CSU.OnlineJudge.Controller.CaseAction" scope="prototype" >
+		<property name="CaseService" ref="CaseService" ></property>
+	</bean>
 	
 	<!-- service -->
  	<bean name="CaseService" class="CSU.OnlineJudge.Service.Impl.CaseServiceImpl" >
