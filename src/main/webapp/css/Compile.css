@@ -1,0 +1,45 @@
+html{
+    height: 100%;
+}
+
+body{
+    height: 100%;
+}
+
+.editor {
+    margin-top: 52px;
+    width: 80%;
+    height: 650px;
+    border: 1px solid lightgray;
+    max-lines: 30;
+    autoScrollEditorIntoView: true;
+}
+
+#menu{
+    float: left;
+    margin-top: -20px;
+    height: 40px;
+    width: 100%;
+}
+
+.bbtn{
+    margin-top: 8px;
+    margin-left: 15px;
+}
+
+#left{
+    margin-top: 12px;
+    float: left;
+    width: 20%;
+    height: 110%;
+    background-color: #EDEDED;
+}
+
+.file{
+    text-align: center;
+    font-size: 17px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+

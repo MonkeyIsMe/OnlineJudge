@@ -1,0 +1,15 @@
+.toprow{
+    background-color: #79a3d5;
+    white-space: nowrap;
+    color: white;
+    font-size: 14px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.center{
+    background-color: #EEEEEE;
+    width: 80%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-left: 10%;
+}

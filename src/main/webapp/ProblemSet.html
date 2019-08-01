@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>所有题目</title>
+    <link href="css/bootstrap-theme.css" type="text/css" rel="styleSheet">
+    <script src="js/jquery.min.js"></script>
+    <link href="css/bootstrap.css" type="text/css" rel="styleSheet">
+    <link href="css/Problem.css" type="text/css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#head").load('MainHead.html');
+        })
+    </script>
+</head>
+<body>
+<div id="head"></div>
+<center>
+    <div class="center">
+        <table>
+            <tbody>
+                <tr align="center">
+                    <td width="5"></td>
+                    <td colspan="1">
+                        <div class="form-inline">
+                            <input class="form-control search-query" type="text" name="id" placeholder="Problem ID" >
+                            <button class="form-control" type="submit">Go</button>
+                        </div>
+
+                    </td>
+                    <td colspan="1">
+                        <div class="form-inline">
+                            <input type="text" name="search" class="form-control search-query" placeholder="Keywords Title or Source" >
+                            <button type="submit" class="form-control" >查找</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</center>
+<table class="table_center">
+    <tbody>
+    <tr align="center" class="table_header" height="22">
+        <td width="50">Pro. ID</td>
+        <td >Problem Title</td>
+        <td width="180">Ratio(Accepted/Submissions)</td>
+    </tr>
+    <tr bgcolor="#D7EBFF" align="center" height="22" style="color: black">
+        <td>1001</td>
+        <td align="left">
+        <a href="ProblemPage.html">&nbsp;A + B</a>
+        </td>
+        <td>0(<a href="ProblemPage.html">0</a>/<a href="ProblemPage.html">0</a>)
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

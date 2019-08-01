@@ -1,0 +1,42 @@
+.problem{
+    width: 40%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.problem_name{
+    color: #1A5CC8;
+    text-align: center;
+}
+
+.limit{
+    font-family:Arial;
+    font-size:12px;
+    font-weight:bold;
+    color:green;
+    text-align: center;
+}
+
+.panel_title{
+    height: 38px;
+    padding: 0 14px;
+    color: #7CA9ED;
+    font-size: 18px;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+.panel_content{
+    background-color: #E5F0F8;
+    height: auto;
+    margin: 0;
+    padding: 10px 5px 10px 20px;
+    font-size: 14px;
+    font-family: Times New Roman;
+    text-align: left;
+}
+
+.panel_bottom{
+    height: auto;
+    margin-top: 20px;
+}
