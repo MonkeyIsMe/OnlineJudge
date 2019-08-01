@@ -43,6 +43,9 @@ public class WorkCaseRecord {
 	@Column(name="test_output")
 	private String TestOutput; // 测试输出
 	
+	@Column(name="user_account")
+	private String UserAccount; // 用户账号
+	
 	
 	public int getWorkCaseRecordId() {
 		return WorkCaseRecordId;
@@ -98,6 +101,12 @@ public class WorkCaseRecord {
 	public void setTestOutput(String testOutput) {
 		TestOutput = testOutput;
 	}
+	public String getUserAccount() {
+		return UserAccount;
+	}
+	public void setUserAccount(String userAccount) {
+		UserAccount = userAccount;
+	}
 	
 	
 	public JSONObject toJSON() {
@@ -111,6 +120,7 @@ public class WorkCaseRecord {
 		jo.put("AimOutput", this.AimOutput);
 		jo.put("AimInput", this.AimInput);
 		jo.put("TestOutput", this.TestOutput);
+		jo.put("UserAccount", this.UserAccount);
 		return jo;
 	}
 	
