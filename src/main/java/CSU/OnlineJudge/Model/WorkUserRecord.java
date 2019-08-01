@@ -34,7 +34,7 @@ public class WorkUserRecord {
 	private String SubmissionResult;  // 结果 
 	
 	@Column(name="submission_time")
-	private Date SubmissionTime;  // 提交时间
+	private String SubmissionTime;  // 提交时间
 	
 	@Column(name="submission_code_length")
 	private int CodeLength;  // 代码长度
@@ -82,10 +82,10 @@ public class WorkUserRecord {
 	public void setSubmissionResult(String submissionResult) {
 		SubmissionResult = submissionResult;
 	}
-	public Date getSubmissionTime() {
+	public String getSubmissionTime() {
 		return SubmissionTime;
 	}
-	public void setSubmissionTime(Date submissionTime) {
+	public void setSubmissionTime(String submissionTime) {
 		SubmissionTime = submissionTime;
 	}
 	public int getCodeLength() {

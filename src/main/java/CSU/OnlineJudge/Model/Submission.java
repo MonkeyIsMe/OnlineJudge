@@ -48,69 +48,89 @@ public class Submission {
 	@Column(name="problem_id")
 	private int ProblemId;  // 题目编号
 	
+	
+	
+	
 	public int getSubmissionId() {
 		return SubmissionId;
 	}
+
 	public void setSubmissionId(int submissionId) {
 		SubmissionId = submissionId;
 	}
-	public String getSubmissionResult() {
-		return SubmissionResult;
-	}
-	public void setSubmissionResult(String submissionResult) {
-		SubmissionResult = submissionResult;
-	}
-	
-	public String getSubmissionTime() {
-		return SubmissionTime;
-	}
-	public void setSubmissionTime(String submissionTime) {
-		SubmissionTime = submissionTime;
-	}
-	public int getCodeLength() {
-		return CodeLength;
-	}
-	public void setCodeLength(int codeLength) {
-		CodeLength = codeLength;
-	}
-	public int getCodeTime() {
-		return CodeTime;
-	}
-	public void setCodeTime(int codeTime) {
-		CodeTime = codeTime;
-	}
-	public int getCodeMemory() {
-		return CodeMemory;
-	}
-	public void setCodeMemory(int codeMemory) {
-		CodeMemory = codeMemory;
-	}
-	public String getUserAccount() {
-		return UserAccount;
-	}
-	public void setUserAccount(String userAccount) {
-		UserAccount = userAccount;
-	}
-	public String getCodeType() {
-		return CodeType;
-	}
-	public void setCodeType(String codeType) {
-		CodeType = codeType;
-	}
+
 	public int getStudentId() {
 		return StudentId;
 	}
+
 	public void setStudentId(int studentId) {
 		StudentId = studentId;
 	}
+
+	public String getSubmissionResult() {
+		return SubmissionResult;
+	}
+
+	public void setSubmissionResult(String submissionResult) {
+		SubmissionResult = submissionResult;
+	}
+
+	public String getSubmissionTime() {
+		return SubmissionTime;
+	}
+
+	public void setSubmissionTime(String submissionTime) {
+		SubmissionTime = submissionTime;
+	}
+
+	public int getCodeLength() {
+		return CodeLength;
+	}
+
+	public void setCodeLength(int codeLength) {
+		CodeLength = codeLength;
+	}
+
+	public int getCodeTime() {
+		return CodeTime;
+	}
+
+	public void setCodeTime(int codeTime) {
+		CodeTime = codeTime;
+	}
+
+	public int getCodeMemory() {
+		return CodeMemory;
+	}
+
+	public void setCodeMemory(int codeMemory) {
+		CodeMemory = codeMemory;
+	}
+
+	public String getUserAccount() {
+		return UserAccount;
+	}
+
+	public void setUserAccount(String userAccount) {
+		UserAccount = userAccount;
+	}
+
+	public String getCodeType() {
+		return CodeType;
+	}
+
+	public void setCodeType(String codeType) {
+		CodeType = codeType;
+	}
+
 	public int getProblemId() {
 		return ProblemId;
 	}
+
 	public void setProblemId(int problemId) {
 		ProblemId = problemId;
 	}
-	
-	
+
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
 		jo.put("SubmissionId", this.SubmissionId);
