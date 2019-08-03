@@ -40,10 +40,12 @@ public class CourseAction extends ActionSupport{
 		String course_name = request.getParameter("course_name");
 		String course_info = request.getParameter("course_info");
 		String course_time = request.getParameter("course_time");
+		String course_teacher = request.getParameter("course_teacher");
 		
 		course.setCourseName(course_name);
 		course.setCourseInfo(course_info);
 		course.setCourseTime(course_time);
+		course.setCourseTeacher(course_teacher);
 		
 		CourseService.AddCourse(course);
 		
@@ -88,6 +90,7 @@ public class CourseAction extends ActionSupport{
 		String course_info = request.getParameter("course_info");
 		String course_time = request.getParameter("course_time");
 		String course_id = request.getParameter("course_id");
+		String course_teacher = request.getParameter("course_teacher");
 		int cid = Integer.valueOf(course_id);
 		
 		course = CourseService.QueryCourse(cid);
@@ -101,6 +104,7 @@ public class CourseAction extends ActionSupport{
 		course.setCourseName(course_name);
 		course.setCourseInfo(course_info);
 		course.setCourseTime(course_time);
+		course.setCourseTeacher(course_teacher);
 		
 		CourseService.UpdateCourse(course);
 		

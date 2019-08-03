@@ -47,6 +47,15 @@
 	<bean name="WorkAction" class="CSU.OnlineJudge.Controller.WorkAction" scope="prototype" >
 		<property name="WorkService" ref="WorkService" ></property>
 		<property name="WorkProblemService" ref="WorkProblemService" ></property>
+		<property name="CourseUserService" ref="CourseUserService" ></property>
+		<property name="WorkCourseService" ref="WorkCourseService" ></property>
+	</bean>
+	<bean name="CourseAction" class="CSU.OnlineJudge.Controller.CourseAction" scope="prototype" >
+		<property name="CourseService" ref="CourseService" ></property>
+	</bean>
+	<bean name="CourseUserAction" class="CSU.OnlineJudge.Controller.CourseUserAction" scope="prototype" >
+		<property name="CourseUserService" ref="CourseUserService" ></property>
+		<property name="CourseService" ref="CourseService" ></property>
 	</bean>
 	
 	<!-- service -->

@@ -30,7 +30,16 @@ public class Course {
 	@Column(name="course_time")
 	private String CourseTime;  // 开课时间
 	
+	@Column(name="course_teacher")
+	private String CourseTeacher;  // 开课时间
+	
 
+	public String getCourseTeacher() {
+		return CourseTeacher;
+	}
+	public void setCourseTeacher(String courseTeacher) {
+		CourseTeacher = courseTeacher;
+	}
 	public int getCourseId() {
 		return CourseId;
 	}
@@ -63,6 +72,7 @@ public class Course {
 		jo.put("CourseName", this.CourseName);
 		jo.put("CourseInfo", this.CourseInfo);
 		jo.put("CourseTime", this.CourseTime);
+		jo.put("CourseTeacher", this.CourseTeacher);
 		return jo;
 	}
 	

@@ -5,13 +5,19 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import CSU.OnlineJudge.Model.CourseUser;
 import CSU.OnlineJudge.Model.Work;
+import CSU.OnlineJudge.Model.WorkCourse;
 import CSU.OnlineJudge.Model.WorkProblem;
+import CSU.OnlineJudge.Service.CourseService;
+import CSU.OnlineJudge.Service.CourseUserService;
+import CSU.OnlineJudge.Service.WorkCourseService;
 import CSU.OnlineJudge.Service.WorkProblemService;
 import CSU.OnlineJudge.Service.WorkService;
 import CSU.OnlineJudge.Service.Impl.WorkServiceImpl;
@@ -21,11 +27,21 @@ import net.sf.json.JSONObject;
 public class WorkAction extends ActionSupport{
 	
 	private WorkService WorkService;
-	private Work work = new Work();
+	private Work work;
 	private WorkProblem wp;
 	private WorkProblemService WorkProblemService;
-	
+	private CourseUserService CourseUserService;
+	private WorkCourseService WorkCourseService;
 
+	
+	
+	public WorkCourseService getWorkCourseService() {
+		return WorkCourseService;
+	}
+
+	public void setWorkCourseService(WorkCourseService workCourseService) {
+		WorkCourseService = workCourseService;
+	}
 
 	public WorkService getWorkService() {
 		return WorkService;
@@ -41,6 +57,13 @@ public class WorkAction extends ActionSupport{
 
 	public void setWorkProblemService(WorkProblemService workProblemService) {
 		WorkProblemService = workProblemService;
+	}
+	public CourseUserService getCourseUserService() {
+		return CourseUserService;
+	}
+
+	public void setCourseUserService(CourseUserService courseUserService) {
+		CourseUserService = courseUserService;
 	}
 
 	//增加作业-考试
@@ -370,4 +393,35 @@ public class WorkAction extends ActionSupport{
         out.close();
 		
 	}
+	
+	//根据用户账号查作业-考试
+	public void QueryWorkByUserAccount() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("user_account");
+		
+		JSONArray ja = new JSONArray();
+		
+		List<CourseUser> cu_list = CourseUserService.QueryCourseUserByUserAccount(user_account);
+		for(CourseUser cu : cu_list) {
+			int cuid = cu.getCourseId();
+			List<WorkCourse> wc_list = WorkCourseService.QueryWorkCourseByClassId(cuid);
+			for(WorkCourse wc : wc_list) {
+				JSONObject jo = JSONObject.fromObject(wc);
+				ja.add(jo);
+			}
+		}
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+	}
+	
+	
 }

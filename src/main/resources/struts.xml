@@ -22,7 +22,6 @@
 		  -->
 		  
 		  	<!-- 问题 -->
-		  	
 		  	<action name="QueryProblemList" class="ProblemAction" method="QueryProblemList" >
 			</action>
 			
@@ -30,12 +29,20 @@
 			</action>
 			
 		 	<!-- 作业考试 -->
-		 	
 		 	<action name="QueryAllWork" class="WorkAction" method="QueryAllWork" >
 			</action>
+			
 		 	<action name="QueryAllHomeWork" class="WorkAction" method="QueryAllHomeWork" >
 			</action>
+			
 			<action name="QueryAllExam" class="WorkAction" method="QueryAllExam" >
+			</action>
+			
+			<action name="QueryWorkByUserAccount" class="WorkAction" method="QueryWorkByUserAccount" >
+			</action>
+			
+			<!-- 课程用户关联 -->
+			<action name="QuerySingleCourseUser" class="CourseUserAction" method="QuerySingleCourseUser" >
 			</action>
 		 
 	</package>

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -53,7 +54,9 @@ public class CourseUserAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String user_account = request.getParameter("user_account");
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("user_account");
 		
 		List<CourseUser> CourseUserList = CourseUserService.QueryCourseUserByUserAccount(user_account);
 		JSONArray ja = new JSONArray();

@@ -15,4 +15,5 @@ public interface CourseService {
 	public Course QueryCourse(int id);
 	
 	public List<Course> QueryByUserAccount(String UserAccount);
+	
 }
