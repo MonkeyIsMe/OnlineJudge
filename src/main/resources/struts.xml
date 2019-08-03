@@ -20,10 +20,24 @@
 		 		完全由spring管理action生命周期,包括Action的创建
 		 		注意:需要手动组装依赖属性
 		  -->
-		  <action name="QueryProblemList" class="ProblemAction" method="QueryProblemList" >
-		</action>
-		<action name="QuerySingleProblem" class="ProblemAction" method="QuerySingleProblem" >
-		</action>
+		  
+		  	<!-- 问题 -->
+		  	
+		  	<action name="QueryProblemList" class="ProblemAction" method="QueryProblemList" >
+			</action>
+			
+			<action name="QuerySingleProblem" class="ProblemAction" method="QuerySingleProblem" >
+			</action>
+			
+		 	<!-- 作业考试 -->
+		 	
+		 	<action name="QueryAllWork" class="WorkAction" method="QueryAllWork" >
+			</action>
+		 	<action name="QueryAllHomeWork" class="WorkAction" method="QueryAllHomeWork" >
+			</action>
+			<action name="QueryAllExam" class="WorkAction" method="QueryAllExam" >
+			</action>
+		 
 	</package>
 </struts>
 	

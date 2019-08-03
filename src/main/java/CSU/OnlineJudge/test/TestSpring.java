@@ -5,9 +5,11 @@ import org.junit.runner.RunWith;
 
 import CSU.OnlineJudge.DAO.CaseDAO;
 import CSU.OnlineJudge.DAO.ProblemDAO;
+import CSU.OnlineJudge.DAO.WorkDAO;
 import CSU.OnlineJudge.Model.Case;
 import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.User;
+import CSU.OnlineJudge.Model.Work;
 import CSU.OnlineJudge.Service.CaseService;
 import net.sf.json.JSONObject;
 
@@ -123,6 +125,25 @@ public class TestSpring {
 			System.out.println(pro.toString());
 		}
 	}
+	
+	@Resource(name="WorkDAO")
+	private WorkDAO wd;
+	@Test
+	public void QueryWork() {
+		List<Work> WorkList = wd.QueryWorkByPageSize(1, 30);
+		for(Work work : WorkList) {
+			System.out.println(work.toString());
+		}
+	}
+	
+	@Test
+	public void AddWork() {
+		Work work = new Work();
+		work.setWorkName("132");
+		work.setWorkInfo("4564654");
+		wd.addWork(work);
+	}
+	
 	
 	@Test
 	public void TestConfiguration() {

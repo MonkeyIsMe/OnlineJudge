@@ -36,7 +36,7 @@ public class Work {
 	@Column(name="work_info")
 	private String WorkInfo;  // 考试/竞赛描述
 	
-	@Column(name="work_owner")
+	@Column(name="work_onwer")
 	private String WorkOwner;  // 考试/竞赛创建者
 	
 	@Column(name="work_flag")
