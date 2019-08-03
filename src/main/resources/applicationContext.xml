@@ -41,8 +41,12 @@
 		<property name="ProblemService" ref="ProblemService" ></property>
 		<property name="CaseService" ref="CaseService" ></property>
 	</bean>
-		<bean name="CaseAction" class="CSU.OnlineJudge.Controller.CaseAction" scope="prototype" >
+	<bean name="CaseAction" class="CSU.OnlineJudge.Controller.CaseAction" scope="prototype" >
 		<property name="CaseService" ref="CaseService" ></property>
+	</bean>
+	<bean name="WorkAction" class="CSU.OnlineJudge.Controller.WorkAction" scope="prototype" >
+		<property name="WorkService" ref="WorkService" ></property>
+		<property name="WorkProblemService" ref="WorkProblemService" ></property>
 	</bean>
 	
 	<!-- service -->
@@ -94,7 +98,9 @@
 	 <bean name="WorkUserRecordService" class="CSU.OnlineJudge.Service.Impl.WorkUserRecordServiceImpl" >
 		<property name="wurd" ref="WorkUserRecordDAO" ></property>
 	</bean>
- 
+ 	 <bean name="ProblemResultService" class="CSU.OnlineJudge.Service.Impl.ProblemResultServiceImpl" >
+		<property name="prd" ref="ProblemResultDAO" ></property>
+	</bean>
 
 	
 	<!-- Dao -->
@@ -143,7 +149,10 @@
 	<bean name="WorkUserRecordDAO" class="CSU.OnlineJudge.DAO.Impl.WorkUserRecordDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
-		<bean name="CodeDAO" class="CSU.OnlineJudge.DAO.Impl.CodeDAOImpl" >
+	<bean name="CodeDAO" class="CSU.OnlineJudge.DAO.Impl.CodeDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+	<bean name="ProblemResultDAO" class="CSU.OnlineJudge.DAO.Impl.ProblemResultDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
 	
