@@ -1,5 +1,7 @@
 package CSU.OnlineJudge.Service.Impl;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import CSU.OnlineJudge.DAO.KnowledgeDAO;
@@ -38,6 +40,11 @@ public class KnowledgeServiceImpl implements  KnowledgeService{
 	public Knowledge queryKnowledge(int id) {
 		// TODO Auto-generated method stub
 		return kd.queryKnowledge(id);
+	}
+
+	public List<Knowledge> QueryKnowledgeByPageSize(int rows, int PageSize) {
+		// TODO Auto-generated method stub
+		return kd.QueryKnowledgeByPageSize(rows, PageSize);
 	}
 
 }

@@ -1,5 +1,7 @@
 package CSU.OnlineJudge.Service;
 
+import java.util.List;
+
 import CSU.OnlineJudge.Model.Knowledge;
 
 public interface KnowledgeService {
@@ -12,4 +14,6 @@ public interface KnowledgeService {
 	public void deleteKnowledge(Knowledge knowledge);
 	
 	public Knowledge queryKnowledge(int id);
+	
+	public List<Knowledge> QueryKnowledgeByPageSize(int rows,int PageSize);
 }

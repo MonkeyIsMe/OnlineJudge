@@ -1,6 +1,7 @@
 package CSU.OnlineJudge.Controller;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +12,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import CSU.OnlineJudge.Model.Knowledge;
 import CSU.OnlineJudge.Service.KnowledgeService;
 import CSU.OnlineJudge.Service.Impl.KnowledgeServiceImpl;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class KnowledgeAction extends ActionSupport{
@@ -131,6 +133,30 @@ public class KnowledgeAction extends ActionSupport{
 		
 		KnowledgeService.updateKnowledge(knowledge);
 		
+	}
+	
+	//分页查询知识点
+	public void QueryKnowledgeByPageSize() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String page = request.getParameter("rows");
+		String size = request.getParameter("size");
+		
+		int row = Integer.valueOf(page);
+		int PageSize = Integer.valueOf(size);
+		
+		List<Knowledge> know_list = KnowledgeService.QueryKnowledgeByPageSize(row, PageSize);
+		
+		JSONArray ja = JSONArray.fromObject(know_list);
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
 	}
 
 }

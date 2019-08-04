@@ -2,14 +2,17 @@ package CSU.OnlineJudge.DAO.Impl;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
 import CSU.OnlineJudge.DAO.KnowledgeDAO;
 import CSU.OnlineJudge.Model.Knowledge;
+import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Utils.HibernateUtil;
 
@@ -36,6 +39,22 @@ public class KnowledgeDAOImpl extends HibernateDaoSupport implements KnowledgeDA
 		Knowledge result = null;
 		result =  getHibernateTemplate().get(Knowledge.class, id);
 		return result;
+	}
+
+	public List<Knowledge> QueryKnowledgeByPageSize(final int rows, final int PageSize) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Knowledge>>() {
+			
+
+			public List<Knowledge> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Knowledge";
+				Query query = session.createQuery(hql).setFirstResult(
+                        (rows - 1) * PageSize).setMaxResults(PageSize);
+				List<Knowledge> list = query.list();
+				return list;
+			}
+		});
 	}
 
 

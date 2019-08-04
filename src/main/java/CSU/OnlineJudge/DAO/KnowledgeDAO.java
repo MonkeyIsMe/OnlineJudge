@@ -14,5 +14,5 @@ public interface KnowledgeDAO {
 	
 	public Knowledge queryKnowledge(int id);
 	
-	
+	public List<Knowledge> QueryKnowledgeByPageSize(int rows,int PageSize);
 }
