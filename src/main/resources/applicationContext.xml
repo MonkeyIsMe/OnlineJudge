@@ -57,6 +57,9 @@
 		<property name="CourseUserService" ref="CourseUserService" ></property>
 		<property name="CourseService" ref="CourseService" ></property>
 	</bean>
+	<bean name="KnowledgeAction" class="CSU.OnlineJudge.Controller.KnowledgeAction" scope="prototype" >
+		<property name="KnowledgeService" ref="KnowledgeService" ></property>
+	</bean>
 	
 	<!-- service -->
  	<bean name="CaseService" class="CSU.OnlineJudge.Service.Impl.CaseServiceImpl" >

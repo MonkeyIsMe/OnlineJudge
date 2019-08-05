@@ -44,7 +44,11 @@
 			<!-- 课程用户关联 -->
 			<action name="QuerySingleCourseUser" class="CourseUserAction" method="QuerySingleCourseUser" >
 			</action>
-		 
+			
+			<!-- 知识点 -->
+		 	<action name="QueryKnowledgeByPageSize" class="KnowledgeAction" method="QueryKnowledgeByPageSize" >
+			</action>
+		 	
 	</package>
 </struts>
 	

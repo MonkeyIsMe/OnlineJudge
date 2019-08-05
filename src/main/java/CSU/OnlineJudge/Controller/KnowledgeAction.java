@@ -145,8 +145,8 @@ public class KnowledgeAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String page = request.getParameter("rows");
-		String size = request.getParameter("size");
+		String page = request.getParameter("page");
+		String size = request.getParameter("limit");
 		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
