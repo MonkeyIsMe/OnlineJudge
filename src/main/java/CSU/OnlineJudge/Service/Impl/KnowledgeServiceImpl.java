@@ -47,4 +47,9 @@ public class KnowledgeServiceImpl implements  KnowledgeService{
 		return kd.QueryKnowledgeByPageSize(rows, PageSize);
 	}
 
+	public int CountKnowledge() {
+		// TODO Auto-generated method stub
+		return kd.CountKnowledge();
+	}
+
 }

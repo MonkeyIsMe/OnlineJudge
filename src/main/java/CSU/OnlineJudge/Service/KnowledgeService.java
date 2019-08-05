@@ -16,4 +16,6 @@ public interface KnowledgeService {
 	public Knowledge queryKnowledge(int id);
 	
 	public List<Knowledge> QueryKnowledgeByPageSize(int rows,int PageSize);
+	
+	public int CountKnowledge();
 }

@@ -153,10 +153,32 @@ public class KnowledgeAction extends ActionSupport{
 		
 		List<Knowledge> know_list = KnowledgeService.QueryKnowledgeByPageSize(row, PageSize);
 		
+		
+
 		JSONArray ja = JSONArray.fromObject(know_list);
 		out.println(ja.toString());
         out.flush(); 
         out.close();
 	}
 
+	public void CountKnowledge() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		int KnowledgeCount = KnowledgeService.CountKnowledge();
+		
+		JSONObject jo = new JSONObject();
+		jo.put("KnowledgeCount", KnowledgeCount);
+		
+		out.println(jo);
+        out.flush(); 
+        out.close();
+		
+	}
+	
 }

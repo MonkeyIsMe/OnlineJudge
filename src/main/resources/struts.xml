@@ -48,7 +48,15 @@
 			<!-- 知识点 -->
 		 	<action name="QueryKnowledgeByPageSize" class="KnowledgeAction" method="QueryKnowledgeByPageSize" >
 			</action>
-		 	
+			<action name="CountKnowledge" class="KnowledgeAction" method="CountKnowledge" >
+			</action>
+		 	<action name="DeleteKnowledge" class="KnowledgeAction" method="DeleteKnowledge" >
+			</action>
+			<action name="UpdateKnowledge" class="KnowledgeAction" method="UpdateKnowledge" >
+			</action>
+			<action name="AddKnowledge" class="KnowledgeAction" method="AddKnowledge" >
+			</action>
+			
 	</package>
 </struts>
 	
