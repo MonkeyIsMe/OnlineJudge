@@ -57,5 +57,11 @@ public class KnowledgeDAOImpl extends HibernateDaoSupport implements KnowledgeDA
 		});
 	}
 
+	public int CountKnowledge() {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Knowledge as Knowledge";
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
 
 }

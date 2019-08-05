@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import CSU.OnlineJudge.DAO.CaseDAO;
+import CSU.OnlineJudge.DAO.KnowledgeDAO;
 import CSU.OnlineJudge.DAO.ProblemDAO;
 import CSU.OnlineJudge.DAO.WorkDAO;
 import CSU.OnlineJudge.Model.Case;
@@ -144,6 +145,12 @@ public class TestSpring {
 		wd.addWork(work);
 	}
 	
+	@Resource(name="KnowledgeDAO")
+	private KnowledgeDAO kd;
+	@Test
+	public void CountKnowledge() {
+		System.out.println(kd.CountKnowledge());
+	}
 	
 	@Test
 	public void TestConfiguration() {
