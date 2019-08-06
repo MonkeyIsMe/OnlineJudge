@@ -414,4 +414,23 @@ public class ProblemAction extends ActionSupport{
 	    out.close();
 	}
 	
+	//查询题目总数
+	public void CountProblem() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+			
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		int cnt = ProblemService.CountProblem();
+		
+		JSONObject jo = new JSONObject();
+		jo.put("ProblemCount", jo);
+		
+		out.println(jo.toString());
+	    out.flush(); 
+	    out.close();
+	}
 }

@@ -128,5 +128,11 @@ public class ProblemDAOImpl extends HibernateDaoSupport implements ProblemDAO{
 		});
 	}
 
+	public int CountProblem() {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Problem as problem";
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
 
 }

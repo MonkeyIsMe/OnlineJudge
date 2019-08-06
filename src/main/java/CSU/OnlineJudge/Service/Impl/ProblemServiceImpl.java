@@ -77,4 +77,9 @@ public class ProblemServiceImpl implements ProblemService{
 		return pd.GetProblemOutInfo(row, PageSize, 1);
 	}
 
+	public int CountProblem() {
+		// TODO Auto-generated method stub
+		return pd.CountProblem();
+	}
+
 }
