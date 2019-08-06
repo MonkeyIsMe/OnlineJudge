@@ -49,75 +49,108 @@ public class User {
 	@Column(name="user_name")
 	private String UserName; //名字
 	
+	@Column(name="user_password")
+	private String UserPassword; //名字
+	
+	
+	
 	
 	public int getUserId() {
 		return UserId;
 	}
+
 	public void setUserId(int userId) {
 		UserId = userId;
 	}
+
 	public String getUserAccount() {
 		return UserAccount;
 	}
+
 	public void setUserAccount(String userAccount) {
 		UserAccount = userAccount;
 	}
+
 	public String getStudentClassroom() {
 		return StudentClassroom;
 	}
+
 	public void setStudentClassroom(String studentClassroom) {
 		StudentClassroom = studentClassroom;
 	}
+
 	public String getUserInfo() {
 		return UserInfo;
 	}
+
 	public void setUserInfo(String userInfo) {
 		UserInfo = userInfo;
 	}
+
 	public int getWrongAnswerTimes() {
 		return WrongAnswerTimes;
 	}
+
 	public void setWrongAnswerTimes(int wrongAnswerTimes) {
 		WrongAnswerTimes = wrongAnswerTimes;
 	}
+
 	public int getTimeLimitTimes() {
 		return TimeLimitTimes;
 	}
+
 	public void setTimeLimitTimes(int timeLimitTimes) {
 		TimeLimitTimes = timeLimitTimes;
 	}
+
 	public int getRuntimeErrorTimes() {
 		return RuntimeErrorTimes;
 	}
+
 	public void setRuntimeErrorTimes(int runtimeErrorTimes) {
 		RuntimeErrorTimes = runtimeErrorTimes;
 	}
+
 	public int getCompileErrorTimes() {
 		return CompileErrorTimes;
 	}
+
 	public void setCompileErrorTimes(int compileErrorTimes) {
 		CompileErrorTimes = compileErrorTimes;
 	}
+
 	public int getAcceptTimes() {
 		return AcceptTimes;
 	}
+
 	public void setAcceptTimes(int acceptTimes) {
 		AcceptTimes = acceptTimes;
 	}
+
 	public int getSubmissionTimes() {
 		return SubmissionTimes;
 	}
+
 	public void setSubmissionTimes(int submissionTimes) {
 		SubmissionTimes = submissionTimes;
 	}
+
 	public String getUserName() {
 		return UserName;
 	}
+
 	public void setUserName(String userName) {
 		UserName = userName;
 	}
-	
-	
+
+	public String getUserPassword() {
+		return UserPassword;
+	}
+
+	public void setUserPassword(String userPassword) {
+		UserPassword = userPassword;
+	}
+
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
 		jo.put("UserId", this.UserId);
@@ -131,6 +164,7 @@ public class User {
 		jo.put("AcceptTimes", this.AcceptTimes);
 		jo.put("SubmissionTimes", this.SubmissionTimes);
 		jo.put("UserName", this.UserName);
+		jo.put("UserPassword", this.UserPassword);
 		return jo;
 	}
 	

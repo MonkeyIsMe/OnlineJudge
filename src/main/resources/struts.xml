@@ -69,6 +69,18 @@
 			<action name="QueryCourseByPageSize" class="CourseAction" method="QueryCourseByPageSize" >
 			</action>
 			
+			<!-- 用户 -->
+			<action name="AddUser" class="UserAction" method="AddUser" >
+			</action>
+			<action name="DeleteUser" class="UserAction" method="DeleteUser" >
+			</action>
+			<action name="UpdateUser" class="UserAction" method="UpdateUser" >
+			</action>
+			<action name="CountUser" class="UserAction" method="CountUser" >
+			</action>
+			<action name="QueryAllUser" class="UserAction" method="QueryAllUser" >
+			</action>
+			
 	</package>
 </struts>
 	

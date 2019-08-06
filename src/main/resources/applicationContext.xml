@@ -60,6 +60,10 @@
 	<bean name="KnowledgeAction" class="CSU.OnlineJudge.Controller.KnowledgeAction" scope="prototype" >
 		<property name="KnowledgeService" ref="KnowledgeService" ></property>
 	</bean>
+	<bean name="UserAction" class="CSU.OnlineJudge.Controller.UserAction" scope="prototype" >
+		<property name="UserService" ref="UserService" ></property>
+	</bean>
+	
 	
 	<!-- service -->
  	<bean name="CaseService" class="CSU.OnlineJudge.Service.Impl.CaseServiceImpl" >
