@@ -230,4 +230,26 @@ public class UserAction extends ActionSupport{
         out.close();
 		
 	}
+	
+	
+	//查询学生总数
+	public void CountUser() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		int cnt = UserService.CountUser();
+		
+		JSONObject jo = new JSONObject();
+		jo.put("UserCount", cnt);
+		
+		out.println(jo.toString());
+        out.flush(); 
+        out.close();
+		
+	}
 }
