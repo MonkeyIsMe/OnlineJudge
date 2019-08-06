@@ -18,15 +18,17 @@
 </head>
 <body>
 <button type="button" class="btn btn-default btn-sm" style="margin:10px" style="cursor:pointer;" data-toggle="modal" data-target="#add_Modal">
-	<span class="glyphicon glyphicon-plus"></span> 添加知识点
+	<span class="glyphicon glyphicon-plus"></span> 添加课程
 </button>
 <table class="layui-table" id="myTable">
     <thead>
     <tr align="center" class="table_header" height="22">
-        <th style="width:10%;text-align:center">知识点编号</th>
-        <th style="width:20%;text-align:center">知识点名称</th>
-        <th style="width:50%;text-align:center" >知识点描述</th>
-        <th style="width:20%;text-align:center" >编辑--删除</th>
+        <th style="width:10%;text-align:center">课程编号</th>
+        <th style="width:10%;text-align:center">课程名称</th>
+        <th style="width:10%;text-align:center">开课时间</th>
+        <th style="width:50%;text-align:center" >课程描述</th>
+        <th style="width:10%;text-align:center" >授课老师</th>
+        <th style="width:10%;text-align:center" >编辑--删除</th>
     </tr>
     </thead>
     <tbody id="KnowList" bgcolor="#D7EBFF" align="center"  style="color: black">
@@ -47,7 +49,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">删除界面</h4>
             </div>
-            <div class="modal-body">是否删除该知识点</div>
+            <div class="modal-body">是否删除该课程</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary" id="del_know">确定</button>
@@ -65,16 +67,24 @@
                 <h4 class="modal-title" id="myModalLabel">修改界面</h4>
             </div>
 	        <div class="form-group big_input">
-	            <label>知识点名称：</label>
-	            <input type="text" class="form-control" id="update_name" maxlength="15" placeholder="请输入知识点名称">
+	            <label>课程名称：</label>
+	            <input type="text" class="form-control" id="update_name" maxlength="15" placeholder="请输入课程名称">
 	        </div>
 	        <div class="form-group big_input">
-	            <label>知识点备注：</label>
-	            <input type="text" class="form-control" id="update_info" maxlength="15" placeholder="请输入知识点备注">
+	            <label>课程备注：</label>
+	            <input type="text" class="form-control" id="update_info" maxlength="15" placeholder="请输入课程备注">
+	        </div>
+	        <div class="form-group big_input">
+	            <label>授课老师：</label>
+	            <input type="text" class="form-control" id="update_teacher" maxlength="15" placeholder="请输入授课老师">
+	        </div>
+	        <div class="form-group big_input">
+	            <label>开课时间：</label>
+	            <input type="text" class="form-control" id="update_time" maxlength="15" placeholder="请输入开课时间">
 	        </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="update_know">确定</button>
+                <button type="button" class="btn btn-primary" id="update_course">确定</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
@@ -88,16 +98,24 @@
                 <h4 class="modal-title" id="myModalLabel">添加界面</h4>
             </div>
 	        <div class="form-group big_input">
-	            <label>知识点名称：</label>
-	            <input type="text" class="form-control" id="add_name" maxlength="15" placeholder="请输入知识点名称">
+	            <label>课程名称：</label>
+	            <input type="text" class="form-control" id="add_name" maxlength="15" placeholder="请输入课程名称">
 	        </div>
 	        <div class="form-group big_input">
-	            <label>知识点备注：</label>
-	            <input type="text" class="form-control" id="add_info" maxlength="15" placeholder="请输入知识点备注">
+	            <label>课程备注：</label>
+	            <input type="text" class="form-control" id="add_info" maxlength="15" placeholder="请输入课程备注">
+	        </div>
+	        <div class="form-group big_input">
+	            <label>授课老师：</label>
+	            <input type="text" class="form-control" id="add_teacher" maxlength="15" placeholder="请输入授课老师">
+	        </div>
+	        <div class="form-group big_input">
+	            <label>开课时间：</label>
+	            <input type="text" class="form-control" id="add_time" maxlength="15" placeholder="请输入开课时间">
 	        </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="add_know">确定</button>
+                <button type="button" class="btn btn-primary" id="add_course">确定</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->

@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 //课程表
 @Entity
-@Table(name="tab_case")
+@Table(name="tab_course")
 public class Course {
 	
 	@Id
@@ -31,7 +31,7 @@ public class Course {
 	private String CourseTime;  // 开课时间
 	
 	@Column(name="course_teacher")
-	private String CourseTeacher;  // 开课时间
+	private String CourseTeacher;  // 上课老师
 	
 
 	public String getCourseTeacher() {

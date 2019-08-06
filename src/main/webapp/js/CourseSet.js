@@ -3,20 +3,22 @@
  */
 var row = 1;  //页数
 var count; //总记录数
-var kid; //记录第几行的编号
-var kname; //记录第几行的名称
-var kinfo; //记录第几行的备注信息
+var cid; //记录第几行的编号
+var cname; //记录第几行的名称
+var cinfo; //记录第几行的备注信息
+var cteacher; //记录第几行的授课老师
+var ctime; //记录第几行的开课时间
 
 $(function(){
 	$.ajaxSettings.async = false;
 	$.post(
-			"CountKnowledge.action",
+			"CountCourse.action",
 			{
 			},
 			function(data){
 				var data = JSON.parse(data);
 				//console.log(data);
-				var sum = data.KnowledgeCount;
+				var sum = data.CourseCount;
 				count = Math.ceil(sum/15);
 				var total = "共" + Math.ceil(sum/15) + "页";
 				$("#TotalPage").append(total);
@@ -28,23 +30,24 @@ $(function(){
 
 $(function(){
     $.post(
-        "QueryKnowledgeByPageSize.action",
+        "QueryCourseByPageSize.action",
         {
             page:row,
             limit:15
         },
         function(data) {
-        	//console.log(data);
             var data = JSON.parse(data);
-            //console.log(data);
+            console.log(data);
             for(var i = 0 ; i < data.length ; i ++){
                 for( var i = 0; i < data.length; i++ ) {
                     //动态创建一个tr行标签,并且转换成jQuery对象
                     var $trTemp = $("<tr ></tr>");
                     //往行里面追加 td单元格
-			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].knowledgeId +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].knowledgeName +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].knowledgeInfo  +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].courseId +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].courseName +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTime  +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseInfo  +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTeacher  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 			        		'&nbsp;&nbsp;&nbsp;&nbsp;<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;" data-toggle="modal" data-target="#update_Modal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
 			        		+'&nbsp;&nbsp;<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -67,7 +70,7 @@ function PrevPage(){
 		row--;
 		$("#KnowList").html("");
 	    $.post(
-	            "QueryKnowledgeByPageSize.action",
+	            "QueryCourseByPageSize.action",
 	            {
 	                page:row,
 	                limit:15
@@ -80,9 +83,11 @@ function PrevPage(){
 	                        //动态创建一个tr行标签,并且转换成jQuery对象
 	                        var $trTemp = $("<tr ></tr>");
 	                        //往行里面追加 td单元格
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].knowledgeId +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].knowledgeName +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].knowledgeInfo  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].courseId +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].courseName +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTime  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseInfo  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTeacher  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 	    			        		'&nbsp;&nbsp;&nbsp;&nbsp;<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;" data-toggle="modal" data-target="#update_Modal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
 	    			        		+'&nbsp;&nbsp;<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -104,7 +109,7 @@ function NextPage(){
 		row ++;
 		$("#KnowList").html("");
 	    $.post(
-	            "QueryKnowledgeByPageSize.action",
+	            "QueryCourseByPageSize.action",
 	            {
 	                page:row,
 	                limit:15
@@ -117,9 +122,11 @@ function NextPage(){
 	                        //动态创建一个tr行标签,并且转换成jQuery对象
 	                        var $trTemp = $("<tr></tr>");
 	                        //往行里面追加 td单元格
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].knowledgeId +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].knowledgeName +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].knowledgeInfo  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].courseId +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].courseName +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTime  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseInfo  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTeacher  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 	    			        		'&nbsp;&nbsp;&nbsp;&nbsp;<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;" data-toggle="modal" data-target="#update_Modal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
 	    			        		+'&nbsp;&nbsp;<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -142,86 +149,100 @@ $(document).ready(function(){
 	    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
 	    var col2=currentRow.find("td:eq(1)").text(); //获得当前行第一个TD值
 	    var col3=currentRow.find("td:eq(2)").text(); //获得当前行第一个TD值
+	    var col4=currentRow.find("td:eq(3)").text(); //获得当前行第一个TD值
+	    var col5=currentRow.find("td:eq(4)").text(); //获得当前行第一个TD值
 	    
-	    kid = col1;
-	    kname = col2;
-	    kinfo = col3;
-	    $("#update_name").val(kname);
-	    $("#update_info").val(kinfo);
-
-	    //console.log(kname + " " + kinfo);
-	    //$("#update_name").append(kname);
-	    //$("#update_info").append(kinfo);
+	    cid = col1;
+	    cname = col2;
+	    ctime = col3;
+	    cinfo = col4;
+	    cteacher = col5;
+	    
+	    $("#update_name").val(cname);
+	    $("#update_info").val(cinfo);
+	    $("#update_teacher").val(cteacher);
+	    $("#update_time").val(ctime);	    
+	    //console.log(cname + " " + cinfo);
+	    //$("#update_name").append(cname);
+	    //$("#update_info").append(cinfo);
 	  });
 	  
 		$("#del_know").click(function(){
-			//console.log(kid);
+			//console.log(cid);
 			$.post(
-					"DeleteKnowledge.action",
+					"DeleteCourse.action",
 					{
-						knowledge_id:kid,
+						course_id:cid,
 					},
 					function(data){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 						if(data == "Fail"){
 							alert("删除失败！");
-							window.location.replace("KnowledgeSet.html");
+							window.location.replace("CourseSet.html");
 						}
 						else{
 							alert("删除成功!");
-							window.location.replace("KnowledgeSet.html");
+							window.location.replace("CourseSet.html");
 						}
 					}
 					);
 		})
 		
 		
-		$("#update_know").click(function(){
+		$("#update_course").click(function(){
 			
 			var name = $("#update_name").val();
 			var info = $("#update_info").val();
+			var teacher = $("#update_teacher").val();
+			var time = $("#update_time").val();
 			
 			$.post(
-					"UpdateKnowledge.action",
+					"UpdateCourse.action",
 					{
-						knowledge_id:kid,
-						knowledge_info:info,
-						knowledge_name:name,
+						course_id:cid,
+						course_info:info,
+						course_name:name,
+						course_time:time,
+						course_teacher:teacher,
 					},
 					function(data){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 						if(data == "Fail"){
 							alert("修改失败！");
-							window.location.replace("KnowledgeSet.html");
+							window.location.replace("CourseSet.html");
 						}
 						else{
 							alert("修改成功!");
-							window.location.replace("KnowledgeSet.html");
+							window.location.replace("CourseSet.html");
 						}
 					}
 					);
 		})
 		
-		$("#add_know").click(function(){
+		$("#add_course").click(function(){
 			
 			var name = $("#add_name").val();
 			var info = $("#add_info").val();
+			var teacher = $("#add_teacher").val();
+			var time = $("#add_time").val();
 			
 			$.post(
-					"AddKnowledge.action",
+					"AddCourse.action",
 					{
-						knowledge_info:info,
-						knowledge_name:name,
+						course_info:info,
+						course_name:name,
+						course_time:time,
+						course_teacher:teacher,
 					},
 					function(data){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 						if(data == "Fail"){
 							alert("添加失败！");
-							window.location.replace("KnowledgeSet.html");
+							window.location.replace("CourseSet.html");
 						}
 						else{
 							alert("添加成功!");
-							window.location.replace("KnowledgeSet.html");
+							window.location.replace("CourseSet.html");
 						}
 					}
 					);

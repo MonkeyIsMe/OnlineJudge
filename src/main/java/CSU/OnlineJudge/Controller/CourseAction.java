@@ -106,7 +106,7 @@ public class CourseAction extends ActionSupport{
 		course.setCourseInfo(course_info);
 		course.setCourseTime(course_time);
 		course.setCourseTeacher(course_teacher);
-		
+		System.out.println(course_name+" " + course_teacher);
 		CourseService.UpdateCourse(course);
 		
 	}
@@ -151,7 +151,8 @@ public class CourseAction extends ActionSupport{
 		
 		int cnt = CourseService.CountCourse();
 		
-		JSONObject jo = JSONObject.fromObject(cnt);
+		JSONObject jo = new JSONObject();
+		jo.put("CourseCount", cnt);
 		out.println(jo.toString());
 	    out.flush(); 
 	    out.close();
