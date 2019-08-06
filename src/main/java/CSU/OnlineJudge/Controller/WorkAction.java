@@ -423,5 +423,23 @@ public class WorkAction extends ActionSupport{
         out.close();
 	}
 	
+	//查询考试-作业总数
+	public void CountWork() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		int cnt = WorkService.CountWork();
+		JSONObject jo = new JSONObject();
+		jo.put("WorkCount", cnt);
+		
+		out.println(jo.toString());
+        out.flush(); 
+        out.close();
+	}
 	
 }

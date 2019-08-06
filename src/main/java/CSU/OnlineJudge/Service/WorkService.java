@@ -28,4 +28,6 @@ public interface WorkService {
 	
 	public List<Work> QueryExamByPageSizeWithClassId(int row,int PageSize,int ClassId,int Flag);
 	
+	public int CountWork();
+	
 }

@@ -129,4 +129,10 @@ public class WorkDAOImpl extends HibernateDaoSupport implements WorkDAO{
 		});
 	}
 
+	public int CountWork() {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Work as work";
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
 }

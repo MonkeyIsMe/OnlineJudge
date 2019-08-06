@@ -23,4 +23,6 @@ public interface WorkDAO {
 	public List<Work> QueryWorkByPageSizeWithFlag(int row,int PageSize,int Flag);
 	
 	public List<Work> QueryWorkByPageSizeWithOwner(int row,int PageSize,String WorkOwner);
+	
+	public int CountWork();
 }

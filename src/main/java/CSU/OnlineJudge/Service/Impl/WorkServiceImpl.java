@@ -77,4 +77,9 @@ public class WorkServiceImpl implements WorkService{
 		return wd.QueryWorkByPageSizeWithClassIdFlag(row, PageSize, ClassId, 1);
 	}
 
+	public int CountWork() {
+		// TODO Auto-generated method stub
+		return wd.CountWork();
+	}
+
 }
