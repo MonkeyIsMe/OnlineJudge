@@ -52,4 +52,9 @@ public class CourseServiceImpl implements CourseService{
 		return cd.CountCourse();
 	}
 
+	public List<Course> QueryCourseByPageSize(int row, int PageSize) {
+		// TODO Auto-generated method stub
+		return cd.QueryCourseByPageSize(row, PageSize);
+	}
+
 }

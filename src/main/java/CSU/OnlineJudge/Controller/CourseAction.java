@@ -12,6 +12,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import CSU.OnlineJudge.Model.Course;
 import CSU.OnlineJudge.Service.CourseService;
 import CSU.OnlineJudge.Service.Impl.CourseServiceImpl;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class CourseAction extends ActionSupport{
@@ -155,6 +156,30 @@ public class CourseAction extends ActionSupport{
 	    out.flush(); 
 	    out.close();
 		
+	}
+	
+	//分页查询总课程
+	public void QueryCourseByPageSize() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String page = request.getParameter("page");
+		String size = request.getParameter("limit");
+		
+		int row = Integer.valueOf(page);
+		int PageSize = Integer.valueOf(size);
+		
+		List<Course> CourseList = CourseService.QueryCourseByPageSize(row, PageSize);
+		
+		JSONArray ja = JSONArray.fromObject(CourseList);
+		out.println(ja.toString());
+	    out.flush(); 
+	    out.close();
 	}
 	
 }

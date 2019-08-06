@@ -66,6 +66,8 @@
 			</action>
 			<action name="CountCourse" class="CourseAction" method="CountCourse" >
 			</action>
+			<action name="QueryCourseByPageSize" class="CourseAction" method="QueryCourseByPageSize" >
+			</action>
 			
 	</package>
 </struts>

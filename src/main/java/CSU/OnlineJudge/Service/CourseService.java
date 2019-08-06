@@ -18,4 +18,6 @@ public interface CourseService {
 	
 	public int CountCourse();
 	
+	public List<Course> QueryCourseByPageSize(int row,int PageSize);
+	
 }

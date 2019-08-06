@@ -17,4 +17,6 @@ public interface CourseDAO {
 	public int CountCourse();
 	
 	public List<Course> QueryCourseByUserAccount(String UserAccount);
+	
+	public List<Course> QueryCourseByPageSize(int row,int PageSize);
 }

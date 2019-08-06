@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import CSU.OnlineJudge.DAO.CourseDAO;
 import CSU.OnlineJudge.Model.Course;
+import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Utils.HibernateUtil;
 
 @Transactional
@@ -60,6 +61,22 @@ public class CourseDAOImpl extends HibernateDaoSupport implements CourseDAO{
 		// TODO Auto-generated method stub
 		String hql = "select count(*) from Course as course";
 		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
+	public List<Course> QueryCourseByPageSize(final int row, final int PageSize) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Course>>() {
+			
+
+			public List<Course> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Course";
+				Query query = session.createQuery(hql).setFirstResult(
+                        (row - 1) * PageSize).setMaxResults(PageSize);
+				List<Course> list = query.list();
+				return list;
+			}
+		});
 	}
 
 }
