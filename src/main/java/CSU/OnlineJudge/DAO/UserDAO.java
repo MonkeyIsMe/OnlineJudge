@@ -18,4 +18,6 @@ public interface UserDAO {
 	
 	public List<User> QueryUserByName(String UserAccount);
 	
+	public int CountUser();
+	
 }

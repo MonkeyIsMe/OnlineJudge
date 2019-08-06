@@ -55,4 +55,9 @@ public class UserServiceImpl implements UserService{
 		else return UserList.get(0); 
 	}
 
+	public int CountUser() {
+		// TODO Auto-generated method stub
+		return ud.CountUser();
+	}
+
 }

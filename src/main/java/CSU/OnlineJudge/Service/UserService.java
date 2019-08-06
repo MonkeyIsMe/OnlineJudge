@@ -18,4 +18,6 @@ public interface UserService {
 	
 	public User QueryUserByName(String UserAccount);
 	
+	public int CountUser();
+	
 }

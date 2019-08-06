@@ -71,4 +71,10 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO{
 		});
 	}
 
+	public int CountUser() {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from User as User";
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
 }
