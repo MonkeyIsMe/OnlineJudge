@@ -47,4 +47,9 @@ public class CourseServiceImpl implements CourseService{
 		return cd.QueryCourseByUserAccount(UserAccount);
 	}
 
+	public int CountCourse() {
+		// TODO Auto-generated method stub
+		return cd.CountCourse();
+	}
+
 }

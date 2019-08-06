@@ -138,5 +138,23 @@ public class CourseAction extends ActionSupport{
 		
 	}
 	
+	//查询课程总数
+	public void CountCourse() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		int cnt = CourseService.CountCourse();
+		
+		JSONObject jo = JSONObject.fromObject(cnt);
+		out.println(jo.toString());
+	    out.flush(); 
+	    out.close();
+		
+	}
 	
 }

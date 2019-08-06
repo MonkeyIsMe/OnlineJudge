@@ -16,4 +16,6 @@ public interface CourseService {
 	
 	public List<Course> QueryByUserAccount(String UserAccount);
 	
+	public int CountCourse();
+	
 }

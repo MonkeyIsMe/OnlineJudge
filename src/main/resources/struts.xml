@@ -57,6 +57,16 @@
 			<action name="AddKnowledge" class="KnowledgeAction" method="AddKnowledge" >
 			</action>
 			
+			<!-- 课程 -->
+			<action name="AddCourse" class="CourseAction" method="AddCourse" >
+			</action>
+			<action name="DeleteCourse" class="CourseAction" method="DeleteCourse" >
+			</action>
+			<action name="UpdateCourse" class="CourseAction" method="UpdateCourse" >
+			</action>
+			<action name="CountCourse" class="CourseAction" method="CountCourse" >
+			</action>
+			
 	</package>
 </struts>
 	

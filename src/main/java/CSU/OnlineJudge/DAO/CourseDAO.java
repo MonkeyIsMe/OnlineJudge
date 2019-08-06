@@ -14,6 +14,7 @@ public interface CourseDAO {
 	
 	public Course queryCourse(int id);
 	
+	public int CountCourse();
 	
 	public List<Course> QueryCourseByUserAccount(String UserAccount);
 }

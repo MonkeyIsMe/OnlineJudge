@@ -56,4 +56,10 @@ public class CourseDAOImpl extends HibernateDaoSupport implements CourseDAO{
 		});
 	}
 
+	public int CountCourse() {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Course as course";
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
 }
