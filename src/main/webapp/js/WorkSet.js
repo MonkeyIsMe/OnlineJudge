@@ -4,10 +4,6 @@
 var row = 1;  //页数
 var count; //总记录数
 var wid; //记录第几行的编号
-var wname; //记录第几行的名称
-var winfo; //记录第几行的备注信息
-var wonwer; //记录第几行的创建者
-var ctime; //记录第几行的开课时间
 
 $(function(){
 	$.ajaxSettings.async = false;
@@ -151,42 +147,28 @@ $(document).ready(function(){
 	    //获得当前行
 	    var currentRow=$(this).closest("tr"); 
 	    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
-	    var col2=currentRow.find("td:eq(1)").text(); //获得当前行第一个TD值
-	    var col3=currentRow.find("td:eq(2)").text(); //获得当前行第一个TD值
-	    var col4=currentRow.find("td:eq(3)").text(); //获得当前行第一个TD值
-	    var col5=currentRow.find("td:eq(4)").text(); //获得当前行第一个TD值
 	    
 	    cid = col1;
-	    cname = col2;
-	    ctime = col3;
-	    cinfo = col4;
-	    cteacher = col5;
 	    
-	    $("#update_name").val(cname);
-	    $("#update_info").val(cinfo);
-	    $("#update_teacher").val(cteacher);
-	    $("#update_time").val(ctime);	    
-	    //console.log(cname + " " + cinfo);
-	    //$("#update_name").append(cname);
-	    //$("#update_info").append(cinfo);
+	    
 	  });
 	  
 		$("#del_know").click(function(){
 			//console.log(cid);
 			$.post(
-					"DeleteCourse.action",
+					"DeleteWork.action",
 					{
-						course_id:cid,
+						work_id:cid,
 					},
 					function(data){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 						if(data == "Fail"){
 							alert("删除失败！");
-							window.location.replace("ManagerCourseSet.html");
+							window.location.replace("ManagerWorkSet.html");
 						}
 						else{
 							alert("删除成功!");
-							window.location.replace("ManagerCourseSet.html");
+							window.location.replace("ManagerWorkSet.html");
 						}
 					}
 					);
