@@ -178,11 +178,11 @@ $(document).ready(function(){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 						if(data == "Fail"){
 							alert("删除失败！");
-							window.location.replace("CourseSet.html");
+							window.location.replace("ManagerCourseSet.html");
 						}
 						else{
 							alert("删除成功!");
-							window.location.replace("CourseSet.html");
+							window.location.replace("ManagerCourseSet.html");
 						}
 					}
 					);
@@ -209,11 +209,11 @@ $(document).ready(function(){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 						if(data == "Fail"){
 							alert("修改失败！");
-							window.location.replace("CourseSet.html");
+							window.location.replace("ManagerCourseSet.html");
 						}
 						else{
 							alert("修改成功!");
-							window.location.replace("CourseSet.html");
+							window.location.replace("ManagerCourseSet.html");
 						}
 					}
 					);
@@ -238,11 +238,11 @@ $(document).ready(function(){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 						if(data == "Fail"){
 							alert("添加失败！");
-							window.location.replace("CourseSet.html");
+							window.location.replace("ManagerCourseSet.html");
 						}
 						else{
 							alert("添加成功!");
-							window.location.replace("CourseSet.html");
+							window.location.replace("ManagerCourseSet.html");
 						}
 					}
 					);
