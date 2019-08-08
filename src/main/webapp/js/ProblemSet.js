@@ -3,18 +3,18 @@
  */
 var row = 1;  //页数
 var count; //总记录数
-var wid; //记录第几行的编号
+var pid; //记录第几行的编号
 
 $(function(){
 	$.ajaxSettings.async = false;
 	$.post(
-			"CountWork.action",
+			"CountProblem.action",
 			{
 			},
 			function(data){
 				var data = JSON.parse(data);
 				//console.log(data);
-				var sum = data.WorkCount;
+				var sum = data.ProblemCount;
 				count = Math.ceil(sum/15);
 				var total = "共" + Math.ceil(sum/15) + "页";
 				$("#TotalPage").append(total);
@@ -148,7 +148,7 @@ $(document).ready(function(){
 	    var currentRow=$(this).closest("tr"); 
 	    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
 	    
-	    cid = col1;
+	    pid = col1;
 	    
 	    
 	  });
@@ -156,19 +156,19 @@ $(document).ready(function(){
 		$("#del_work").click(function(){
 			//console.log(cid);
 			$.post(
-					"DeleteWork.action",
+					"DeleteProblem.action",
 					{
-						work_id:cid,
+						problem_id:pid,
 					},
 					function(data){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 						if(data == "Fail"){
 							alert("删除失败！");
-							window.location.replace("ManagerWorkSet.html");
+							window.location.replace("ManagerProblemSet.html");
 						}
 						else{
 							alert("删除成功!");
-							window.location.replace("ManagerWorkSet.html");
+							window.location.replace("ManagerProblemSet.html");
 						}
 					}
 					);

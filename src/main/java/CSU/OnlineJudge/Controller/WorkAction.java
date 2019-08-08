@@ -132,7 +132,7 @@ public class WorkAction extends ActionSupport{
 			return ;
 		}
 		
-		WorkService.updateWork(work);
+		WorkService.deleteWork(work);
 		
 	}
 	

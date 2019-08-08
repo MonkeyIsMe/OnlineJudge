@@ -107,6 +107,7 @@ public class ProblemAction extends ActionSupport{
 		int rte = Integer.valueOf(problem_rte);
 		int ce = Integer.valueOf(problem_ce);
 		int IsPublic = Integer.valueOf(problem_flag);
+		int degree = Integer.valueOf(problem_degree);
 		
 		problem.setProblemName(problem_name);
 		problem.setProblemInfo(problem_input);
@@ -115,7 +116,7 @@ public class ProblemAction extends ActionSupport{
 		problem.setProblemTimeLimit(time);
 		problem.setSubmissionTimes(submission);
 		problem.setAcceptTimes(accept);
-		problem.setProblemDegree(problem_degree);
+		problem.setProblemDegree(degree);
 		problem.setWrongAnswerTimes(wrong);
 		problem.setTimeLimitTimes(tle);
 		problem.setRuntimeErrorTimes(rte);
@@ -177,7 +178,7 @@ public class ProblemAction extends ActionSupport{
 		int rte = Integer.valueOf(problem_rte);
 		int ce = Integer.valueOf(problem_ce);
 		int IsPublic = Integer.valueOf(problem_flag);
-		
+		int degree = Integer.valueOf(problem_degree);
 		
 		int pid = Integer.valueOf(problem_id);
 		problem = ProblemService.QueryProblem(pid);
@@ -196,7 +197,7 @@ public class ProblemAction extends ActionSupport{
 		problem.setProblemTimeLimit(time);
 		problem.setSubmissionTimes(submission);
 		problem.setAcceptTimes(accept);
-		problem.setProblemDegree(problem_degree);
+		problem.setProblemDegree(degree);
 		problem.setWrongAnswerTimes(wrong);
 		problem.setTimeLimitTimes(tle);
 		problem.setRuntimeErrorTimes(rte);

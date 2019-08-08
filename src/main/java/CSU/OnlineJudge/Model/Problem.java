@@ -32,7 +32,7 @@ public class Problem {
 	private int ProblemTimeLimit;  // 题目时间
 	
 	@Column(name="problem_degree")
-	private String ProblemDegree;  // 题目难度
+	private int ProblemDegree;  // 题目难度
 	
 	@Column(name="problem_wrong")
 	private int WrongAnswerTimes;  // 错误次数
@@ -107,10 +107,10 @@ public class Problem {
 	public void setProblemTimeLimit(int problemTimeLimit) {
 		ProblemTimeLimit = problemTimeLimit;
 	}
-	public String getProblemDegree() {
+	public int getProblemDegree() {
 		return ProblemDegree;
 	}
-	public void setProblemDegree(String problemDegree) {
+	public void setProblemDegree(int problemDegree) {
 		ProblemDegree = problemDegree;
 	}
 	public int getWrongAnswerTimes() {

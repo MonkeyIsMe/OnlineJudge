@@ -26,6 +26,8 @@ public interface ProblemService {
 	
 	public List<Object[]> GetProblemOutInfo(int row,int PageSize,int flag);
 	
+	public List<Object[]> GetProblemManagerInfo(int row,int PageSize);
+	
 	public int CountProblem();
 	
 }
