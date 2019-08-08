@@ -434,4 +434,41 @@ public class ProblemAction extends ActionSupport{
 	    out.flush(); 
 	    out.close();
 	}
+	
+	//查询管理端题目列表
+	public void QueryProblemListManager() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+			
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+			
+		String page = request.getParameter("rows");
+		String size = request.getParameter("size");
+		
+		int row = Integer.valueOf(page);
+		int PageSize = Integer.valueOf(size); 
+		
+		JSONArray ja = new JSONArray();
+		List<Object[]> obj_list = ProblemService.GetProblemOutInfo(row, PageSize, 1);
+		for(Object[]  obj : obj_list) {
+			JSONObject jo = new JSONObject();
+			Object id = obj[0];
+			Object name = obj[1];
+			Object degree = obj[2];
+			Object people = obj[3];
+			Object publicornot = obj[4];
+			jo.put("ProblemId", id);
+			jo.put("ProblemName", name);
+			jo.put("degree",degree);
+			jo.put("people", people);
+			jo.put("publicornot", publicornot);
+			ja.add(jo);
+		}
+		out.println(ja.toString());
+	    out.flush(); 
+	    out.close();
+	}
 }
