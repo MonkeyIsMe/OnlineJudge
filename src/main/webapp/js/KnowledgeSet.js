@@ -227,3 +227,7 @@ $(document).ready(function(){
 					);
 		})
 });
+
+function refresh(){
+	window.location.replace("ManagerKnowledgeSet.html");
+}
