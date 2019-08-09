@@ -49,7 +49,7 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workInfo  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workOwner  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'&nbsp;&nbsp;&nbsp;&nbsp;<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;" data-toggle="modal" data-target="#update_Modal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
+			        		'&nbsp;&nbsp;&nbsp;&nbsp;<a id="pic"><span class="check glyphicon glyphicon-pencil" style="cursor:pointer;" data-toggle="modal" data-target="#update_Modal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
 			        		+'&nbsp;&nbsp;<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
@@ -83,11 +83,15 @@ function PrevPage(){
 	                        //动态创建一个tr行标签,并且转换成jQuery对象
 	                        var $trTemp = $("<tr ></tr>");
 	                        //往行里面追加 td单元格
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].courseId +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].courseName +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTime  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseInfo  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTeacher  +"</td>");
+	                        var WorkFlag;
+	                        if(data[i].workFlag == 0) WorkFlag = "作业";
+	                        else WorkFlag = "考试";
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].workId +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + WorkFlag +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workName  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workCreatTime  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workInfo  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workOwner  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 	    			        		'&nbsp;&nbsp;&nbsp;&nbsp;<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;" data-toggle="modal" data-target="#update_Modal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
 	    			        		+'&nbsp;&nbsp;<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -120,13 +124,17 @@ function NextPage(){
 	                for(var i = 0 ; i < data.length ; i ++){
 	                    for( var i = 0; i < data.length; i++ ) {
 	                        //动态创建一个tr行标签,并且转换成jQuery对象
-	                        var $trTemp = $("<tr></tr>");
+	                        var $trTemp = $("<tr ></tr>");
 	                        //往行里面追加 td单元格
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].courseId +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].courseName +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTime  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseInfo  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTeacher  +"</td>");
+	                        var WorkFlag;
+	                        if(data[i].workFlag == 0) WorkFlag = "作业";
+	                        else WorkFlag = "考试";
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].workId +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + WorkFlag +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workName  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workCreatTime  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workInfo  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workOwner  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 	    			        		'&nbsp;&nbsp;&nbsp;&nbsp;<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;" data-toggle="modal" data-target="#update_Modal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
 	    			        		+'&nbsp;&nbsp;<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -148,17 +156,26 @@ $(document).ready(function(){
 	    var currentRow=$(this).closest("tr"); 
 	    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
 	    
-	    cid = col1;
-	    
+	    wid = col1;
 	    
 	  });
+	  
+	  
+	  $("#myTable").on('click','.check',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    var url = "ManageSingleWork.html?WorkId=" + col1;
+		    window.open(url);
+		    
+		  });
 	  
 		$("#del_work").click(function(){
 			//console.log(cid);
 			$.post(
 					"DeleteWork.action",
 					{
-						work_id:cid,
+						work_id:wid,
 					},
 					function(data){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
