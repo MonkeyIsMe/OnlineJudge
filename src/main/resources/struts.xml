@@ -44,6 +44,8 @@
 			</action>
 			<action name="CountWork" class="WorkAction" method="CountWork" >
 			</action>
+			<action name="QuerySingleWork" class="WorkAction" method="QuerySingleWork" >
+			</action>
 			
 			<!-- 课程用户关联 -->
 			<action name="QuerySingleCourseUser" class="CourseUserAction" method="QuerySingleCourseUser" >
