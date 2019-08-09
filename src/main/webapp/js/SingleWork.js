@@ -4,6 +4,7 @@ var argsIndex = url .split("?WorkId=");
 var wid = argsIndex[1];
 
 
+
 $(function(){
 	$.post(
 			"QuerySingleWork.action",
@@ -12,7 +13,7 @@ $(function(){
 			}, 
 			function(data) {
 				var datas = JSON.parse(data);
-				//console.log(datas);
+				console.log(datas);
 			}
 	);
 	
