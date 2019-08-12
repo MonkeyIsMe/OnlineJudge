@@ -94,9 +94,9 @@ public class ProblemAction extends ActionSupport{
 		String problem_flag = request.getParameter("problem_flag");
 		String problem_input = request.getParameter("problem_input");
 		String problem_output = request.getParameter("problem_output");
-		String case_info = request.getParameter("case_info");
+		String case_input = request.getParameter("case_input");
+		String case_output = request.getParameter("case_output");
 		
-		JSONArray ja = JSONArray.fromObject(case_info);
 		
 		int memory = Integer.valueOf(problem_memory);
 		int time = Integer.valueOf(problem_time);
@@ -127,17 +127,17 @@ public class ProblemAction extends ActionSupport{
 		problem.setProblemOutput(problem_output);
 		
 		int pid = ProblemService.AddProblem(problem);
-		for(int i = 0; i < ja.size(); i ++) {
-			JSONObject jo = ja.getJSONObject(i);
-			String case_input = jo.getString("case_input");
-			String case_output = jo.getString("case_output");
-			String case_flag = jo.getString("case_flag");
-			int cflag = Integer.valueOf(case_flag);
-			cas.setCaseFlag(cflag);
-			cas.setCaseInput(case_input);
-			cas.setCaseOutput(case_output);
-			CaseService.AddCase(cas);
-		}
+		cas.setCaseFlag(0);
+		cas.setCaseInput(case_input);
+		cas.setCaseOutput(case_output);
+		CaseService.AddCase(cas);
+		
+		JSONObject jo = new JSONObject();
+		jo.put("ProblemId", pid);
+		
+		out.println(jo.toString());
+		out.flush(); 
+		out.close();
 		
 	}
 	
