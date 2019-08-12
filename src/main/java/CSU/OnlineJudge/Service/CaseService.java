@@ -18,5 +18,5 @@ public interface CaseService {
 	
 	public List<Case> GetCaseByFlag(int ProblemId,int Flag);
 	
-	
+	public Object addMutiplyCase(List<Case> Case);
 }

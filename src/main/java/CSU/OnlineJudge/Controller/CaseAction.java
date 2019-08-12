@@ -14,6 +14,7 @@ import CSU.OnlineJudge.Model.Case;
 import CSU.OnlineJudge.Service.CaseService;
 import CSU.OnlineJudge.Service.Impl.CaseServiceImpl;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 public class CaseAction extends ActionSupport{
 	
@@ -50,6 +51,33 @@ public class CaseAction extends ActionSupport{
 		cas.setCaseFlag(cFlag);
 		cas.setCaseInput(case_input);
 		cas.setCaseOutput(case_output);
+		cas.setProblemId(pid);
+		
+		CaseService.AddCase(cas);
+	}
+	
+	//添加多个样例
+	public void AddMutiplyCase() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String case_info = request.getParameter("case_info");
+		String problem_id = request.getParameter("problem_id");
+		
+		int pid = Integer.valueOf(problem_id);
+		
+		JSONArray ja = JSONArray.fromObject(case_info);
+		JSONArray add_ja = new JSONArray();
+		
+		for(int i = 0; i < ja.size(); i ++) {
+			//JSONObject jo = ja.get(i);
+		}
+		cas.setCaseFlag(1);
 		cas.setProblemId(pid);
 		
 		CaseService.AddCase(cas);

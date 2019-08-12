@@ -72,6 +72,27 @@ public class CaseDAOImpl extends HibernateDaoSupport implements CaseDAO{
 		});
 	}
 
+	public Object addMutiplyCase(final List<Case> Case) {
+		// TODO Auto-generated method stub
+		
+		return getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			public Object doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				for(int i = 0; i < Case.size(); i ++) {
+					session.save(Case.get(i));
+                    if (i % 50 == 0) {  
+                        session.flush();  
+                        session.clear();  
+                    }  
+				}
+				return null;
+			}
+			
+		});
+		
+	}
+
 	
 
 

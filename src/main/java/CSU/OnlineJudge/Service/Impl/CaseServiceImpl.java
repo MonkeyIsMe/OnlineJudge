@@ -63,4 +63,9 @@ public class CaseServiceImpl implements CaseService{
 		return cd.QueryCaseByProblemIdFlag(ProblemId, Flag);
 	}
 
+	public Object addMutiplyCase(List<Case> Case) {
+		// TODO Auto-generated method stub
+		return cd.addMutiplyCase(Case);
+	}
+
 }

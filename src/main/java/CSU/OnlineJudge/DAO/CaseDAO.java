@@ -17,5 +17,5 @@ public interface CaseDAO {
 	
 	public List<Case> QueryCaseByProblemIdFlag(int ProblemId,int Flag);
 	
-	
+	public Object addMutiplyCase(List<Case> Case);
 }
