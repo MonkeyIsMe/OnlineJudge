@@ -30,6 +30,8 @@
 			</action>
 			<action name="AddProblem" class="ProblemAction" method="AddProblem" >
 			</action>
+			<action name="TestAddProblem" class="ProblemAction" method="TestAddProblem" >
+			</action>
 			
 		 	<!-- 作业考试 -->
 		 	<action name="QueryAllWork" class="WorkAction" method="QueryAllWork" >

@@ -4,6 +4,10 @@
 var row = 1;  //页数
 var count; //总记录数
 var pid; //记录第几行的编号
+var stock = [];
+var arr = [];
+var count = 0;
+
 
 $(function(){
 	$.ajaxSettings.async = false;
@@ -176,6 +180,7 @@ $(document).ready(function(){
 		
 		$("#AddProblem").click(function () {
 			//alert(123);
+			var case_info = JSON.stringify(stock);
             var problem_name = $("#add_problem_name").val();
             var problem_hint = $("#add_problem_hint").val();
             var problem_memory = $("#add_problem_memory").val();
@@ -200,6 +205,7 @@ $(document).ready(function(){
                     case_output:case_output,
                     problem_info:problem_info,
                     problem_flag:problem_flag,
+                    case_info:case_info
                 },
                 function(data){
                 	var data = JSON.parse(data);
@@ -213,4 +219,85 @@ $(document).ready(function(){
 
 function refresh(){
 	window.location.replace("ManagerProblemSet.html");
+}
+
+
+$(function () {
+    $('#pop-up').click(function () {
+        $('#runText').show();
+        $('.shadow').show();
+        $('body').css('overflow','hidden');
+        $('#layer-close').click(function () {
+            $('.shadow').hide();
+            $('#runText').hide();
+            $('body').css('overflow','auto');
+        })
+        $('#shadow').click(function () {
+            $('#runText').hide();
+            $('#shadow').hide();
+            $('body').css('overflow','auto');
+        })
+    })
+    $("#exampleFormControlSelect1").click(function () {
+        var lan = $("#exampleFormControlSelect1").val();
+        console.log(lan);
+        if (lan == "---select---") {
+            return;
+        }
+    })
+})
+$(function () {
+    $('#addone').click(function () {
+        getAce();
+    })
+
+    $("#sure").click(function () {
+        var testArr = [];
+        for(var i=0;i<arr.length;i++)
+        {
+            testArr.push(arr[i].getValue());
+            count = count+1;
+            if(count == 2)
+            {
+                var obj = {stdin:testArr[i-1],stdout:testArr[i]}
+                stock.push(obj);
+                count=0;
+            }
+        }
+        arr.length = 0;
+        for (var i = 0; i < stock.length; i++) {
+            for (var j =i+1; j <stock.length; ) {
+                if (stock[i].stdin == stock[j].stdin && stock[i].stdout == stock[j].stdout) {//判断条件可以按照个人需求改
+                    stock.splice(j, 1);
+                }
+                else j++;
+            }
+        }
+        $('.shadow').hide();
+        $('#runText').hide();
+        $('body').css('overflow','auto');
+    })
+})
+function getAce() {
+    var editorx = null;
+    // var arr = [];
+    $("#addText").append("<li><div></div> <div></div> <button type=\"button\" class=\"btn btn-primary delete\">Delete</button></li>");
+    $('#addText>li>div').each(function (index) {
+        index = index + 1
+        $(this).attr({
+            class: 'editor ace_editor ace_tm',
+            id: 'editor' + index,
+        });
+        var str = 'editor' + index;
+        editorx = ace.edit(str);
+        editorx.setTheme("ace/theme/chrome");
+        editorx.setShowPrintMargin(true);
+        editorx.session.getLength();
+        editorx.session.setUseWrapMode(true);
+        arr.push(editorx);
+
+    })
+    $('.delete').click(function () {
+        $(this).parent().remove();
+    })
 }
