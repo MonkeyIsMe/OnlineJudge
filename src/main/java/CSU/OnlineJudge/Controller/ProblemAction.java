@@ -23,7 +23,7 @@ public class ProblemAction extends ActionSupport{
 	private ProblemService ProblemService;
 	private Problem problem = new Problem();
 	private CaseService CaseService;
-	private Case cas;
+	private Case cas = new Case();
 
 
 	public CaseService getCaseService() {
@@ -83,13 +83,6 @@ public class ProblemAction extends ActionSupport{
 		String problem_hint = request.getParameter("problem_hint");
 		String problem_memory = request.getParameter("problem_memory");
 		String problem_time = request.getParameter("problem_time");
-		String problem_submission = request.getParameter("problem_submission");
-		String problem_accept = request.getParameter("problem_accept");
-		String problem_degree = request.getParameter("problem_degree");
-		String problem_wrong = request.getParameter("problem_wrong");
-		String problem_tle = request.getParameter("problem_tle");
-		String problem_rte = request.getParameter("problem_rte");
-		String problem_ce = request.getParameter("problem_ce");
 		String problem_people = request.getParameter("problem_people");
 		String problem_flag = request.getParameter("problem_flag");
 		String problem_input = request.getParameter("problem_input");
@@ -100,35 +93,29 @@ public class ProblemAction extends ActionSupport{
 		
 		int memory = Integer.valueOf(problem_memory);
 		int time = Integer.valueOf(problem_time);
-		int submission = Integer.valueOf(problem_submission);
-		int accept = Integer.valueOf(problem_accept);
-		int wrong = Integer.valueOf(problem_wrong);
-		int tle = Integer.valueOf(problem_tle);
-		int rte = Integer.valueOf(problem_rte);
-		int ce = Integer.valueOf(problem_ce);
 		int IsPublic = Integer.valueOf(problem_flag);
-		int degree = Integer.valueOf(problem_degree);
 		
 		problem.setProblemName(problem_name);
 		problem.setProblemInfo(problem_input);
 		problem.setProblemHint(problem_hint);
 		problem.setProblemMemory(memory);
 		problem.setProblemTimeLimit(time);
-		problem.setSubmissionTimes(submission);
-		problem.setAcceptTimes(accept);
-		problem.setProblemDegree(degree);
-		problem.setWrongAnswerTimes(wrong);
-		problem.setTimeLimitTimes(tle);
-		problem.setRuntimeErrorTimes(rte);
-		problem.setCompileErrorTimes(ce);
+		problem.setSubmissionTimes(0);
+		problem.setAcceptTimes(0);
+		problem.setProblemDegree(0);
+		problem.setWrongAnswerTimes(0);
+		problem.setTimeLimitTimes(0);
+		problem.setRuntimeErrorTimes(0);
+		problem.setCompileErrorTimes(0);
 		problem.setProblemPeople(problem_people);
 		problem.setPublicOrNot(IsPublic);
 		problem.setProblemInput(problem_input);
 		problem.setProblemOutput(problem_output);
 		
 		int pid = ProblemService.AddProblem(problem);
-		cas.setCaseFlag(0);
+		cas.setCaseFlag(1);
 		cas.setCaseInput(case_input);
+		cas.setProblemId(pid);
 		cas.setCaseOutput(case_output);
 		CaseService.AddCase(cas);
 		

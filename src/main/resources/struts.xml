@@ -26,6 +26,10 @@
 			</action>
 			<action name="QuerySingleProblem" class="ProblemAction" method="QuerySingleProblem" >
 			</action>
+			<action name="DeleteProblem" class="ProblemAction" method="DeleteProblem" >
+			</action>
+			<action name="AddProblem" class="ProblemAction" method="AddProblem" >
+			</action>
 			
 		 	<!-- 作业考试 -->
 		 	<action name="QueryAllWork" class="WorkAction" method="QueryAllWork" >
