@@ -40,20 +40,22 @@ public class CaseAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String case_flag = request.getParameter("case_flag");
 		String problem_id = request.getParameter("problem_id");
-		String case_input = request.getParameter("case_input");
-		String case_output = request.getParameter("case_output");
+		String case_info = request.getParameter("case_info");
 		
-		int cFlag = Integer.valueOf(case_flag);
+		JSONArray ja = JSONArray.fromObject(case_info);
 		int pid = Integer.valueOf(problem_id);
 		
-		cas.setCaseFlag(cFlag);
-		cas.setCaseInput(case_input);
-		cas.setCaseOutput(case_output);
-		cas.setProblemId(pid);
-		
-		CaseService.AddCase(cas);
+		for(int i = 0; i < ja.size(); i ++) {
+			JSONObject jo = ja.getJSONObject(i);
+			String stdin = jo.getString("stdin");
+			String stdout = jo.getString("stdout");
+			cas.setCaseFlag(1);
+			cas.setProblemId(pid);
+			cas.setCaseInput(stdin);
+			cas.setCaseOutput(stdout);
+			CaseService.AddCase(cas);
+		}
 	}
 	
 	//添加多个样例
@@ -75,12 +77,18 @@ public class CaseAction extends ActionSupport{
 		JSONArray add_ja = new JSONArray();
 		
 		for(int i = 0; i < ja.size(); i ++) {
-			//JSONObject jo = ja.get(i);
+			JSONObject jo = ja.getJSONObject(i);
+			String stdin = jo.getString("stdin");
+			String stdout = jo.getString("stdout");
+			cas.setCaseFlag(1);
+			cas.setProblemId(pid);
+			cas.setCaseInput(stdin);
+			cas.setCaseOutput(stdout);
+			add_ja.add(jo);
 		}
-		cas.setCaseFlag(1);
-		cas.setProblemId(pid);
 		
-		CaseService.AddCase(cas);
+		List<Case> CaseList = JSONArray.toList(add_ja, Case.class);
+		CaseService.addMutiplyCase(CaseList);
 	}
 	
 	//删除样例

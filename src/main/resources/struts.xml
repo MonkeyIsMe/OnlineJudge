@@ -91,6 +91,16 @@
 			<action name="QueryAllUser" class="UserAction" method="QueryAllUser" >
 			</action>
 			
+			<!-- 样例 -->
+			<action name="AddCase" class="CaseAction" method="AddCase" >
+			</action>
+			<action name="AddMutiplyCase" class="CaseAction" method="AddMutiplyCase" >
+			</action>
+			<action name="DeleteCase" class="CaseAction" method="DeleteCase" >
+			</action>
+			<action name="UpdateCase" class="CaseAction" method="UpdateCase" >
+			</action>
+			
 	</package>
 </struts>
 	
