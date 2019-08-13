@@ -32,6 +32,8 @@
 			</action>
 			<action name="QueryProblemListManager" class="ProblemAction" method="QueryProblemListManager" >
 			</action>
+			<action name="CountProblem" class="ProblemAction" method="CountProblem" >
+			</action>
 			
 		 	<!-- 作业考试 -->
 		 	<action name="QueryAllWork" class="WorkAction" method="QueryAllWork" >

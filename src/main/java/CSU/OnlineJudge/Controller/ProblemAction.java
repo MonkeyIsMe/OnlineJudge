@@ -485,7 +485,7 @@ public class ProblemAction extends ActionSupport{
 		int cnt = ProblemService.CountProblem();
 		
 		JSONObject jo = new JSONObject();
-		jo.put("ProblemCount", jo);
+		jo.put("ProblemCount", cnt);
 		
 		out.println(jo.toString());
 	    out.flush(); 
