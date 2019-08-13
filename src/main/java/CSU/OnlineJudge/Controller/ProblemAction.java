@@ -10,8 +10,12 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import CSU.OnlineJudge.Model.Case;
+import CSU.OnlineJudge.Model.Knowledge;
+import CSU.OnlineJudge.Model.KnowledgeProblem;
 import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Service.CaseService;
+import CSU.OnlineJudge.Service.KnowledgeProblemService;
+import CSU.OnlineJudge.Service.KnowledgeService;
 import CSU.OnlineJudge.Service.ProblemService;
 import CSU.OnlineJudge.Service.Impl.ProblemServiceImpl;
 import net.sf.json.JSONArray;
@@ -21,10 +25,30 @@ import net.sf.json.JSONObject;
 public class ProblemAction extends ActionSupport{
 	
 	private ProblemService ProblemService;
+	private KnowledgeProblemService KnowledgeProblemService;
+	private KnowledgeService KnowledgeService;
 	private Problem problem = new Problem();
 	private CaseService CaseService;
 	private Case cas = new Case();
+	private Knowledge knowledge = new Knowledge();
+	private KnowledgeProblem kp = new KnowledgeProblem();
 
+	
+	public KnowledgeProblemService getKnowledgeProblemService() {
+		return KnowledgeProblemService;
+	}
+
+	public void setKnowledgeProblemService(KnowledgeProblemService knowledgeProblemService) {
+		KnowledgeProblemService = knowledgeProblemService;
+	}
+
+	public KnowledgeService getKnowledgeService() {
+		return KnowledgeService;
+	}
+
+	public void setKnowledgeService(KnowledgeService knowledgeService) {
+		KnowledgeService = knowledgeService;
+	}
 
 	public CaseService getCaseService() {
 		return CaseService;
@@ -488,6 +512,16 @@ public class ProblemAction extends ActionSupport{
 		List<Object[]> obj_list = ProblemService.GetProblemOutInfo(row, PageSize, 1);
 		for(Object[]  obj : obj_list) {
 			JSONObject jo = new JSONObject();
+			String know = "";
+			int pid = (Integer) obj[0];
+			List<KnowledgeProblem> kp_list =  KnowledgeProblemService.queryKnowledgeProblemByProblemId(pid);
+			for(KnowledgeProblem kpl : kp_list) {
+				int kid = kpl.getKnowledgeId();
+				knowledge = KnowledgeService.queryKnowledge(kid);
+				know = know + knowledge.getKnowledgeName();
+				know = know +",";
+			}
+			
 			Object id = obj[0];
 			Object name = obj[1];
 			Object degree = obj[2];

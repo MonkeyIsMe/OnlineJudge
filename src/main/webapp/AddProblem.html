@@ -87,21 +87,14 @@
         </div>
     </div>
     
-        <div id="editor"></div>
-
-
+    <div id="editor"></div>
     <div class="shadow" id="shadow">
-
     </div>
-
     <div class="runText" id="runText">
-
-
         <div class="addCase" id="addCase">
             <h3 style="font-family: inherit">测试样例</h3>
             </br>
             <p style="font-family: inherit">左边为输入右边为输出</p>
-
             <div class="addText" id="addText"></div>
             <button type="button" class="layui-btn  addone" id="addone">Add one</button>
             <button type="button" class="layui-btn  addone" id="sure">确定</button>
@@ -115,17 +108,17 @@
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-var editor = ace.edit("editor");
-		editor.setTheme("ace/theme/chrome");
-		document.getElementById('editor').style.fontSize='20px';
-		editor.setShowPrintMargin(true);
-		editor.session.getLength();
-		editor.setOption("wrap", "free")
-		layui.use('form', function(){
-		    var form = layui.form;
-		
-		    //监听提交
-		});
+	var editor = ace.edit("editor");
+			editor.setTheme("ace/theme/chrome");
+			document.getElementById('editor').style.fontSize='20px';
+			editor.setShowPrintMargin(true);
+			editor.session.getLength();
+			editor.setOption("wrap", "free")
+			layui.use('form', function(){
+			    var form = layui.form;
+			
+			    //监听提交
+			});
     layui.use('form', function(){
         var form = layui.form;
 

@@ -30,7 +30,7 @@
 			</action>
 			<action name="AddProblem" class="ProblemAction" method="AddProblem" >
 			</action>
-			<action name="TestAddProblem" class="ProblemAction" method="TestAddProblem" >
+			<action name="QueryProblemListManager" class="ProblemAction" method="QueryProblemListManager" >
 			</action>
 			
 		 	<!-- 作业考试 -->

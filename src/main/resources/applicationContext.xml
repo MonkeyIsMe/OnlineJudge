@@ -40,6 +40,8 @@
 	<bean name="ProblemAction" class="CSU.OnlineJudge.Controller.ProblemAction" scope="prototype" >
 		<property name="ProblemService" ref="ProblemService" ></property>
 		<property name="CaseService" ref="CaseService" ></property>
+		<property name="KnowledgeProblemService" ref="KnowledgeProblemService" ></property>
+		<property name="KnowledgeService" ref="KnowledgeService" ></property>
 	</bean>
 	<bean name="CaseAction" class="CSU.OnlineJudge.Controller.CaseAction" scope="prototype" >
 		<property name="CaseService" ref="CaseService" ></property>
