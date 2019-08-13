@@ -119,6 +119,14 @@ public class TestSpring {
 	}
 	
 	@Test
+	public void QueryManagerProblemInfo() {
+		List<Object[]> pro_list = pd.GetProblemManagerInfo(1, 5);
+		for(Object[] pro : pro_list) {
+			System.out.println(pro[4]);
+		}
+	}
+	
+	@Test
 	public void TestVagueProblem() {
 		String pname = "id";
 		List<Problem> list = pd.VagueByPageSizeWithFlagByName(1, 2, 0, pname);

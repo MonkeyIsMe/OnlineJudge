@@ -37,7 +37,6 @@ $(function(){
         	//console.log(data);
             var data = JSON.parse(data);
             //console.log(data);
-            for(var i = 0 ; i < data.length ; i ++){
                 for( var i = 0; i < data.length; i++ ) {
                     //动态创建一个tr行标签,并且转换成jQuery对象
                     var $trTemp = $("<tr ></tr>");
@@ -52,7 +51,6 @@ $(function(){
                     // $("#J_TbData").append($trTemp);
                     $trTemp.appendTo("#KnowList");
                 }
-            }
         }
     );
 
@@ -74,8 +72,6 @@ function PrevPage(){
 	            },
 	            function(data) {
 	                var data = JSON.parse(data);
-	                console.log(data);
-	                for(var i = 0 ; i < data.length ; i ++){
 	                    for( var i = 0; i < data.length; i++ ) {
 	                        //动态创建一个tr行标签,并且转换成jQuery对象
 	                        var $trTemp = $("<tr ></tr>");
@@ -90,7 +86,6 @@ function PrevPage(){
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
 	                    }
-	                }
 	            }
 	        );
 	}
@@ -111,8 +106,6 @@ function NextPage(){
 	            },
 	            function(data) {
 	                var data = JSON.parse(data);
-	                console.log(data);
-	                for(var i = 0 ; i < data.length ; i ++){
 	                    for( var i = 0; i < data.length; i++ ) {
 	                        //动态创建一个tr行标签,并且转换成jQuery对象
 	                        var $trTemp = $("<tr></tr>");
@@ -127,7 +120,6 @@ function NextPage(){
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
 	                    }
-	                }
 	            }
 	        );
 	}

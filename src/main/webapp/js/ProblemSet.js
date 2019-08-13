@@ -30,36 +30,33 @@ $(function(){
 
 $(function(){
     $.post(
-        "QueryAllWork.action",
+        "QueryProblemListManager.action",
         {
             page:row,
             limit:15
         },
         function(data) {
             var data = JSON.parse(data);
-            console.log(data);
-            for(var i = 0 ; i < data.length ; i ++){
                 for( var i = 0; i < data.length; i++ ) {
                     //动态创建一个tr行标签,并且转换成jQuery对象
                     var $trTemp = $("<tr ></tr>");
                     //往行里面追加 td单元格
                     var WorkFlag;
-                    if(data[i].workFlag == 0) WorkFlag = "作业";
-                    else WorkFlag = "考试";
-			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].workId +"</td>");
+                    if(data[i].workFlag == 0) WorkFlag = "不公开";
+                    else WorkFlag = "公开";
+			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].ProblemId +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + WorkFlag +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workName  +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workCreatTime  +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workInfo  +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workOwner  +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].ProblemName  +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].degree  +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'&nbsp;&nbsp;&nbsp;&nbsp;<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;" data-toggle="modal" data-target="#update_Modal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
-			        		+'&nbsp;&nbsp;<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
+			        		'<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+			        		+'<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
                     $trTemp.appendTo("#KnowList");
                 }
-            }
         }
     );
 
@@ -74,7 +71,7 @@ function PrevPage(){
 		row--;
 		$("#KnowList").html("");
 	    $.post(
-	            "QueryAllWork.action",
+	            "QueryProblemListManager.action",
 	            {
 	                page:row,
 	                limit:15
@@ -83,23 +80,25 @@ function PrevPage(){
 	                var data = JSON.parse(data);
 	                console.log(data);
 	                for(var i = 0 ; i < data.length ; i ++){
-	                    for( var i = 0; i < data.length; i++ ) {
 	                        //动态创建一个tr行标签,并且转换成jQuery对象
-	                        var $trTemp = $("<tr ></tr>");
-	                        //往行里面追加 td单元格
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].courseId +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].courseName +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTime  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseInfo  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTeacher  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'&nbsp;&nbsp;&nbsp;&nbsp;<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;" data-toggle="modal" data-target="#update_Modal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
-	    			        		+'&nbsp;&nbsp;<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
-	    			        		+"</td>");
-	                        // $("#J_TbData").append($trTemp);
-	                        $trTemp.appendTo("#KnowList");
+	                    var $trTemp = $("<tr ></tr>");
+	                    //往行里面追加 td单元格
+	                    var WorkFlag;
+	                    if(data[i].workFlag == 0) WorkFlag = "不公开";
+	                    else WorkFlag = "公开";
+				        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].ProblemId +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + WorkFlag +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].ProblemName  +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].degree  +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
+				        		'<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+				        		+'<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
+				        		+"</td>");
+	                    // $("#J_TbData").append($trTemp);
+	                    $trTemp.appendTo("#KnowList");
 	                    }
-	                }
 	            }
 	        );
 	}
@@ -113,32 +112,33 @@ function NextPage(){
 		row ++;
 		$("#KnowList").html("");
 	    $.post(
-	            "QueryAllWork.action",
+	            "QueryProblemListManager.action",
 	            {
 	                page:row,
 	                limit:15
 	            },
 	            function(data) {
 	                var data = JSON.parse(data);
-	                //console.log(data);
-	                for(var i = 0 ; i < data.length ; i ++){
 	                    for( var i = 0; i < data.length; i++ ) {
 	                        //动态创建一个tr行标签,并且转换成jQuery对象
-	                        var $trTemp = $("<tr></tr>");
+	                        var $trTemp = $("<tr ></tr>");
 	                        //往行里面追加 td单元格
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].courseId +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].courseName +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTime  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseInfo  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTeacher  +"</td>");
+	                        var WorkFlag;
+	                        if(data[i].workFlag == 0) WorkFlag = "不公开";
+	                        else WorkFlag = "公开";
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].ProblemId +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + WorkFlag +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].ProblemName  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].degree  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'&nbsp;&nbsp;&nbsp;&nbsp;<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;" data-toggle="modal" data-target="#update_Modal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
-	    			        		+'&nbsp;&nbsp;<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;'
+	    			        		'<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+	    			        		+'<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
 	                    }
-	                }
 	            }
 	        );
 	}
@@ -157,7 +157,7 @@ $(document).ready(function(){
 	    
 	  });
 	  
-		$("#del_work").click(function(){
+		$("#del_problem").click(function(){
 			//console.log(cid);
 			$.post(
 					"DeleteProblem.action",
