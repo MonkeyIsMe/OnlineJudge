@@ -129,7 +129,12 @@ $(document).ready(function(){
 
 
 function refresh(){
-	window.location.replace("ManagerProblemSet.html");
+    pid = col1;
+    var url = "ProblemCase.html?ProblemId=" + pid;
+	window.location.replace(url);
 }
 
+function back(){
+	window.location.replace("ManagerProblemSet.html");
+}
 
