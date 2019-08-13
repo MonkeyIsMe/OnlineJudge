@@ -8,14 +8,8 @@ var argsIndex = url .split("?ProblemId=");
 var pid = argsIndex[1];
 
 
-var row = 1;  //页数
-var count; //总记录数
-var pid; //记录第几行的编号
-var stock = [];
-var arr = [];
-var count = 0;
 
-
+var cid; //记录第几行的编号
 
 
 $(function(){
@@ -59,7 +53,7 @@ $(document).ready(function(){
 	    var currentRow=$(this).closest("tr"); 
 	    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
 	    
-	    pid = col1;
+	    cid = col1;
 	    
 	    
 	  });
@@ -68,19 +62,21 @@ $(document).ready(function(){
 		$("#del_case").click(function(){
 			//console.log(cid);
 			$.post(
-					"DeleteProblem.action",
+					"DeleteCase.action",
 					{
-						problem_id:pid,
+						case_id:cid,
 					},
 					function(data){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+					    pid = col1;
+					    var url = "ProblemCase.html?ProblemId=" + pid;
 						if(data == "Fail"){
 							alert("删除失败！");
-							window.location.replace("ManagerProblemSet.html");
+							window.location.replace(url);
 						}
 						else{
 							alert("删除成功!");
-							window.location.replace("ManagerProblemSet.html");
+							window.location.replace(url);
 						}
 					}
 					);
