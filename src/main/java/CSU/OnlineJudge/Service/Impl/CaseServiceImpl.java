@@ -45,17 +45,11 @@ public class CaseServiceImpl implements CaseService{
 		return cd.queryCase(id);
 	}
 
-	public List<Case> GetAllCase(int ProblemId) {
-		// TODO Auto-generated method stub
-		
-		List<Case> result = cd.QueryCaseByProblemId(ProblemId);
-		
-		return result;
-	}
 
 	public List<Case> GetProblemCase(int ProblemId) {
 		// TODO Auto-generated method stub
-		return null;
+		List<Case> result = cd.QueryCaseByProblemId(ProblemId);
+		return result;
 	}
 
 	public List<Case> GetCaseByFlag(int ProblemId, int Flag) {

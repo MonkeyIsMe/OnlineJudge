@@ -141,9 +141,6 @@ $(document).ready(function(){
 	    $("#update_name").val(kname);
 	    $("#update_info").val(kinfo);
 
-	    //console.log(kname + " " + kinfo);
-	    //$("#update_name").append(kname);
-	    //$("#update_info").append(kinfo);
 	  });
 	  
 		$("#del_know").click(function(){

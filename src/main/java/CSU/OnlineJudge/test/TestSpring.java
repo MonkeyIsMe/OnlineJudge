@@ -68,6 +68,12 @@ public class TestSpring {
 	}
 	
 	@Test
+	public void TestCaseQuery() {
+		List<Case> CaseList = cd.QueryCaseByProblemId(1);
+		System.out.println(CaseList.size());
+	}
+	
+	@Test
 	public void TestDaoQueryList() {
 		List<Case> list = cd.QueryCaseByProblemIdFlag(1027, 0);
 		System.out.println(list.size());
@@ -87,6 +93,12 @@ public class TestSpring {
 		cas.setCaseOutput("Hello World!");
 		cas.setCaseFlag(0);
 		cs.AddCase(cas);
+	}
+	
+	@Test
+	public void TestQueryCase() {
+		List<Case> CaseList = cs.GetProblemCase(1);
+		System.out.println(CaseList.size());
 	}
 	
 	@Resource(name="ProblemDAO")

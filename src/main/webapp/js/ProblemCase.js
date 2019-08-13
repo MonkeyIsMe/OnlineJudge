@@ -20,18 +20,18 @@ var count = 0;
 
 $(function(){
     $.post(
-        "QueryProblemListManager.action",
+        "QueryAllCase.action",
         {
-            page:row,
-            limit:15
+        	problem_id:pid,
         },
         function(data) {
             var data = JSON.parse(data);
+            console.log(data);
                 for( var i = 0; i < data.length; i++ ) {
                     //动态创建一个tr行标签,并且转换成jQuery对象
                     var $trTemp = $("<tr ></tr>");
                     //往行里面追加 td单元格
-                    var WorkFlag;
+/*                    var WorkFlag;
                     if(data[i].workFlag == 0) WorkFlag = "不公开";
                     else WorkFlag = "公开";
 			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].ProblemId +"</td>");
@@ -46,7 +46,7 @@ $(function(){
 			        		+'<a><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
-                    $trTemp.appendTo("#KnowList");
+                    $trTemp.appendTo("#KnowList");*/
                 }
         }
     );
@@ -68,17 +68,7 @@ $(document).ready(function(){
 	  });
 	  
 	  
-	  $("#myTable").on('click','.cases',function(){
-		    //获得当前行
-		    var currentRow=$(this).closest("tr"); 
-		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
-		    
-		    pid = col1;
-		    alert(col1);
-		    
-		  });
-	  
-		$("#del_problem").click(function(){
+		$("#del_case").click(function(){
 			//console.log(cid);
 			$.post(
 					"DeleteProblem.action",
@@ -99,41 +89,6 @@ $(document).ready(function(){
 					);
 		})
 		
-		$("#AddProblem").click(function () {
-			//alert(123);
-			var case_info = JSON.stringify(stock);
-            var problem_name = $("#add_problem_name").val();
-            var problem_hint = $("#add_problem_hint").val();
-            var problem_memory = $("#add_problem_memory").val();
-            var problem_time = $("#add_problem_time").val();
-            var problem_input = $("#add_problem_input").val();
-            var problem_output = $("#add_problem_output").val();
-            var case_input = $("#add_case_input").val();
-            var case_output = $("#add_case_output").val();
-            var problem_info = $("#add_problem_info").val();
-            var problem_flag = $('input:radio:checked').val();
-            //alert(problem_flag);
-            $.post(
-                "AddProblem.action",
-                {
-                    problem_name:problem_name,
-                    problem_hint:problem_hint,
-                    problem_memory:problem_memory,
-                    problem_time:problem_time,
-                    problem_input:problem_input,
-                    problem_output:problem_output,
-                    case_input:case_input,
-                    case_output:case_output,
-                    problem_info:problem_info,
-                    problem_flag:problem_flag,
-                    case_info:case_info
-                },
-                function(data){
-                	var data = JSON.parse(data);
-                    console.log(data.ProblemId)
-                }
-            );
-        })
 
 });
 

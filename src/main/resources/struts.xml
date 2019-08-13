@@ -104,6 +104,9 @@
 			</action>
 			<action name="UpdateCase" class="CaseAction" method="UpdateCase" >
 			</action>
+			<action name="QueryAllCase" class="CaseAction" method="QueryAllCase" >
+			</action>
+			
 			
 	</package>
 </struts>

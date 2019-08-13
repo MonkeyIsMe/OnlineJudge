@@ -212,7 +212,6 @@ public class CaseAction extends ActionSupport{
 		int pid = Integer.valueOf(problem_id);
 		
 		List<Case> CaseList = CaseService.GetProblemCase(pid);
-		
 		JSONArray ja = JSONArray.fromObject(CaseList);
 		out.println(ja.toString());
         out.flush(); 
