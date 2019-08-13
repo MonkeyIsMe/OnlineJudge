@@ -31,22 +31,19 @@ $(function(){
                     //动态创建一个tr行标签,并且转换成jQuery对象
                     var $trTemp = $("<tr ></tr>");
                     //往行里面追加 td单元格
-/*                    var WorkFlag;
-                    if(data[i].workFlag == 0) WorkFlag = "不公开";
-                    else WorkFlag = "公开";
-			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].ProblemId +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + WorkFlag +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].ProblemName  +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].degree  +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" data-toggle="modal" data-target="#update_Modal"></span></a>'
-			        		+'<a><span  class="delete cases glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:20px" ></span></a>'
+                    var CaseFlag;
+                    if(data[i].caseFlag == 0) CaseFlag = "题面样例";
+                    else CaseFlag = "测试样例";
+			        $trTemp.append("<td style=" + "text-align:center;width:8%;"  + ">"+ data[i].caseId +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center;width:8%;"  + ">"  + CaseFlag +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center;width:37%;word-break:break-all;"  + ">" +data[i].caseInput  +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center;width:37%;word-break:break-all;"  + ">" +data[i].caseOutput  +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center;width:10%;"  + ">" + 
+			        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:35px" data-toggle="modal" data-target="#update_Modal"></span></a>'
 			        		+'<a><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
-                    $trTemp.appendTo("#KnowList");*/
+                    $trTemp.appendTo("#KnowList");
                 }
         }
     );
