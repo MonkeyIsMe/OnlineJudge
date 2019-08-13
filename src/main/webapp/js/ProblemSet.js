@@ -17,7 +17,7 @@ $(function(){
 			},
 			function(data){
 				var data = JSON.parse(data);
-				console.log(data);
+				//console.log(data);
 				var sum = data.ProblemCount;
 				count = Math.ceil(sum/15);
 				var total = "共" + Math.ceil(sum/15) + "页";
@@ -52,7 +52,7 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 			        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" data-toggle="modal" data-target="#update_Modal"></span></a>'
-			        		+'<a><span  class="delete glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:20px" ></span></a>'
+			        		+'<a><span  class="delete cases glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:20px" ></span></a>'
 			        		+'<a><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
@@ -157,6 +157,17 @@ $(document).ready(function(){
 	    
 	    
 	  });
+	  
+	  
+	  $("#myTable").on('click','.cases',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    
+		    pid = col1;
+		    alert(col1);
+		    
+		  });
 	  
 		$("#del_problem").click(function(){
 			//console.log(cid);

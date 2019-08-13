@@ -41,21 +41,17 @@ public class CaseAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String problem_id = request.getParameter("problem_id");
-		String case_info = request.getParameter("case_info");
+		String case_input = request.getParameter("case_input");
+		String case_output = request.getParameter("case_output");
 		
-		JSONArray ja = JSONArray.fromObject(case_info);
 		int pid = Integer.valueOf(problem_id);
 		
-		for(int i = 0; i < ja.size(); i ++) {
-			JSONObject jo = ja.getJSONObject(i);
-			String stdin = jo.getString("stdin");
-			String stdout = jo.getString("stdout");
-			cas.setCaseFlag(1);
-			cas.setProblemId(pid);
-			cas.setCaseInput(stdin);
-			cas.setCaseOutput(stdout);
-			CaseService.AddCase(cas);
-		}
+		cas.setCaseFlag(1);
+		cas.setProblemId(pid);
+		cas.setCaseInput(case_input);
+		cas.setCaseOutput(case_output);
+		CaseService.AddCase(cas);
+		
 	}
 	
 	//添加多个样例
