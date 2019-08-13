@@ -72,4 +72,21 @@ public class KnowledgeProblemDAOImpl extends HibernateDaoSupport implements Know
 		});
 	}
 
+	public List<KnowledgeProblem> queryKnowledgeProblemByKnowledgePageSize(final int KnowledgeId, final int rows, final int PageSize) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<KnowledgeProblem>>() {
+
+			public List<KnowledgeProblem> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from KnowledgeProblem where knowledge_id = ?";
+				Query query = session.createQuery(hql).setFirstResult(
+                        (rows - 1) * PageSize).setMaxResults(PageSize);;
+				query.setParameter(0, KnowledgeId);
+				List<KnowledgeProblem> result = null;
+				result = query.list();
+				return result;
+			}
+		});
+	}
+
 }

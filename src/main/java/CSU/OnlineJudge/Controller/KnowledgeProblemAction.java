@@ -128,12 +128,16 @@ public class KnowledgeProblemAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String knowledge_id = request.getParameter("knowledge_id");
+		String page = request.getParameter("rows");
+		String size = request.getParameter("size");
 		
+		int rows = Integer.valueOf(page);
+		int PageSize = Integer.valueOf(size);
 		int kid = Integer.valueOf(knowledge_id);
 		
 		JSONArray ja = new JSONArray();
 		
-		List<KnowledgeProblem> KnowledgeProblemList = KnowledgeProblemService.queryKnowledgeProblemByKnowledge(kid);
+		List<KnowledgeProblem> KnowledgeProblemList = KnowledgeProblemService.queryKnowledgeProblemByKnowledgePageSize(kid, rows, PageSize);
 		for(KnowledgeProblem pro : KnowledgeProblemList) {
 			int pid = pro.getKnowledgeId();
 			Problem problem = ProblemService.QueryProblem(pid);

@@ -53,4 +53,9 @@ public class KnowledgeProblemServiceImpl implements KnowledgeProblemService{
 		return kpd.queryKnowledgeProblemByKnowledge(KnowledgeId);
 	}
 
+	public List<KnowledgeProblem> queryKnowledgeProblemByKnowledgePageSize(int KnowledgeId, int rows, int PageSize) {
+		// TODO Auto-generated method stub
+		return kpd.queryKnowledgeProblemByKnowledgePageSize(KnowledgeId, rows, PageSize);
+	}
+
 }
