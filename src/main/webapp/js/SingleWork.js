@@ -5,9 +5,58 @@ var wid = argsIndex[1];
 
 var row = 1;
 var select_know = "none";
+var count = 1;
+var pid;
+var pflag;
+var pname;
+var pdegree;
+var ppeople;
 
 $(document).ready(function(){
+	
 
+	
+	$(function(){
+		$.ajaxSettings.async = false;
+		$.post(
+				"QueryAllKnowledge.action",
+				{
+					
+				}, 
+				function(data) {
+					var datas = JSON.parse(data);
+					//console.log(datas);
+					for(var i = 0; i < datas.length; i ++){
+						$("#know").append("<option value='"+datas[i].knowledgeId+"'>"+datas[i].knowledgeName+"</option>");
+					}
+				}
+		);
+		
+	});
+	
+	$(function(){
+		$.ajaxSettings.async = false;
+		$.post(
+				"CountProblemByKnowledgeId.action",
+				{
+					knowledge_id:select_know,
+				},
+				function(data){
+					var data = JSON.parse(data);
+					//console.log(data);
+					var sum = data.count;
+					count = Math.ceil(sum/15);
+					$("#TotalPage").html("");
+					$("#NowPage").html("");
+					var total = "共" + Math.ceil(sum/15) + "页";
+					$("#TotalPage").append(total);
+					$("#NowPage").append("，当前第" + row + "页");
+				}
+				);
+		
+	});
+	
+	
 	$.post(
 			"QuerySingleWork.action",
 			{
@@ -32,19 +81,7 @@ $(document).ready(function(){
 	);
 	
 	
-	$.post(
-			"QueryAllKnowledge.action",
-			{
-				
-			}, 
-			function(data) {
-				var datas = JSON.parse(data);
-				//console.log(datas);
-				for(var i = 0; i < datas.length; i ++){
-					$("#know").append("<option value='"+datas[i].knowledgeId+"'>"+datas[i].knowledgeName+"</option>");
-				}
-			}
-	);
+
 	
     $.post(
             "QueryProblemByKnowledgeId.action",
@@ -68,8 +105,8 @@ $(document).ready(function(){
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemName  +"</td>");
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
-    			        $trTemp.append("<td class=layui-btn style=" + "text-align:center"  + ">" + 
-    			        		'<i class="layui-icon">&#xe608;</i> 添加'
+    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
+    			        		'<span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" data-toggle="modal" data-target="#myModal"></span>'
     			        		+"</td>");
                         // $("#J_TbData").append($trTemp);
                         $trTemp.appendTo("#KnowList");
@@ -78,6 +115,26 @@ $(document).ready(function(){
         );
 	
 	$("#sure").click(function(){
+		
+		$.ajaxSettings.async = false;
+		$.post(
+				"CountProblemByKnowledgeId.action",
+				{
+					knowledge_id:select_know,
+				},
+				function(data){
+					var data = JSON.parse(data);
+					//console.log(data);
+					var sum = data.count;
+					count = Math.ceil(sum/15);
+					$("#TotalPage").html("");
+					$("#NowPage").html("");
+					var total = "共" + Math.ceil(sum/15) + "页";
+					$("#TotalPage").append(total);
+					$("#NowPage").append("，当前第" + row + "页");
+				}
+				);
+		
 		select_know = $("#know").val();
 		$("#KnowList").html("");
 	    $.post(
@@ -102,8 +159,8 @@ $(document).ready(function(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemName  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
-	    			        $trTemp.append("<td class=layui-btn style=" + "text-align:center"  + ">" + 
-	    			        		'<i class="layui-icon">&#xe608;</i> 添加'
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
+	    			        		'<span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" data-toggle="modal" data-target="#myModal"></span>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
@@ -111,9 +168,64 @@ $(document).ready(function(){
 	            }
 	        );
 	})
+	
+	
+	  $("#KnowList").on('click','.delete',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    var col2=currentRow.find("td:eq(1)").text(); //获得当前行第一个TD值
+		    var col3=currentRow.find("td:eq(2)").text(); //获得当前行第一个TD值
+		    var col4=currentRow.find("td:eq(3)").text(); //获得当前行第一个TD值
+		    var col5=currentRow.find("td:eq(4)").text(); //获得当前行第一个TD值
+		    
+		    pid = col1;
+		    pflag = col2;
+		    pname = col3;
+		    pdegree = col4;
+		    ppeople = col5;
+		    //console.log("pid = " + pid)
+		  });
+	
+	$("#add_problem").click(function(){
+        var $trTemp = $("<tr ></tr>");
+        //往行里面追加 td单元格
+        $trTemp.append("<td style=" + "text-align:center"  + ">"+ pid +"</td>");
+        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + pflag +"</td>");
+        $trTemp.append("<td style=" + "text-align:center"  + ">" + pflag +"</td>");
+        $trTemp.append("<td style=" + "text-align:center"  + ">" + pname  +"</td>");
+        $trTemp.append("<td style=" + "text-align:center"  + ">" + pdegree  +"</td>");
+        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
+        		'<span class="glyphicon glyphicon-trash"  style="cursor:pointer;margin-left:50px"></span>'
+        		+"</td>");
+        // $("#J_TbData").append($trTemp);
+        $trTemp.appendTo("#select_problem");
+	})
 });
 
+
+
 function PrevPage(){
+
+	$.ajaxSettings.async = false;
+	$.post(
+			"CountProblemByKnowledgeId.action",
+			{
+				knowledge_id:select_know,
+			},
+			function(data){
+				var data = JSON.parse(data);
+				//console.log(data);
+				var sum = data.count;
+				count = Math.ceil(sum/15);
+				$("#TotalPage").html("");
+				$("#NowPage").html("");
+				var total = "共" + Math.ceil(sum/15) + "页";
+				$("#TotalPage").append(total);
+				$("#NowPage").append("，当前第" + row + "页");
+			}
+			);
+	
 	if(row == 1){
 		alert("没有前一页了");
 	}
@@ -143,7 +255,7 @@ function PrevPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
 	    			        $trTemp.append("<td class=layui-btn style=" + "text-align:center"  + ">" + 
-	    			        		'<i class="layui-icon">&#xe608;</i> 添加'
+	    			        		'<i class="layui-icon delete">&#xe608;</i> 添加'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
@@ -154,6 +266,26 @@ function PrevPage(){
 }
 
 function NextPage(){
+	
+	$.ajaxSettings.async = false;
+	$.post(
+			"CountProblemByKnowledgeId.action",
+			{
+				knowledge_id:select_know,
+			},
+			function(data){
+				var data = JSON.parse(data);
+				//console.log(data);
+				var sum = data.count;
+				count = Math.ceil(sum/15);
+				$("#TotalPage").html("");
+				$("#NowPage").html("");
+				var total = "共" + Math.ceil(sum/15) + "页";
+				$("#TotalPage").append(total);
+				$("#NowPage").append("，当前第" + row + "页");
+			}
+			);
+	
 	if(row == count){
 		alert("没有后一页了");
 	}
@@ -182,8 +314,8 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemName  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
-	    			        $trTemp.append("<td class=layui-btn style=" + "text-align:center"  + ">" + 
-	    			        		'<i class="layui-icon">&#xe608;</i> 添加'
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
+	    			        		'<span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" data-toggle="modal" data-target="#myModal"></span>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
@@ -193,3 +325,4 @@ function NextPage(){
 	}
 
 }
+

@@ -152,7 +152,7 @@ $(document).ready(function(){
 	    $("#update_name").val(cname);
 	    $("#update_info").val(cinfo);
 	    $("#update_teacher").val(cteacher);
-	    $("#update_time").val(ctime);	    s
+	    $("#update_time").val(ctime);	    
 	  });
 	  
 		$("#del_know").click(function(){

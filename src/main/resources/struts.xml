@@ -116,6 +116,8 @@
 			</action>
 			<action name="QueryProblemByKnowledgeId" class="KnowledgeProblemAction" method="QueryProblemByKnowledgeId" >
 			</action>
+			<action name="CountProblemByKnowledgeId" class="KnowledgeProblemAction" method="CountProblemByKnowledgeId" >
+			</action>
 			
 	</package>
 </struts>
