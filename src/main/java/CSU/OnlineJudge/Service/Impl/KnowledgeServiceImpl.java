@@ -52,4 +52,9 @@ public class KnowledgeServiceImpl implements  KnowledgeService{
 		return kd.CountKnowledge();
 	}
 
+	public List<Knowledge> QueryAllKnowledge() {
+		// TODO Auto-generated method stub
+		return kd.QueryAllKnowledge();
+	}
+
 }

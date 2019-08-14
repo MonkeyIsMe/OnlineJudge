@@ -63,5 +63,20 @@ public class KnowledgeDAOImpl extends HibernateDaoSupport implements KnowledgeDA
 		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
 	}
 
+	public List<Knowledge> QueryAllKnowledge() {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Knowledge>>() {
+			
+
+			public List<Knowledge> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Knowledge";
+				Query query = session.createQuery(hql);
+				List<Knowledge> list = query.list();
+				return list;
+			}
+		});
+	}
+
 
 }

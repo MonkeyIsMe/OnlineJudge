@@ -153,8 +153,6 @@ public class KnowledgeAction extends ActionSupport{
 		
 		List<Knowledge> know_list = KnowledgeService.QueryKnowledgeByPageSize(row, PageSize);
 		
-		
-
 		JSONArray ja = JSONArray.fromObject(know_list);
 		out.println(ja.toString());
         out.flush(); 
@@ -176,6 +174,24 @@ public class KnowledgeAction extends ActionSupport{
 		jo.put("KnowledgeCount", KnowledgeCount);
 		
 		out.println(jo);
+        out.flush(); 
+        out.close();
+		
+	}
+	
+	public void QueryAllKnowledge() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		List<Knowledge> Knowledge_list = KnowledgeService.QueryAllKnowledge();
+		
+		JSONArray ja = JSONArray.fromObject(Knowledge_list);
+		out.println(ja.toString());
         out.flush(); 
         out.close();
 		

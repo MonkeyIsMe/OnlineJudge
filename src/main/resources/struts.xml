@@ -70,6 +70,8 @@
 			</action>
 			<action name="AddKnowledge" class="KnowledgeAction" method="AddKnowledge" >
 			</action>
+			<action name="QueryAllKnowledge" class="KnowledgeAction" method="QueryAllKnowledge" >
+			</action>
 			
 			<!-- 课程 -->
 			<action name="AddCourse" class="CourseAction" method="AddCourse" >
