@@ -4,8 +4,8 @@ $(function(){
 	$.post(
 			"QueryAllWork.action",
 			{
-				rows:row,
-				size:30
+				page:row,
+				limit:30
 			}, 
 			function(data) {
 				var data = JSON.parse(data);
@@ -67,14 +67,14 @@ $(document).ready(function(){
 		
 		var flag = 0;
 		if(type == "考试") flag = 1;
-		
+		//console.log(name);
 		$.post(
 				"AddWork.action",
 				{
 					work_name:name,
 					work_starttime:begin,
 					work_endtime:end,
-					work_info:work_info,
+					work_info:info,
 					work_flag:flag,
 				},
 				function(data){

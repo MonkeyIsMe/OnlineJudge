@@ -27,8 +27,8 @@ import net.sf.json.JSONObject;
 public class WorkAction extends ActionSupport{
 	
 	private WorkService WorkService;
-	private Work work;
-	private WorkProblem wp;
+	private Work work = new Work();
+	private WorkProblem wp = new WorkProblem();
 	private WorkProblemService WorkProblemService;
 	private CourseUserService CourseUserService;
 	private WorkCourseService WorkCourseService;
@@ -82,18 +82,17 @@ public class WorkAction extends ActionSupport{
 		String work_createtime = request.getParameter("work_createtime");
 		String work_info = request.getParameter("work_info");
 		String work_flag = request.getParameter("work_flag");
-		String class_id = request.getParameter("class_id");
+		//String class_id = request.getParameter("class_id");
 		String work_onwer = request.getParameter("work_onwer");
 		//String problem_info = request.getParameter("problem_info");
 		
-		int cid = Integer.valueOf(class_id);
-		
+		//int cid = Integer.valueOf(class_id);
 		//JSONArray ja = JSONArray.fromObject(problem_info);
 		
 		work.setWorkName(work_name);
 		work.setWorkInfo(work_info);
 		work.setWorkFlag(work_flag);
-		work.setClassId(cid);
+		//work.setClassId(cid);
 		work.setWorkOwner(work_onwer);
 		work.setWorkBeginTime(work_starttime);
 		work.setWorkEndTime(work_endtime);

@@ -29,4 +29,3 @@ $(function(){
 	
 });
 
-console.log(wid)
