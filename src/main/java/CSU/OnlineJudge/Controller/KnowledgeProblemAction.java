@@ -27,7 +27,7 @@ public class KnowledgeProblemAction extends ActionSupport{
 	private KnowledgeService KnowledgeService;
 	private KnowledgeProblem kp = new KnowledgeProblem();
 	private ProblemService ProblemService;
-	
+	private Problem problem = new Problem();
 	
 
 
@@ -133,18 +133,27 @@ public class KnowledgeProblemAction extends ActionSupport{
 		
 		int rows = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
-		int kid = Integer.valueOf(knowledge_id);
 		
 		JSONArray ja = new JSONArray();
 		
-		List<KnowledgeProblem> KnowledgeProblemList = KnowledgeProblemService.queryKnowledgeProblemByKnowledgePageSize(kid, rows, PageSize);
-		for(KnowledgeProblem pro : KnowledgeProblemList) {
-			int pid = pro.getKnowledgeId();
-			Problem problem = ProblemService.QueryProblem(pid);
-			JSONObject jo = JSONObject.fromObject(problem);
-			ja.add(jo);
-		}
+		if(knowledge_id.equals("none")) {
 		
+			List<Problem> ProblemList = ProblemService.GetProblemByPageSize(rows, PageSize);
+			ja = JSONArray.fromObject(ProblemList);
+			
+		}
+		else {
+			int kid = Integer.valueOf(knowledge_id);
+			
+			List<KnowledgeProblem> KnowledgeProblemList = KnowledgeProblemService.queryKnowledgeProblemByKnowledgePageSize(kid, rows, PageSize);
+			for(KnowledgeProblem pro : KnowledgeProblemList) {
+				int pid = pro.getKnowledgeId();
+				Problem problem = ProblemService.QueryProblem(pid);
+				JSONObject jo = JSONObject.fromObject(problem);
+				ja.add(jo);
+			}
+		}
+
 		out.println(ja.toString());
 	    out.flush(); 
 	    out.close();

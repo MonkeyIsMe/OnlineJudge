@@ -109,6 +109,13 @@
 			<action name="QueryAllCase" class="CaseAction" method="QueryAllCase" >
 			</action>
 			
+			<!-- 题目知识点关联  -->
+			<action name="AddKnowledgeProblem" class="KnowledgeProblemAction" method="AddKnowledgeProblem" >
+			</action>
+			<action name="DeleteKnowledgeProblem" class="KnowledgeProblemAction" method="DeleteKnowledgeProblem" >
+			</action>
+			<action name="QueryProblemByKnowledgeId" class="KnowledgeProblemAction" method="QueryProblemByKnowledgeId" >
+			</action>
 			
 	</package>
 </struts>
