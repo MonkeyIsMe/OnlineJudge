@@ -19,4 +19,6 @@ public interface KnowledgeProblemService {
 	public List<KnowledgeProblem> queryKnowledgeProblemByKnowledge(int KnowledgeId);
 	
 	public List<KnowledgeProblem> queryKnowledgeProblemByKnowledgePageSize(int KnowledgeId,int rows,int PageSize);
+	
+	public int CountProblem(int KnowledgeId);
 }

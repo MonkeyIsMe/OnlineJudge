@@ -89,4 +89,10 @@ public class KnowledgeProblemDAOImpl extends HibernateDaoSupport implements Know
 		});
 	}
 
+	public int CountProblem(int KnowledgeId) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from KnowledgeProblem as KnowledgeProblem where knowledge_id = ?";
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
 }

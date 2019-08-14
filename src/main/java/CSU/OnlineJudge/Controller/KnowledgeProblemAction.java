@@ -175,4 +175,38 @@ public class KnowledgeProblemAction extends ActionSupport{
 	    out.close();
 		
 	}
+	
+	
+	//查询知识点关联的题目数量
+	public void CountProblemByKnowledgeId() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String knowledge_id = request.getParameter("knowledge_id");
+
+		int count = 0;
+		
+		if(knowledge_id.equals("none")) {
+		
+			count = ProblemService.CountProblem();
+			
+		}
+		else {
+			int kid = Integer.valueOf(knowledge_id);
+			count = KnowledgeProblemService.CountProblem(kid);
+		}
+		
+		JSONObject jo = new JSONObject();
+		jo.put("count", count);
+		
+		out.println(jo.toString());
+	    out.flush(); 
+	    out.close();
+		
+	}
 }
