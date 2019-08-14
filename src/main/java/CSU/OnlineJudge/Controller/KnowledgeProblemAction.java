@@ -31,6 +31,22 @@ public class KnowledgeProblemAction extends ActionSupport{
 	
 
 
+	public KnowledgeService getKnowledgeService() {
+		return KnowledgeService;
+	}
+
+	public void setKnowledgeService(KnowledgeService knowledgeService) {
+		KnowledgeService = knowledgeService;
+	}
+
+	public ProblemService getProblemService() {
+		return ProblemService;
+	}
+
+	public void setProblemService(ProblemService problemService) {
+		ProblemService = problemService;
+	}
+
 	public KnowledgeProblemService getKnowledgeProblemService() {
 		return KnowledgeProblemService;
 	}

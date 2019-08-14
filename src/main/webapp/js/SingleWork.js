@@ -28,3 +28,5 @@ $(function(){
 	);
 	
 });
+
+console.log(wid)

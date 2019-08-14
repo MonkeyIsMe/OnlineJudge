@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./layui/css/modules/layer/default/layer.css">
     <link href="./layui/css/layui.css" type="text/css" rel="styleSheet">
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/AddWork.js"></script>
+    <script src="js/Work.js"></script>
     <script src="./layui/layui.js"></script>
 </head>
 <body>
@@ -24,13 +24,7 @@
                 <input type="text" class="layui-input" id="add_name">
           </div>
    	</div>
-   	<div class="layui-input-inline myform">
-           <label class="layui-input-inline">考试/作业创建者</label>
-           <div class="layui-input-block">
-                <input type="text" class="layui-input" id="add_owner">
-          </div>
-   	</div>
-	   	<div class="layui-input-inline myform">
+	<div class="layui-input-inline myform">
            <label class="layui-input-inline">考试/作业开始时间</label>
            <div class="layui-input-block">
                 <input type="text" class="layui-input" id="add_begin">
@@ -40,12 +34,6 @@
            <label class="layui-input-inline">考试/作业结束时间</label>
            <div class="layui-input-block">
                 <input type="text" class="layui-input" id="add_end">
-          </div>
-   	</div>
-   	   	<div class="layui-input-inline myform">
-           <label class="layui-input-inline">考试/作业创建时间</label>
-           <div class="layui-input-block">
-                <input type="text" class="layui-input" id="add_create">
           </div>
    	</div>
    	 <div class="layui-input-inline myform">
@@ -63,7 +51,7 @@
    	</div>
   <div class="layui-form-item" style="margin-top:30px;margin-left:30%">
     <div class="layui-input-block">
-      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+      <button class="layui-btn" lay-submit lay-filter="formDemo" id="add_work">立即提交</button>
       <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
     </div>
   </div>

@@ -82,11 +82,11 @@ public class WorkAction extends ActionSupport{
 		String work_createtime = request.getParameter("work_createtime");
 		String work_info = request.getParameter("work_info");
 		String work_flag = request.getParameter("work_flag");
-		String calss_id = request.getParameter("calss_id");
+		String class_id = request.getParameter("class_id");
 		String work_onwer = request.getParameter("work_onwer");
 		//String problem_info = request.getParameter("problem_info");
 		
-		int cid = Integer.valueOf(calss_id);
+		int cid = Integer.valueOf(class_id);
 		
 		//JSONArray ja = JSONArray.fromObject(problem_info);
 		
