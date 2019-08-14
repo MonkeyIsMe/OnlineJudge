@@ -144,8 +144,8 @@ public class KnowledgeProblemAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String knowledge_id = request.getParameter("knowledge_id");
-		String page = request.getParameter("rows");
-		String size = request.getParameter("size");
+		String page = request.getParameter("page");
+		String size = request.getParameter("limit");
 		
 		int rows = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);

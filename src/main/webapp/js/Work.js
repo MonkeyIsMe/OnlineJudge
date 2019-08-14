@@ -9,7 +9,7 @@ $(function(){
 			}, 
 			function(data) {
 				var data = JSON.parse(data);
-				console.log(data);
+				//console.log(data);
 				for(var i = 0 ; i < data.length ; i ++){
 				    for( var i = 0; i < data.length; i++ ) {
 				        //动态创建一个tr行标签,并且转换成jQuery对象
@@ -78,11 +78,11 @@ $(document).ready(function(){
 					work_flag:flag,
 				},
 				function(data){
-					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-					if(data == "Fail"){
+					var data = JSON.parse(data);
+					var WorkId = data.WorkId;
+					//console.log(data);
+					if(WorkId != null){
 						alert("添加成功！");
-						var data = JSON.parse(data);
-						var WorkId = data.WorkId;
 					    var url = "AddProblemForWork.html?WorkId=" + WorkId;
 					    window.location.replace(url);
 					}

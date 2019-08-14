@@ -17,6 +17,51 @@
     <script src="./layui/layui.js"></script>
 </head>
 <body>
+<form class="layui-form" action="">
+  <div class="layui-form-item myform" >
+    <label class="layui-form-label">选择框</label>
+    <div class="layui-input-block" style="float:left">
+      <select name="konw" lay-verify="required" id="know">
+        <option value="none">全部</option>
+      </select>
+    </div>
+      <button type="button" class="layui-btn" style="float:left;margin-left:10px" id="sure">
+      	确认
+  	  </button>
+  </div>
 
+</form>
+ <table class="layui-table" id="myTable">
+    <thead>
+    <tr align="center" class="table_header" height="22">
+        <th style="width:10%;text-align:center">题目编号</th>
+        <th style="width:10%;text-align:center">属性</th>
+        <th style="width:30%;text-align:center">题目名称</th>
+        <th style="width:15%;text-align:center">题目难度</th>
+        <th style="width:25%;text-align:center" >题目出题人</th>
+        <th style="width:10%;text-align:center" >加入</th>
+    </tr>
+    </thead>
+    <tbody id="KnowList" bgcolor="#D7EBFF" align="center"  style="color: black">
+    </tbody>
+</table>
+<div style="float:left;margin-left:42%">
+    <button type="button" class="layui-btn" onclick="PrevPage()">上一页</button>
+    <button type="button" class="layui-btn" onclick="NextPage()">下一页</button>
+</div>
+    <div id="TotalPage" style="float:left;margin-top:10px;font-size:18px;margin-left:5px"></div>
+    <div id="NowPage" style="float:left;margin-top:10px;font-size:18px;margin-left:5px"></div>
+<script>
+//Demo
+layui.use('form', function(){
+  var form = layui.form;
+  
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+    layer.msg(JSON.stringify(data.field));
+    return false;
+  });
+});
+</script>  
 </body>
 </html>
