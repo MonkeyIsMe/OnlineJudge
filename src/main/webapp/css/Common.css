@@ -164,4 +164,8 @@ h1{
     float: left;
     position: relative;
     top: 80px;
-}S
+}
+
+.time{
+	float:left;
+}

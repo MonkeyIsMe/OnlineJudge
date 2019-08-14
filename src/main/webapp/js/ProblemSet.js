@@ -29,6 +29,26 @@ $(function(){
 });
 
 $(function(){
+	$.ajaxSettings.async = false;
+	$.post(
+			"QueryAllKnowledge.action",
+			{
+			},
+			function(data){
+				var data = JSON.parse(data);
+				//console.log(data);
+		           for(var i=0 ;i<data.length;i++){ //几个人有几个checkbox
+		        	   $("#allTime").append(
+				                "<span>"+
+				                    "<input  type='checkbox' class='time' name='know' value='"+data[i].knowledgeId+"' title='"+data[i].knowledgeName+"'>" 
+				                 +"</span>");
+		           }
+			}
+			);
+	
+});
+
+$(function(){
     $.post(
         "QueryProblemListManager.action",
         {
@@ -159,6 +179,7 @@ $(document).ready(function(){
 	  });
 	  
 	  
+	  
 	  $("#myTable").on('click','.cases',function(){
 		    //获得当前行
 		    var currentRow=$(this).closest("tr"); 
@@ -204,6 +225,16 @@ $(document).ready(function(){
             var case_output = $("#add_case_output").val();
             var problem_info = $("#add_problem_info").val();
             var problem_flag = $('input:radio:checked').val();
+            
+	  		var json =[];
+			$('input[name="know"]:checked').each(function(){
+				var obj = {};
+				obj.name = "knowledgeId";
+				obj.value = $(this).val();
+				json.push(obj);//向数组中添加元素  
+				});
+			var jsonText = JSON.stringify(json);
+            
             //alert(problem_flag);
             $.post(
                 "AddProblem.action",
@@ -218,7 +249,8 @@ $(document).ready(function(){
                     case_output:case_output,
                     problem_info:problem_info,
                     problem_flag:problem_flag,
-                    case_info:case_info
+                    case_info:case_info,
+                    knowledge_info:jsonText,
                 },
                 function(data){
                 	var data = JSON.parse(data);

@@ -92,36 +92,6 @@ public class ProblemAction extends ActionSupport{
 		
 	}
 	
-	public void TestAddProblem() throws Exception{
-		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
-		HttpServletRequest request= ServletActionContext.getRequest();
-		
-		//返回结果
-		PrintWriter out = null;
-		out = ServletActionContext.getResponse().getWriter();
-		
-		String problem_name = request.getParameter("problem_name");
-		String problem_info = request.getParameter("problem_info");
-		String problem_hint = request.getParameter("problem_hint");
-		String problem_memory = request.getParameter("problem_memory");
-		String problem_time = request.getParameter("problem_time");
-		String problem_people = request.getParameter("problem_people");
-		String problem_flag = request.getParameter("problem_flag");
-		String problem_input = request.getParameter("problem_input");
-		String problem_output = request.getParameter("problem_output");
-		String case_input = request.getParameter("case_input");
-		String case_output = request.getParameter("case_output");
-		String case_info = request.getParameter("case_info");
-		System.out.println(case_info);
-		JSONArray ja = JSONArray.fromObject(case_info);
-		
-		for(int i = 0; i < ja.size(); i ++) {
-			JSONObject jo = ja.getJSONObject(i);
-			String stdin = jo.getString("stdin");
-			String stdout = jo.getString("stdout");
-			System.out.println(stdin + " " + stdout);
-		}
-	}
 	
 	
 	//添加题目
@@ -146,12 +116,14 @@ public class ProblemAction extends ActionSupport{
 		String case_input = request.getParameter("case_input");
 		String case_output = request.getParameter("case_output");
 		String case_info = request.getParameter("case_info");
+		String knowledge_info = request.getParameter("knowledge_info");
 		
 		int memory = Integer.valueOf(problem_memory);
 		int time = Integer.valueOf(problem_time);
 		int IsPublic = Integer.valueOf(problem_flag);
 		
 		JSONArray ja = JSONArray.fromObject(case_info);
+		JSONArray jaknow = JSONArray.fromObject(knowledge_info);
 		
 		problem.setProblemName(problem_name);
 		problem.setProblemInfo(problem_input);
@@ -176,6 +148,15 @@ public class ProblemAction extends ActionSupport{
 		cas.setProblemId(pid);
 		cas.setCaseOutput(case_output);
 		CaseService.AddCase(cas);
+		
+		for(int j = 0; j < jaknow.size(); j ++) {
+			JSONObject jo = ja.getJSONObject(j);
+			String KnowledgeId = jo.getString("value");
+			int kid = Integer.valueOf(KnowledgeId);
+			kp.setKnowledgeId(kid);
+			kp.setProblemId(pid);
+			KnowledgeProblemService.addKnowledgeProblem(kp);
+		}
 		
 		for(int i = 0; i < ja.size(); i ++) {
 			JSONObject jo = ja.getJSONObject(i);
