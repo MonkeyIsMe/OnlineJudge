@@ -84,11 +84,11 @@ public class WorkAction extends ActionSupport{
 		String work_flag = request.getParameter("work_flag");
 		String calss_id = request.getParameter("calss_id");
 		String work_onwer = request.getParameter("work_onwer");
-		String problem_info = request.getParameter("problem_info");
+		//String problem_info = request.getParameter("problem_info");
 		
 		int cid = Integer.valueOf(calss_id);
 		
-		JSONArray ja = JSONArray.fromObject(problem_info);
+		//JSONArray ja = JSONArray.fromObject(problem_info);
 		
 		work.setWorkName(work_name);
 		work.setWorkInfo(work_info);
@@ -100,14 +100,20 @@ public class WorkAction extends ActionSupport{
 		work.setWorkCreatTime(work_createtime);
 		
 		int wid = WorkService.addWork(work);
-		for(int i = 0; i < ja.size(); i ++) {
+/*		for(int i = 0; i < ja.size(); i ++) {
 			JSONObject jo = ja.getJSONObject(i);
 			String problem_id = jo.getString("problem_id");
 			int pid = Integer.valueOf(problem_id);
 			wp.setWorkId(wid);
 			wp.setProblemId(pid);
 			WorkProblemService.addWorkProblem(wp);
-		}
+		}*/
+		
+		JSONObject jo = new JSONObject();
+		jo.put("WorkId", wid);
+		out.println(jo.toString());
+		out.flush(); 
+		out.close();
 		
 	}
 	
