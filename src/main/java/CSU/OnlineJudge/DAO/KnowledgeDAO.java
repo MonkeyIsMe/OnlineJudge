@@ -19,4 +19,6 @@ public interface KnowledgeDAO {
 	public int CountKnowledge();
 	
 	public List<Knowledge> QueryAllKnowledge();
+	
+	public Object addMutiplyKnowledge(List<Knowledge> knowledge);
 }

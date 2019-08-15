@@ -30,4 +30,6 @@ public interface ProblemService {
 	
 	public int CountProblem();
 	
+	public Object addMutiplyProblem(List<Problem> problem);
+	
 }

@@ -28,4 +28,6 @@ public interface ProblemDAO {
 	public List<Object[]> GetProblemManagerInfo(int row,int PageSize);
 	
 	public int CountProblem();
+	
+	public Object addMutiplyProblem(List<Problem> problem);
 }

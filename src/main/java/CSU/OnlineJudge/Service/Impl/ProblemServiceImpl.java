@@ -87,4 +87,9 @@ public class ProblemServiceImpl implements ProblemService{
 		return pd.GetProblemManagerInfo(row, PageSize);
 	}
 
+	public Object addMutiplyProblem(List<Problem> problem) {
+		// TODO Auto-generated method stub
+		return pd.addMutiplyProblem(problem);
+	}
+
 }

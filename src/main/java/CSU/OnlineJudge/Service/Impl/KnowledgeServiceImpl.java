@@ -57,4 +57,9 @@ public class KnowledgeServiceImpl implements  KnowledgeService{
 		return kd.QueryAllKnowledge();
 	}
 
+	public Object addMutiplyKnowledge(List<Knowledge> knowledge) {
+		// TODO Auto-generated method stub
+		return kd.addMutiplyKnowledge(knowledge);
+	}
+
 }

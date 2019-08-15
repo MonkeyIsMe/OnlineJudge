@@ -12,8 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import CSU.OnlineJudge.DAO.KnowledgeDAO;
 import CSU.OnlineJudge.Model.Knowledge;
-import CSU.OnlineJudge.Model.Problem;
-import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Utils.HibernateUtil;
 
 @Transactional
@@ -75,6 +73,25 @@ public class KnowledgeDAOImpl extends HibernateDaoSupport implements KnowledgeDA
 				List<Knowledge> list = query.list();
 				return list;
 			}
+		});
+	}
+
+	public Object addMutiplyKnowledge(final List<Knowledge> knowledge) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			public Object doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				for(int i = 0; i < knowledge.size(); i ++) {
+					session.save(knowledge.get(i));
+                    if (i % 50 == 0) {  
+                        session.flush();  
+                        session.clear();  
+                    }  
+				}
+				return null;
+			}
+			
 		});
 	}
 
