@@ -107,7 +107,7 @@ $(document).ready(function(){
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:40px" data-toggle="modal" data-target="#myModal"></span>'
+    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span>'
     			        		+"</td>");
                         // $("#J_TbData").append($trTemp);
                         $trTemp.appendTo("#KnowList");
@@ -161,7 +161,7 @@ $(document).ready(function(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:40px" data-toggle="modal" data-target="#myModal"></span>'
+	    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
@@ -195,6 +195,12 @@ $(document).ready(function(){
 		   var currentRow=$(this).closest("tr"); 
 		   var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
 		   
+		   for(var i = 0;i < wp.length; i++){
+			   if(wp[i].id == col1){
+				   wp.splice(i,1);
+			   }
+		   }
+		   
 		   $(this).closest("tr").remove(); 
 		   
 		  });
@@ -214,7 +220,7 @@ $(document).ready(function(){
         $trTemp.append("<td style=" + "text-align:center"  + ">" + pname  +"</td>");
         $trTemp.append("<td style=" + "text-align:center"  + ">" + pdegree  +"</td>");
         $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-        		'<span class="delete glyphicon glyphicon-trash"  style="cursor:pointer;margin-left:40px"></span>'
+        		'<span class="delete glyphicon glyphicon-trash"  style="cursor:pointer;margin-left:20px"></span>'
         		+"</td>");
         // $("#J_TbData").append($trTemp);
         $trTemp.appendTo("#select_problem");
@@ -223,7 +229,7 @@ $(document).ready(function(){
 	
 	$("#AddWP").click(function(){
 		var jsonText = JSON.stringify(wp);
-		console.log(jsonText);
+		//console.log(jsonText);
 	})
 });
 
@@ -339,7 +345,7 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:40px" data-toggle="modal" data-target="#myModal"></span>'
+	    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");

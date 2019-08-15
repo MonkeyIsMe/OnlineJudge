@@ -85,7 +85,7 @@
             <div class="modal-body">是否添加该题目</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="add_problem">确定</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="add_problem">确定</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
@@ -97,8 +97,8 @@ layui.use('form', function(){
   
   //监听提交
   form.on('submit(formDemo)', function(data){
-    layer.msg(JSON.stringify(data.field));
-    return false;
+/*     layer.msg(JSON.stringify(data.field));
+    return false; */
   });
 });
 </script>  
