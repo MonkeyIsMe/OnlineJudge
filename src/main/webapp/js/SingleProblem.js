@@ -43,8 +43,8 @@ $(document).ready(function(){
 				}, 
 				function(data) {
 					var data = JSON.parse(data);
-					$("#acase_input").val(data[0].caseInput);
-					$("#acase_output").val(data[0].caseOutput);
+					$("#case_input").val(data[0].caseInput);
+					$("#case_output").val(data[0].caseOutput);
 				}
 		);
 		
@@ -97,6 +97,8 @@ $(document).ready(function(){
 		var problem_time = $("#problem_time").val();
 		var problem_memory = $("#problem_memory").val();
 		var problem_flag = $('input:radio:checked').val();
+		var case_input = $("#case_input").val();
+		var case_output = $("#case_output").val();
   		var json =[];
 		$('input[name="know"]:checked').each(function(){
 			var obj = {};
@@ -104,7 +106,38 @@ $(document).ready(function(){
 			json.push(obj);//向数组中添加元素  
 			});
 		var jsonText = JSON.stringify(json);
-		console.log(jsonText);
+		//console.log(jsonText);
+		
+		$.post(
+				"QueryKnowledgeByProblemId.action",
+				{
+					problem_id:pid,
+					problem_name:problem_name,
+					problem_info:problem_content,
+					problem_hint:problem_hint,
+					problem_memory:problem_memory,
+					problem_time:problem_time,
+					problem_flag:problem_flag,
+					problem_input:problem_input,
+					problem_output:problem_output,
+					knowledge_info:jsonText,
+					case_input:case_input,
+					case_output:case_output,
+				},
+				function(data){
+					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+					if(data == "Fail"){
+						alert("更新失败！");
+					    var url = "ManagerSingleProblem.html?ProblemId=" + pid;
+					    window.location.replace(url);
+					}
+					else{
+						alert("更新成功!");
+						window.location.replace("ManagerProblemSet.html");
+					}
+				}
+				);
+		
 	})
 	
 });

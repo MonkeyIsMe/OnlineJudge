@@ -208,21 +208,18 @@ public class ProblemAction extends ActionSupport{
 		String problem_hint = request.getParameter("problem_hint");
 		String problem_memory = request.getParameter("problem_memory");
 		String problem_time = request.getParameter("problem_time");
-		String problem_submission = request.getParameter("problem_submission");
-		String problem_degree = request.getParameter("problem_degree");
 		String problem_people = request.getParameter("problem_people");
 		String problem_flag = request.getParameter("problem_flag");
 		String problem_input = request.getParameter("problem_input");
 		String problem_output = request.getParameter("problem_output");
-		
+		String knowledge_info = request.getParameter("knowledge_info");
 		String case_input = request.getParameter("case_input");
 		String case_output = request.getParameter("case_output");
 		
-		
+
 		
 		int memory = Integer.valueOf(problem_memory);
 		int time = Integer.valueOf(problem_time);
-		int submission = Integer.valueOf(problem_submission);
 		int IsPublic = Integer.valueOf(problem_flag);
 		//int degree = Integer.valueOf(problem_degree);
 		
@@ -243,6 +240,23 @@ public class ProblemAction extends ActionSupport{
 		cas.setCaseOutput(case_output);
 		CaseService.UpdateCase(cas);
 		
+		List<KnowledgeProblem> del_kp_list = KnowledgeProblemService.queryKnowledgeProblemByProblemId(pid);
+		KnowledgeProblemService.DeleteMutiplyKnowledgeProblem(del_kp_list);
+		
+		JSONArray know_ja = JSONArray.fromObject(knowledge_info);
+		for(int i = 0; i < know_ja.size(); i ++) {
+			JSONObject jo = know_ja.getJSONObject(i);
+			String KnowledgeId = jo.getString("knowledgeId");
+			int kid = Integer.valueOf(KnowledgeId);
+			kp.setKnowledgeId(kid);
+			kp.setProblemId(pid);
+			JSONObject kpjo = JSONObject.fromObject(kp);
+			know_ja.add(kpjo);
+		}
+		
+		List<KnowledgeProblem> kp_list = JSONArray.toList(know_ja,KnowledgeProblem.class);
+		KnowledgeProblemService.AddMutiplyKnowledgeProblem(kp_list);
+		
 		if(problem == null) {
 			out.println("Fail");
 			out.flush(); 
@@ -255,7 +269,6 @@ public class ProblemAction extends ActionSupport{
 		problem.setProblemHint(problem_hint);
 		problem.setProblemMemory(memory);
 		problem.setProblemTimeLimit(time);
-		problem.setSubmissionTimes(submission);
 		problem.setProblemDegree(0);
 		problem.setProblemPeople(problem_people);
 		problem.setPublicOrNot(IsPublic);
