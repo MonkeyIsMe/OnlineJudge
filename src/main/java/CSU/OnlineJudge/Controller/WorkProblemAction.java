@@ -13,6 +13,7 @@ import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.WorkProblem;
 import CSU.OnlineJudge.Service.ProblemService;
 import CSU.OnlineJudge.Service.WorkProblemService;
+import CSU.OnlineJudge.Service.WorkService;
 import CSU.OnlineJudge.Service.Impl.ProblemServiceImpl;
 import CSU.OnlineJudge.Service.Impl.WorkProblemServiceImpl;
 import net.sf.json.JSONArray;
@@ -108,18 +109,22 @@ public class WorkProblemAction extends ActionSupport{
 		String problem_info = request.getParameter("problem_info");
 		
 		JSONArray ja = JSONArray.fromObject(problem_info);
-		
+		JSONArray add_ja = new JSONArray();
 		int wid = Integer.valueOf(work_id);
 		//System.out.println(problem_info);
 		for(int i = 0; i < ja.size(); i ++) {
 			JSONObject jo = ja.getJSONObject(i);
 			String ProblemId = jo.getString("ProblemId");
-			System.out.println("ProblemId =" + ProblemId);
 			int pid = Integer.valueOf(ProblemId);
 			wp.setWorkId(wid);
 			wp.setProblemId(pid);
-			WorkProblemService.addWorkProblem(wp);
+			
+			JSONObject wpjo = JSONObject.fromObject(wp);
+			add_ja.add(wpjo);
 		}
+		
+		List<WorkProblem> wp_list = JSONArray.toList(add_ja,WorkProblem.class);
+		WorkProblemService.AddMutiplyWorkProblem(wp_list);
 		
 		out.println("Success");
 		out.flush(); 

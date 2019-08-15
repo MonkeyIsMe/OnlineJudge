@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import CSU.OnlineJudge.DAO.KnowledgeProblemDAO;
 import CSU.OnlineJudge.DAO.Impl.KnowledgeProblemDAOImpl;
+import CSU.OnlineJudge.Model.Knowledge;
 import CSU.OnlineJudge.Model.KnowledgeProblem;
 import CSU.OnlineJudge.Service.KnowledgeProblemService;
 
@@ -62,5 +63,12 @@ public class KnowledgeProblemServiceImpl implements KnowledgeProblemService{
 		// TODO Auto-generated method stub
 		return kpd.CountProblem(KnowledgeId);
 	}
+
+	public Object AddMutiplyKnowledgeProblem(List<KnowledgeProblem> kp_list) {
+		// TODO Auto-generated method stub
+		return kpd.AddMutiplyKnowledgeProblem(kp_list);
+	}
+
+
 
 }

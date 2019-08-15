@@ -124,7 +124,8 @@ public class ProblemAction extends ActionSupport{
 		
 		JSONArray ja = JSONArray.fromObject(case_info);
 		JSONArray jaknow = JSONArray.fromObject(knowledge_info);
-		System.out.println(case_info);
+		JSONArray know_ja = new JSONArray();
+		
 		problem.setProblemName(problem_name);
 		problem.setProblemInfo(problem_input);
 		problem.setProblemHint(problem_hint);
@@ -159,11 +160,12 @@ public class ProblemAction extends ActionSupport{
 			int kid = Integer.valueOf(KnowledgeId);
 			kp.setKnowledgeId(kid);
 			kp.setProblemId(pid);
-			KnowledgeProblemService.addKnowledgeProblem(kp);
+			JSONObject kpjo = JSONObject.fromObject(kp);
+			know_ja.add(kpjo);
 		}
 		
-
-		
+		List<KnowledgeProblem> kp_list = JSONArray.toList(know_ja,KnowledgeProblem.class);
+		KnowledgeProblemService.AddMutiplyKnowledgeProblem(kp_list);
 		
 		
 		for(int i = 0; i < ja.size(); i ++) {

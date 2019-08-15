@@ -21,4 +21,6 @@ public interface KnowledgeProblemDAO {
 	public List<KnowledgeProblem> queryKnowledgeProblemByKnowledgePageSize(int KnowledgeId,int rows,int PageSize);
 	
 	public int CountProblem(int KnowledgeId);
+	
+	public Object AddMutiplyKnowledgeProblem(List<KnowledgeProblem> kp_list);
 }

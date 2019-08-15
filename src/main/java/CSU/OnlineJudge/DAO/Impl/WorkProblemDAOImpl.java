@@ -19,7 +19,7 @@ public class WorkProblemDAOImpl extends HibernateDaoSupport implements WorkProbl
 
 	public void addWorkProblem(WorkProblem wp) {
 		// TODO Auto-generated method stub
-		System.out.println("dao = " + wp.toString());
+		//System.out.println("dao = " + wp.toString());
 		getHibernateTemplate().save(wp);
 	}
 
@@ -53,6 +53,25 @@ public class WorkProblemDAOImpl extends HibernateDaoSupport implements WorkProbl
 				result = query.list();
 				return result;
 			}
+		});
+	}
+
+	public Object AddMutiplyWorkProblem(final List<WorkProblem> wp_list) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			public Object doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				for(int i = 0; i < wp_list.size(); i ++) {
+					session.save(wp_list.get(i));
+                    if (i % 50 == 0) {  
+                        session.flush();  
+                        session.clear();  
+                    }  
+				}
+				return null;
+			}
+			
 		});
 	}
 

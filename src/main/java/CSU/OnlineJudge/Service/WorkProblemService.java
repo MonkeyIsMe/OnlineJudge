@@ -16,4 +16,6 @@ public interface WorkProblemService {
 	
 	public List<WorkProblem> QueryWorkProblemByWorkId(int WorkId);
 	
+	public Object AddMutiplyWorkProblem(List<WorkProblem> wp_list);
+	
 }

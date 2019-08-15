@@ -48,4 +48,9 @@ public class WorkProblemServiceImpl implements WorkProblemService{
 		return wpd.QueryWorkProblemByWorkId(WorkId);
 	}
 
+	public Object AddMutiplyWorkProblem(List<WorkProblem> wp_list) {
+		// TODO Auto-generated method stub
+		return wpd.AddMutiplyWorkProblem(wp_list);
+	}
+
 }

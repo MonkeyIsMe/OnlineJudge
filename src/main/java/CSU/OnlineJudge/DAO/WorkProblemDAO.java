@@ -15,4 +15,6 @@ public interface WorkProblemDAO {
 	public WorkProblem queryWorkProblem(int id);
 	
 	public List<WorkProblem> QueryWorkProblemByWorkId(int WorkId);
+	
+	public Object AddMutiplyWorkProblem(List<WorkProblem> wp_list);
 }

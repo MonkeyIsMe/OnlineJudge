@@ -2,6 +2,7 @@ package CSU.OnlineJudge.Service;
 
 import java.util.List;
 
+import CSU.OnlineJudge.Model.Knowledge;
 import CSU.OnlineJudge.Model.KnowledgeProblem;
 
 public interface KnowledgeProblemService {
@@ -21,4 +22,6 @@ public interface KnowledgeProblemService {
 	public List<KnowledgeProblem> queryKnowledgeProblemByKnowledgePageSize(int KnowledgeId,int rows,int PageSize);
 	
 	public int CountProblem(int KnowledgeId);
+	
+	public Object AddMutiplyKnowledgeProblem(List<KnowledgeProblem> kp_list);
 }
