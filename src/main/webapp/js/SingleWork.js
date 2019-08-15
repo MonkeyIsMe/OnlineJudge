@@ -11,6 +11,7 @@ var pflag;
 var pname;
 var pdegree;
 var ppeople;
+var wp = [];
 
 $(document).ready(function(){
 	
@@ -106,7 +107,7 @@ $(document).ready(function(){
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-    			        		'<span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" data-toggle="modal" data-target="#myModal"></span>'
+    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:40px" data-toggle="modal" data-target="#myModal"></span>'
     			        		+"</td>");
                         // $("#J_TbData").append($trTemp);
                         $trTemp.appendTo("#KnowList");
@@ -160,7 +161,7 @@ $(document).ready(function(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" data-toggle="modal" data-target="#myModal"></span>'
+	    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:40px" data-toggle="modal" data-target="#myModal"></span>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
@@ -170,7 +171,7 @@ $(document).ready(function(){
 	})
 	
 	
-	  $("#KnowList").on('click','.delete',function(){
+	  $("#KnowList").on('click','.find',function(){
 		    //获得当前行
 		    var currentRow=$(this).closest("tr"); 
 		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
@@ -184,10 +185,27 @@ $(document).ready(function(){
 		    pname = col3;
 		    pdegree = col4;
 		    ppeople = col5;
-		    //console.log("pid = " + pid)
+		    
+		  });
+	
+	  $("#select_problem").on('click','.delete',function(){
+		    //获得当前行
+		   
+		   
+		   var currentRow=$(this).closest("tr"); 
+		   var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		   
+		   $(this).closest("tr").remove(); 
+		   
 		  });
 	
 	$("#add_problem").click(function(){
+		
+		var json = {};
+		json.name = "ProblemId";
+		json.id = pid;
+		wp.push(json);
+		
         var $trTemp = $("<tr ></tr>");
         //往行里面追加 td单元格
         $trTemp.append("<td style=" + "text-align:center"  + ">"+ pid +"</td>");
@@ -196,10 +214,16 @@ $(document).ready(function(){
         $trTemp.append("<td style=" + "text-align:center"  + ">" + pname  +"</td>");
         $trTemp.append("<td style=" + "text-align:center"  + ">" + pdegree  +"</td>");
         $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-        		'<span class="glyphicon glyphicon-trash"  style="cursor:pointer;margin-left:50px"></span>'
+        		'<span class="delete glyphicon glyphicon-trash"  style="cursor:pointer;margin-left:40px"></span>'
         		+"</td>");
         // $("#J_TbData").append($trTemp);
         $trTemp.appendTo("#select_problem");
+	})
+	
+	
+	$("#AddWP").click(function(){
+		var jsonText = JSON.stringify(wp);
+		console.log(jsonText);
 	})
 });
 
@@ -255,7 +279,7 @@ function PrevPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
 	    			        $trTemp.append("<td class=layui-btn style=" + "text-align:center"  + ">" + 
-	    			        		'<i class="layui-icon delete">&#xe608;</i> 添加'
+	    			        		'<i class="layui-icon find">&#xe608;</i> 添加'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
@@ -315,7 +339,7 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" data-toggle="modal" data-target="#myModal"></span>'
+	    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:40px" data-toggle="modal" data-target="#myModal"></span>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
