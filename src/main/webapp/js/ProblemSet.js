@@ -6,7 +6,7 @@ var count; //总记录数
 var pid; //记录第几行的编号
 var stock = [];
 var arr = [];
-var count = 0;
+var cnt = 0;
 
 
 $(function(){
@@ -229,34 +229,31 @@ $(document).ready(function(){
 	  		var json =[];
 			$('input[name="know"]:checked').each(function(){
 				var obj = {};
-				obj.name = "knowledgeId";
-				obj.value = $(this).val();
+				obj.knowledgeId = $(this).val();
 				json.push(obj);//向数组中添加元素  
 				});
 			var jsonText = JSON.stringify(json);
-            
-            //alert(problem_flag);
             $.post(
-                "AddProblem.action",
-                {
-                    problem_name:problem_name,
-                    problem_hint:problem_hint,
-                    problem_memory:problem_memory,
-                    problem_time:problem_time,
-                    problem_input:problem_input,
-                    problem_output:problem_output,
-                    case_input:case_input,
-                    case_output:case_output,
-                    problem_info:problem_info,
-                    problem_flag:problem_flag,
-                    case_info:case_info,
-                    knowledge_info:jsonText,
-                },
-                function(data){
-                	var data = JSON.parse(data);
-                    console.log(data.ProblemId)
-                }
-            );
+                    "AddProblem.action",
+                    {
+                        problem_name:problem_name,
+                        problem_hint:problem_hint,
+                        problem_memory:problem_memory,
+                        problem_time:problem_time,
+                        problem_input:problem_input,
+                        problem_output:problem_output,
+                        case_input:case_input,
+                        case_output:case_output,
+                        problem_info:problem_info,
+                        problem_flag:problem_flag,
+                        case_info:case_info,
+                        knowledge_info:jsonText,
+                    },
+                    function(data){
+                    	var data = JSON.parse(data);
+                        console.log(data.ProblemId)
+                    }
+                );
         })
 
 });
@@ -291,58 +288,62 @@ $(function () {
         }
     })
 })
+
+
 $(function () {
-    $('#addone').click(function () {
-        getAce();
-    })
+        $('#addone').click(function () {
+            getAce();
+        })
 
-    $("#sure").click(function () {
-        var testArr = [];
-        for(var i=0;i<arr.length;i++)
-        {
-            testArr.push(arr[i].getValue());
-            count = count+1;
-            if(count == 2)
+        $("#sure").click(function () {
+            var testArr = [];
+            for(var i=0;i<arr.length;i++)
             {
-                var obj = {stdin:testArr[i-1],stdout:testArr[i]}
-                stock.push(obj);
-                count=0;
-            }
-        }
-        arr.length = 0;
-        for (var i = 0; i < stock.length; i++) {
-            for (var j =i+1; j <stock.length; ) {
-                if (stock[i].stdin == stock[j].stdin && stock[i].stdout == stock[j].stdout) {//判断条件可以按照个人需求改
-                    stock.splice(j, 1);
+                //console.log("length = " + arr.length)
+                testArr.push(arr[i].getValue());
+                cnt = cnt + 1;
+                if(cnt == 2)
+                {
+                	console.log(i+" " + testArr[i-1] + " " + testArr[i] + " " + count);
+                    var obj = {stdin:testArr[i-1],stdout:testArr[i]}
+                    //console.log(obj);
+                    stock.push(obj);
+                    cnt=0;
                 }
-                else j++;
             }
-        }
-        $('.shadow').hide();
-        $('#runText').hide();
-        $('body').css('overflow','auto');
+            arr.length = 0;
+            for (var i = 0; i < stock.length; i++) {
+                for (var j =i+1; j <stock.length; ) {
+                    if (stock[i].stdin == stock[j].stdin && stock[i].stdout == stock[j].stdout) {//判断条件可以按照个人需求改
+                        stock.splice(j, 1);
+                    }
+                    else j++;
+                }
+            }
+        })
     })
-})
-function getAce() {
-    var editorx = null;
-    // var arr = [];
-    $("#addText").append("<li><div></div> <div></div> <button type=\"button\" class=\"btn btn-primary delete\">Delete</button></li>");
-    $('#addText>li>div').each(function (index) {
-        index = index + 1
-        $(this).attr({
-            class: 'editor ace_editor ace_tm',
-            id: 'editor' + index,
-        });
-        var str = 'editor' + index;
-        editorx = ace.edit(str);
-        editorx.setTheme("ace/theme/chrome");
-        editorx.setShowPrintMargin(true);
-        editorx.session.getLength();
-        editorx.session.setUseWrapMode(true);
-        arr.push(editorx);
 
-    })
-    $('.delete').click(function () {
-        $(this).parent().remove();
-    })
-}
+
+function getAce() {
+        var editorx = null;
+        // var arr = [];
+        $("#addText").append("<li><div></div> <div></div> <button type=\"button\" class=\"btn btn-primary delete\">Delete</button></li>");
+        $('#addText>li>div').each(function (index) {
+            index = index + 1
+            $(this).attr({
+                class: 'editor ace_editor ace_tm',
+                id: 'editor' + index,
+            });
+            var str = 'editor' + index;
+            editorx = ace.edit(str);
+            editorx.setTheme("ace/theme/chrome");
+            editorx.setShowPrintMargin(true);
+            editorx.session.getLength();
+            editorx.session.setUseWrapMode(true);
+            arr.push(editorx);
+
+        })
+        $('.delete').click(function () {
+            $(this).parent().remove();
+        })
+    }

@@ -124,7 +124,7 @@ public class ProblemAction extends ActionSupport{
 		
 		JSONArray ja = JSONArray.fromObject(case_info);
 		JSONArray jaknow = JSONArray.fromObject(knowledge_info);
-		
+		System.out.println(case_info);
 		problem.setProblemName(problem_name);
 		problem.setProblemInfo(problem_input);
 		problem.setProblemHint(problem_hint);
@@ -143,32 +143,43 @@ public class ProblemAction extends ActionSupport{
 		problem.setProblemOutput(problem_output);
 		
 		int pid = ProblemService.AddProblem(problem);
+		
+		JSONArray case_ja = new JSONArray();
+		
 		cas.setCaseFlag(0);
 		cas.setCaseInput(case_input);
 		cas.setProblemId(pid);
 		cas.setCaseOutput(case_output);
-		CaseService.AddCase(cas);
+		JSONObject zero_cas = JSONObject.fromObject(cas);
+		case_ja.add(zero_cas);
 		
 		for(int j = 0; j < jaknow.size(); j ++) {
-			JSONObject jo = ja.getJSONObject(j);
-			String KnowledgeId = jo.getString("value");
+			JSONObject jo = jaknow.getJSONObject(j);
+			String KnowledgeId = jo.getString("knowledgeId");
 			int kid = Integer.valueOf(KnowledgeId);
 			kp.setKnowledgeId(kid);
 			kp.setProblemId(pid);
 			KnowledgeProblemService.addKnowledgeProblem(kp);
 		}
 		
+
+		
+		
+		
 		for(int i = 0; i < ja.size(); i ++) {
 			JSONObject jo = ja.getJSONObject(i);
 			String stdin = jo.getString("stdin");
 			String stdout = jo.getString("stdout");
-			//System.out.println(stdin + " " + stdout);
 			cas.setCaseFlag(1);
 			cas.setCaseInput(stdin);
 			cas.setProblemId(pid);
 			cas.setCaseOutput(stdout);
-			CaseService.AddCase(cas);
+			
+			JSONObject cjo = JSONObject.fromObject(cas);
+			case_ja.add(cjo);
 		}
+		List<Case> CaseList = JSONArray.toList(case_ja,Case.class);
+		CaseService.addMutiplyCase(CaseList);
 		
 		JSONObject jo = new JSONObject();
 		jo.put("ProblemId", pid);

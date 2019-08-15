@@ -62,4 +62,5 @@ public class CaseServiceImpl implements CaseService{
 		return cd.addMutiplyCase(Case);
 	}
 
+
 }

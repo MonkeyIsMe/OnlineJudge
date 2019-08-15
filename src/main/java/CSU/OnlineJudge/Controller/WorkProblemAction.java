@@ -110,16 +110,16 @@ public class WorkProblemAction extends ActionSupport{
 		JSONArray ja = JSONArray.fromObject(problem_info);
 		
 		int wid = Integer.valueOf(work_id);
-		
+		//System.out.println(problem_info);
 		for(int i = 0; i < ja.size(); i ++) {
 			JSONObject jo = ja.getJSONObject(i);
 			String ProblemId = jo.getString("ProblemId");
+			System.out.println("ProblemId =" + ProblemId);
 			int pid = Integer.valueOf(ProblemId);
 			wp.setWorkId(wid);
 			wp.setProblemId(pid);
 			WorkProblemService.addWorkProblem(wp);
 		}
-		
 		
 		out.println("Success");
 		out.flush(); 

@@ -19,6 +19,7 @@ public class WorkProblemDAOImpl extends HibernateDaoSupport implements WorkProbl
 
 	public void addWorkProblem(WorkProblem wp) {
 		// TODO Auto-generated method stub
+		System.out.println("dao = " + wp.toString());
 		getHibernateTemplate().save(wp);
 	}
 

@@ -208,8 +208,7 @@ $(document).ready(function(){
 	$("#add_problem").click(function(){
 		
 		var json = {};
-		json.name = "ProblemId";
-		json.id = pid;
+		json.ProblemId = pid;
 		wp.push(json);
 		
         var $trTemp = $("<tr ></tr>");
@@ -230,13 +229,21 @@ $(document).ready(function(){
 	$("#AddWP").click(function(){
 		var jsonText = JSON.stringify(wp);
 		$.post(
-				"QueryAllKnowledge.action",
+				"AddManyWorkProblem.action",
 				{
 					problem_info:jsonText,
-					work_id:widm
+					work_id:wid
 				}, 
 				function(data) {
-					
+					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+					if(data == "Success"){
+						alert("添加成功！");
+						window.location.replace("ManagerWorkSet.html");
+					}
+					else{
+						alert("添加失败!");
+						window.location.replace("ManagerWorkSet.html");
+					}
 				}
 		);
 	})

@@ -24,6 +24,7 @@ public class WorkProblemServiceImpl implements WorkProblemService{
 
 	public void addWorkProblem(WorkProblem wp) {
 		// TODO Auto-generated method stub
+		System.out.println("service = " + wp.toString());
 		wpd.addWorkProblem(wp);
 	}
 

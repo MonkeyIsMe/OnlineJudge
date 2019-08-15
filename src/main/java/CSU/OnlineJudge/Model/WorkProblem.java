@@ -11,7 +11,7 @@ import org.json.JSONObject;
 
 //考试-作业，题目关联表
 @Entity
-@Table(name="tab_log")
+@Table(name="tab_workproblem")
 public class WorkProblem {
 	
 	@Id

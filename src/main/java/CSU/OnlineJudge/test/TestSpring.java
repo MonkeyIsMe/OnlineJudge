@@ -12,6 +12,7 @@ import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Model.Work;
 import CSU.OnlineJudge.Service.CaseService;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.context.ApplicationContext;
@@ -62,6 +63,8 @@ public class TestSpring {
 		cd.addCase(cas);
 	}
 	
+
+	
 	@Test
 	public void TestDaoQuery() {
 		System.out.println(cd.queryCase(1));
@@ -84,6 +87,31 @@ public class TestSpring {
 	
 	@Resource(name="CaseService")
 	private CaseService cs;
+	
+	private Case cas = new Case();
+	
+	@Test
+	public void TestDaoAddMany() {
+		String case_info = "[{\"stdin\":\"1\",\"stdout\":\"1\"},{\"stdin\":\"2\",\"stdout\":\"2\"}]";
+		JSONArray case_ja = new JSONArray();
+		JSONArray ja = JSONArray.fromObject(case_info);
+		for(int i = 0; i < ja.size(); i ++) {
+			JSONObject jo = ja.getJSONObject(i);
+			String stdin = jo.getString("stdin");
+			String stdout = jo.getString("stdout");
+			//System.out.println(stdin + " " + stdout);
+			cas.setCaseFlag(1);
+			cas.setCaseInput(stdin);
+			cas.setProblemId(123);
+			cas.setCaseOutput(stdout);
+			JSONObject cjo = JSONObject.fromObject(cas);
+			case_ja.add(cjo);
+		}
+		
+		List<Case> CaseList = JSONArray.toList(case_ja,Case.class);
+		cs.addMutiplyCase(CaseList);
+
+	}
 	
 	@Test
 	public void TestAddService() {
