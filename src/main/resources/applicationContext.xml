@@ -70,6 +70,11 @@
 		<property name="KnowledgeService" ref="KnowledgeService" ></property>
 		<property name="ProblemService" ref="ProblemService" ></property>
 	</bean>
+	<bean name="WorkProblemAction" class="CSU.OnlineJudge.Controller.WorkProblemAction" scope="prototype" >
+		<property name="ProblemService" ref="ProblemService" ></property>
+		<property name="WorkProblemService" ref="WorkProblemService" ></property>
+	</bean>
+	
 	
 	<!-- service -->
  	<bean name="CaseService" class="CSU.OnlineJudge.Service.Impl.CaseServiceImpl" >

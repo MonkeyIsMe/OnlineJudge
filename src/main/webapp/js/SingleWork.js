@@ -107,7 +107,7 @@ $(document).ready(function(){
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span>'
+    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:15px" data-toggle="modal" data-target="#myModal"></span>'
     			        		+"</td>");
                         // $("#J_TbData").append($trTemp);
                         $trTemp.appendTo("#KnowList");
@@ -161,7 +161,7 @@ $(document).ready(function(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span>'
+	    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:15px" data-toggle="modal" data-target="#myModal"></span>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
@@ -220,7 +220,7 @@ $(document).ready(function(){
         $trTemp.append("<td style=" + "text-align:center"  + ">" + pname  +"</td>");
         $trTemp.append("<td style=" + "text-align:center"  + ">" + pdegree  +"</td>");
         $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-        		'<span class="delete glyphicon glyphicon-trash"  style="cursor:pointer;margin-left:20px"></span>'
+        		'<span class="delete glyphicon glyphicon-trash"  style="cursor:pointer;margin-left:15px"></span>'
         		+"</td>");
         // $("#J_TbData").append($trTemp);
         $trTemp.appendTo("#select_problem");
@@ -229,7 +229,16 @@ $(document).ready(function(){
 	
 	$("#AddWP").click(function(){
 		var jsonText = JSON.stringify(wp);
-		//console.log(jsonText);
+		$.post(
+				"QueryAllKnowledge.action",
+				{
+					problem_info:jsonText,
+					work_id:widm
+				}, 
+				function(data) {
+					
+				}
+		);
 	})
 });
 
@@ -345,7 +354,7 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span>'
+	    			        		'<span class="find glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:15px" data-toggle="modal" data-target="#myModal"></span>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");

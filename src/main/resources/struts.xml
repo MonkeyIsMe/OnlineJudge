@@ -119,6 +119,11 @@
 			<action name="CountProblemByKnowledgeId" class="KnowledgeProblemAction" method="CountProblemByKnowledgeId" >
 			</action>
 			
+			<!-- 作业/考试题目关联  -->
+			<action name="AddManyWorkProblem" class="WorkProblemAction" method="AddManyWorkProblem" >
+			</action>
+			
+			
 	</package>
 </struts>
 	

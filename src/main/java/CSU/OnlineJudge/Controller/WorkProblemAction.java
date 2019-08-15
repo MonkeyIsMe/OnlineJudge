@@ -94,6 +94,39 @@ public class WorkProblemAction extends ActionSupport{
 		
 	}
 	
+	//添加作业-考试和多个题目的关联
+	public void AddManyWorkProblem() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String work_id = request.getParameter("work_id");
+		String problem_info = request.getParameter("problem_info");
+		
+		JSONArray ja = JSONArray.fromObject(problem_info);
+		
+		int wid = Integer.valueOf(work_id);
+		
+		for(int i = 0; i < ja.size(); i ++) {
+			JSONObject jo = ja.getJSONObject(i);
+			String ProblemId = jo.getString("ProblemId");
+			int pid = Integer.valueOf(ProblemId);
+			wp.setWorkId(wid);
+			wp.setProblemId(pid);
+			WorkProblemService.addWorkProblem(wp);
+		}
+		
+		
+		out.println("Success");
+		out.flush(); 
+		out.close(); 
+		
+	}
+	
 	//删除作业-考试和题目的关联
 	public void DeleteWorkProblem() throws Exception{
 		
