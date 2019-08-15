@@ -108,6 +108,8 @@
 			</action>
 			<action name="QueryAllCase" class="CaseAction" method="QueryAllCase" >
 			</action>
+			<action name="QueryInCase" class="CaseAction" method="QueryInCase" >
+			</action>
 			
 			<!-- 题目知识点关联  -->
 			<action name="AddKnowledgeProblem" class="KnowledgeProblemAction" method="AddKnowledgeProblem" >
@@ -118,6 +120,9 @@
 			</action>
 			<action name="CountProblemByKnowledgeId" class="KnowledgeProblemAction" method="CountProblemByKnowledgeId" >
 			</action>
+			<action name="QueryKnowledgeByProblemId" class="KnowledgeProblemAction" method="QueryKnowledgeByProblemId" >
+			</action>
+			
 			
 			<!-- 作业/考试题目关联  -->
 			<action name="AddManyWorkProblem" class="WorkProblemAction" method="AddManyWorkProblem" >

@@ -209,30 +209,39 @@ public class ProblemAction extends ActionSupport{
 		String problem_memory = request.getParameter("problem_memory");
 		String problem_time = request.getParameter("problem_time");
 		String problem_submission = request.getParameter("problem_submission");
-		String problem_accept = request.getParameter("problem_accept");
 		String problem_degree = request.getParameter("problem_degree");
-		String problem_wrong = request.getParameter("problem_wrong");
-		String problem_tle = request.getParameter("problem_tle");
-		String problem_rte = request.getParameter("problem_rte");
-		String problem_ce = request.getParameter("problem_ce");
 		String problem_people = request.getParameter("problem_people");
 		String problem_flag = request.getParameter("problem_flag");
 		String problem_input = request.getParameter("problem_input");
 		String problem_output = request.getParameter("problem_output");
 		
+		String case_input = request.getParameter("case_input");
+		String case_output = request.getParameter("case_output");
+		
+		
+		
 		int memory = Integer.valueOf(problem_memory);
 		int time = Integer.valueOf(problem_time);
 		int submission = Integer.valueOf(problem_submission);
-		int accept = Integer.valueOf(problem_accept);
-		int wrong = Integer.valueOf(problem_wrong);
-		int tle = Integer.valueOf(problem_tle);
-		int rte = Integer.valueOf(problem_rte);
-		int ce = Integer.valueOf(problem_ce);
 		int IsPublic = Integer.valueOf(problem_flag);
-		int degree = Integer.valueOf(problem_degree);
+		//int degree = Integer.valueOf(problem_degree);
 		
 		int pid = Integer.valueOf(problem_id);
 		problem = ProblemService.QueryProblem(pid);
+		List<Case> CaseList = CaseService.GetCaseByFlag(pid, 0);
+		
+		if(CaseList.size() == 0) {
+			out.println("Fail");
+			out.flush(); 
+			out.close();
+			return ;
+		}
+		
+		cas = CaseList.get(0);
+		int cid = cas.getCaseId();
+		cas.setCaseInput(problem_input);
+		cas.setCaseOutput(case_output);
+		CaseService.UpdateCase(cas);
 		
 		if(problem == null) {
 			out.println("Fail");
@@ -247,12 +256,7 @@ public class ProblemAction extends ActionSupport{
 		problem.setProblemMemory(memory);
 		problem.setProblemTimeLimit(time);
 		problem.setSubmissionTimes(submission);
-		problem.setAcceptTimes(accept);
-		problem.setProblemDegree(degree);
-		problem.setWrongAnswerTimes(wrong);
-		problem.setTimeLimitTimes(tle);
-		problem.setRuntimeErrorTimes(rte);
-		problem.setCompileErrorTimes(ce);
+		problem.setProblemDegree(0);
 		problem.setProblemPeople(problem_people);
 		problem.setPublicOrNot(IsPublic);
 		problem.setProblemInput(problem_input);

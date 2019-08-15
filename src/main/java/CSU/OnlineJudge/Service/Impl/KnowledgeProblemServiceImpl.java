@@ -69,6 +69,11 @@ public class KnowledgeProblemServiceImpl implements KnowledgeProblemService{
 		return kpd.AddMutiplyKnowledgeProblem(kp_list);
 	}
 
+	public Object DeleteMutiplyKnowledgeProblem(List<KnowledgeProblem> kp_list) {
+		// TODO Auto-generated method stub
+		return kpd.DeleteMutiplyKnowledgeProblem(kp_list);
+	}
+
 
 
 }

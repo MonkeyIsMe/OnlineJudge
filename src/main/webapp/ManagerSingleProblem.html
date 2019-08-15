@@ -21,49 +21,49 @@
     <div class="layui-input-inline myform">
         <label class="layui-input-inline">题目名称</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" id="add_problem_name">
+            <input type="text" class="layui-input" id="problem_name">
         </div>
     </div>
     <div class="layui-input-inline myform">
         <label class="layui-input-inline">题目提示</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" id="add_problem_hint">
+            <input type="text" class="layui-input" id="problem_hint">
         </div>
     </div>
     <div class="layui-input-inline myform">
         <label class="layui-input-inline">题目内存限制</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" id="add_problem_memory">
+            <input type="text" class="layui-input" id="problem_memory">
         </div>
     </div>
     <div class="layui-input-inline myform">
         <label class="layui-input-inline">题目时间限制</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" id="add_problem_time">
+            <input type="text" class="layui-input" id="problem_time">
         </div>
     </div>
     <div class="layui-input-inline myform">
         <label class="layui-input-inline">题目输入描述</label>
         <div class="layui-input-block">
-            <textarea name="desc" placeholder="请输入内容" class="layui-textarea" style="resize: none;height: 350px" id="add_problem_input"></textarea>
+            <textarea name="desc" placeholder="请输入内容" class="layui-textarea" style="resize: none;height: 350px" id="problem_input"></textarea>
         </div>
     </div>
     <div class="layui-input-inline myform">
         <label class="layui-input-inline">题目输出描述</label>
         <div class="layui-input-block">
-            <textarea name="desc" placeholder="请输入内容" class="layui-textarea" style="resize: none;height: 350px" id="add_problem_output"></textarea>
+            <textarea name="desc" placeholder="请输入内容" class="layui-textarea" style="resize: none;height: 350px" id="problem_output"></textarea>
         </div>
     </div>
     <div class="layui-input-inline myform">
         <label class="layui-input-inline">题面输入</label>
         <div class="layui-input-block">
-            <textarea name="desc" placeholder="请输入内容" class="layui-textarea" style="resize: none;height: 280px" id="add_case_input"></textarea>
+            <textarea name="desc" placeholder="请输入内容" class="layui-textarea" style="resize: none;height: 280px" id="acase_input"></textarea>
         </div>
     </div>
     <div class="layui-input-inline myform">
         <label class="layui-input-inline">题面输出</label>
         <div class="layui-input-block">
-            <textarea name="desc" placeholder="请输入内容" class="layui-textarea" style="resize: none;height: 280px" id="add_case_output"></textarea>
+            <textarea name="desc" placeholder="请输入内容" class="layui-textarea" style="resize: none;height: 280px" id="acase_output"></textarea>
         </div>
     </div>
     <div class="layui-input-inline myform">
@@ -76,7 +76,7 @@
     <div class="layui-input-inline probleminfo">
         <label class="layui-input-inline">题面信息</label>
         <div class="layui-input-block">
-            <textarea name="desc" placeholder="请输入内容" class="layui-textarea" style="resize: none;height: 500px" id="add_problem_info"></textarea>
+            <textarea name="desc" placeholder="请输入内容" class="layui-textarea" style="resize: none;height: 500px" id="problem_content"></textarea>
         </div>
     </div>
 	<div class="layui-form-item" style="margin-top:25px">
@@ -84,12 +84,17 @@
 	    <div class="layui-input-block" id="allTime">
 	    </div>
   </div>
-    <div class="layui-form-item" style="margin-top:30px;margin-left:30%">
+    <div class="layui-form-item" style="margin-top:30px;margin-left:35%">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formDemo" id="AddProblem">立即提交</button>
+            <button class="layui-btn" lay-submit lay-filter="formDemo" id="UpdateProblem">立即提交</button>
             <!-- <button type="reset" class="layui-btn layui-btn-primary" id="test_reset">重置</button> -->
-            <button type="button" class="layui-btn layui-btn-primary runText1" id="pop-up">添加样例</button>
         </div>
     </div>
 </body>
+<script type="text/javascript">
+	layui.use('form', function(){
+		var form = layui.form;
+			 //监听提交
+			});
+</script>
 </html>

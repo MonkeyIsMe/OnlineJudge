@@ -24,4 +24,6 @@ public interface KnowledgeProblemService {
 	public int CountProblem(int KnowledgeId);
 	
 	public Object AddMutiplyKnowledgeProblem(List<KnowledgeProblem> kp_list);
+	
+	public Object DeleteMutiplyKnowledgeProblem(List<KnowledgeProblem> kp_list);
 }
