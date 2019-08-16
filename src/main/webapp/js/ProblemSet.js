@@ -248,10 +248,22 @@ $(document).ready(function(){
 				});
 			var jsonText = JSON.stringify(json);
             
+			var mflag = false;
+			var tflag = false;
+			
+			mflag = IsNumber(problem_memory);
+			tflag = IsNumber(problem_time);
+			
     		if(problem_name == null || problem_name == "" || problem_info == null || problem_info == "" || problem_input == null || problem_input == ""
     			|| problem_output == null || problem_output == "" || problem_hint == null || problem_hint == "" || problem_time == null || problem_time == ""
     				|| problem_memory == null || problem_memory == "" || problem_flag == null || problem_flag == ""){
     			alert("所有项均为非空!");
+    		}
+    		else if(mflag == false){
+    			alert("内存限制需要为数字!");
+    		}
+    		else if(tflag == false){
+    			alert("时间限制需要为数字!");
     		}
     		else{
                 $.post(
@@ -287,6 +299,10 @@ $(document).ready(function(){
 
 });
 
+function IsNumber(num){
+	var isnum = /^\d+$/.test(num);
+	return isnum;
+}
 
 function refresh(){
 	window.location.replace("ManagerProblemSet.html");
