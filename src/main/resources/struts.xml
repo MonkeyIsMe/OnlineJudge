@@ -127,7 +127,8 @@
 			<!-- 作业/考试题目关联  -->
 			<action name="AddManyWorkProblem" class="WorkProblemAction" method="AddManyWorkProblem" >
 			</action>
-			
+			<action name="QueryPublicProblem" class="WorkProblemAction" method="QueryPublicProblem" >
+			</action>
 			
 	</package>
 </struts>

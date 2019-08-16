@@ -12,6 +12,9 @@ var pname;
 var pdegree;
 var ppeople;
 var wp = [];
+var select_wp = [];
+
+
 
 $(document).ready(function(){
 	
@@ -81,7 +84,37 @@ $(document).ready(function(){
 	);
 	
 	
-
+    $.post(
+            "QueryPublicProblem.action",
+            {
+            	work_id:wid
+            },
+            function(data) {
+                var data = JSON.parse(data);
+                //console.log(data);
+                    for( var i = 0; i < data.length; i++ ) {
+                    	var json = {};
+                    	json.ProblemId = data[i].problemId;
+                    	select_wp.push(json);
+                        //动态创建一个tr行标签,并且转换成jQuery对象
+                        var $trTemp = $("<tr ></tr>");
+                        //往行里面追加 td单元格
+                        var WorkFlag;
+                        if(data[i].workFlag == 0) WorkFlag = "不公开";
+                        else WorkFlag = "公开";
+    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].problemId +"</td>");
+    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + WorkFlag +"</td>");
+    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemName  +"</td>");
+    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemDegree  +"</td>");
+    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].problemPeople  +"</td>");
+    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
+    			        		'<span class="choosed glyphicon glyphicon-trash" style="cursor:pointer;margin-left:15px"></span>'
+    			        		+"</td>");
+                        // $("#J_TbData").append($trTemp);
+                        $trTemp.appendTo("#selected_problem");
+                    }
+            }
+        );
 	
     $.post(
             "QueryProblemByKnowledgeId.action",
@@ -225,14 +258,31 @@ $(document).ready(function(){
 	
 	  $("#select_problem").on('click','.delete',function(){
 		    //获得当前行
-		   
+		  //console.log(465);
 		   
 		   var currentRow=$(this).closest("tr"); 
 		   var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
 		   
 		   for(var i = 0;i < wp.length; i++){
-			   if(wp[i].id == col1){
+			   if(wp[i].ProblemId == col1){
 				   wp.splice(i,1);
+			   }
+		   }
+		   
+		   $(this).closest("tr").remove(); 
+		   
+		  });
+	  
+	  $("#selected_problem").on('click','.choosed',function(){
+		    //获得当前行
+		   console.log();
+		   
+		   var currentRow=$(this).closest("tr"); 
+		   var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		   
+		   for(var i = 0;i < select_wp.length; i++){
+			   if(select_wp[i].ProblemId == col1){
+				   select_wp.splice(i,1);
 			   }
 		   }
 		   
@@ -246,6 +296,7 @@ $(document).ready(function(){
 		var json = {};
 		json.ProblemId = pid;
 		wp.push(json);
+		
 		
         var $trTemp = $("<tr ></tr>");
         //往行里面追加 td单元格
@@ -261,6 +312,31 @@ $(document).ready(function(){
         $trTemp.appendTo("#select_problem");
 	})
 	
+	$("#update_problem").click(function(){
+		
+		var json = {};
+		json.ProblemId = pid;
+		select_wp.push(json);
+		
+		
+        var $trTemp = $("<tr ></tr>");
+        //往行里面追加 td单元格
+        $trTemp.append("<td style=" + "text-align:center"  + ">"+ pid +"</td>");
+        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + pflag +"</td>");
+        $trTemp.append("<td style=" + "text-align:center"  + ">" + pflag +"</td>");
+        $trTemp.append("<td style=" + "text-align:center"  + ">" + pname  +"</td>");
+        $trTemp.append("<td style=" + "text-align:center"  + ">" + pdegree  +"</td>");
+        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
+        		'<span class="choosed glyphicon glyphicon-trash"  style="cursor:pointer;margin-left:15px"></span>'
+        		+"</td>");
+        // $("#J_TbData").append($trTemp);
+        $trTemp.appendTo("#selected_problem");
+	})
+	
+	$("#UpdateWP").click(function(){
+		var jsonText = JSON.stringify(select_wp);
+		console.log(jsonText);
+	})
 	
 	$("#AddWP").click(function(){
 		var jsonText = JSON.stringify(wp);
