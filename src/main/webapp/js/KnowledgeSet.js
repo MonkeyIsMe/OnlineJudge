@@ -170,25 +170,31 @@ $(document).ready(function(){
 			var name = $("#update_name").val();
 			var info = $("#update_info").val();
 			
-			$.post(
-					"UpdateKnowledge.action",
-					{
-						knowledge_id:kid,
-						knowledge_info:info,
-						knowledge_name:name,
-					},
-					function(data){
-						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-						if(data == "Fail"){
-							alert("修改失败！");
-							window.location.replace("ManagerKnowledgeSet.html");
+			if(name == null || name == "" || info == null || info == ""){
+				alert("所有项均为非空!");
+			}
+			else{
+				$.post(
+						"UpdateKnowledge.action",
+						{
+							knowledge_id:kid,
+							knowledge_info:info,
+							knowledge_name:name,
+						},
+						function(data){
+							data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+							if(data == "Fail"){
+								alert("修改失败！");
+								window.location.replace("ManagerKnowledgeSet.html");
+							}
+							else{
+								alert("修改成功!");
+								window.location.replace("ManagerKnowledgeSet.html");
+							}
 						}
-						else{
-							alert("修改成功!");
-							window.location.replace("ManagerKnowledgeSet.html");
-						}
-					}
-					);
+						);
+			}
+
 		})
 		
 		$("#add_know").click(function(){
@@ -196,24 +202,31 @@ $(document).ready(function(){
 			var name = $("#add_name").val();
 			var info = $("#add_info").val();
 			
-			$.post(
-					"AddKnowledge.action",
-					{
-						knowledge_info:info,
-						knowledge_name:name,
-					},
-					function(data){
-						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-						if(data == "Fail"){
-							alert("添加失败！");
-							window.location.replace("ManagerKnowledgeSet.html");
+			if(name == null || name == "" || info == null || info == ""){
+				alert("所有项均为非空!");
+			}
+			else{
+				$.post(
+						"AddKnowledge.action",
+						{
+							knowledge_info:info,
+							knowledge_name:name,
+						},
+						function(data){
+							data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+							if(data == "Fail"){
+								alert("添加失败！");
+								window.location.replace("ManagerKnowledgeSet.html");
+							}
+							else{
+								alert("添加成功!");
+								window.location.replace("ManagerKnowledgeSet.html");
+							}
 						}
-						else{
-							alert("添加成功!");
-							window.location.replace("ManagerKnowledgeSet.html");
-						}
-					}
-					);
+						);
+			}
+			
+
 		})
 });
 

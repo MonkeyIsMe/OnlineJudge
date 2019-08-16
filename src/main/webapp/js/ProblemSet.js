@@ -247,27 +247,42 @@ $(document).ready(function(){
 				json.push(obj);//向数组中添加元素  
 				});
 			var jsonText = JSON.stringify(json);
-            $.post(
-                    "AddProblem.action",
-                    {
-                        problem_name:problem_name,
-                        problem_hint:problem_hint,
-                        problem_memory:problem_memory,
-                        problem_time:problem_time,
-                        problem_input:problem_input,
-                        problem_output:problem_output,
-                        case_input:case_input,
-                        case_output:case_output,
-                        problem_info:problem_info,
-                        problem_flag:problem_flag,
-                        case_info:case_info,
-                        knowledge_info:jsonText,
-                    },
-                    function(data){
-                    	var data = JSON.parse(data);
-                        console.log(data.ProblemId)
-                    }
-                );
+            
+    		if(problem_name == null || problem_name == "" || problem_info == null || problem_info == "" || problem_input == null || problem_input == ""
+    			|| problem_output == null || problem_output == "" || problem_hint == null || problem_hint == "" || problem_time == null || problem_time == ""
+    				|| problem_memory == null || problem_memory == "" || problem_flag == null || problem_flag == ""){
+    			alert("所有项均为非空!");
+    		}
+    		else{
+                $.post(
+                        "AddProblem.action",
+                        {
+                            problem_name:problem_name,
+                            problem_hint:problem_hint,
+                            problem_memory:problem_memory,
+                            problem_time:problem_time,
+                            problem_input:problem_input,
+                            problem_output:problem_output,
+                            case_input:case_input,
+                            case_output:case_output,
+                            problem_info:problem_info,
+                            problem_flag:problem_flag,
+                            case_info:case_info,
+                            knowledge_info:jsonText,
+                        },
+                        function(data){
+                        	var data = JSON.parse(data);
+                            //console.log(data.ProblemId)
+                        	if(data.ProblemId != null){
+                        		alert("添加成功");
+                        		window.location.replace("ManagerProblemSet.html");
+                        	}
+                        }
+                    );
+    		}
+            
+
+
         })
 
 });

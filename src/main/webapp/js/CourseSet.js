@@ -184,27 +184,35 @@ $(document).ready(function(){
 			var teacher = $("#update_teacher").val();
 			var time = $("#update_time").val();
 			
-			$.post(
-					"UpdateCourse.action",
-					{
-						course_id:cid,
-						course_info:info,
-						course_name:name,
-						course_time:time,
-						course_teacher:teacher,
-					},
-					function(data){
-						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-						if(data == "Fail"){
-							alert("修改失败！");
-							window.location.replace("ManagerCourseSet.html");
+			if(name == null || name == "" || info == null || info == "" || teacher == "" || teacher == null || time == null || time == ""){
+				alert("所有项均为非空!");
+			}
+			else{
+				
+				
+				$.post(
+						"UpdateCourse.action",
+						{
+							course_id:cid,
+							course_info:info,
+							course_name:name,
+							course_time:time,
+							course_teacher:teacher,
+						},
+						function(data){
+							data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+							if(data == "Fail"){
+								alert("修改失败！");
+								window.location.replace("ManagerCourseSet.html");
+							}
+							else{
+								alert("修改成功!");
+								window.location.replace("ManagerCourseSet.html");
+							}
 						}
-						else{
-							alert("修改成功!");
-							window.location.replace("ManagerCourseSet.html");
-						}
-					}
-					);
+						);
+			}
+
 		})
 		
 		$("#add_course").click(function(){
@@ -214,26 +222,33 @@ $(document).ready(function(){
 			var teacher = $("#add_teacher").val();
 			var time = $("#add_time").val();
 			
-			$.post(
-					"AddCourse.action",
-					{
-						course_info:info,
-						course_name:name,
-						course_time:time,
-						course_teacher:teacher,
-					},
-					function(data){
-						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-						if(data == "Fail"){
-							alert("添加失败！");
-							window.location.replace("ManagerCourseSet.html");
+			if(name == null || name == "" || info == null || info == "" || teacher == "" || teacher == null || time == null || time == ""){
+				alert("所有项均为非空!");
+			}
+			else{
+				$.post(
+						"AddCourse.action",
+						{
+							course_info:info,
+							course_name:name,
+							course_time:time,
+							course_teacher:teacher,
+						},
+						function(data){
+							data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+							if(data == "Fail"){
+								alert("添加失败！");
+								window.location.replace("ManagerCourseSet.html");
+							}
+							else{
+								alert("添加成功!");
+								window.location.replace("ManagerCourseSet.html");
+							}
 						}
-						else{
-							alert("添加成功!");
-							window.location.replace("ManagerCourseSet.html");
-						}
-					}
-					);
+						);
+			}
+			
+
 		})
 });
 

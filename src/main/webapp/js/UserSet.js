@@ -183,26 +183,33 @@ $(document).ready(function(){
 			var info = $("#update_info").val();
 			var classroom = $("#update_classroom").val();
 			
-			$.post(
-					"UpdateUser.action",
-					{
-						user_id:sid,
-						user_info:info,
-						user_name:name,
-						user_classroom:classroom,
-					},
-					function(data){
-						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-						if(data == "Fail"){
-							alert("修改失败！");
-							window.location.replace("ManagerUserSet.html");
+			if(name == null || name == "" || info == null || info == "" || classroom == null || classroom == ""){
+				alert("所有项均为非空!");
+			}
+			else{
+				$.post(
+						"UpdateUser.action",
+						{
+							user_id:sid,
+							user_info:info,
+							user_name:name,
+							user_classroom:classroom,
+						},
+						function(data){
+							data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+							if(data == "Fail"){
+								alert("修改失败！");
+								window.location.replace("ManagerUserSet.html");
+							}
+							else{
+								alert("修改成功!");
+								window.location.replace("ManagerUserSet.html");
+							}
 						}
-						else{
-							alert("修改成功!");
-							window.location.replace("ManagerUserSet.html");
-						}
-					}
-					);
+						);
+			}
+			
+
 		})
 		
 		$("#add_user").click(function(){Ss
@@ -211,25 +218,32 @@ $(document).ready(function(){
 			var info = $("#add_info").val();
 			var classroom = $("#add_classroom").val();
 			
-			$.post(
-					"AddUser.action",
-					{
-						user_info:info,
-						user_name:name,
-						user_classroom:classroom,
-					},
-					function(data){
-						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-						if(data == "Fail"){
-							alert("添加失败！");
-							window.location.replace("ManagerUserSet.html");
+			if(name == null || name == "" || info == null || info == "" || classroom == null || classroom == ""){
+				alert("所有项均为非空!");
+			}
+			else{
+				$.post(
+						"AddUser.action",
+						{
+							user_info:info,
+							user_name:name,
+							user_classroom:classroom,
+						},
+						function(data){
+							data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+							if(data == "Fail"){
+								alert("添加失败！");
+								window.location.replace("ManagerUserSet.html");
+							}
+							else{
+								alert("添加成功!");
+								window.location.replace("ManagerUserSet.html");
+							}
 						}
-						else{
-							alert("添加成功!");
-							window.location.replace("ManagerUserSet.html");
-						}
-					}
-					);
+						);
+			}
+			
+
 		})
 });
 

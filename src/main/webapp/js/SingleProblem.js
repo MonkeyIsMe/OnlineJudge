@@ -108,35 +108,44 @@ $(document).ready(function(){
 		var jsonText = JSON.stringify(json);
 		//console.log(jsonText);
 		
-		$.post(
-				"QueryKnowledgeByProblemId.action",
-				{
-					problem_id:pid,
-					problem_name:problem_name,
-					problem_info:problem_content,
-					problem_hint:problem_hint,
-					problem_memory:problem_memory,
-					problem_time:problem_time,
-					problem_flag:problem_flag,
-					problem_input:problem_input,
-					problem_output:problem_output,
-					knowledge_info:jsonText,
-					case_input:case_input,
-					case_output:case_output,
-				},
-				function(data){
-					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-					if(data == "Fail"){
-						alert("更新失败！");
-					    var url = "ManagerSingleProblem.html?ProblemId=" + pid;
-					    window.location.replace(url);
+		if(problem_name == null || problem_name == "" || problem_content == null || problem_content == "" || problem_input == null || problem_input == ""
+			|| problem_output == null || problem_output == "" || problem_hint == null || problem_hint == "" || problem_time == null || problem_time == ""
+				|| problem_memory == null || problem_memory == "" || problem_flag == null || problem_flag == ""){
+			alert("所有项均为非空!");
+		}
+		else{
+			$.post(
+					"QueryKnowledgeByProblemId.action",
+					{
+						problem_id:pid,
+						problem_name:problem_name,
+						problem_info:problem_content,
+						problem_hint:problem_hint,
+						problem_memory:problem_memory,
+						problem_time:problem_time,
+						problem_flag:problem_flag,
+						problem_input:problem_input,
+						problem_output:problem_output,
+						knowledge_info:jsonText,
+						case_input:case_input,
+						case_output:case_output,
+					},
+					function(data){
+						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+						if(data == "Fail"){
+							alert("更新失败！");
+						    var url = "ManagerSingleProblem.html?ProblemId=" + pid;
+						    window.location.replace(url);
+						}
+						else{
+							alert("更新成功!");
+							window.location.replace("ManagerProblemSet.html");
+						}
 					}
-					else{
-						alert("更新成功!");
-						window.location.replace("ManagerProblemSet.html");
-					}
-				}
-				);
+					);
+		}
+		
+
 		
 	})
 	

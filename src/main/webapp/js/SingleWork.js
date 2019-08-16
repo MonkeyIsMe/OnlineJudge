@@ -213,28 +213,35 @@ $(document).ready(function(){
 		var wflag = 0;
 		if(work_flag == "考试") wflag = 1;
 		
-		$.post(
-				"UpdateWork.action",
-				{
-					work_id:wid,
-					work_name:work_name,
-					work_starttime:work_begin,
-					work_endtime:work_end,
-					work_info:work_info,
-					work_flag:wflag
-				}, 
-				function(data) {
-					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-					if(data == "Success"){
-						alert("更新成功！");
-						window.location.replace("ManagerWorkSet.html");
+		if(work_name == null || work_name == "" || work_begin == null || work_begin == "" || work_end == null || work_end == "" || work_info == null || work_info == "" ){
+			alert("所有项均为非空!");
+		}
+		else{
+			$.post(
+					"UpdateWork.action",
+					{
+						work_id:wid,
+						work_name:work_name,
+						work_starttime:work_begin,
+						work_endtime:work_end,
+						work_info:work_info,
+						work_flag:wflag
+					}, 
+					function(data) {
+						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+						if(data == "Success"){
+							alert("更新成功！");
+							window.location.replace("ManagerWorkSet.html");
+						}
+						else{
+							alert("更新失败!");
+							window.location.replace("ManagerWorkSet.html");
+						}
 					}
-					else{
-						alert("更新失败!");
-						window.location.replace("ManagerWorkSet.html");
-					}
-				}
-		);
+			);
+		}
+		
+
 		
 	})
 	
