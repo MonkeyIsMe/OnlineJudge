@@ -155,16 +155,12 @@ public class WorkAction extends ActionSupport{
 		String work_name = request.getParameter("work_name");
 		String work_starttime = request.getParameter("work_starttime");
 		String work_endtime = request.getParameter("work_endtime");
-		String work_createtime = request.getParameter("work_createtime");
 		String work_info = request.getParameter("work_info");
 		String work_flag = request.getParameter("work_flag");
-		String calss_id = request.getParameter("calss_id");
-		String work_onwer = request.getParameter("work_onwer");
+
 		
-		int cid = Integer.valueOf(calss_id);
 		int wid = Integer.valueOf(work_id);
 		
-		boolean flag = false;
 		work = WorkService.queryWork(wid);
 		
 		if(work == null) {
@@ -177,13 +173,15 @@ public class WorkAction extends ActionSupport{
 		work.setWorkName(work_name);
 		work.setWorkInfo(work_info);
 		work.setWorkFlag(work_flag);
-		work.setClassId(cid);
-		work.setWorkOwner(work_onwer);
 		work.setWorkBeginTime(work_starttime);
 		work.setWorkEndTime(work_endtime);
-		work.setWorkCreatTime(work_createtime);
 		
 		WorkService.updateWork(work);
+		
+		out.println("Success");
+		out.flush(); 
+		out.close();
+		return ;
 		
 	}
 	

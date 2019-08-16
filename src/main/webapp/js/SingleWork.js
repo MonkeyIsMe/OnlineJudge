@@ -70,7 +70,6 @@ $(document).ready(function(){
 				$("#update_owner").val(datas.workOwner);
 				$("#update_begin").val(datas.workBeginTime);
 				$("#update_end").val(datas.workEndTime);
-				$("#update_create").val(datas.workCreatTime);
 				$("#update_info").append(datas.workInfo);
 				if(datas.workFlag == 1){
 					$("input[name=work][value=exam]").attr("checked",true);
@@ -170,6 +169,41 @@ $(document).ready(function(){
 	        );
 	})
 	
+	$("#update_work").click(function(){
+		
+		var work_name = $("#update_name").val();
+		var work_begin = $("#update_begin").val();
+		var work_end = $("#update_end").val();
+		var work_info = $("#update_info").val();
+		var work_flag = $("input[type='radio']:checked").val();
+		
+		var wflag = 0;
+		if(work_flag == "考试") wflag = 1;
+		
+		$.post(
+				"UpdateWork.action",
+				{
+					work_id:wid,
+					work_name:work_name,
+					work_starttime:work_begin,
+					work_endtime:work_end,
+					work_info:work_info,
+					work_flag:wflag
+				}, 
+				function(data) {
+					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+					if(data == "Success"){
+						alert("更新成功！");
+						window.location.replace("ManagerWorkSet.html");
+					}
+					else{
+						alert("更新失败!");
+						window.location.replace("ManagerWorkSet.html");
+					}
+				}
+		);
+		
+	})
 	
 	  $("#KnowList").on('click','.find',function(){
 		    //获得当前行
@@ -188,6 +222,7 @@ $(document).ready(function(){
 		    
 		  });
 	
+	
 	  $("#select_problem").on('click','.delete',function(){
 		    //获得当前行
 		   
@@ -205,6 +240,7 @@ $(document).ready(function(){
 		   
 		  });
 	
+	  
 	$("#add_problem").click(function(){
 		
 		var json = {};

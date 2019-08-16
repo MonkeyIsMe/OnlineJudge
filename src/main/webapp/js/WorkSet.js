@@ -160,7 +160,7 @@ $(document).ready(function(){
 		    var currentRow=$(this).closest("tr"); 
 		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
 		    var url = "ManageSingleWork.html?WorkId=" + col1;
-		    window.open(url);
+		    window.location.replace(url);
 		    
 		  });
 	  
@@ -169,7 +169,7 @@ $(document).ready(function(){
 		    var currentRow=$(this).closest("tr"); 
 		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
 		    var url = "UpdateProblemForWork.html?WorkId=" + col1;
-		    window.open(url);
+		    window.location.replace(url);
 		    
 		  });
 	  
