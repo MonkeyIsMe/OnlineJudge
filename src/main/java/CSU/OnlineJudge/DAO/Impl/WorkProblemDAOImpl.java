@@ -75,4 +75,23 @@ public class WorkProblemDAOImpl extends HibernateDaoSupport implements WorkProbl
 		});
 	}
 
+	public Object DeleteMutiplyWorkProblem(final List<WorkProblem> wp_list) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			public Object doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				for(int i = 0; i < wp_list.size(); i ++) {
+					session.delete(wp_list.get(i));
+                    if (i % 50 == 0) {  
+                        session.flush();  
+                        session.clear();  
+                    }  
+				}
+				return null;
+			}
+			
+		});
+	}
+
 }
