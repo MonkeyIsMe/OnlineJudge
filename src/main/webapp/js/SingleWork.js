@@ -335,7 +335,25 @@ $(document).ready(function(){
 	
 	$("#UpdateWP").click(function(){
 		var jsonText = JSON.stringify(select_wp);
-		console.log(jsonText);
+		//console.log(jsonText);
+		$.post(
+				"UpdateWorkProblem.action",
+				{
+					problem_info:jsonText,
+					work_id:wid
+				}, 
+				function(data) {
+					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+					if(data == "Success"){
+						alert("更新成功！");
+						window.location.replace("ManagerWorkSet.html");
+					}
+					else{
+						alert("更新失败!");
+						window.location.replace("ManagerWorkSet.html");
+					}
+				}
+		);
 	})
 	
 	$("#AddWP").click(function(){

@@ -129,6 +129,8 @@
 			</action>
 			<action name="QueryPublicProblem" class="WorkProblemAction" method="QueryPublicProblem" >
 			</action>
+			<action name="UpdateWorkProblem" class="WorkProblemAction" method="UpdateWorkProblem" >
+			</action>
 			
 	</package>
 </struts>
