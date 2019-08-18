@@ -17,7 +17,7 @@ import org.json.JSONObject;
 public class Submission {
 
 	@Id
-	@Column(name="log_id")
+	@Column(name="submission_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int SubmissionId;  // 主键
 	
@@ -47,8 +47,6 @@ public class Submission {
 	
 	@Column(name="problem_id")
 	private int ProblemId;  // 题目编号
-	
-	
 	
 	
 	public int getSubmissionId() {

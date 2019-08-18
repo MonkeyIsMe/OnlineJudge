@@ -132,6 +132,9 @@
 			<action name="UpdateWorkProblem" class="WorkProblemAction" method="UpdateWorkProblem" >
 			</action>
 			
+			<!-- 代码  -->
+			<action name="AddCode" class="CodeAction" method="AddCode"></action>
+			
 	</package>
 </struts>
 	

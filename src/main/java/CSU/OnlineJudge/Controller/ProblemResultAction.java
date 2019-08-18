@@ -27,13 +27,13 @@ public class ProblemResultAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String problem_id = request.getParameter("problem_id");
-		String problem_result = request.getParameter("problem_result");
+		String case_result = request.getParameter("case_result");
 		String user_account = request.getParameter("user_account");
 		
 		int pid = Integer.valueOf(problem_id);
 		
 		pr.setProblemId(pid);
-		pr.setProblemResult(problem_result);
+		pr.setCaseResult(case_result);
 		pr.setUserAccount(user_account);
 		
 		ProblemResultService.AddProblemResult(pr);

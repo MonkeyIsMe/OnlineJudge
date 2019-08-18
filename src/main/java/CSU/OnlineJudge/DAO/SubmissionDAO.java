@@ -6,7 +6,7 @@ import CSU.OnlineJudge.Model.Submission;
 
 public interface SubmissionDAO {
 	
-	public void addSubmission(Submission submission);
+	public int addSubmission(Submission submission);
 	
 	public void updateSubmission(Submission submission);
 	

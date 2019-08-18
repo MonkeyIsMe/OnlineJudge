@@ -19,8 +19,8 @@ public class ProblemResult {
 	@Column(name="problem_id")
 	private int ProblemId;  //题目的编号
 	
-	@Column(name="problem_result")
-	private String ProblemResult;  //题目的结果
+	@Column(name="case_result")
+	private String CaseResult;  //题目的结果
 	
 	@Column(name="user_id")
 	private int UserId; //用户编号
@@ -43,13 +43,13 @@ public class ProblemResult {
 	public void setProblemId(int problemId) {
 		ProblemId = problemId;
 	}
-
-	public String getProblemResult() {
-		return ProblemResult;
+	
+	public String getCaseResult() {
+		return CaseResult;
 	}
 
-	public void setProblemResult(String problemResult) {
-		ProblemResult = problemResult;
+	public void setCaseResult(String caseResult) {
+		CaseResult = caseResult;
 	}
 
 	public int getUserId() {

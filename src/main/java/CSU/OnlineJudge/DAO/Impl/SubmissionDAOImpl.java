@@ -17,9 +17,11 @@ import CSU.OnlineJudge.Utils.HibernateUtil;
 @Transactional
 public class SubmissionDAOImpl extends HibernateDaoSupport implements SubmissionDAO{
 
-	public void addSubmission(Submission submission) {
+	public int addSubmission(Submission submission) {
 		// TODO Auto-generated method stub
-		getHibernateTemplate().save(submission);
+		super.getHibernateTemplate().save(submission);
+		int id = submission.getSubmissionId();
+		return id;
 	}
 
 	public void updateSubmission(Submission submission) {

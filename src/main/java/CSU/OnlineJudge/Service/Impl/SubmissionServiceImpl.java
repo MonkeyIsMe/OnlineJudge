@@ -22,9 +22,9 @@ public class SubmissionServiceImpl implements SubmissionService{
 		this.sd = sd;
 	}
 
-	public void addSubmission(Submission submission) {
+	public int addSubmission(Submission submission) {
 		// TODO Auto-generated method stub
-		sd.addSubmission(submission);
+		return sd.addSubmission(submission);
 	}
 
 	public void updateSubmission(Submission submission) {

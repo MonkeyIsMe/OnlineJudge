@@ -10,11 +10,11 @@ import javax.persistence.Table;
 import org.json.JSONObject;
 
 @Entity
-@Table(name="tab_work")
+@Table(name="tab_workcourse")
 public class WorkCourse {
 	
 	@Id
-	@Column(name="pw_id")
+	@Column(name="wc_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int WorkCourseId;  // 主键
 	

@@ -21,7 +21,7 @@ public class ProblemDAOImpl extends HibernateDaoSupport implements ProblemDAO{
 	public int addProblem(Problem problem) {
 		// TODO Auto-generated method stub
 		super.getHibernateTemplate().save(problem);
-		System.out.println(problem);
+		//System.out.println(problem);
 		int id = problem.getProblemId();
 		return id;
 	}
