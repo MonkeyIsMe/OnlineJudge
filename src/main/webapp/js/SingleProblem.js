@@ -99,6 +99,8 @@ $(document).ready(function(){
 		var problem_flag = $('input:radio:checked').val();
 		var case_input = $("#case_input").val();
 		var case_output = $("#case_output").val();
+		
+		//获得所有和题目绑定的知识点
   		var json =[];
 		$('input[name="know"]:checked').each(function(){
 			var obj = {};

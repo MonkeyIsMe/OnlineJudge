@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -40,9 +41,12 @@ public class CodeAction extends ActionSupport{
 		
 		String code_name = request.getParameter("code_name");
 		String code_info = request.getParameter("code_info");
-		String user_account = request.getParameter("user_account");
+		//String user_account = request.getParameter("user_account");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("user_account");
 		code.setCodeInfo(code_info);
+		
 		code.setCodeName(code_name);
 		code.setUserAccount(user_account);
 		
