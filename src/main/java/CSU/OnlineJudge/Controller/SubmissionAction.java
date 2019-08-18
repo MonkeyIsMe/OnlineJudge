@@ -32,7 +32,7 @@ public class SubmissionAction extends ActionSupport{
 		SubmissionService = submissionService;
 	}
 
-
+	//增加一个提交的记录
 	public void AddSubmission() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
@@ -42,38 +42,41 @@ public class SubmissionAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String user_id = request.getParameter("user_id");
 		String submission_result = request.getParameter("submission_result");
 		String submit_time = request.getParameter("submit_time");
 		String submission_length = request.getParameter("submission_length");
-		String submission_time = request.getParameter("submission_time");
-		String submission_memory = request.getParameter("submission_memory");
+		//String submission_time = request.getParameter("submission_time");
+		//String submission_memory = request.getParameter("submission_memory");
 		String user_account = request.getParameter("user_account");
 		String submission_type = request.getParameter("submission_type");
 		String problem_id = request.getParameter("problem_id");
 		
-		int uid = Integer.valueOf(user_id);
 		int pid = Integer.valueOf(problem_id);
 		int length = Integer.valueOf(submission_length);
-		int memory = Integer.valueOf(submission_memory);
-		int time = Integer.valueOf(submission_time);
+		//int memory = Integer.valueOf(submission_memory);
+		//int time = Integer.valueOf(submission_time);
 		
-		submission.setStudentId(uid);
 		submission.setSubmissionResult(submission_result);
 		submission.setSubmissionTime(submit_time);
 		submission.setCodeLength(length);
-		submission.setCodeMemory(memory);
-		submission.setCodeTime(time);
+		//submission.setCodeMemory(memory);
+		//submission.setCodeTime(time);
 		submission.setUserAccount(user_account);
 		submission.setCodeType(submission_type);
 		submission.setProblemId(pid);
 		
-		SubmissionService.addSubmission(submission);
+		int sid = SubmissionService.addSubmission(submission);
 		
+		JSONObject jo = new JSONObject();
+		jo.put("SubmissionId", sid);
+		out.println(jo.toString());
+		out.flush(); 
+		out.close();
 	}
 	
 	
-	public void DeleteSubmission() throws Exception{
+	//更新一个提交记录
+	public void UpdateSubmission() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
 		HttpServletRequest request= ServletActionContext.getRequest();
@@ -82,22 +85,23 @@ public class SubmissionAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String submission_id = request.getParameter("submission_id");
+		String submission_result = request.getParameter("submission_result");
+		String submission_length = request.getParameter("submission_length");
+		String submission_time = request.getParameter("submission_time");
+		String submission_memory = request.getParameter("submission_memory");
 		
-		int sid = Integer.valueOf(submission_id);
+		int length = Integer.valueOf(submission_length);
+		int memory = Integer.valueOf(submission_memory);
+		int time = Integer.valueOf(submission_time);
 		
-		submission = SubmissionService.querySubmission(sid);
-		if(submission == null) {
-			out.println("Fail");
-			out.flush(); 
-			out.close();
-			return ;
-		}
+		submission.setSubmissionResult(submission_result);
+		submission.setCodeLength(length);
+		submission.setCodeMemory(memory);
+		submission.setCodeTime(time);
 		
-		SubmissionService.deleteSubmission(submission);
-		
+		SubmissionService.updateSubmission(submission);
+
 	}
-	
 	
 	//查询指定提交
 	public void QuerySingleSubmission() throws Exception{
