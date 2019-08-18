@@ -16,7 +16,7 @@ import net.sf.json.JSONArray;
 public class WorkUserRecordAction extends ActionSupport{
 
 	private WorkUserRecordService WorkUserRecordService;
-	private WorkUserRecord wur;
+	private WorkUserRecord wur = new WorkUserRecord();
 	
 	public WorkUserRecordService getWorkUserRecordService() {
 		return WorkUserRecordService;

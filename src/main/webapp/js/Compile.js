@@ -1,13 +1,44 @@
-$(document).ready(function(){
-    $("#head").load('MainHead.html');
-})
-
-
 let first; //存放一个选择框
 var array = [];
 
 var choosed;
 var i = 0;
+
+$(document).ready(function(){
+    $("#head").load('MainHead.html');
+    
+    
+    $("#saveserver").click(function(){
+    	var val = $('input[name="code"]:checked').val(); 
+    	//alert(val);
+    	for(var i = 0; i <array.length; i ++){
+    		//console.log(array);
+    		if(array[i].key == val){
+    			$.post(
+    					"AddCode.action",
+    					{
+    						code_name:val,
+    						code_info:array[i].value
+    					},
+    					function(data){
+    						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+    						if(data == "Fail"){
+    							alert("删除失败！");
+    							//window.location.replace("ManagerUserSet.html");
+    						}
+    						else{
+    							alert("删除成功!");
+    							//window.location.replace("ManagerUserSet.html");
+    						}
+    					}
+    					);
+    		}
+    	}
+    })
+})
+
+
+
 
 //编译器
 ace.require("ace/ext/language_tools");

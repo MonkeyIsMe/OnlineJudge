@@ -14,7 +14,7 @@ import CSU.OnlineJudge.Service.WorkCaseRecordService;
 public class WorkCaseRecordAction extends ActionSupport{
 
 	private WorkCaseRecordService WorkCaseRecordService;
-	private WorkCaseRecord wcr;
+	private WorkCaseRecord wcr = new WorkCaseRecord();
 	
 	public WorkCaseRecordService getWorkCaseRecordService() {
 		return WorkCaseRecordService;

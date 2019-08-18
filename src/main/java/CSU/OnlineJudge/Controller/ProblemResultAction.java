@@ -14,7 +14,7 @@ import CSU.OnlineJudge.Service.ProblemResultService;
 public class ProblemResultAction extends ActionSupport{
 	
 	private ProblemResultService ProblemResultService;
-	private ProblemResult pr;
+	private ProblemResult pr = new ProblemResult();
 	
 	//添加一个题目用户结果的关联
 	public void AddProblemResult() throws Exception{

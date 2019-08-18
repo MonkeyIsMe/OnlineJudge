@@ -45,8 +45,8 @@ public class CodeAction extends ActionSupport{
 		
 		HttpSession session = request.getSession();
 		String user_account = (String) session.getAttribute("user_account");
-		code.setCodeInfo(code_info);
 		
+		code.setCodeInfo(code_info);
 		code.setCodeName(code_name);
 		code.setUserAccount(user_account);
 		

@@ -17,11 +17,9 @@ import net.sf.json.JSONObject;
 
 public class SubmissionAction extends ActionSupport{
 
-	private Submission submission =  null;
+	private Submission submission = new Submission();
 	private SubmissionService SubmissionService;
 	
-	
-
 
 	public SubmissionService getSubmissionService() {
 		return SubmissionService;
