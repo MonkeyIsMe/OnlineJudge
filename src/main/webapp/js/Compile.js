@@ -14,6 +14,7 @@ $(document).ready(function(){
     	for(var i = 0; i <array.length; i ++){
     		//console.log(array);
     		if(array[i].key == val){
+    			//console.log(array[i]);
     			$.post(
     					"AddCode.action",
     					{
@@ -23,11 +24,11 @@ $(document).ready(function(){
     					function(data){
     						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
     						if(data == "Fail"){
-    							alert("删除失败！");
+    							alert("保存失败！");
     							//window.location.replace("ManagerUserSet.html");
     						}
     						else{
-    							alert("删除成功!");
+    							alert("保存成功!");
     							//window.location.replace("ManagerUserSet.html");
     						}
     					}
