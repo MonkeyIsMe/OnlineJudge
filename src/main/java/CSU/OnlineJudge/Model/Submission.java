@@ -48,7 +48,18 @@ public class Submission {
 	@Column(name="problem_id")
 	private int ProblemId;  // 题目编号
 	
+	@Column(name="submission_code")
+	private String SubmissionCode; //提交的代码
 	
+	
+	public String getSubmissionCode() {
+		return SubmissionCode;
+	}
+
+	public void setSubmissionCode(String submissionCode) {
+		SubmissionCode = submissionCode;
+	}
+
 	public int getSubmissionId() {
 		return SubmissionId;
 	}
@@ -141,6 +152,8 @@ public class Submission {
 		jo.put("CodeType", this.CodeType);
 		jo.put("StudentId", this.StudentId);
 		jo.put("ProblemId", this.ProblemId);
+		jo.put("SubmissionCode", this.SubmissionCode);
+		
 		return jo;
 	}
 	

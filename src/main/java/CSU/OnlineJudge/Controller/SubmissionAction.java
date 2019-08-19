@@ -9,9 +9,12 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.Submission;
+import CSU.OnlineJudge.Service.ProblemService;
 import CSU.OnlineJudge.Service.SubmissionService;
 import CSU.OnlineJudge.Service.Impl.SubmissionServiceImpl;
+import CSU.OnlineJudge.Utils.JudgeUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -19,7 +22,8 @@ public class SubmissionAction extends ActionSupport{
 
 	private Submission submission = new Submission();
 	private SubmissionService SubmissionService;
-	
+	private Problem problem = new Problem();
+	private ProblemService ProblemService;
 
 	public SubmissionService getSubmissionService() {
 		return SubmissionService;
@@ -29,6 +33,17 @@ public class SubmissionAction extends ActionSupport{
 	public void setSubmissionService(SubmissionService submissionService) {
 		SubmissionService = submissionService;
 	}
+
+	
+	public ProblemService getProblemService() {
+		return ProblemService;
+	}
+
+
+	public void setProblemService(ProblemService problemService) {
+		ProblemService = problemService;
+	}
+
 
 	//增加一个提交的记录
 	public void AddSubmission() throws Exception{
@@ -40,21 +55,18 @@ public class SubmissionAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String submission_result = request.getParameter("submission_result");
+		//String submission_result = request.getParameter("submission_result");
 		String submit_time = request.getParameter("submit_time");
 		String submission_length = request.getParameter("submission_length");
-		//String submission_time = request.getParameter("submission_time");
-		//String submission_memory = request.getParameter("submission_memory");
 		String user_account = request.getParameter("user_account");
 		String submission_type = request.getParameter("submission_type");
 		String problem_id = request.getParameter("problem_id");
+		String submission_code = request.getParameter("submission_code");
 		
 		int pid = Integer.valueOf(problem_id);
 		int length = Integer.valueOf(submission_length);
-		//int memory = Integer.valueOf(submission_memory);
-		//int time = Integer.valueOf(submission_time);
 		
-		submission.setSubmissionResult(submission_result);
+		//submission.setSubmissionResult(submission_result);
 		submission.setSubmissionTime(submit_time);
 		submission.setCodeLength(length);
 		//submission.setCodeMemory(memory);
@@ -72,6 +84,45 @@ public class SubmissionAction extends ActionSupport{
 		out.close();
 	}
 	
+	//获得提交的结果
+	public void GetSubmissionResult() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String submission_id = request.getParameter("submission_id");
+		
+		int sid = Integer.valueOf(submission_id);
+		
+		submission = SubmissionService.querySubmission(sid);
+		
+		int pid = submission.getProblemId();
+		problem = ProblemService.QueryProblem(pid);
+		int time = problem.getTimeLimitTimes();
+		int memory = problem.getProblemMemory();
+		String lang = submission.getCodeType();
+		String code = submission.getSubmissionCode();
+		
+		JudgeUtil judger = new JudgeUtil();
+		String json = judger.DealCase(pid, lang, time, memory, code);
+		String result_str = judger.Judger(json);
+		
+		JSONObject result_ja = JSONObject.fromObject(result_str);
+		String result = result_ja.getString("result");
+		String result_time = result_ja.getString("time");
+		String result_memory = result_ja.getString("memory");
+		
+		submission.setCodeMemory(Integer.valueOf(result_memory));
+		submission.setCodeTime(Integer.valueOf(result_time));
+		submission.setSubmissionResult(result);
+		SubmissionService.updateSubmission(submission);
+		
+		
+	}
 	
 	//更新一个提交记录
 	public void UpdateSubmission() throws Exception{
@@ -83,6 +134,7 @@ public class SubmissionAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		String submission_id = request.getParameter("submission_id");
 		String submission_result = request.getParameter("submission_result");
 		String submission_length = request.getParameter("submission_length");
 		String submission_time = request.getParameter("submission_time");
@@ -91,6 +143,9 @@ public class SubmissionAction extends ActionSupport{
 		int length = Integer.valueOf(submission_length);
 		int memory = Integer.valueOf(submission_memory);
 		int time = Integer.valueOf(submission_time);
+		int sid = Integer.valueOf(submission_id);
+		
+		submission = SubmissionService.querySubmission(sid);
 		
 		submission.setSubmissionResult(submission_result);
 		submission.setCodeLength(length);

@@ -16,7 +16,9 @@ import net.sf.json.JSONObject;
 public class JudgeUtil {
 	
 	//发送http请求
-	public String Judger(String url, String param) {
+	public String Judger( String param) {
+		
+		 String url = "http://192.168.1.192:5000/judge";
 		
 		PrintWriter out = null;
         BufferedReader in = null;
@@ -68,11 +70,10 @@ public class JudgeUtil {
 	}
 	
 	//合成样例
-	public String DealCase(String ProblemId,String lang,int time,int memory,String code) {
+	public String DealCase(int ProblemId,String lang,int time,int memory,String code) {
 		
 		CaseService cs = new CaseServiceImpl();
-		int pid = Integer.valueOf(ProblemId);
-		List<Case> CaseList = cs.GetCaseByFlag(pid, 1);
+		List<Case> CaseList = cs.GetCaseByFlag(ProblemId, 1);
     	JSONObject finaljo = new JSONObject();
     	JSONArray caseja = new JSONArray();
     	JSONObject casejo = new JSONObject();
@@ -92,6 +93,10 @@ public class JudgeUtil {
     	
     	
 		return finaljo.toString();
+	}
+	
+	public void ResultUtil() {
+		
 	}
 	
 }
