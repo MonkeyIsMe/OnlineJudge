@@ -25,3 +25,14 @@ $(function(){
 	);
 	
 });
+
+
+$(function(){
+	
+	$("#submit").click(function(){
+			var url = "ProblemCode.html?ProblemId=" + pid;
+			window.location.href = url;
+	})
+	
+});
+
