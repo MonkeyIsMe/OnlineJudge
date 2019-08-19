@@ -135,6 +135,10 @@
 			<!-- 代码  -->
 			<action name="AddCode" class="CodeAction" method="AddCode"></action>
 			
+			<!-- 代码  -->
+			<action name="AddSubmission" class="SubmissionAction" method="AddSubmission"></action>
+			<action name="GetSubmissionResult" class="SubmissionAction" method="GetSubmissionResult"></action>
+			
 	</package>
 </struts>
 	

@@ -77,7 +77,10 @@
 		<property name="ProblemService" ref="ProblemService" ></property>
 		<property name="WorkProblemService" ref="WorkProblemService" ></property>
 	</bean>
-	
+	<bean name="SubmissionAction" class="CSU.OnlineJudge.Controller.SubmissionAction" scope="prototype" >
+		<property name="ProblemService" ref="ProblemService" ></property>
+		<property name="SubmissionService" ref="SubmissionService" ></property>
+	</bean>
 	
 	<!-- service -->
  	<bean name="CaseService" class="CSU.OnlineJudge.Service.Impl.CaseServiceImpl" >
