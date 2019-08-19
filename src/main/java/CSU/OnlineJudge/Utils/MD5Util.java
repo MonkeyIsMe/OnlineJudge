@@ -2,7 +2,7 @@ package CSU.OnlineJudge.Utils;
 
 import java.security.MessageDigest;
 
-public class MD5 {
+public class MD5Util {
     public static String md5(String inStr) {
         MessageDigest md5 = null;
         try{
