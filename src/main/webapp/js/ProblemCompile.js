@@ -46,10 +46,13 @@ $(document).ready(function(){
     $("#submit").click(function(){
     	
 		$.post(
-				"AddCode.action",
+				"AddSubmission.action",
 				{
-					code_name:val,
-					code_info:array[i].value
+					submit_time:"",
+					submission_length:"",
+					submission_type:"",
+					problem_id:pid,
+					submission_code:submission_code,
 				},
 				function(data){
 					data = data.replace(/^\s*/, "").replace(/\s*$/, "");

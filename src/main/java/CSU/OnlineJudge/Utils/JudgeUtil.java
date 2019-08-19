@@ -16,7 +16,7 @@ import net.sf.json.JSONObject;
 public class JudgeUtil {
 	
 	//发送http请求
-	public String Judger( String param) {
+	public String Judger(String param) {
 		
 		 String url = "http://192.168.1.192:5000/judge";
 		
@@ -66,6 +66,7 @@ public class JudgeUtil {
                 ex.printStackTrace();
             }
         }
+        
         return result;
 	}
 	
@@ -95,7 +96,17 @@ public class JudgeUtil {
 		return finaljo.toString();
 	}
 	
-	public void ResultUtil() {
+	//每个样例结果的处理
+	public void ResultUtil(String result,int ProblemId) {
+		
+		JSONObject jo = JSONObject.fromObject(result);
+		String case_info =  jo.getString("test_cases");
+		JSONArray ja = JSONArray.fromObject(case_info);
+		for(int i = 0; i < ja.size(); i ++) {
+			JSONObject cjo = ja.getJSONObject(i);
+			String error = cjo.getString("error_message");
+			String res = cjo.getString("result");
+		}
 		
 	}
 	
