@@ -213,7 +213,7 @@ $(document).ready(function(){
 		})
 		
 		
-		$("#add_user").click(function(){Ss
+		$("#add_user").click(function(){
 			
 			var name = $("#add_name").val();
 			var info = $("#add_info").val();

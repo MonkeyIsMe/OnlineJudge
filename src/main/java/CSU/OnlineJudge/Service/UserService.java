@@ -20,4 +20,6 @@ public interface UserService {
 	
 	public int CountUser();
 	
+	public List<User> QueryAcceptNumber(int row,int PageSize);
+	
 }

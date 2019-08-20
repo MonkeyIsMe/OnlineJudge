@@ -230,7 +230,7 @@ public class UserAction extends ActionSupport{
         out.close();
 		
 	}
-	
+
 	
 	//查询学生总数
 	public void CountUser() throws Exception{
@@ -248,6 +248,46 @@ public class UserAction extends ActionSupport{
 		jo.put("UserCount", cnt);
 		
 		out.println(jo.toString());
+        out.flush(); 
+        out.close();
+		
+	}
+	
+	//查询所有学生正确排名
+	public void QueryAcceptRank() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String page = request.getParameter("page");
+		String size = request.getParameter("limit");
+		
+		int row = Integer.valueOf(page);
+		int PageSize = Integer.valueOf(size);
+		
+		List<User> UserList = UserService.QueryUserByPageSize(row, PageSize);
+		
+		JSONArray ja = new JSONArray();
+		for(User u : UserList) {
+			
+			JSONObject jo = new JSONObject();
+			
+			String uname = u.getUserName();
+			String uclass = u.getStudentClassroom();
+			String uaccount = u.getUserAccount();
+			int ucnt = u.getAcceptTimes();
+			
+			jo.put("username", uname);
+			jo.put("userclass", uclass);
+			jo.put("useraccount", uaccount);
+			jo.put("usercnt", ucnt);
+			ja.add(jo);
+		}
+		out.println(ja.toString());
         out.flush(); 
         out.close();
 		

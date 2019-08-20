@@ -60,4 +60,9 @@ public class UserServiceImpl implements UserService{
 		return ud.CountUser();
 	}
 
+	public List<User> QueryAcceptNumber(int row, int PageSize) {
+		// TODO Auto-generated method stub
+		return ud.QueryAcceptNumber(row, PageSize);
+	}
+
 }
