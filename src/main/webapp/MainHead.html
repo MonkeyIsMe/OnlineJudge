@@ -26,15 +26,15 @@
                         用户名 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">更新个人信息</a></li>
+                        <li><a href="#" style="cursor:pointer" data-toggle="modal" data-target="#update_user">更新个人信息</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">我的提交</a></li>
+                        <li><a href="MySubmission.html">我的提交</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">我的作业</a></li>
+                        <li><a href="MyWork.html">我的作业</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">我的课程</a></li>
+                        <li><a href="MyCourse.html">我的课程</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">管理</a></li>
+                        <li><a href="manage.html">管理</a></li>
                     </ul>
                 </li>
 
@@ -43,5 +43,27 @@
         </div>
     </div>
 </nav>
+<div class="modal fade" id="update_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">更新个人信息</h4>
+            </div>
+	        <div class="form-group head_input">
+	            <label>用户姓名：</label>
+	            <input type="text" class="form-control" id="user_name" maxlength="15" placeholder="请输入用户姓名">
+	        </div>
+	        <div class="form-group myform">
+	            <label>课程备注：</label>
+	            <textarea type="text" class="form-control" style="resize: none;height: 280px;" id="user_info" maxlength="15" placeholder="请输入学生备注"></textarea>
+	        </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="update_myinfo">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 </body>
 </html>
