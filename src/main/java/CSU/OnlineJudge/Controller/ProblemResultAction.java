@@ -29,13 +29,13 @@ public class ProblemResultAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String problem_id = request.getParameter("problem_id");
-		String case_result = request.getParameter("case_result");
+		String problem_result = request.getParameter("problem_result");
 		String user_account = request.getParameter("user_account");
 		
 		int pid = Integer.valueOf(problem_id);
 		
 		pr.setProblemId(pid);
-		pr.setCaseResult(case_result);
+		pr.setProblemResult(problem_result);
 		pr.setUserAccount(user_account);
 		
 		ProblemResultService.AddProblemResult(pr);
@@ -61,6 +61,38 @@ public class ProblemResultAction extends ActionSupport{
 		out.println(ja.toString());
         out.flush(); 
         out.close();
+		
+	}
+	
+	//根据用户题目的结果更新
+	public void UpdateByResult() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String problem_id = request.getParameter("problem_id");
+		String problem_result = request.getParameter("problem_result");
+		String user_account = request.getParameter("user_account");
+		
+		int pid = Integer.valueOf(problem_id);
+		
+		List<ProblemResult> pr_list = ProblemResultService.QueryProblemResultByProblemAccount(pid, user_account);
+		
+		if(pr_list.size() == 0) {
+			out.println("Fail");
+			out.flush(); 
+			out.close();
+			return ;
+		}
+		
+		pr = pr_list.get(0);
+		pr.setProblemResult(problem_result);
+		
+		ProblemResultService.UpdateProblemResult(pr);
 		
 	}
 	

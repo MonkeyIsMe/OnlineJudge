@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.json.JSONObject;
+
 @Entity
 @Table(name="tab_problemresult")
 public class ProblemResult {
@@ -19,8 +21,8 @@ public class ProblemResult {
 	@Column(name="problem_id")
 	private int ProblemId;  //题目的编号
 	
-	@Column(name="case_result")
-	private String CaseResult;  //题目的结果
+	@Column(name="problem_result")
+	private String ProblemResult;  //题目的结果
 	
 	@Column(name="user_id")
 	private int UserId; //用户编号
@@ -44,12 +46,13 @@ public class ProblemResult {
 		ProblemId = problemId;
 	}
 	
-	public String getCaseResult() {
-		return CaseResult;
+
+	public String getProblemResult() {
+		return ProblemResult;
 	}
 
-	public void setCaseResult(String caseResult) {
-		CaseResult = caseResult;
+	public void setProblemResult(String problemResult) {
+		ProblemResult = problemResult;
 	}
 
 	public int getUserId() {
@@ -68,6 +71,19 @@ public class ProblemResult {
 		UserAccount = userAccount;
 	}
 	
+	public JSONObject toJSON() {
+		JSONObject jo = new JSONObject();
+		jo.put("UserAccount", this.UserAccount);
+		jo.put("UserId", this.UserId);
+		jo.put("ProblemResult", this.ProblemResult);
+		jo.put("ProblemId", this.ProblemId);
+		jo.put("ProblemResultId", this.ProblemResultId);
+		
+		return jo;
+	}
 	
+	public String toString() {
+		return this.toJSON().toString(); 
+	}
 	
 }
