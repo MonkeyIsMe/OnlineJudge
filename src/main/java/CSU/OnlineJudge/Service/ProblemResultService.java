@@ -14,7 +14,11 @@ public interface ProblemResultService {
 	
 	public ProblemResult QueryProblemResult(int id);
 	
-	public String GeryProblemResultByProblemResultAccount(int ProblemId,String ProblemResult,String UserAccount);
+	public String QueryProblemResultByProblemResultAccount(int ProblemId,String ProblemResult,String UserAccount);
 
-	public List<ProblemResult> GeryProblemResultByProblemAccount(int ProblemId,String UserAccount);
+	public List<ProblemResult> QueryProblemResultByProblemAccount(int ProblemId,String UserAccount);
+	
+	public List<ProblemResult> QueryProblemResultByResultAccount(String Result,String UserAccount);
+	
+	public List<ProblemResult> QueryProblemResultByAccount(String UserAccount);
 }

@@ -41,31 +41,41 @@ public class ProblemResultServiceImpl implements ProblemResultService{
 		return prd.queryProblemResult(id);
 	}
 
-	public String GeryProblemResultByProblemResultAccount(int ProblemId, String ProblemResult,
+	public String QueryProblemResultByProblemResultAccount(int ProblemId, String ProblemResult,
 			String UserAccount) {
 		// TODO Auto-generated method stub
 		
-		List<ProblemResult> result_list = prd.GeryProblemResultByProblemAccount(ProblemId, UserAccount);
+		List<ProblemResult> result_list = prd.QueryProblemResultByProblemAccount(ProblemId, UserAccount);
 		if(result_list.size() == 0) return "";
 		else{
-			List<ProblemResult> ac_list = prd.GeryProblemResultByProblemResultAccount(ProblemId, "AC", UserAccount);
+			List<ProblemResult> ac_list = prd.QueryProblemResultByProblemResultAccount(ProblemId, "AC", UserAccount);
 			if(ac_list.size() != 0) return "AC";
-			List<ProblemResult> wa_list = prd.GeryProblemResultByProblemResultAccount(ProblemId, "WA", UserAccount);
+			List<ProblemResult> wa_list = prd.QueryProblemResultByProblemResultAccount(ProblemId, "WA", UserAccount);
 			if(wa_list.size() != 0) return "WA";
-			List<ProblemResult> tle_list = prd.GeryProblemResultByProblemResultAccount(ProblemId, "TLE", UserAccount);
+			List<ProblemResult> tle_list = prd.QueryProblemResultByProblemResultAccount(ProblemId, "TLE", UserAccount);
 			if(tle_list.size() != 0) return "TLE";
-			List<ProblemResult> rte_list = prd.GeryProblemResultByProblemResultAccount(ProblemId, "RTE", UserAccount);
+			List<ProblemResult> rte_list = prd.QueryProblemResultByProblemResultAccount(ProblemId, "RTE", UserAccount);
 			if(rte_list.size() != 0) return "RTE";
-			List<ProblemResult> ce_list = prd.GeryProblemResultByProblemResultAccount(ProblemId, "CE", UserAccount);
+			List<ProblemResult> ce_list = prd.QueryProblemResultByProblemResultAccount(ProblemId, "CE", UserAccount);
 			if(ce_list.size() != 0) return "CE";
 		}
 		return "";
 		
 	}
 
-	public List<ProblemResult> GeryProblemResultByProblemAccount(int ProblemId, String UserAccount) {
+	public List<ProblemResult> QueryProblemResultByProblemAccount(int ProblemId, String UserAccount) {
 		// TODO Auto-generated method stub
-		return prd.GeryProblemResultByProblemAccount(ProblemId, UserAccount);
+		return prd.QueryProblemResultByProblemAccount(ProblemId, UserAccount);
+	}
+
+	public List<ProblemResult> QueryProblemResultByResultAccount(String Result, String UserAccount) {
+		// TODO Auto-generated method stub
+		return prd.QueryProblemResultByResultAccount(Result, UserAccount);
+	}
+
+	public List<ProblemResult> QueryProblemResultByAccount(String UserAccount) {
+		// TODO Auto-generated method stub
+		return prd.QueryProblemResultByAccount(UserAccount);
 	}
 
 }

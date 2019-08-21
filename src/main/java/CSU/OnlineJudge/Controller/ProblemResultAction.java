@@ -1,6 +1,7 @@
 package CSU.OnlineJudge.Controller;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +11,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import CSU.OnlineJudge.Model.ProblemResult;
 import CSU.OnlineJudge.Service.ProblemResultService;
+import net.sf.json.JSONArray;
 
 public class ProblemResultAction extends ActionSupport{
 	
@@ -37,6 +39,71 @@ public class ProblemResultAction extends ActionSupport{
 		pr.setUserAccount(user_account);
 		
 		ProblemResultService.AddProblemResult(pr);
+		
+	}
+	
+	
+	//根据用户查询所有题目
+	public void QueryProblem() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String user_account = request.getParameter("user_account");
+		
+		List<ProblemResult> pr_list = ProblemResultService.QueryProblemResultByAccount(user_account);
+		
+		JSONArray ja = JSONArray.fromObject(pr_list);
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+		
+	}
+	
+	//根据用户查询所有不正确题目
+	public void QueryOtherProblem() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String user_account = request.getParameter("user_account");
+		
+		List<ProblemResult> pr_list = ProblemResultService.QueryProblemResultByResultAccount("Other", user_account);
+		
+		JSONArray ja = JSONArray.fromObject(pr_list);
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+		
+	}
+	
+	
+	//根据用户查询所有正确题目
+	public void QueryAcceptProblem() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String user_account = request.getParameter("user_account");
+		
+		List<ProblemResult> pr_list = ProblemResultService.QueryProblemResultByResultAccount("AC", user_account);
+		
+		JSONArray ja = JSONArray.fromObject(pr_list);
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
 		
 	}
 	

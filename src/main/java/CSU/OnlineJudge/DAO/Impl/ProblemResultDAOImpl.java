@@ -36,7 +36,7 @@ public class ProblemResultDAOImpl extends HibernateDaoSupport implements Problem
 		return result;
 	}
 
-	public List<ProblemResult> GeryProblemResultByProblemResultAccount(final int ProblemId, final String ProblemResult,
+	public List<ProblemResult> QueryProblemResultByProblemResultAccount(final int ProblemId, final String ProblemResult,
 			final String UserAccount) {
 		// TODO Auto-generated method stub
 		return getHibernateTemplate().execute(new HibernateCallback<List<ProblemResult>>() {
@@ -55,7 +55,7 @@ public class ProblemResultDAOImpl extends HibernateDaoSupport implements Problem
 		});
 	}
 
-	public List<ProblemResult> GeryProblemResultByProblemAccount(final int ProblemId, final String UserAccount) {
+	public List<ProblemResult> QueryProblemResultByProblemAccount(final int ProblemId, final String UserAccount) {
 		// TODO Auto-generated method stub
 		return getHibernateTemplate().execute(new HibernateCallback<List<ProblemResult>>() {
 
@@ -64,6 +64,39 @@ public class ProblemResultDAOImpl extends HibernateDaoSupport implements Problem
 				String hql = "from ProblemResult where problem_id = ?  and user_account = ?";
 				Query query = session.createQuery(hql);
 				query.setParameter(0, ProblemId);
+				query.setParameter(1, UserAccount);
+				List<ProblemResult> result = null;
+				result = query.list();
+				return result;
+			}
+		});
+	}
+
+	public List<ProblemResult> QueryProblemResultByResultAccount(final String Result, final String UserAccount) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<ProblemResult>>() {
+
+			public List<ProblemResult> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from ProblemResult where problem_result = ?  and user_account = ?";
+				Query query = session.createQuery(hql);
+				query.setParameter(0, Result);
+				query.setParameter(1, UserAccount);
+				List<ProblemResult> result = null;
+				result = query.list();
+				return result;
+			}
+		});
+	}
+
+	public List<ProblemResult> QueryProblemResultByAccount(final String UserAccount) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<ProblemResult>>() {
+
+			public List<ProblemResult> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from ProblemResult whereuser_account = ?";
+				Query query = session.createQuery(hql);
 				query.setParameter(1, UserAccount);
 				List<ProblemResult> result = null;
 				result = query.list();

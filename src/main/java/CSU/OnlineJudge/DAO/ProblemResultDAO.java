@@ -14,7 +14,11 @@ public interface ProblemResultDAO {
 	
 	public ProblemResult queryProblemResult(int id);
 	
-	public List<ProblemResult> GeryProblemResultByProblemResultAccount(int ProblemId,String ProblemResult,String UserAccount);
+	public List<ProblemResult> QueryProblemResultByProblemResultAccount(int ProblemId,String ProblemResult,String UserAccount);
 	
-	public List<ProblemResult> GeryProblemResultByProblemAccount(int ProblemId,String UserAccount);
+	public List<ProblemResult> QueryProblemResultByProblemAccount(int ProblemId,String UserAccount);
+	
+	public List<ProblemResult> QueryProblemResultByResultAccount(String Result,String UserAccount);
+	
+	public List<ProblemResult> QueryProblemResultByAccount(String UserAccount);
 }
