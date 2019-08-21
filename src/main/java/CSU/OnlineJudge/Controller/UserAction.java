@@ -128,10 +128,12 @@ public class UserAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String user_id = request.getParameter("user_id");
-		int uid = Integer.valueOf(user_id);
+		String user_account = request.getParameter("user_account");
+		//String user_account = "AC";
+		//int uid = Integer.valueOf(user_id);
 		
-		user = UserService.queryUser(uid);
+		user = UserService.QueryUserByName(user_account);
+		
 		if(user == null) {
 			out.println("Fail");
 			out.flush(); 

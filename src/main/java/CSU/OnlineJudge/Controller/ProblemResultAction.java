@@ -18,6 +18,17 @@ public class ProblemResultAction extends ActionSupport{
 	private ProblemResultService ProblemResultService;
 	private ProblemResult pr = new ProblemResult();
 	
+	
+	public ProblemResultService getProblemResultService() {
+		return ProblemResultService;
+	}
+
+
+	public void setProblemResultService(ProblemResultService problemResultService) {
+		ProblemResultService = problemResultService;
+	}
+
+
 	//添加一个题目用户结果的关联
 	public void AddProblemResult() throws Exception{
 		
@@ -107,6 +118,7 @@ public class ProblemResultAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String user_account = request.getParameter("user_account");
+		//String user_account = "AC";
 		
 		List<ProblemResult> pr_list = ProblemResultService.QueryProblemResultByResultAccount("Other", user_account);
 		
@@ -129,6 +141,7 @@ public class ProblemResultAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String user_account = request.getParameter("user_account");
+		//String user_account = "AC";
 		
 		List<ProblemResult> pr_list = ProblemResultService.QueryProblemResultByResultAccount("AC", user_account);
 		

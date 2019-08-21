@@ -96,6 +96,8 @@
 			</action>
 			<action name="QueryAllUser" class="UserAction" method="QueryAllUser" >
 			</action>
+			<action name="QuerySingleUser" class="UserAction" method="QuerySingleUser" >
+			</action>
 			
 			<!-- 样例 -->
 			<action name="AddCase" class="CaseAction" method="AddCase" >
@@ -133,11 +135,20 @@
 			</action>
 			
 			<!-- 代码  -->
-			<action name="AddCode" class="CodeAction" method="AddCode"></action>
+			<action name="AddCode" class="CodeAction" method="AddCode">
+			</action>
 			
-			<!-- 代码  -->
-			<action name="AddSubmission" class="SubmissionAction" method="AddSubmission"></action>
-			<action name="GetSubmissionResult" class="SubmissionAction" method="GetSubmissionResult"></action>
+			<!-- 提交信息  -->
+			<action name="AddSubmission" class="SubmissionAction" method="AddSubmission">
+			</action>
+			<action name="GetSubmissionResult" class="SubmissionAction" method="GetSubmissionResult">
+			</action>
+			
+			<!-- 题目结果  -->
+			<action name="QueryAcceptProblem" class="ProblemResultAction" method="QueryAcceptProblem">
+			</action>
+			<action name="QueryOtherProblem" class="ProblemResultAction" method="QueryOtherProblem">
+			</action>
 			
 	</package>
 </struts>

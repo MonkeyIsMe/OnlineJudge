@@ -70,7 +70,7 @@
 <mapping class="CSU.OnlineJudge.Model.WorkProblem" />
 <mapping class="CSU.OnlineJudge.Model.WorkRecord" />
 <mapping class="CSU.OnlineJudge.Model.WorkUserRecord" />
-
+<mapping class="CSU.OnlineJudge.Model.ProblemResult" />
 
 
 </session-factory>
