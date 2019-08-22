@@ -98,6 +98,9 @@
 			</action>
 			<action name="QuerySingleUser" class="UserAction" method="QuerySingleUser" >
 			</action>
+			<action name="QueryAcceptRank" class="UserAction" method="QueryAcceptRank" >
+			</action>
+			
 			
 			<!-- 样例 -->
 			<action name="AddCase" class="CaseAction" method="AddCase" >

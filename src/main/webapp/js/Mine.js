@@ -32,7 +32,7 @@ $(function(){
 			}, 
 			function(data) {
 				var data = JSON.parse(data);
-				console.log(data);
+				//console.log(data);
 				$("#user_name").append(data.userName);
 				$("#user_classroom").append("班级：" + data.studentClassroom);
 				$("#submission_times").append(data.submissionTimes);

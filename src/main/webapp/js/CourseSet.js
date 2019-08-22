@@ -19,8 +19,8 @@ $(function(){
 				var data = JSON.parse(data);
 				//console.log(data);
 				var sum = data.CourseCount;
-				count = Math.ceil(sum/15);
-				var total = "共" + Math.ceil(sum/15) + "页";
+				count = Math.ceil(sum/25);
+				var total = "共" + Math.ceil(sum/25) + "页";
 				$("#TotalPage").append(total);
 				$("#NowPage").append("，当前第" + row + "页");
 			}
@@ -33,7 +33,7 @@ $(function(){
         "QueryCourseByPageSize.action",
         {
             page:row,
-            limit:15
+            limit:25
         },
         function(data) {
             var data = JSON.parse(data);
@@ -70,7 +70,7 @@ function PrevPage(){
 	            "QueryCourseByPageSize.action",
 	            {
 	                page:row,
-	                limit:15
+	                limit:25
 	            },
 	            function(data) {
 	                var data = JSON.parse(data);
@@ -106,7 +106,7 @@ function NextPage(){
 	            "QueryCourseByPageSize.action",
 	            {
 	                page:row,
-	                limit:15
+	                limit:25
 	            },
 	            function(data) {
 	                var data = JSON.parse(data);

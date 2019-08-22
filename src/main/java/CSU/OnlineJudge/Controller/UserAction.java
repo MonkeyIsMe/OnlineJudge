@@ -282,11 +282,13 @@ public class UserAction extends ActionSupport{
 			String uclass = u.getStudentClassroom();
 			String uaccount = u.getUserAccount();
 			int ucnt = u.getAcceptTimes();
+			int usub = u.getSubmissionTimes();
 			
 			jo.put("username", uname);
 			jo.put("userclass", uclass);
 			jo.put("useraccount", uaccount);
-			jo.put("usercnt", ucnt);
+			jo.put("useraccept", ucnt);
+			jo.put("usersubmission", usub);
 			ja.add(jo);
 		}
 		out.println(ja.toString());
