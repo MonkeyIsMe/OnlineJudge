@@ -6,12 +6,14 @@ import org.junit.runner.RunWith;
 import CSU.OnlineJudge.DAO.CaseDAO;
 import CSU.OnlineJudge.DAO.KnowledgeDAO;
 import CSU.OnlineJudge.DAO.ProblemDAO;
+import CSU.OnlineJudge.DAO.UserDAO;
 import CSU.OnlineJudge.DAO.WorkDAO;
 import CSU.OnlineJudge.Model.Case;
 import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Model.Work;
 import CSU.OnlineJudge.Service.CaseService;
+import CSU.OnlineJudge.Service.UserService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -52,6 +54,20 @@ public class TestSpring {
 	
 	@Resource(name="CaseDAO")
 	private CaseDAO cd;
+	
+	@Resource(name="UserDAO")
+	private UserDAO ud;
+	
+	@Resource(name="UserService")
+	private UserService us;
+	
+	@Test
+	public void QueryUserRank() {
+		List<User> UserList = us.QueryAcceptNumber(1, 15);
+		for(User u : UserList) {
+			System.out.println(u.toString());
+		}
+	}
 	
 	@Test
 	public void TestDaoAdd() {

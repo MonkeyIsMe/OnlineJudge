@@ -271,7 +271,7 @@ public class UserAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
-		List<User> UserList = UserService.QueryUserByPageSize(row, PageSize);
+		List<User> UserList = UserService.QueryAcceptNumber(row, PageSize);
 		
 		JSONArray ja = new JSONArray();
 		for(User u : UserList) {

@@ -71,7 +71,7 @@
 <mapping class="CSU.OnlineJudge.Model.WorkRecord" />
 <mapping class="CSU.OnlineJudge.Model.WorkUserRecord" />
 <mapping class="CSU.OnlineJudge.Model.ProblemResult" />
-
+<mapping class="CSU.OnlineJudge.Model.Origin" />
 
 </session-factory>
 

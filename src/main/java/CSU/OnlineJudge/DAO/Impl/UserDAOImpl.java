@@ -81,10 +81,9 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO{
 		// TODO Auto-generated method stub
 		return getHibernateTemplate().execute(new HibernateCallback<List<User>>() {
 			
-
 			public List<User> doInHibernate(Session session) throws HibernateException {
 				// TODO Auto-generated method stub
-				String hql = "from User order by problem_submission";
+				String hql = "from User order by problem_accept desc";
 				Query query = session.createQuery(hql).setFirstResult(
                         (row - 1) * PageSize).setMaxResults(PageSize);
 				List<User> list = query.list();

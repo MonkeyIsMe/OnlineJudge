@@ -34,6 +34,9 @@
 			</action>
 			<action name="CountProblem" class="ProblemAction" method="CountProblem" >
 			</action>
+			<action name="UpdateProblemCode" class="ProblemAction" method="UpdateProblemCode" >
+			</action>
+			
 			
 		 	<!-- 作业考试 -->
 		 	<action name="QueryAllWork" class="WorkAction" method="QueryAllWork" >

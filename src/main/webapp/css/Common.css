@@ -160,6 +160,7 @@ h1{
 .addText li{
     list-style: none;
 }
+
 .delete{
     float: left;
     position: relative;
