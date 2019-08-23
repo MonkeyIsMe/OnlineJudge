@@ -139,7 +139,9 @@
  	 <bean name="ProblemResultService" class="CSU.OnlineJudge.Service.Impl.ProblemResultServiceImpl" >
 		<property name="prd" ref="ProblemResultDAO" ></property>
 	</bean>
-
+ 	 <bean name="OriginService" class="CSU.OnlineJudge.Service.Impl.OriginServiceImpl" >
+		<property name="od" ref="OriginDAO" ></property>
+	</bean>
 	
 	<!-- Dao -->
 	<bean name="CaseDAO" class="CSU.OnlineJudge.DAO.Impl.CaseDAOImpl" >
@@ -191,6 +193,9 @@
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
 	<bean name="ProblemResultDAO" class="CSU.OnlineJudge.DAO.Impl.ProblemResultDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+	<bean name="OriginDAO" class="CSU.OnlineJudge.DAO.Impl.OriginDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
 	

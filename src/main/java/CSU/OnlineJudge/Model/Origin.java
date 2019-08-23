@@ -17,16 +17,19 @@ public class Origin {
 	@Id
 	@Column(name="origin_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int OriginId;
+	private int OriginId;  //主键
 	
 	@Column(name="problem_id")
-	private int ProblemId;
+	private int ProblemId; //题目编号
 	
 	@Column(name="problem_name")
-	private String ProblemName;
+	private String ProblemName; //题目名称
 	
 	@Column(name="origin_code")
-	private String ProblemCode;
+	private String ProblemCode; //题目源码
+	
+	@Column(name="origin_type")
+	private String OrginType;  //源码类型
 
 	public int getOriginId() {
 		return OriginId;
@@ -59,13 +62,22 @@ public class Origin {
 	public void setProblemCode(String problemCode) {
 		ProblemCode = problemCode;
 	}
-	
+
+	public String getOrginType() {
+		return OrginType;
+	}
+
+	public void setOrginType(String orginType) {
+		OrginType = orginType;
+	}
+
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
 		jo.put("OriginId", this.OriginId);
 		jo.put("ProblemCode", this.ProblemCode);
 		jo.put("ProblemId", this.ProblemId);
 		jo.put("ProblemName", this.ProblemName);
+		jo.put("OrginType", this.OrginType);
 		return jo;
 	}
 	
