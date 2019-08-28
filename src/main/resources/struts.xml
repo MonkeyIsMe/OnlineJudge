@@ -156,6 +156,10 @@
 			<action name="QueryOtherProblem" class="ProblemResultAction" method="QueryOtherProblem">
 			</action>
 			
+			<!-- 标程 -->
+			<action name="QueryOriginByProblemId" class="OriginAction" method="QueryOriginByProblemId">
+			</action>
+			
 	</package>
 </struts>
 	

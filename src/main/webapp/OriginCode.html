@@ -15,6 +15,7 @@
     <link href="css/bootstrap.css" type="text/css" rel="styleSheet">
     <script src="js/bootstrap.min.js"></script>
     <script src="js/OriginSet.js"></script>
+    <script src="js/jquery.params.js"></script>
 </head>
 <body>
 <button type="button" class="btn btn-default btn-sm" style="margin:10px" onclick="refresh()">
@@ -23,24 +24,16 @@
 <table class="layui-table" id="myTable">
     <thead>
     <tr align="center" class="table_header" height="22">
-        <th style="width:10%;text-align:center">题目编号</th>
-        <th style="width:5%;text-align:center">属性</th>
-        <th style="width:10%;text-align:center">题目名称</th>
-        <th style="width:10%;text-align:center">题目难度</th>
-        <th style="width:45%;text-align:center" >知识点</th>
-        <th style="width:10%;text-align:center" >题目出题人</th>
-        <th style="width:10%;text-align:center" >查看</th>
+        <th style="width:20%;text-align:center">标程编号</th>
+        <th style="width:20%;text-align:center">标程类型</th>
+        <th style="width:20%;text-align:center">题目编号</th>
+        <th style="width:20%;text-align:center">题目名称</th>
+        <th style="width:20%;text-align:center" >查看----删除</th>
     </tr>
     </thead>
     <tbody id="KnowList" bgcolor="#D7EBFF" align="center"  style="color: black">
     </tbody>
 </table>
-<div style="float:left;margin-left:42%">
-    <button type="button" class="layui-btn" onclick="PrevPage()">上一页</button>
-    <button type="button" class="layui-btn" onclick="NextPage()">下一页</button>
-</div>
-    <div id="TotalPage" style="float:left;margin-top:10px;font-size:18px;margin-left:5px"></div>
-    <div id="NowPage" style="float:left;margin-top:10px;font-size:18px;margin-left:5px"></div>
 </body>
 
 

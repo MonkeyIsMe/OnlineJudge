@@ -61,8 +61,8 @@ public class OriginDAOImpl extends HibernateDaoSupport implements OriginDAO{
 				// TODO Auto-generated method stub
 				String hql = "from Origin where problem_id = ?";
 				Query query = session.createQuery(hql);
-				List<Origin> list = query.list();
 				query.setParameter(0, ProblemId);
+				List<Origin> list = query.list();
 				return list;
 			}
 		});

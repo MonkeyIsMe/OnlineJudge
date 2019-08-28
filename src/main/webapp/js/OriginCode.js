@@ -151,7 +151,8 @@ $(document).ready(function(){
 	    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
 	    
 	    pid = col1;
-	    
+	    var url = "OriginCode.html?pid=" + pid;
+	    window.location.replace(url);
 	    
 	  });
 	  

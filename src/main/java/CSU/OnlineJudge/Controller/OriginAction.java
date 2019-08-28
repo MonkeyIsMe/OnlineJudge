@@ -16,7 +16,7 @@ import net.sf.json.JSONArray;
 public class OriginAction extends ActionSupport{
 	
 	private OriginService OriginService;
-	private Origin origin;
+	private Origin origin = new Origin();
 	
 	public OriginService getOriginService() {
 		return OriginService;
