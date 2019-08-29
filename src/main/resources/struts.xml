@@ -103,7 +103,8 @@
 			</action>
 			<action name="QueryAcceptRank" class="UserAction" method="QueryAcceptRank" >
 			</action>
-			
+			<action name="QuerySingleUserById" class="UserAction" method="QuerySingleUserById" >
+			</action>
 			
 			<!-- 样例 -->
 			<action name="AddCase" class="CaseAction" method="AddCase" >

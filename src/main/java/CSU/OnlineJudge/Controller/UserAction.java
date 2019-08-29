@@ -118,7 +118,38 @@ public class UserAction extends ActionSupport{
 		UserService.updateUser(user);
 	}
 	
-	//查询单个学生
+	//通过用户ID查询单个学生
+	public void QuerySingleUserById() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String user_id = request.getParameter("user_id");
+		//String user_account = "AC";
+		//int uid = Integer.valueOf(user_id);
+		
+		int uid = Integer.valueOf(user_id);
+		user = UserService.queryUser(uid);
+		
+		if(user == null) {
+			out.println("Fail");
+			out.flush(); 
+			out.close();
+			return ;
+		}
+		
+		JSONObject jo = JSONObject.fromObject(user);
+		out.println(jo.toString());
+	    out.flush(); 
+	    out.close();
+		
+	}
+	
+	//通过账号查询单个学生
 	public void QuerySingleUser() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");

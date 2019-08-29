@@ -9,6 +9,8 @@ var sinfo; //记录第几行的备注信息
 var sclassroom; //记录第几行的教室
 var userid; //记录用户的编号
 
+var sub_row = 1;
+var sub_count; //总记录数
 $(function(){
 	$.ajaxSettings.async = false;
 	$.post(
@@ -20,9 +22,12 @@ $(function(){
 				//console.log(data);
 				var sum = data.UserCount;
 				count = Math.ceil(sum/25);
+				sub_count = Math.ceil(sum/25);
 				var total = "共" + Math.ceil(sum/25) + "页";
 				$("#TotalPage").append(total);
 				$("#NowPage").append("，当前第" + row + "页");
+				$("#sub_TotalPage").append(total);
+				$("#sub_NowPage").append("，当前第" + sub_row + "页");
 			}
 			);
 	
@@ -62,7 +67,7 @@ $(function(){
     $.post(
             "QueryAllUser.action",
             {
-                page:row,
+                page:sub_row,
                 limit:25
             },
             function(data) {
@@ -81,7 +86,7 @@ $(function(){
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].compileErrorTimes  +"</td>");
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].runtimeErrorTimes  +"</td>");
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-    			        		'<a id="pic"><span class="delete glyphicon glyphicon-folder-open" style="cursor:pointer;margin-left:30px"></span></a>'
+    			        		'<a id="pic"><span class="delete seeSub glyphicon glyphicon-folder-open" style="cursor:pointer;margin-left:30px"></span></a>'
     			        		+'<a id="pic"><span  class="delete clearSub glyphicon glyphicon-minus" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#clearModal"></span></a>'
     			        		+"</td>");
                         // $("#J_TbData").append($trTemp);
@@ -92,6 +97,85 @@ $(function(){
 
 });
 
+function Sub_PrevPage(){
+	if(sub_row == 1){
+		alert("没有前一页了");
+	}
+	else{
+		sub_row--;
+		$("#UserSubList").html("");
+	    $.post(
+	            "QueryAllUser.action",
+	            {
+	                page:sub_row,
+	                limit:25
+	            },
+	            function(data) {
+	                var data = JSON.parse(data);
+	                //console.log(data);
+	                    for( var i = 0; i < data.length; i++ ) {
+	                        //动态创建一个tr行标签,并且转换成jQuery对象
+	                        var $trTemp = $("<tr ></tr>");
+	                        //往行里面追加 td单元格
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].userId +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].userName +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].submissionTimes  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].acceptTimes  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].timeLimitTimes  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].wrongAnswerTimes +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].compileErrorTimes  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].runtimeErrorTimes  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
+	    			        		'<a id="pic"><span class="delete seeSub glyphicon glyphicon-folder-open" style="cursor:pointer;margin-left:30px"></span></a>'
+	    			        		+'<a id="pic"><span  class="delete clearSub glyphicon glyphicon-minus" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#clearModal"></span></a>'
+	    			        		+"</td>");
+	                        // $("#J_TbData").append($trTemp);
+	                        $trTemp.appendTo("#UserSubList");
+	                    }
+	            }
+	        );
+	}
+}
+
+function Sub_NextPage(){
+	if(sub_row == sub_count){
+		alert("没有后一页了");
+	}
+	else{
+		sub_row ++;
+		$("#UserSubList").html("");
+	    $.post(
+	            "QueryAllUser.action",
+	            {
+	                page:sub_row,
+	                limit:25
+	            },
+	            function(data) {
+	                var data = JSON.parse(data);
+	                //console.log(data);
+	                    for( var i = 0; i < data.length; i++ ) {
+	                        //动态创建一个tr行标签,并且转换成jQuery对象
+	                        var $trTemp = $("<tr ></tr>");
+	                        //往行里面追加 td单元格
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].userId +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].userName +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].submissionTimes  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].acceptTimes  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].timeLimitTimes  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].wrongAnswerTimes +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].compileErrorTimes  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].runtimeErrorTimes  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
+	    			        		'<a id="pic"><span class="delete seeSub glyphicon glyphicon-folder-open" style="cursor:pointer;margin-left:30px"></span></a>'
+	    			        		+'<a id="pic"><span  class="delete clearSub glyphicon glyphicon-minus" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#clearModal"></span></a>'
+	    			        		+"</td>");
+	                        // $("#J_TbData").append($trTemp);
+	                        $trTemp.appendTo("#UserSubList");
+	                    }
+	            }
+	        );
+	}
+}
 
 function PrevPage(){
 	if(row == 1){
@@ -183,10 +267,6 @@ $(document).ready(function(){
 	    $("#update_name").val(sname);
 	    $("#update_info").val(sinfo);
 	    $("#update_classroom").val(sclassroom);
-	    //alert(sclassroom)
-	    //console.log(cname + " " + cinfo);
-	    //$("#update_name").append(cname);
-	    //$("#update_info").append(cinfo);
 	  });
 	  
 	  $("#myTable").on('click','.clearSub',function(){
@@ -196,6 +276,19 @@ $(document).ready(function(){
 		    
 		    //alert(col1);
 		    userid = col1;
+
+		  });
+	  
+	  
+	  $("#myTable").on('click','.seeSub',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    
+		    alert(col1);
+		    userid = col1;
+		    var url = "UserSubmission.html?userId=" + userid;
+		    window.location.replace(url);
 		  });
 	  
 		$("#clear_user").click(function(){
