@@ -3,8 +3,11 @@ var url = decodeURI(window.location.href);
 var argsIndex = url .split("?pid=");
 var pid = argsIndex[1];
 
+var panme;
+
 var oid;
 
+//更新的编译器
 ace.require("ace/ext/language_tools");
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/dreamweaver");
@@ -18,7 +21,35 @@ editor.setOptions({
     enableLiveAutocompletion: true,//只能补全
 });
 
+//添加的编译器
+var add_editor = ace.edit("add_editor");
+add_editor.setTheme("ace/theme/dreamweaver");
+add_editor.session.setMode("ace/mode/java");
+add_editor.setShowPrintMargin(true);
+add_editor.session.getLength();
+add_editor.session.setUseWrapMode(true);
+add_editor.setOptions({
+    enableBasicAutocompletion: true,
+    enableSnippets: true,
+    enableLiveAutocompletion: true,//只能补全
+});
+
 $(function(){
+	$.ajaxSettings.async = false;
+	
+	
+	$.post(
+			"QuerySingleProblem.action",
+			{
+				problem_id:pid,
+			},
+			function(data){
+				var data = JSON.parse(data);
+				//console.log(data);
+				pname = data.problemName;
+			}
+			);
+	
     $.post(
         "QueryOriginByProblemId.action",
         {
@@ -102,11 +133,13 @@ $(document).ready(function(){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 						if(data == "Fail"){
 							alert("删除失败！");
-							window.location.replace("OriginCode.html");
+						    var url = "OriginCode.html?pid=" + pid;
+						    window.location.replace(url);
 						}
 						else{
 							alert("删除成功!");
-							window.location.replace("OriginCode.html");
+						    var url = "OriginCode.html?pid=" + pid;
+						    window.location.replace(url);
 						}
 					}
 					);
@@ -123,7 +156,7 @@ $(document).ready(function(){
 			$.post(
 					"UpdateOrigin.action",
 					{
-						origin_id:cid,
+						origin_id:oid,
 						origin_code:codeContent,
 						origin_type:options,
 					},
@@ -131,17 +164,53 @@ $(document).ready(function(){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 						if(data == "Fail"){
 							alert("更新失败！");
-							window.location.replace("OriginCode.html");
+						    var url = "OriginCode.html?pid=" + pid;
+						    window.location.replace(url);
 						}
 						else{
 							alert("更新成功!");
-							window.location.replace("OriginCode.html");
+						    var url = "OriginCode.html?pid=" + pid;
+						    window.location.replace(url);
 						}
 					}
 					);
 
 		})
 
+		
+		$("#add").click(function(){
+			//console.log(cid);
+			
+			var codeContent = add_editor.getValue();
+			var options = $("#add_lang option:selected").val();
+			
+			//console.log(codeContent);
+			//console.log(options);
+			//alert(pname);
+
+			$.post(
+					"AddOrigin.action",
+					{
+						problem_name:pname,
+						problem_id:pid,
+						origin_code:codeContent,
+						origin_type:options,
+					},
+					function(data){
+						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+						if(data == "Fail"){
+							alert("添加失败！");
+						    var url = "OriginCode.html?pid=" + pid;
+						    window.location.replace(url);
+						}
+						else{
+							alert("添加成功!");
+						    var url = "OriginCode.html?pid=" + pid;
+						    window.location.replace(url);
+						}
+					}
+					);
+		})
 		
 		
 });
@@ -151,5 +220,6 @@ function BackPrev(){
 }
 
 function refresh(){
-	window.location.replace("OriginCode.html");
+    var url = "OriginCode.html?pid=" + pid;
+    window.location.replace(url);
 }
