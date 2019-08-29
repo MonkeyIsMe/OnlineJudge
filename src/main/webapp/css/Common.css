@@ -104,6 +104,17 @@
     max-lines: 30;
     autoScrollEditorIntoView: true
 }
+
+.compile {
+    margin-top: 12px;
+    width: 80%;
+    margin-left:10%;
+    height: 500px;
+    border: 1px solid lightgray;
+    max-lines: 30;
+    autoScrollEditorIntoView: true;
+}
+
 h1{
     line-height: 50px;
     font-size: 50px;
