@@ -28,6 +28,8 @@ $(function(){
 });
 
 $(function(){
+	
+	//学生数据列表
     $.post(
         "QueryAllUser.action",
         {
@@ -55,6 +57,7 @@ $(function(){
         }
     );
     
+    //学生提交数据列表
     $.post(
             "QueryAllUser.action",
             {
@@ -63,7 +66,7 @@ $(function(){
             },
             function(data) {
                 var data = JSON.parse(data);
-                console.log(data);
+                //console.log(data);
                     for( var i = 0; i < data.length; i++ ) {
                         //动态创建一个tr行标签,并且转换成jQuery对象
                         var $trTemp = $("<tr ></tr>");
@@ -77,8 +80,8 @@ $(function(){
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].compileErrorTimes  +"</td>");
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].runtimeErrorTimes  +"</td>");
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-    			        		'<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#update_Modal"></span></a>'
-    			        		+'<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
+    			        		'<a id="pic"><span class="delete glyphicon glyphicon-folder-open" style="cursor:pointer;margin-left:30px"></span></a>'
+    			        		+'<a id="pic"><span  class="delete clear glyphicon glyphicon-minus" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#clearModal"></span></a>'
     			        		+"</td>");
                         // $("#J_TbData").append($trTemp);
                         $trTemp.appendTo("#UserSubList");

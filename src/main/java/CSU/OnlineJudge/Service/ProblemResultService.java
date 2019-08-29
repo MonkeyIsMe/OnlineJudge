@@ -21,4 +21,6 @@ public interface ProblemResultService {
 	public List<ProblemResult> QueryProblemResultByResultAccount(String Result,String UserAccount);
 	
 	public List<ProblemResult> QueryProblemResultByAccount(String UserAccount);
+	
+	public Object DeleteMutiplyResult(List<ProblemResult> prlist);
 }

@@ -10,24 +10,33 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import CSU.OnlineJudge.Model.ProblemResult;
+import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Service.ProblemResultService;
+import CSU.OnlineJudge.Service.UserService;
 import net.sf.json.JSONArray;
 
 public class ProblemResultAction extends ActionSupport{
 	
 	private ProblemResultService ProblemResultService;
+	private UserService UserService;
 	private ProblemResult pr = new ProblemResult();
-	
+	private User user = new User();
 	
 	public ProblemResultService getProblemResultService() {
 		return ProblemResultService;
 	}
 
-
 	public void setProblemResultService(ProblemResultService problemResultService) {
 		ProblemResultService = problemResultService;
 	}
 
+	public UserService getUserService() {
+		return UserService;
+	}
+
+	public void setUserService(UserService userService) {
+		UserService = userService;
+	}
 
 	//添加一个题目用户结果的关联
 	public void AddProblemResult() throws Exception{
@@ -126,6 +135,29 @@ public class ProblemResultAction extends ActionSupport{
 		out.println(ja.toString());
         out.flush(); 
         out.close();
+		
+	}
+	
+	//清空个人的提交数据
+	public void ClearUserSubmissionResult() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String user_id = request.getParameter("user_id");
+		//String user_account = "AC";
+		
+		int uid = Integer.valueOf(user_id);
+		user = UserService.queryUser(uid);
+		String user_account = user.getUserAccount();
+		
+		List<ProblemResult> pr_list = ProblemResultService.QueryProblemResultByAccount(user_account);
+		
+		ProblemResultService.DeleteMutiplyResult(pr_list);
 		
 	}
 	

@@ -78,4 +78,9 @@ public class ProblemResultServiceImpl implements ProblemResultService{
 		return prd.QueryProblemResultByAccount(UserAccount);
 	}
 
+	public Object DeleteMutiplyResult(List<ProblemResult> prlist) {
+		// TODO Auto-generated method stub
+		return prd.DeleteMutiplyResult(prlist);
+	}
+
 }

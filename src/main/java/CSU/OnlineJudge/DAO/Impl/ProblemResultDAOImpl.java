@@ -105,4 +105,23 @@ public class ProblemResultDAOImpl extends HibernateDaoSupport implements Problem
 		});
 	}
 
+	public Object DeleteMutiplyResult(final List<ProblemResult> prlist) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			public Object doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				for(int i = 0; i < prlist.size(); i ++) {
+					session.delete(prlist.get(i));
+                    if (i % 50 == 0) {  
+                        session.flush();  
+                        session.clear();  
+                    }  
+				}
+				return null;
+			}
+			
+		});
+	}
+
 }
