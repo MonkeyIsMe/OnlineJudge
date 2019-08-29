@@ -54,6 +54,37 @@ $(function(){
                 }
         }
     );
+    
+    $.post(
+            "QueryAllUser.action",
+            {
+                page:row,
+                limit:25
+            },
+            function(data) {
+                var data = JSON.parse(data);
+                console.log(data);
+                    for( var i = 0; i < data.length; i++ ) {
+                        //动态创建一个tr行标签,并且转换成jQuery对象
+                        var $trTemp = $("<tr ></tr>");
+                        //往行里面追加 td单元格
+    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].userId +"</td>");
+    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].userName +"</td>");
+    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].submissionTimes  +"</td>");
+    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].acceptTimes  +"</td>");
+    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].timeLimitTimes  +"</td>");
+    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].wrongAnswerTimes +"</td>");
+    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].compileErrorTimes  +"</td>");
+    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].runtimeErrorTimes  +"</td>");
+    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
+    			        		'<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+    			        		+'<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
+    			        		+"</td>");
+                        // $("#J_TbData").append($trTemp);
+                        $trTemp.appendTo("#UserSubList");
+                    }
+            }
+        );
 
 });
 
@@ -81,7 +112,6 @@ function PrevPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].userName +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userInfo  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].studentClassroom  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 	    			        		'<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#update_Modal"></span></a>'
 	    			        		+'<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
@@ -250,4 +280,8 @@ $(document).ready(function(){
 
 function refresh(){
 	window.location.replace("ManagerUserSet.html");
+}
+
+function refreshUS(){
+	window.location.replace("ManagerUserSubmission.html");
 }

@@ -509,3 +509,6 @@ function NextPage(){
 
 }
 
+function back(){
+	window.location.replace("ManagerWorkSet.html");
+}

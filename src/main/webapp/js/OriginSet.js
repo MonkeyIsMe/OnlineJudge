@@ -127,7 +127,7 @@ $(document).ready(function(){
 			$.post(
 					"DeleteOrigin.action",
 					{
-						origin_id:cid,
+						origin_id:oid,
 					},
 					function(data){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
