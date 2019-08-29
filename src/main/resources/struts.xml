@@ -163,7 +163,12 @@
 			</action>
 			<action name="QueryOriginByProblemId" class="OriginAction" method="QueryOriginByProblemId">
 			</action>
-			
+			<action name="QuerySingleOrigin" class="OriginAction" method="QuerySingleOrigin">
+			</action>
+			<action name="AddOrigin" class="OriginAction" method="AddOrigin">
+			</action>
+			<action name="UpdateOrigin" class="OriginAction" method="UpdateOrigin">
+			</action>
 	</package>
 </struts>
 	
