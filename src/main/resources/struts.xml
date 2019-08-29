@@ -159,6 +159,10 @@
 			<!-- 标程 -->
 			<action name="QueryOriginByProblemId" class="OriginAction" method="QueryOriginByProblemId">
 			</action>
+			<action name="DeleteOrigin" class="OriginAction" method="DeleteOrigin">
+			</action>
+			<action name="QueryOriginByProblemId" class="OriginAction" method="QueryOriginByProblemId">
+			</action>
 			
 	</package>
 </struts>

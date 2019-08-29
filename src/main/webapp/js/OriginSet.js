@@ -45,7 +45,47 @@ $(document).ready(function(){
 	    	    
 	  });
 	  
+	  
+	  $("#myTable").on('click','.updatecode',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    
+			$.post(
+					"QueryOriginByProblemId.action",
+					{
+						origin_id:col1,
+					},
+					function(data){
+						var data = JSON.parse(data);
+						console.log(data);
+					}
+					);
+		    	    
+		  });
+	  
+		$("#del").click(function(){
+			//console.log(cid);
+			$.post(
+					"DeleteOrigin.action",
+					{
+						origin_id:cid,
+					},
+					function(data){
+						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+						if(data == "Fail"){
+							alert("删除失败！");
+							window.location.replace("OriginCode.html");
+						}
+						else{
+							alert("删除成功!");
+							window.location.replace("OriginCode.html");
+						}
+					}
+					);
+		})
 		
+
 		
 		
 });
