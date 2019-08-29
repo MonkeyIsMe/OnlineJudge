@@ -95,9 +95,9 @@ public class ProblemResultDAOImpl extends HibernateDaoSupport implements Problem
 
 			public List<ProblemResult> doInHibernate(Session session) throws HibernateException {
 				// TODO Auto-generated method stub
-				String hql = "from ProblemResult whereuser_account = ?";
+				String hql = "from ProblemResult where user_account = ?";
 				Query query = session.createQuery(hql);
-				query.setParameter(1, UserAccount);
+				query.setParameter(0, UserAccount);
 				List<ProblemResult> result = null;
 				result = query.list();
 				return result;

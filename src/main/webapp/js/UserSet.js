@@ -7,6 +7,7 @@ var sid; //记录第几行的编号
 var sname; //记录第几行的名称
 var sinfo; //记录第几行的备注信息
 var sclassroom; //记录第几行的教室
+var userid; //记录用户的编号
 
 $(function(){
 	$.ajaxSettings.async = false;
@@ -81,7 +82,7 @@ $(function(){
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].runtimeErrorTimes  +"</td>");
     			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
     			        		'<a id="pic"><span class="delete glyphicon glyphicon-folder-open" style="cursor:pointer;margin-left:30px"></span></a>'
-    			        		+'<a id="pic"><span  class="delete clear glyphicon glyphicon-minus" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#clearModal"></span></a>'
+    			        		+'<a id="pic"><span  class="delete clearSub glyphicon glyphicon-minus" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#clearModal"></span></a>'
     			        		+"</td>");
                         // $("#J_TbData").append($trTemp);
                         $trTemp.appendTo("#UserSubList");
@@ -187,6 +188,36 @@ $(document).ready(function(){
 	    //$("#update_name").append(cname);
 	    //$("#update_info").append(cinfo);
 	  });
+	  
+	  $("#myTable").on('click','.clearSub',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    
+		    //alert(col1);
+		    userid = col1;
+		  });
+	  
+		$("#clear_user").click(function(){
+			//console.log(cid);
+			$.post(
+					"ClearUserSubmissionResult.action",
+					{
+						user_id:userid,
+					},
+					function(data){
+						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+						if(data == "Fail"){
+							alert("删除失败！");
+							window.location.replace("ManagerUserSubmission.html");
+						}
+						else{
+							alert("删除成功!");
+							window.location.replace("ManagerUserSubmission.html");
+						}
+					}
+					);
+		})
 	  
 		$("#del_user").click(function(){
 			//console.log(cid);

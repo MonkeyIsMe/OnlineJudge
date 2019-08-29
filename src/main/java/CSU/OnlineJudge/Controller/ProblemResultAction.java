@@ -153,11 +153,19 @@ public class ProblemResultAction extends ActionSupport{
 		
 		int uid = Integer.valueOf(user_id);
 		user = UserService.queryUser(uid);
+		user.setSubmissionTimes(0);
+		user.setAcceptTimes(0);
+		user.setWrongAnswerTimes(0);
+		user.setSubmissionTimes(0);
+		user.setRuntimeErrorTimes(0);
+		user.setTimeLimitTimes(0);
+		user.setCompileErrorTimes(0);
 		String user_account = user.getUserAccount();
 		
 		List<ProblemResult> pr_list = ProblemResultService.QueryProblemResultByAccount(user_account);
 		
 		ProblemResultService.DeleteMutiplyResult(pr_list);
+		UserService.updateUser(user);
 		
 	}
 	
