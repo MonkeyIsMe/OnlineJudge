@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title id="worktittle"></title>
+    <link href="css/bootstrap-theme.css" type="text/css" rel="styleSheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/WorkPage.js"></script>
+    <link href="css/bootstrap.css" type="text/css" rel="styleSheet">
+    <link href="css/Common.css" type="text/css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/layui.css">
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#head").load('MainHead.html');
+        })
+    </script>
+</head>
+<body>
+<div id="head"></div>
+<table class="layui-table" lay-even lay-skin="nob">
+	<thead>
+		<tr align="center" height="40">
+			<th style="width:20%;text-align:center">Pro. ID</th>
+			<th style="width:60%;text-align:center">Problem Title</th>
+			<th style="width:20%;text-align:center" >(Accepted/Submissions)</th>
+		</tr>
+	</thead>
+	<tbody id="ProblemList" align="center"  style="color: black;" >
+	
+    </tbody>
+</table>
+</body>
+</html>

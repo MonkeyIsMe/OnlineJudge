@@ -64,13 +64,14 @@
     text-align: center;
 }
 
+
 .table_center{
     width: 80%;
     font-family: Arial;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 14px;
     color: #ffffff;
-    background-color: #1a5cc8;
+    background-color: #01AAED;
     text-align: center;
     margin-left: 10%;
 }

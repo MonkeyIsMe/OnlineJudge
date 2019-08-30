@@ -241,11 +241,11 @@ $(document).ready(function(){
             var problem_hint = $("#add_problem_hint").val();
             var problem_memory = $("#add_problem_memory").val();
             var problem_time = $("#add_problem_time").val();
-            var problem_input = $("#add_problem_input").val();
-            var problem_output = $("#add_problem_output").val();
+            var problem_input = CKEDITOR.instances.incontent.getData();
+            var problem_output = CKEDITOR.instances.outcontent.getData();
             var case_input = $("#add_case_input").val();
             var case_output = $("#add_case_output").val();
-            var problem_info = $("#add_problem_info").val();
+            var problem_info = CKEDITOR.instances.content.getData();
             var problem_flag = $('input:radio:checked').val();
             
 	  		var json =[];

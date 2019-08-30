@@ -16,7 +16,7 @@ $(function(){
 				        var $trTemp = $("<tr ></tr>");
 				        //往行里面追加 td单元格
 				        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].workId +"</td>");
-				        $trTemp.append("<td onclick=SeeProblem('"+data[i].ProblemId+"') style=" + "text-align:center;color:white"  + ">"  +data[i].workName +"</td>");
+				        $trTemp.append("<td onclick=SeeProblem('"+data[i].workId+"') style=" + "text-align:center;color:white"  + ">"  +data[i].workName +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workOwner  +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" + data[i].workCreatTime+"</td>");
 				        // $("#J_TbData").append($trTemp);
