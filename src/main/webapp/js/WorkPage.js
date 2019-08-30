@@ -29,3 +29,8 @@ $(function(){
 	);
 	
 });
+
+function SeeProblem(pid){
+	var url = "ProblemPage.html?ProblemId=" + pid;
+	window.location.href = url;
+}
