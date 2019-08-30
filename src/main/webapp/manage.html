@@ -191,7 +191,9 @@ layui.use('element', function(){
         };
         function FrameWH() {
             var h = $(window).height();
-            $("iframe").css("height","2650"+"px");
+            h = h + 2000;
+            //alert(h);
+            $("iframe").css("height",h+"px");
         }
     });
 </script>

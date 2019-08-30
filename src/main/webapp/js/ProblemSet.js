@@ -8,6 +8,14 @@ var stock = [];
 var arr = [];
 var cnt = 0;
 
+var pro_content = null;
+var in_content = null;
+var out_content = null;
+window.onload = function () {
+	pro_content = CKEDITOR.replace("content"); //参数‘content’是textarea元素的name属性值，而非id属性值
+	in_content = CKEDITOR.replace("incontent"); 
+	out_content = CKEDITOR.replace("outcontent"); 
+}
 
 $(function(){
 	$.ajaxSettings.async = false;
