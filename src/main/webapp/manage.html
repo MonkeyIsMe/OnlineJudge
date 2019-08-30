@@ -8,17 +8,71 @@
     <link rel="stylesheet" href="css/layui.css">
     <link href="css/bootstrap-theme.css" type="text/css" rel="styleSheet">
     <script src="js/jquery.min.js"></script>
+     <link href="css/Common.css" type="text/css" rel="stylesheet">
     <link href="css/bootstrap.css" type="text/css" rel="styleSheet">
     <script src="js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script>
-        $(document).ready(function(){
-            $("#head").load('MainHead.html');
-        })
-    </script>
 </head>
+<nav class="navbar navbar-default" role="navigation" style="height: 5%">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand  MainFont" href="MainHead.html" style="padding-top:20px">CSUOJ</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav MainFont">
+                <li><a href="ProblemSet.html"  style="padding-top:20px">所有题目</a></li>
+                <li><a href="WorkSet.html"  style="padding-top:20px">竞赛&作业</a></li>
+                <li><a href="Ranklist.html"  style="padding-top:20px">排名</a></li>
+                <li><a href="SubmitStaus.html"  style="padding-top:20px">状态</a></li>
+                <li><a href="ProblemHint.html"  style="padding-top:20px">常见问题</a></li>
+                <li><a href="CompileCode.html"  style="padding-top:20px">编译器</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" style="margin-right: 25px;padding-top:10px">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="UserName">
+                        用户名 <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" style="cursor:pointer" data-toggle="modal" data-target="#update_user">更新个人信息</a></li>
+                        <li class="divider"></li>
+                        <li><a href="MySubmission.html">我的提交</a></li>
+                        <li class="divider"></li>
+                        <li><a href="MyWork.html">我的作业</a></li>
+                        <li class="divider"></li>
+                        <li><a href="MyCourse.html">我的课程</a></li>
+                        <li class="divider"></li>
+                        <li><a href="manage.html">管理</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#"><span></span>登出</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="modal fade" id="update_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">更新个人信息</h4>
+            </div>
+	        <div class="form-group head_input">
+	            <label>用户姓名：</label>
+	            <input type="text" class="form-control" id="user_name" maxlength="15" placeholder="请输入用户姓名">
+	        </div>
+	        <div class="form-group myform">
+	            <label>课程备注：</label>
+	            <textarea type="text" class="form-control" style="resize: none;height: 280px;" id="user_info" maxlength="15" placeholder="请输入学生备注"></textarea>
+	        </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="update_myinfo">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 <body class="layui-layout-body">
-<div id="head"></div>
     <div class="layui-side layui-bg-black" style="margin-top: 60px">
         <div class="layui-side-scroll">
             <!-- 左侧垂直导航区域-->
@@ -80,6 +134,12 @@
 <script src="js/layui.js"></script>
 <script src="js/jquery.min.js"></script>
 <script>
+//注意：导航 依赖 element 模块，否则无法进行功能性操作
+layui.use('element', function(){
+  var element = layui.element;
+  
+  //…
+});
     layui.use(['element', 'layer', 'jquery'], function () {
         var element = layui.element;
         // var layer = layui.layer;
