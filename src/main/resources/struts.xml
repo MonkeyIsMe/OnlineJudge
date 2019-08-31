@@ -36,7 +36,10 @@
 			</action>
 			<action name="UpdateProblemCode" class="ProblemAction" method="UpdateProblemCode" >
 			</action>
-			
+			<action name="QueryProblemSubmission" class="ProblemAction" method="QueryProblemSubmission" >
+			</action>
+			<action name="UpdateProblemSubmission" class="ProblemAction" method="UpdateProblemSubmission" >
+			</action>
 			
 		 	<!-- 作业考试 -->
 		 	<action name="QueryAllWork" class="WorkAction" method="QueryAllWork" >
@@ -60,6 +63,10 @@
 			
 			<!-- 课程用户关联 -->
 			<action name="QuerySingleCourseUser" class="CourseUserAction" method="QuerySingleCourseUser" >
+			</action>
+			<action name="QueryUserCourseByPageSize" class="CourseUserAction" method="QueryUserCourseByPageSize" >
+			</action>
+			<action name="QueryCourseByUserId" class="CourseUserAction" method="QueryCourseByUserId" >
 			</action>
 			
 			<!-- 知识点 -->

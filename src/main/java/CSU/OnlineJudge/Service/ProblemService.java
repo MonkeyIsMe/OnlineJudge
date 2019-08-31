@@ -28,8 +28,12 @@ public interface ProblemService {
 	
 	public List<Object[]> GetProblemManagerInfo(int row,int PageSize);
 	
+	public List<Object[]> GetProblemSubmission(int row,int PageSize);
+	
 	public int CountProblem();
 	
 	public Object addMutiplyProblem(List<Problem> problem);
+	
+	public Object UpdateMutiplyProblem(List<Problem> problem);
 	
 }

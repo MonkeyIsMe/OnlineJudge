@@ -458,8 +458,8 @@ public class ProblemAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 			
-		String page = request.getParameter("rows");
-		String size = request.getParameter("size");
+		String page = request.getParameter("page");
+		String size = request.getParameter("limit");
 		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size); 
@@ -552,6 +552,78 @@ public class ProblemAction extends ActionSupport{
 			jo.put("people", people);
 			jo.put("publicornot", publicornot);
 			jo.put("know", know);
+			ja.add(jo);
+		}
+		out.println(ja.toString());
+	    out.flush(); 
+	    out.close();
+	}
+
+	//更新题目提交数据
+	public void UpdateProblemSubmission() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String problem_id = request.getParameter("problem_id");
+		
+		//int degree = Integer.valueOf(problem_degree);
+		
+		int pid = Integer.valueOf(problem_id);
+		problem = ProblemService.QueryProblem(pid);
+		
+		problem.setAcceptTimes(0);
+		problem.setCompileErrorTimes(0);
+		problem.setSubmissionTimes(0);
+		problem.setRuntimeErrorTimes(0);
+		problem.setTimeLimitTimes(0);
+		problem.setWrongAnswerTimes(0);
+		
+		ProblemService.UpdateProblem(problem);
+		
+	}
+	
+	
+	//查询题目提交数据
+	public void QueryProblemSubmission() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+			
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+			
+		String page = request.getParameter("page");
+		String size = request.getParameter("limit");
+		
+		int row = Integer.valueOf(page);
+		int PageSize = Integer.valueOf(size); 
+		
+		JSONArray ja = new JSONArray();
+		List<Object[]> obj_list = ProblemService.GetProblemSubmission(row, PageSize);
+		for(Object[]  obj : obj_list) {
+			JSONObject jo = new JSONObject();
+			Object id = obj[0];
+			Object wa = obj[1];
+			Object tle = obj[2];
+			Object rte = obj[3];
+			Object ce = obj[4];
+			Object ac = obj[5];
+			Object sub = obj[6];
+			Object name = obj[7];
+			jo.put("ProblemId", id);
+			jo.put("WrongAnswerTimes", wa);
+			jo.put("TimeLimitTimes",tle);
+			jo.put("RuntimeErrorTimes", rte);
+			jo.put("CompileErrorTimes",ce);
+			jo.put("AcceptTimes", ac);
+			jo.put("SubmissionTimes", sub);
+			jo.put("ProblemName", name);
 			ja.add(jo);
 		}
 		out.println(ja.toString());

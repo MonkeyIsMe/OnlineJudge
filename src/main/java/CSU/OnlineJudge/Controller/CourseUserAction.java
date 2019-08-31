@@ -13,8 +13,10 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import CSU.OnlineJudge.Model.Course;
 import CSU.OnlineJudge.Model.CourseUser;
+import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Service.CourseService;
 import CSU.OnlineJudge.Service.CourseUserService;
+import CSU.OnlineJudge.Service.UserService;
 import CSU.OnlineJudge.Service.Impl.CourseServiceImpl;
 import CSU.OnlineJudge.Service.Impl.CourseUserServiceImpl;
 import net.sf.json.JSONArray;
@@ -25,8 +27,18 @@ public class CourseUserAction extends ActionSupport{
 	private CourseUser cu = new CourseUser();
 	private CourseUserService CourseUserService;
 	private CourseService CourseService;
+	private UserService UserService;
+	private User user = new User();
+	private Course course = new Course();
 	
 	
+	public UserService getUserService() {
+		return UserService;
+	}
+
+	public void setUserService(UserService userService) {
+		UserService = userService;
+	}
 
 	public CourseUserService getCourseUserService() {
 		return CourseUserService;
@@ -59,6 +71,84 @@ public class CourseUserAction extends ActionSupport{
 		String user_account = (String) session.getAttribute("user_account");
 		
 		List<CourseUser> CourseUserList = CourseUserService.QueryCourseUserByUserAccount(user_account);
+		JSONArray ja = new JSONArray();
+		
+		for(CourseUser courseuser : CourseUserList) {
+			int cid = courseuser.getCourseId();
+			Course course = CourseService.QueryCourse(cid);
+			JSONObject jo = JSONObject.fromObject(course);
+			ja.add(jo);
+		}
+		
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+		
+	}
+	
+	//分页查询学生课程列表
+	public void QueryUserCourseByPageSize() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String page = request.getParameter("page");
+		String size = request.getParameter("limit");
+		
+		int row = Integer.valueOf(page);
+		int PageSize = Integer.valueOf(size);
+		
+		List<User> UserList = UserService.QueryUserByPageSize(row, PageSize);
+
+		JSONArray ja = new JSONArray();
+		
+		for(User u : UserList) {
+			int uid = u.getUserId();
+			String name = "";
+			JSONObject jo = new JSONObject();
+			List<CourseUser> CourseUserList = CourseUserService.QueryCourseUserByUserID(uid);
+			for(CourseUser cu : CourseUserList) {
+				int cid = cu.getCourseId();
+				course = CourseService.QueryCourse(cid);
+				if(course == null) continue;
+				String cname = course.getCourseName();
+				if(name.equals("")) name = name + cname;
+				else name = name + "," + cname;
+			}
+			jo.put("userid", uid);
+			jo.put("uname", u.getUserName());
+			jo.put("uclassroom", u.getStudentClassroom());
+			jo.put("uaccount", u.getUserAccount());
+			jo.put("cname", name);
+			ja.add(jo);
+		}
+		
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+		
+	}
+	
+	//通过用户Id查询指定学生的课程
+	public void QueryCourseByUserId() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		
+		String user_id = request.getParameter("user_id");
+		
+		int uid = Integer.valueOf(user_id);
+		
+		List<CourseUser> CourseUserList = CourseUserService.QueryCourseUserByUserID(uid);
 		JSONArray ja = new JSONArray();
 		
 		for(CourseUser courseuser : CourseUserList) {

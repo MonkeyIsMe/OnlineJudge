@@ -92,4 +92,14 @@ public class ProblemServiceImpl implements ProblemService{
 		return pd.addMutiplyProblem(problem);
 	}
 
+	public List<Object[]> GetProblemSubmission(int row, int PageSize) {
+		// TODO Auto-generated method stub
+		return pd.GetProblemSubmission(row, PageSize);
+	}
+
+	public Object UpdateMutiplyProblem(List<Problem> problem) {
+		// TODO Auto-generated method stub
+		return pd.UpdateMutiplyProblem(problem);
+	}
+
 }
