@@ -92,6 +92,9 @@
 	<bean name="AnswerAction" class="CSU.OnlineJudge.Controller.AnswerAction" scope="prototype" >
 		<property name="AnswerService" ref="AnswerService" ></property>
 	</bean>
+	<bean name="CommentAction" class="CSU.OnlineJudge.Controller.CommentAction" scope="prototype" >
+		<property name="CommentService" ref="CommentService" ></property>
+	</bean>
 	
 	<!-- service -->
  	<bean name="CaseService" class="CSU.OnlineJudge.Service.Impl.CaseServiceImpl" >
@@ -148,8 +151,11 @@
  	 <bean name="OriginService" class="CSU.OnlineJudge.Service.Impl.OriginServiceImpl" >
 		<property name="od" ref="OriginDAO" ></property>
 	</bean>
-	 <bean name="AnswerService" class="CSU.OnlineJudge.Service.Impl.AnswerServiceImpl" >
+	<bean name="AnswerService" class="CSU.OnlineJudge.Service.Impl.AnswerServiceImpl" >
 		<property name="ad" ref="AnswerDAO" ></property>
+	</bean>
+	<bean name="CommentService" class="CSU.OnlineJudge.Service.Impl.CommentServiceImpl" >
+		<property name="cd" ref="CommentDAO" ></property>
 	</bean>
 	
 	<!-- Dao -->
@@ -208,6 +214,9 @@
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
 	<bean name="AnswerDAO" class="CSU.OnlineJudge.DAO.AnswerDAO" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+	<bean name="CommentDAO" class="CSU.OnlineJudge.DAO.CommentDAO" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
 	

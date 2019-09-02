@@ -3,31 +3,31 @@ package CSU.OnlineJudge.Controller;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import CSU.OnlineJudge.Model.Answer;
-import CSU.OnlineJudge.Service.AnswerService;
+import CSU.OnlineJudge.Model.Comment;
+import CSU.OnlineJudge.Service.CommentService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class AnswerAction extends ActionSupport{
-
-	private AnswerService AnswerService;
-	private Answer answer = new Answer();
+public class CommentAction extends ActionSupport{
 	
-	public AnswerService getAnswerService() {
-		return AnswerService;
+	private CommentService CommentService;
+	private Comment comment = new Comment();
+	
+	public CommentService getCommentService() {
+		return CommentService;
 	}
-	public void setAnswerService(AnswerService answerService) {
-		AnswerService = answerService;
+	public void setCommentService(CommentService commentService) {
+		CommentService = commentService;
 	}
 	
-	//添加一个题解
-	public void AddAnswer() throws Exception{
+	public void AddComment() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
 		HttpServletRequest request= ServletActionContext.getRequest();
@@ -36,24 +36,23 @@ public class AnswerAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String answer_info = request.getParameter("answer_info");
+		String comment_info = request.getParameter("comment_info");
+		String answer_id = request.getParameter("answer_id");
+		String comment_time = request.getParameter("comment_time");
 		String user_account = request.getParameter("user_account");
-		String problem_id = request.getParameter("problem_id");
-		String answer_time = request.getParameter("answer_time");
 		
-		int pid = Integer.valueOf(problem_id);
+		int aid = Integer.valueOf(answer_id);
 		
-		answer.setAnswerInfo(answer_info);
-		answer.setUserAccount(user_account);
-		answer.setProblemId(pid);
-		answer.setAnswerTime(answer_time);
+		comment.setAnswerId(aid);
+		comment.setCommentInfo(comment_info);
+		comment.setCommentTime(comment_time);
+		comment.setUserAccount(user_account);
 		
-		AnswerService.AddAnswer(answer);
+		CommentService.AddComment(comment);
 		
 	}
 	
-	//删除一个题解
-	public void DeleteAnswer() throws Exception{
+	public void DeleteComment() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
 		HttpServletRequest request= ServletActionContext.getRequest();
@@ -62,27 +61,27 @@ public class AnswerAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String answer_id = request.getParameter("answer_id");
+		String comment_id = request.getParameter("comment_id");
 		
-		int aid = Integer.valueOf(answer_id);
+		int cid = Integer.valueOf(comment_id);
 		
-		answer = AnswerService.QueryAnswer(aid);
+		comment = CommentService.QueryComment(cid);
 		
-		if(answer == null) {
+		if(comment == null) {
 			out.println("Fail");
 			out.flush(); 
 			out.close();
 			return ;
 		}
 		
-		AnswerService.DeleteAnswer(answer);
+		CommentService.DeleteComment(comment);
 		
 	}
 	
+
 	
-	//查询一个题解
-	public void QuerySingleAnswer() throws Exception{
-		
+	public void QuerySingleComment() throws Exception{
+	
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
 		HttpServletRequest request= ServletActionContext.getRequest();
 		
@@ -90,20 +89,20 @@ public class AnswerAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String answer_id = request.getParameter("answer_id");
+		String comment_id = request.getParameter("comment_id");
 		
-		int aid = Integer.valueOf(answer_id);
+		int cid = Integer.valueOf(comment_id);
 		
-		answer = AnswerService.QueryAnswer(aid);
+		comment = CommentService.QueryComment(cid);
 		
-		if(answer == null) {
+		if(comment == null) {
 			out.println("Fail");
 			out.flush(); 
 			out.close();
 			return ;
 		}
 		
-		JSONObject jo = JSONObject.fromObject(answer);
+		JSONObject jo = JSONObject.fromObject(comment);
 		
 		out.println(jo.toString());
 	    out.flush(); 
@@ -111,8 +110,7 @@ public class AnswerAction extends ActionSupport{
 		
 	}
 	
-	//通过题目id查询题解
-	public void QueryAnswerByProblemId() throws Exception{
+	public void QueryCommentByAnswerIdPageSize() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
 		HttpServletRequest request= ServletActionContext.getRequest();
@@ -123,15 +121,15 @@ public class AnswerAction extends ActionSupport{
 		
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
-		String problem_id = request.getParameter("problem_id");
+		String answer_id = request.getParameter("answer_id");
 		
-		int pid = Integer.valueOf(problem_id);
+		int aid = Integer.valueOf(answer_id);
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size); 
 		
-		List<Answer> AnswerList = AnswerService.QueryAnswerByProblemIdPageSize(pid, row, PageSize);
+		List<Comment> CommentList = CommentService.QueryCommentByAnswerIdPageSize(aid, row, PageSize);
 		
-		JSONArray ja = JSONArray.fromObject(AnswerList);
+		JSONArray ja = JSONArray.fromObject(CommentList);
 		
 		out.println(ja.toString());
 	    out.flush(); 
@@ -139,8 +137,7 @@ public class AnswerAction extends ActionSupport{
 		
 	}
 	
-	//分页查询所有题解
-	public void QueryAnswerPageSize() throws Exception{
+	public void QueryCommentPageSize() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
 		HttpServletRequest request= ServletActionContext.getRequest();
@@ -155,9 +152,9 @@ public class AnswerAction extends ActionSupport{
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size); 
 		
-		List<Answer> AnswerList = AnswerService.QueryAnswerByPageSize(row, PageSize);
+		List<Comment> CommentList = CommentService.QueryCommentByPageSize(row, PageSize);
 		
-		JSONArray ja = JSONArray.fromObject(AnswerList);
+		JSONArray ja = JSONArray.fromObject(CommentList);
 		
 		out.println(ja.toString());
 	    out.flush(); 
@@ -165,8 +162,7 @@ public class AnswerAction extends ActionSupport{
 		
 	}
 	
-	//查询题解数目
-	public void CountAnswer() throws Exception{
+	public void CountComment() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
 		HttpServletRequest request= ServletActionContext.getRequest();
@@ -175,15 +171,15 @@ public class AnswerAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		int count = AnswerService.CountAnswer();
+		int count = CommentService.CountComment();
 		
 		JSONObject jo = new JSONObject();
-		jo.put("AnswerCount", count);
+		jo.put("CommentCount", count);
 		
 		out.println(jo.toString());
 	    out.flush(); 
 	    out.close();
 		
 	}
-	
+
 }
