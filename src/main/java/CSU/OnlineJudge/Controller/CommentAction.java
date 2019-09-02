@@ -27,6 +27,7 @@ public class CommentAction extends ActionSupport{
 		CommentService = commentService;
 	}
 	
+	//添加评论
 	public void AddComment() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
@@ -52,6 +53,7 @@ public class CommentAction extends ActionSupport{
 		
 	}
 	
+	//删除评论
 	public void DeleteComment() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
@@ -78,8 +80,7 @@ public class CommentAction extends ActionSupport{
 		
 	}
 	
-
-	
+	//查询单一评论
 	public void QuerySingleComment() throws Exception{
 	
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
@@ -110,6 +111,7 @@ public class CommentAction extends ActionSupport{
 		
 	}
 	
+	//通过题解分页查询评论
 	public void QueryCommentByAnswerIdPageSize() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
@@ -137,6 +139,7 @@ public class CommentAction extends ActionSupport{
 		
 	}
 	
+	//分页查询所有评论
 	public void QueryCommentPageSize() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
@@ -162,6 +165,7 @@ public class CommentAction extends ActionSupport{
 		
 	}
 	
+	//评论总数
 	public void CountComment() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
@@ -182,4 +186,47 @@ public class CommentAction extends ActionSupport{
 		
 	}
 
+	//通过题解id查询评论
+	public void QueryCommentByAnswerId() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String answer_id = request.getParameter("answer_id");
+		
+		int aid = Integer.valueOf(answer_id);
+		
+		List<Comment> CommentList = CommentService.QueryCommentByAnswerId(aid);
+		
+		JSONArray ja = JSONArray.fromObject(CommentList);
+		
+		out.println(ja.toString());
+	    out.flush(); 
+	    out.close();
+		
+	}
+	
+	//清空所有评论
+	public void ClearComment() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String answer_id = request.getParameter("answer_id");
+		
+		int aid = Integer.valueOf(answer_id);
+		
+		List<Comment> CommentList = CommentService.QueryCommentByAnswerId(aid);
+		
+		CommentService.deleteMutiplyAnswer(CommentList);
+		
+	}
 }

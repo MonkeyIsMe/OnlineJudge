@@ -14,7 +14,7 @@
     <link href="css/bootstrap-theme.css" type="text/css" rel="styleSheet">
     <link href="css/bootstrap.css" type="text/css" rel="styleSheet">
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/ProblemAnswerSet.js"></script>
+    <script src="js/CommentSet.js"></script>
 </head>
 <body>
 <button type="button" class="btn btn-default btn-sm" style="margin:10px" onclick="refresh()">
@@ -23,13 +23,12 @@
 <table class="layui-table" id="myTable">
     <thead>
     <tr align="center" class="table_header" height="22">
-        <th style="width:10%;text-align:center">题目编号</th>
-        <th style="width:5%;text-align:center">属性</th>
-        <th style="width:10%;text-align:center">题目名称</th>
-        <th style="width:10%;text-align:center">题目难度</th>
-        <th style="width:40%;text-align:center" >知识点</th>
-        <th style="width:10%;text-align:center" >题目出题人</th>
-        <th style="width:15%;text-align:center" >查看题解--清空题解</th>
+        <th style="width:10%;text-align:center">评论编号</th>
+        <th style="width:10%;text-align:center">题解编号</th>
+        <th style="width:10%;text-align:center">发布用户</th>
+        <th style="width:10%;text-align:center" >发布时间</th>
+        <th style="width:50%;text-align:center;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;" >评论信息</th>
+        <th style="width:10%;text-align:center" >删除</th>
     </tr>
     </thead>
     <tbody id="KnowList" bgcolor="#D7EBFF" align="center"  style="color: black">
@@ -49,9 +48,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">清空界面</h4>
+                <h4 class="modal-title" id="myModalLabel">删除界面</h4>
             </div>
-            <div class="modal-body">是否清空该题所有题解</div>
+            <div class="modal-body">是否删除该评论</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary" id="clear">确定</button>

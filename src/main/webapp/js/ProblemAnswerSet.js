@@ -51,7 +51,7 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" ></span></a>'
-			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:70px" ></span></a>'
+			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:70px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
                     $trTemp.appendTo("#KnowList");
@@ -92,7 +92,7 @@ function PrevPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 	    			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" ></span></a>'
-	    			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:70px" ></span></a>'
+	    			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:70px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
@@ -132,7 +132,7 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 	    			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" ></span></a>'
-	    			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:70px" ></span></a>'
+	    			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:70px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
@@ -155,8 +155,39 @@ $(document).ready(function(){
 	    var url = "ManagerAnswerSet.html?ProblemId=" + pid;
 	    window.location.replace(url);
 	  });
-	 
 	  
+	  $("#myTable").on('click','.clear',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    
+		    pid = col1;
+		    
+		  });
+	  
+	  
+	  $("#clear").click(function(){
+		  	$.post(
+					"ClearAnswerByProblemId.action",
+					{
+						problem_id:pid,
+					},
+					function(data){
+						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+						if(data == "Fail"){
+							alert("清空失败！");
+						    var url = "ManagerProblemAnswerSet.html";
+						    window.location.replace(url);
+						}
+						else{
+							alert("清空成功!");
+							var url = "ManagerProblemAnswerSet.html";
+						    window.location.replace(url);
+						}
+					}
+					);
+	  })
+	 
 });
 
 

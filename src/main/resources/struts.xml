@@ -191,7 +191,22 @@
 			</action>
 			<action name="ClearAnswerByProblemId" class="AnswerAction" method="ClearAnswerByProblemId">
 			</action>
-			
+			<action name="QueryAnswerPageSize" class="AnswerAction" method="QueryAnswerPageSize">
+			</action>
+						
+			<!-- 评论 -->
+			<action name="QueryCommentByAnswerId" class="CommentAction" method="QueryCommentByAnswerId">
+			</action>
+			<action name="ClearComment" class="CommentAction" method="ClearComment">
+			</action>
+			<action name="DeleteComment" class="CommentAction" method="DeleteComment">
+			</action>
+			<action name="QueryCommentByAnswerIdPageSize" class="CommentAction" method="QueryCommentByAnswerIdPageSize">
+			</action>
+			<action name="QueryCommentPageSize" class="CommentAction" method="QueryCommentPageSize">
+			</action>
+			<action name="CountComment" class="CommentAction" method="CountComment">
+			</action>
 	</package>
 </struts>
 	

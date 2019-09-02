@@ -1,29 +1,27 @@
 /**
  * Created by CallMeDad on 2019/9/2.
  */
-
 var url = decodeURI(window.location.href);
  
-var argsIndex = url .split("?ProblemId=");
-var pid = argsIndex[1];
-
+var argsIndex = url .split("?AnswerId=");
+var aid = argsIndex[1];
 
 var row = 1;  //页数
 var count; //总记录数
-var aid; //记录第几行的编号
+var cid; //记录第几行的编号
 var cnt = 0;
 
 
 $(function(){
 	$.ajaxSettings.async = false;
 	$.post(
-			"CountAnswer.action",
+			"CountComment.action",
 			{
 			},
 			function(data){
 				var data = JSON.parse(data);
 				//console.log(data);
-				var sum = data.AnswerCount;
+				var sum = data.CommentCount;
 				count = Math.ceil(sum/25);
 				var total = "共" + Math.ceil(sum/25) + "页";
 				$("#TotalPage").append(total);
@@ -36,27 +34,26 @@ $(function(){
 
 $(function(){
     $.post(
-        "QueryAnswerByProblemId.action",
+        "QueryCommentByAnswerIdPageSize.action",
         {
             page:row,
             limit:25,
-            problem_id:pid
+            answer_id:aid,
         },
         function(data) {
             var data = JSON.parse(data);
-           // console.log("success");
-            //console.log(data);
+            console.log(data);
                 for( var i = 0; i < data.length; i++ ) {
                     //动态创建一个tr行标签,并且转换成jQuery对象
                     var $trTemp = $("<tr ></tr>");
                     //往行里面追加 td单元格
-			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].answerId +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].problemName +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].commentId +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].answerId +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].answerTime  +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].answerInfo  +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].commentTime  +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].commentInfo  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" data-toggle="modal" data-target="#myModal"></span></a>'
+			        		'<a><span class="delete clear glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:55px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
                     $trTemp.appendTo("#KnowList");
@@ -75,11 +72,10 @@ function PrevPage(){
 		row--;
 		$("#KnowList").html("");
 	    $.post(
-	            "QueryAnswerByProblemId.action",
+	            "QueryAnswerPageSize.action",
 	            {
 	                page:row,
 	                limit:25,
-	                problem_id:pid
 	            },
 	            function(data) {
 	                var data = JSON.parse(data);
@@ -89,13 +85,13 @@ function PrevPage(){
 	                        //动态创建一个tr行标签,并且转换成jQuery对象
 	                        var $trTemp = $("<tr ></tr>");
 	                        //往行里面追加 td单元格
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].answerId +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].problemName +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].commentId +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].answerId +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].answerTime  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].answerInfo  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].commentTime  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].commentInfo  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a><span class="delete  glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" data-toggle="modal" data-target="#myModal"></span></a>'
+	    			        		'<a><span class="delete clear glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:55px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
@@ -113,27 +109,26 @@ function NextPage(){
 		row ++;
 		$("#KnowList").html("");
 	    $.post(
-	            "QueryAnswerByProblemId.action",
+	            "QueryAnswerPageSize.action",
 	            {
 	                page:row,
 	                limit:25,
-	                problem_id:pid
 	            },
 	            function(data) {
 	                var data = JSON.parse(data);
 	               // console.log("success");
-	                //console.log(data);
+	                console.log(data);
 	                    for( var i = 0; i < data.length; i++ ) {
 	                        //动态创建一个tr行标签,并且转换成jQuery对象
 	                        var $trTemp = $("<tr ></tr>");
 	                        //往行里面追加 td单元格
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].answerId +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].problemName +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].commentId +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].answerId +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].answerTime  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].answerInfo  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].commentTime  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].commentInfo  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a><span class="delete  glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" data-toggle="modal" data-target="#myModal"></span></a>'
+	    			        		'<a><span class="delete clear glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:55px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
@@ -147,61 +142,38 @@ function NextPage(){
 $(document).ready(function(){
 	
 	  //用于读取所选表行单元格数据（值）的代码
-	  $("#myTable").on('click','.delete',function(){
-	    //获得当前行
-	    var currentRow=$(this).closest("tr"); 
-	    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
-	    
-	    aid = col1;
-	  });
+	  
+	  $("#myTable").on('click','.clear',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    
+		    cid = col1;
+		    
+		  });
 	 
-	  $("#del_answer").click(function(){
+	  $("#clear").click(function(){
 		  	$.post(
-					"DeleteAnswer.action",
+					"DeleteComment.action",
 					{
-						answer_id:aid,
+						comment_id:cid,
 					},
 					function(data){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 						if(data == "Fail"){
 							alert("删除失败！");
-						    var url = "ManagerAnswerSet.html?ProblemId=" + pid;
+						    var url = "ManagerCommentSet.html?AnswerId=" + aid;
 						    window.location.replace(url);
 						}
 						else{
 							alert("删除成功!");
-						    var url = "ManagerAnswerSet.html?ProblemId=" + pid;
+						    var url = "ManagerCommentSet.html?AnswerId=" + aid;
 						    window.location.replace(url);
 						}
 					}
 					);
 	  })
 	  
-	  	  $("#add_answer").click(function(){
-	  		  
-	  		  var info = $("#add_info").val();
-	  		  
-		  		$.post(
-					"AddAnswer.action",
-					{
-						answer_info:info,
-						problem_id:pid
-					},
-					function(data){
-						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-						if(data == "Fail"){
-							alert("添加失败！");
-						    var url = "ManagerAnswerSet.html?ProblemId=" + pid;
-						    window.location.replace(url);
-						}
-						else{
-							alert("添加成功!");
-						    var url = "ManagerAnswerSet.html?ProblemId=" + pid;
-						    window.location.replace(url);
-						}
-					}
-					);
-	  })
 	  
 	  
 });
@@ -209,5 +181,5 @@ $(document).ready(function(){
 
 
 function refresh(){
-	window.location.replace("ManagerAnswerSet.html");
+	window.location.replace(url);
 }
