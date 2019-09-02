@@ -91,6 +91,7 @@
 	</bean>
 	<bean name="AnswerAction" class="CSU.OnlineJudge.Controller.AnswerAction" scope="prototype" >
 		<property name="AnswerService" ref="AnswerService" ></property>
+		<property name="ProblemService" ref="ProblemService" ></property>
 	</bean>
 	<bean name="CommentAction" class="CSU.OnlineJudge.Controller.CommentAction" scope="prototype" >
 		<property name="CommentService" ref="CommentService" ></property>
@@ -213,10 +214,10 @@
 	<bean name="OriginDAO" class="CSU.OnlineJudge.DAO.Impl.OriginDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
-	<bean name="AnswerDAO" class="CSU.OnlineJudge.DAO.AnswerDAO" >
+	<bean name="AnswerDAO" class="CSU.OnlineJudge.DAO.Impl.AnswerDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
-	<bean name="CommentDAO" class="CSU.OnlineJudge.DAO.CommentDAO" >
+	<bean name="CommentDAO" class="CSU.OnlineJudge.DAO.Impl.CommentDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
 	

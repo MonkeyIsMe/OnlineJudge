@@ -56,4 +56,14 @@ public class AnswerServiceImpl implements AnswerService{
 		return ad.CountAnswer();
 	}
 
+	public Object DeleteMutiplyAnswer(List<Answer> AnswerList) {
+		// TODO Auto-generated method stub
+		return ad.deleteMutiplyAnswer(AnswerList);
+	}
+
+	public List<Answer> QueryAnswerByProblemId(int ProblemId) {
+		// TODO Auto-generated method stub
+		return ad.QueryAnswerByProblemId(ProblemId);
+	}
+
 }

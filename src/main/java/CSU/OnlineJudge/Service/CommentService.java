@@ -20,4 +20,8 @@ public interface CommentService {
 	
 	public int CountComment();
 	
+	public Object deleteMutiplyAnswer(List<Comment> CommentList);
+	
+	public List<Comment> QueryCommentByAnswerId(int answer_id);
+	
 }

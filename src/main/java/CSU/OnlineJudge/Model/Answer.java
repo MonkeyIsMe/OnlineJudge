@@ -33,6 +33,9 @@ public class Answer {
 	
 	@Column(name="answer_time")
 	private String AnswerTime;  //题解发布的时间
+	
+	@Column(name="problem_name")
+	private String ProblemName;  //题目名称
 
 	public int getAnswerId() {
 		return AnswerId;
@@ -81,7 +84,14 @@ public class Answer {
 	public void setAnswerTime(String answerTime) {
 		AnswerTime = answerTime;
 	}
-	
+	public String getProblemName() {
+		return ProblemName;
+	}
+
+	public void setProblemName(String problemName) {
+		ProblemName = problemName;
+	}
+
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
 		jo.put("AnswerId", this.AnswerId);
@@ -90,6 +100,7 @@ public class Answer {
 		jo.put("UserAccount", this.UserAccount);
 		jo.put("AnswerTime", this.AnswerTime);
 		jo.put("AnswerInfo", this.AnswerInfo);
+		jo.put("ProblemName", this.ProblemName);
 		return jo;
 	}
 	

@@ -56,4 +56,14 @@ public class CommentServiceImpl implements CommentService{
 		return cd.CountComment();
 	}
 
+	public Object deleteMutiplyAnswer(List<Comment> CommentList) {
+		// TODO Auto-generated method stub
+		return cd.deleteMutiplyAnswer(CommentList);
+	}
+
+	public List<Comment> QueryCommentByAnswerId(int answer_id) {
+		// TODO Auto-generated method stub
+		return cd.QueryCommentByAnswerId(answer_id);
+	}
+
 }

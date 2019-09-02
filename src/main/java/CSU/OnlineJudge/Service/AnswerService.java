@@ -19,4 +19,8 @@ public interface AnswerService {
 	public List<Answer> QueryAnswerByPageSize(int row,int PageSize);
 	
 	public int CountAnswer();
+	
+	public Object DeleteMutiplyAnswer(List<Answer> AnswerList);
+	
+	public List<Answer> QueryAnswerByProblemId(int ProblemId);
 }

@@ -43,7 +43,7 @@ public class AnswerDAOImpl extends HibernateDaoSupport implements AnswerDAO{
 
 			public List<Answer> doInHibernate(Session session) throws HibernateException {
 				// TODO Auto-generated method stub
-				String hql = "from Problem where problem_id = ?";
+				String hql = "from Answer where problem_id = ?";
 				Query query = session.createQuery(hql).setFirstResult(
                         (row - 1) * PageSize).setMaxResults(PageSize);
 				query.setParameter(0, ProblemId);
@@ -72,6 +72,40 @@ public class AnswerDAOImpl extends HibernateDaoSupport implements AnswerDAO{
 		// TODO Auto-generated method stub
 		String hql = "select count(*) from Answer as answer";
 		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
+	public Object deleteMutiplyAnswer(final List<Answer> AnswerList) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			public Object doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				for(int i = 0; i < AnswerList.size(); i ++) {
+					session.delete(AnswerList.get(i));
+                    if (i % 50 == 0) {  
+                        session.flush();  
+                        session.clear();  
+                    }  
+				}
+				return null;
+			}
+			
+		});
+	}
+
+	public List<Answer> QueryAnswerByProblemId(final int ProblemId) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Answer>>() {
+
+			public List<Answer> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Answer where problem_id = ?";
+				Query query = session.createQuery(hql);
+				query.setParameter(0, ProblemId);
+				List<Answer> list = query.list();
+				return list;
+			}
+		});
 	}
 
 }

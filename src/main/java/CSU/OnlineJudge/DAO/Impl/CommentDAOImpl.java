@@ -10,7 +10,6 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
 import CSU.OnlineJudge.DAO.CommentDAO;
-import CSU.OnlineJudge.Model.Answer;
 import CSU.OnlineJudge.Model.Comment;
 
 @Transactional
@@ -73,6 +72,40 @@ public class CommentDAOImpl extends HibernateDaoSupport implements CommentDAO{
 		// TODO Auto-generated method stub
 		String hql = "select count(*) from Comment as comment";
 		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
+	public Object deleteMutiplyAnswer(final List<Comment> CommentList) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			public Object doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				for(int i = 0; i < CommentList.size(); i ++) {
+					session.delete(CommentList.get(i));
+                    if (i % 50 == 0) {  
+                        session.flush();  
+                        session.clear();  
+                    }  
+				}
+				return null;
+			}
+			
+		});
+	}
+
+	public List<Comment> QueryCommentByAnswerId(final int answer_id) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Comment>>() {
+
+			public List<Comment> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Comment where answer_id = ?";
+				Query query = session.createQuery(hql);
+				query.setParameter(0, answer_id);
+				List<Comment> list = query.list();
+				return list;
+			}
+		});
 	}
 
 }

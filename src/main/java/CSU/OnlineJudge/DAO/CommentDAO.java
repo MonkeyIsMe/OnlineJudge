@@ -19,4 +19,8 @@ public interface CommentDAO {
 	public List<Comment> QueryCommentByAnswerIdPageSize(int AnswerId,int row,int PageSize);
 	
 	public int CountComment();
+	
+	public Object deleteMutiplyAnswer(List<Comment> CommentList);
+	
+	public List<Comment> QueryCommentByAnswerId(int answer_id);
 }

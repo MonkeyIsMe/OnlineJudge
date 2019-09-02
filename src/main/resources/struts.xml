@@ -179,6 +179,19 @@
 			</action>
 			<action name="UpdateOrigin" class="OriginAction" method="UpdateOrigin">
 			</action>
+			
+			<!-- 题解 -->
+			<action name="QueryAnswerByProblemId" class="AnswerAction" method="QueryAnswerByProblemId">
+			</action>
+			<action name="AddAnswer" class="AnswerAction" method="AddAnswer">
+			</action>
+			<action name="DeleteAnswer" class="AnswerAction" method="DeleteAnswer">
+			</action>
+			<action name="CountAnswer" class="AnswerAction" method="CountAnswer">
+			</action>
+			<action name="ClearAnswerByProblemId" class="AnswerAction" method="ClearAnswerByProblemId">
+			</action>
+			
 	</package>
 </struts>
 	
