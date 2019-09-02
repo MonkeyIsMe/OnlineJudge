@@ -554,6 +554,7 @@ public class ProblemAction extends ActionSupport{
 			jo.put("know", know);
 			ja.add(jo);
 		}
+		
 		out.println(ja.toString());
 	    out.flush(); 
 	    out.close();

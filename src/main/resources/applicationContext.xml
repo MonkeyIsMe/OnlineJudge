@@ -89,7 +89,9 @@
 	<bean name="OriginAction" class="CSU.OnlineJudge.Controller.OriginAction" scope="prototype" >
 		<property name="OriginService" ref="OriginService" ></property>
 	</bean>
-	
+	<bean name="AnswerAction" class="CSU.OnlineJudge.Controller.AnswerAction" scope="prototype" >
+		<property name="AnswerService" ref="AnswerService" ></property>
+	</bean>
 	
 	<!-- service -->
  	<bean name="CaseService" class="CSU.OnlineJudge.Service.Impl.CaseServiceImpl" >
@@ -146,6 +148,9 @@
  	 <bean name="OriginService" class="CSU.OnlineJudge.Service.Impl.OriginServiceImpl" >
 		<property name="od" ref="OriginDAO" ></property>
 	</bean>
+	 <bean name="AnswerService" class="CSU.OnlineJudge.Service.Impl.AnswerServiceImpl" >
+		<property name="ad" ref="AnswerDAO" ></property>
+	</bean>
 	
 	<!-- Dao -->
 	<bean name="CaseDAO" class="CSU.OnlineJudge.DAO.Impl.CaseDAOImpl" >
@@ -200,6 +205,9 @@
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
 	<bean name="OriginDAO" class="CSU.OnlineJudge.DAO.Impl.OriginDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+	<bean name="AnswerDAO" class="CSU.OnlineJudge.DAO.AnswerDAO" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
 	
