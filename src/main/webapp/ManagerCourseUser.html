@@ -31,7 +31,7 @@
         <th style="width:10%;text-align:center">学生账号</th>
         <th style="width:10%;text-align:center" >学生班级</th>
         <th style="width:50%;text-align:center" >学生课程信息</th>
-        <th style="width:10%;text-align:center" >编辑-添加</th>
+        <th style="width:10%;text-align:center" >编辑</th>
     </tr>
     </thead>
     <tbody id="UserList" bgcolor="#D7EBFF" align="center"  style="color: black">
@@ -45,24 +45,24 @@
     <div id="NowPage" style="float:left;margin-top:10px;font-size:18px;margin-left:5px"></div>
 </body>
 <!-- 删除的模态框 -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:900px;margin-left:20%">
+    <div class="modal-dialog" style="width:900px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">删除界面</h4>
+                <h4 class="modal-title" id="myModalLabel">编辑界面</h4>
             </div>
-            <div class="modal-body">
-            	<form class="layui-form" action="">
+            <div class="modal-body" style="width:900px">
+            	<form class="layui-form" action="" style="width:800px">
             		  <div class="layui-form-item">
-					    <label class="layui-form-label">课程选择</label>
+					    <label class="layui-form-label" style="width:100px">课程选择</label>
 							<div class="layui-input-block" id="allTime">
 					  </div>
             	</form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="del_user">确定</button>
+                <button type="button" class="btn btn-primary" id="add_courseuser">确定</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->

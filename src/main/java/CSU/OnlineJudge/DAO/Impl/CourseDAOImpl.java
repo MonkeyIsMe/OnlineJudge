@@ -94,4 +94,23 @@ public class CourseDAOImpl extends HibernateDaoSupport implements CourseDAO{
 		});
 	}
 
+	public Object addMutiplyCourse(final List<Course> course) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			public Object doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				for(int i = 0; i < course.size(); i ++) {
+					session.save(course.get(i));
+                    if (i % 50 == 0) {  
+                        session.flush();  
+                        session.clear();  
+                    }  
+				}
+				return null;
+			}
+			
+		});
+	}
+
 }

@@ -62,4 +62,9 @@ public class CourseServiceImpl implements CourseService{
 		return cd.QueryAllCourse();
 	}
 
+	public Object addMutiplyCourse(List<Course> course) {
+		// TODO Auto-generated method stub
+		return cd.addMutiplyCourse(course);
+	}
+
 }

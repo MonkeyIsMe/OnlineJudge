@@ -253,4 +253,35 @@ public class CourseUserAction extends ActionSupport{
 		
 		CourseUserService.deleteCourseUser(cu);
 	}
+	
+	//更新学生课程关联
+	public void UpdateCourseUser() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String user_id = request.getParameter("user_id");
+		String course_info = request.getParameter("course_info");
+		
+		int uid = Integer.valueOf(user_id);
+		JSONArray ja = JSONArray.fromObject(course_info);
+		JSONArray add_ja = new JSONArray();
+		System.out.println(user_id + "   " +uid);
+		for(int i = 0; i < ja.size(); i ++) {
+			JSONObject jo = ja.getJSONObject(i);
+			String course_id = jo.getString("courseId");
+			int cid = Integer.valueOf(course_id);
+			cu.setCourseId(cid);
+			cu.setUserId(uid);
+			//System.out.println(cu.toString());
+			add_ja.add(cu);
+		}
+		List<CourseUser> cu_list = JSONArray.toList(add_ja, CourseUser.class);
+		CourseUserService.addMutiplyCourseUser(cu_list);
+		
+	}
 }

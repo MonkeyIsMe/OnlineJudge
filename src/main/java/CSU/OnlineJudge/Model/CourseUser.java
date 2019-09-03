@@ -27,34 +27,39 @@ public class CourseUser {
 	
 	@Column(name="user_account")
 	private String UserAccount; // 用户账号
-	
-	
+
 	public int getCourseUserId() {
 		return CourseUserId;
 	}
-	public void setCourseUserId(int classUserId) {
-		CourseUserId = classUserId;
+
+	public void setCourseUserId(int courseUserId) {
+		CourseUserId = courseUserId;
 	}
+
 	public int getCourseId() {
 		return CourseId;
 	}
-	public void setCourseId(int classId) {
-		CourseId = classId;
+
+	public void setCourseId(int courseId) {
+		CourseId = courseId;
 	}
+
 	public int getUserId() {
 		return UserId;
 	}
+
 	public void setUserId(int userId) {
 		UserId = userId;
 	}
+
 	public String getUserAccount() {
 		return UserAccount;
 	}
+
 	public void setUserAccount(String userAccount) {
 		UserAccount = userAccount;
 	}
-	
-	
+
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
 		jo.put("CourseUserId", this.CourseUserId);

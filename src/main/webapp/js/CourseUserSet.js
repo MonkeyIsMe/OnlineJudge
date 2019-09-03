@@ -4,6 +4,7 @@
 var row = 1;  //页数
 var count; //总记录数
 var sid; //记录第几行的编号
+var arr = [];
 
 $(function(){
 	$.ajaxSettings.async = false;
@@ -28,7 +29,7 @@ $(function(){
 $(function(){
 	$.ajaxSettings.async = false;
 	$.post(
-			"QueryAllKnowledge.action",
+			"QueryAllCourse.action",
 			{
 			},
 			function(data){
@@ -37,7 +38,7 @@ $(function(){
 		           for(var i=0 ;i<data.length;i++){ //几个人有几个checkbox
 		        	   $("#allTime").append(
 				                "<span>"+
-				                    "<input  type='checkbox' class='time' name='know' value='"+data[i].knowledgeId+"' title='"+data[i].knowledgeName+"'>" 
+				                    "<input  type='checkbox' class='time' name='course' value='"+data[i].courseId+"' title='"+data[i].courseName+"'>" 
 				                 +"</span>");
 		           }
 			}
@@ -67,8 +68,7 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].uclassroom  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].cname  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'<a ><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:35px" ></span></a>'
-			        		+'<a ><span  class="delete glyphicon glyphicon-plus-sign" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
+			        		'<a ><span  class="delete glyphicon glyphicon-plus-sign" style="cursor:pointer;margin-left:55px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
                     $trTemp.appendTo("#UserList");
@@ -105,8 +105,7 @@ function PrevPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].uclassroom  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].cname  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a ><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:35px" ></span></a>'
-	    			        		+'<a ><span  class="delete glyphicon glyphicon-plus-sign" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
+	    			        		+'<a ><span  class="delete glyphicon glyphicon-plus-sign" style="cursor:pointer;margin-left:55px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#UserList");
@@ -142,8 +141,7 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].uclassroom  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].cname  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a ><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:35px" ></span></a>'
-	    			        		+'<a ><span  class="delete glyphicon glyphicon-plus-sign" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
+	    			        		'<a ><span  class="delete glyphicon glyphicon-plus-sign" style="cursor:pointer;margin-left:55px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#UserList");
@@ -165,7 +163,59 @@ $(document).ready(function(){
 	    var col5=currentRow.find("td:eq(4)").text(); //获得当前行第一个TD值
 	    
 	    sid = col1;
+		$(function(){
+			$.ajaxSettings.async = false;
+			$.post(
+					"QueryCourseByUserId.action",
+					{
+						user_id:sid,
+					},
+					function(data){
+						var data = JSON.parse(data);
+						console.log(data);
+						for(var i = 0; i < data.length; i ++){
+							$('input:checkbox[name="course"][value='+data[i].courseId+']').prop('checked', true);
+						}
+					}
+					);
+			
+		});
+
+	    
 	  });
+	  
+	  
+	  $("#add_courseuser").click(function(){
+		  	//console.log("student = " + sid);
+	  		var json =[];
+			$('input[name="course"]:checked').each(function(){
+				var obj = {};
+				obj.courseId = $(this).val();
+				json.push(obj);//向数组中添加元素  
+				});
+			var jsonText = JSON.stringify(json);
+		  
+			$.post(
+					"UpdateCourseUser.action",
+					{
+						course_info:jsonText,
+						user_id:sid
+					},
+					function(data){
+						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+						if(data == "Fail"){
+							alert("添加失败！");
+						    var url = "ManagerCourseUser.html";
+						    window.location.replace(url);
+						}
+						else{
+							alert("添加成功!");
+						    var url = "ManagerCourseUser.html";
+						    window.location.replace(url);
+						}
+					}
+					);
+	  })
 		
 
 });

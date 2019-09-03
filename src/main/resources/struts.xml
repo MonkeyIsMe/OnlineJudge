@@ -68,6 +68,8 @@
 			</action>
 			<action name="QueryCourseByUserId" class="CourseUserAction" method="QueryCourseByUserId" >
 			</action>
+			<action name="UpdateCourseUser" class="CourseUserAction" method="UpdateCourseUser" >
+			</action>
 			
 			<!-- 知识点 -->
 		 	<action name="QueryKnowledgeByPageSize" class="KnowledgeAction" method="QueryKnowledgeByPageSize" >

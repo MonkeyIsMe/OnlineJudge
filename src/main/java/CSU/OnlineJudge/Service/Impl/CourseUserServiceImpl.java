@@ -53,4 +53,9 @@ public class CourseUserServiceImpl implements CourseUserService{
 		return cud.QueryCourseUserByUserAccount(UserAccount);
 	}
 
+	public Object addMutiplyCourseUser(List<CourseUser> cu) {
+		// TODO Auto-generated method stub
+		return cud.addMutiplyCourseUser(cu);
+	}
+
 }

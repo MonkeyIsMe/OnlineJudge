@@ -22,4 +22,6 @@ public interface CourseService {
 	
 	public List<Course> QueryAllCourse();
 	
+	public Object addMutiplyCourse(List<Course> course);
+	
 }
