@@ -20,4 +20,6 @@ public interface CourseService {
 	
 	public List<Course> QueryCourseByPageSize(int row,int PageSize);
 	
+	public List<Course> QueryAllCourse();
+	
 }

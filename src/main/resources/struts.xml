@@ -94,6 +94,8 @@
 			</action>
 			<action name="QueryCourseByPageSize" class="CourseAction" method="QueryCourseByPageSize" >
 			</action>
+			<action name="QueryAllCourse" class="CourseAction" method="QueryAllCourse" >
+			</action>
 			
 			<!-- 用户 -->
 			<action name="AddUser" class="UserAction" method="AddUser" >

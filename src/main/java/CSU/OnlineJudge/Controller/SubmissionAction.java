@@ -14,6 +14,7 @@ import CSU.OnlineJudge.Model.Submission;
 import CSU.OnlineJudge.Service.ProblemService;
 import CSU.OnlineJudge.Service.SubmissionService;
 import CSU.OnlineJudge.Service.Impl.SubmissionServiceImpl;
+import CSU.OnlineJudge.Utils.DateUtil;
 import CSU.OnlineJudge.Utils.JudgeUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -55,8 +56,10 @@ public class SubmissionAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		DateUtil du = new DateUtil();
+		
 		//String submission_result = request.getParameter("submission_result");
-		String submit_time = request.getParameter("submit_time");
+		//String submit_time = request.getParameter("submit_time");
 		String submission_length = request.getParameter("submission_length");
 		String user_account = request.getParameter("user_account");
 		String submission_type = request.getParameter("submission_type");
@@ -67,7 +70,7 @@ public class SubmissionAction extends ActionSupport{
 		int length = Integer.valueOf(submission_length);
 		
 		//submission.setSubmissionResult(submission_result);
-		submission.setSubmissionTime(submit_time);
+		submission.setSubmissionTime(du.GetNowDate());
 		submission.setCodeLength(length);
 		//submission.setCodeMemory(memory);
 		//submission.setCodeTime(time);

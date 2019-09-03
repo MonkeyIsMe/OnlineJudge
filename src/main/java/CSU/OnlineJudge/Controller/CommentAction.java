@@ -12,6 +12,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import CSU.OnlineJudge.Model.Comment;
 import CSU.OnlineJudge.Service.CommentService;
+import CSU.OnlineJudge.Utils.DateUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -37,16 +38,17 @@ public class CommentAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		DateUtil du = new DateUtil();
+		
 		String comment_info = request.getParameter("comment_info");
 		String answer_id = request.getParameter("answer_id");
-		String comment_time = request.getParameter("comment_time");
 		String user_account = request.getParameter("user_account");
 		
 		int aid = Integer.valueOf(answer_id);
 		
 		comment.setAnswerId(aid);
 		comment.setCommentInfo(comment_info);
-		comment.setCommentTime(comment_time);
+		comment.setCommentTime(du.GetNowDate());
 		comment.setUserAccount(user_account);
 		
 		CommentService.AddComment(comment);

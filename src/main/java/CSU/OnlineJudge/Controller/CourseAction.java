@@ -183,4 +183,21 @@ public class CourseAction extends ActionSupport{
 	    out.close();
 	}
 	
+	//得到所有的课程
+	public void QueryAllCourse() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		List<Course> CourseList = CourseService.QueryAllCourse();
+		
+		JSONArray ja = JSONArray.fromObject(CourseList);
+		out.println(ja.toString());
+	    out.flush(); 
+	    out.close();
+	}
 }

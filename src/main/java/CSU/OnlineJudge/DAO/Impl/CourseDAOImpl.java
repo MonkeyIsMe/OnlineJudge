@@ -79,4 +79,19 @@ public class CourseDAOImpl extends HibernateDaoSupport implements CourseDAO{
 		});
 	}
 
+	public List<Course> QueryAllCourse() {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Course>>() {
+
+			public List<Course> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Course";
+				Query query = session.createQuery(hql);
+				List<Course> result = null;
+				result = query.list();
+				return result;
+			}
+		});
+	}
+
 }

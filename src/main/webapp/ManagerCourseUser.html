@@ -11,10 +11,13 @@
      <link href="css/Common.css" type="text/css" rel="styleSheet">
     <link rel="stylesheet" href="css/layui.css">
     <link rel="stylesheet" href="css/modules/layer/default/layer.css">
+    <link rel="stylesheet" href="./layui/css/modules/layer/default/layer.css">
+    <link href="./layui/css/layui.css" type="text/css" rel="styleSheet">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="./layui/layui.js"></script>
+    <script src="js/CourseUserSet.js"></script>
     <link href="css/bootstrap-theme.css" type="text/css" rel="styleSheet">
     <link href="css/bootstrap.css" type="text/css" rel="styleSheet">
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/CourseUserSet.js"></script>
 </head>
 <body>
 <button type="button" class="btn btn-default btn-sm" style="margin:10px" onclick="refresh()">
@@ -49,7 +52,14 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">删除界面</h4>
             </div>
-            <div class="modal-body">是否删除该课程</div>
+            <div class="modal-body">
+            	<form class="layui-form" action="">
+            		  <div class="layui-form-item">
+					    <label class="layui-form-label">课程选择</label>
+							<div class="layui-input-block" id="allTime">
+					  </div>
+            	</form>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary" id="del_user">确定</button>
@@ -57,5 +67,16 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-
+<script>
+//Demo
+layui.use('form', function(){
+  var form = layui.form;
+  
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+    //layer.msg(JSON.stringify(data.field));
+    return false;
+  });
+});
+</script>
 </html>

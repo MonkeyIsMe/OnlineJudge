@@ -285,7 +285,7 @@ $(document).ready(function(){
 		    var currentRow=$(this).closest("tr"); 
 		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
 		    
-		    alert(col1);
+		    //alert(col1);
 		    userid = col1;
 		    var url = "UserSubmission.html?userId=" + userid;
 		    window.location.replace(url);
