@@ -14,5 +14,11 @@ public interface CodeService {
 	
 	public Code QueryCode(int id);
 	
+	public List<Code> QueryCodeByUserAccountByPageSize(String UserAccount,int row,int PageSize);
+	
 	public List<Code> QueryCodeByUserAccount(String UserAccount);
+	
+	public int CountUserCode(String UserAccount);
+	
+	public Object DeleteMutiplyCode(List<Code> Code);
 }

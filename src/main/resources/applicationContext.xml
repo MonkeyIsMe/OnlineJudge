@@ -68,6 +68,7 @@
 	</bean>
 	<bean name="CodeAction" class="CSU.OnlineJudge.Controller.CodeAction" scope="prototype" >
 		<property name="CodeService" ref="CodeService" ></property>
+		<property name="UserService" ref="UserService" ></property>
 	</bean>
 	<bean name="KnowledgeProblemAction" class="CSU.OnlineJudge.Controller.KnowledgeProblemAction" scope="prototype" >
 		<property name="KnowledgeProblemService" ref="KnowledgeProblemService" ></property>

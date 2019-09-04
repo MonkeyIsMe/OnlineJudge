@@ -14,7 +14,7 @@
     <link href="css/bootstrap-theme.css" type="text/css" rel="styleSheet">
     <link href="css/bootstrap.css" type="text/css" rel="styleSheet">
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/UserCodeSet.js"></script>
+    <script src="js/UserCode.js"></script>
 </head>
 <body>
 <button type="button" class="btn btn-default btn-sm" style="margin:10px" onclick="refresh()">
@@ -23,15 +23,14 @@
 <table class="layui-table" id="myTable">
     <thead>
     <tr align="center" class="table_header" height="22">
-        <th style="width:10%;text-align:center">学生编号</th>
-        <th style="width:10%;text-align:center">学生名称</th>
-        <th style="width:10%;text-align:center">学生账号</th>
-        <th style="width:50%;text-align:center" >学生描述</th>
-        <th style="width:10%;text-align:center" >学生班级</th>
-        <th style="width:10%;text-align:center" >查看--清空</th>
+        <th style="width:10%;text-align:center">代码编号</th>
+        <th style="width:10%;text-align:center">代码名称</th>
+        <th style="width:55%;text-align:center">代码简略</th>
+        <th style="width:10%;text-align:center">用户名称</th>
+        <th style="width:15%;text-align:center" >更新-删除</th>
     </tr>
     </thead>
-    <tbody id="UserList" bgcolor="#D7EBFF" align="center"  style="color: black">
+    <tbody id="KnowList" bgcolor="#D7EBFF" align="center"  style="color: black">
     </tbody>
 </table>
 <div style="float:left;margin-left:42%">
@@ -47,16 +46,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">清空界面</h4>
+                <h4 class="modal-title" id="myModalLabel">删除界面</h4>
             </div>
-            <div class="modal-body">是否删除该用户全部代码</div>
+            <div class="modal-body">是否删除该代码</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="clear_code">确定</button>
+                <button type="button" class="btn btn-primary" id="delete_code">确定</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-
 
 </html>

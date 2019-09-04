@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import CSU.OnlineJudge.DAO.CaseDAO;
+import CSU.OnlineJudge.DAO.CodeDAO;
 import CSU.OnlineJudge.DAO.KnowledgeDAO;
 import CSU.OnlineJudge.DAO.ProblemDAO;
 import CSU.OnlineJudge.DAO.UserDAO;
@@ -58,6 +59,9 @@ public class TestSpring {
 	@Resource(name="UserDAO")
 	private UserDAO ud;
 	
+	@Resource(name="CodeDAO")
+	private CodeDAO cod;
+	
 	@Resource(name="UserService")
 	private UserService us;
 	
@@ -67,6 +71,12 @@ public class TestSpring {
 		for(User u : UserList) {
 			System.out.println(u.toString());
 		}
+	}
+	
+	@Test
+	public void TestCodeCount() {
+		System.out.println(cod.CountUserCode("1"));
+		System.out.println(cod.CountUserCode("2"));
 	}
 	
 	@Test

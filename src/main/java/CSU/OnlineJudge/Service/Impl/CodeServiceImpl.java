@@ -38,6 +38,21 @@ public class CodeServiceImpl implements CodeService{
 		return cd.queryCode(id);
 	}
 
+	public List<Code> QueryCodeByUserAccountByPageSize(String UserAccount,int row,int PageSize) {
+		// TODO Auto-generated method stub
+		return cd.QueryCodeByUserAccountByPageSize(UserAccount,row,PageSize);
+	}
+
+	public int CountUserCode(String UserAccount) {
+		// TODO Auto-generated method stub
+		return cd.CountUserCode(UserAccount);
+	}
+
+	public Object DeleteMutiplyCode(List<Code> Code) {
+		// TODO Auto-generated method stub
+		return cd.DeleteMutiplyCode(Code);
+	}
+
 	public List<Code> QueryCodeByUserAccount(String UserAccount) {
 		// TODO Auto-generated method stub
 		return cd.QueryCodeByUserAccount(UserAccount);

@@ -1,65 +1,65 @@
-/**
- * Created by CallMeDad on 2019/8/31.
- */
+var url = decodeURI(window.location.href);
+ 
+var argsIndex = url .split("?UserId=");
+var uid = argsIndex[1];
+
 var row = 1;  //页数
 var count; //总记录数
-var sid; //记录第几行的编号
+var aid; //记录第几行的编号
+var cnt = 0;
 
 
 $(function(){
 	$.ajaxSettings.async = false;
 	$.post(
-			"CountUser.action",
+			"CountCodeByAccount.action",
 			{
+				user_id:uid,
 			},
 			function(data){
 				var data = JSON.parse(data);
 				//console.log(data);
-				var sum = data.UserCount;
+				var sum = data.CodeCount;
 				count = Math.ceil(sum/25);
-				sub_count = Math.ceil(sum/25);
 				var total = "共" + Math.ceil(sum/25) + "页";
 				$("#TotalPage").append(total);
 				$("#NowPage").append("，当前第" + row + "页");
-
 			}
 			);
 	
 });
 
+
 $(function(){
-	
-	//学生数据列表
     $.post(
-        "QueryAllUser.action",
+        "QueryCodeByAccount.action",
         {
             page:row,
-            limit:25
+            limit:25,
+            user_id:uid,
         },
         function(data) {
             var data = JSON.parse(data);
+            //console.log(data);
                 for( var i = 0; i < data.length; i++ ) {
                     //动态创建一个tr行标签,并且转换成jQuery对象
                     var $trTemp = $("<tr ></tr>");
                     //往行里面追加 td单元格
-			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].userId +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].userName +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].codeId +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].codeName +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].codeInfo  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userInfo  +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].studentClassroom  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#update_Modal"></span></a>'
-			        		+'<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
+			        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:80px"></span></a>'
+			        		+'<a><span class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
-                    $trTemp.appendTo("#UserList");
+                    $trTemp.appendTo("#KnowList");
                 }
         }
     );
 
-
 });
-
 
 
 function PrevPage(){
@@ -68,30 +68,33 @@ function PrevPage(){
 	}
 	else{
 		row--;
-		$("#UserList").html("");
+		$("#KnowList").html("");
 	    $.post(
-	            "QueryAllUser.action",
+	            "QueryAnswerByProblemId.action",
 	            {
 	                page:row,
-	                limit:25
+	                limit:25,
+	                problem_id:pid
 	            },
 	            function(data) {
 	                var data = JSON.parse(data);
-	                    for( var i = 0; i < data.length; i++ ) {
-	                        //动态创建一个tr行标签,并且转换成jQuery对象
-	                        var $trTemp = $("<tr ></tr>");
-	                        //往行里面追加 td单元格
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].userId +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].userName +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userInfo  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#update_Modal"></span></a>'
-	    			        		+'<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
-	    			        		+"</td>");
-	                        // $("#J_TbData").append($trTemp);
-	                        $trTemp.appendTo("#UserList");
-	                    }
+	               // console.log("success");
+	                //console.log(data);
+	                for( var i = 0; i < data.length; i++ ) {
+	                    //动态创建一个tr行标签,并且转换成jQuery对象
+	                    var $trTemp = $("<tr ></tr>");
+	                    //往行里面追加 td单元格
+				        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].codeId +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].codeName +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].codeInfo  +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
+				        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:80px"></span></a>'
+				        		+'<a><span class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
+				        		+"</td>");
+	                    // $("#J_TbData").append($trTemp);
+	                    $trTemp.appendTo("#KnowList");
+	                }
 	            }
 	        );
 	}
@@ -103,31 +106,33 @@ function NextPage(){
 	}
 	else{
 		row ++;
-		$("#UserList").html("");
+		$("#KnowList").html("");
 	    $.post(
-	            "QueryAllUser.action",
+	            "QueryAnswerByProblemId.action",
 	            {
 	                page:row,
-	                limit:25
+	                limit:25,
+	                problem_id:pid
 	            },
 	            function(data) {
 	                var data = JSON.parse(data);
-	                    for( var i = 0; i < data.length; i++ ) {
-	                        //动态创建一个tr行标签,并且转换成jQuery对象
-	                        var $trTemp = $("<tr></tr>");
-	                        //往行里面追加 td单元格
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].userId +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  +data[i].userName +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userInfo  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].studentClassroom  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#update_Modal"></span></a>'
-	    			        		+'<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
-	    			        		+"</td>");
-	                        // $("#J_TbData").append($trTemp);
-	                        $trTemp.appendTo("#UserList");
-	                    }
+	               // console.log("success");
+	                //console.log(data);
+	                for( var i = 0; i < data.length; i++ ) {
+	                    //动态创建一个tr行标签,并且转换成jQuery对象
+	                    var $trTemp = $("<tr ></tr>");
+	                    //往行里面追加 td单元格
+				        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].codeId +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].codeName +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].codeInfo  +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
+				        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:80px"></span></a>'
+				        		+'<a><span class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
+				        		+"</td>");
+	                    // $("#J_TbData").append($trTemp);
+	                    $trTemp.appendTo("#KnowList");
+	                }
 	            }
 	        );
 	}
@@ -135,25 +140,43 @@ function NextPage(){
 }
 
 $(document).ready(function(){
+	
 	  //用于读取所选表行单元格数据（值）的代码
 	  $("#myTable").on('click','.delete',function(){
 	    //获得当前行
 	    var currentRow=$(this).closest("tr"); 
 	    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
-	    var col2=currentRow.find("td:eq(1)").text(); //获得当前行第一个TD值
-	    var col4=currentRow.find("td:eq(3)").text(); //获得当前行第一个TD值
-	    var col5=currentRow.find("td:eq(4)").text(); //获得当前行第一个TD值
 	    
-	    sid = col1;
-	    
+	    cid = col1;
 	  });
+	 
+	  $("#delete_code").click(function(){
+		  	$.post(
+					"DeleteCode.action",
+					{
+						code_id:cid,
+					},
+					function(data){
+						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+						if(data == "Fail"){
+							alert("删除失败！");
+						    window.location.replace(url);
+						}
+						else{
+							alert("删除成功!");
+						    window.location.replace(url);
+						}
+					}
+					);
+	  })
+	  
 
-
-		
+	  
+	  
 });
 
+
+
 function refresh(){
-	window.location.replace("ManagerUserCode.html");
+	window.location.replace(url);
 }
-
-

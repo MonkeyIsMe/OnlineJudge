@@ -155,6 +155,14 @@
 			<!-- 代码  -->
 			<action name="AddCode" class="CodeAction" method="AddCode">
 			</action>
+			<action name="CountCodeByAccount" class="CodeAction" method="CountCodeByAccount">
+			</action>
+			<action name="ClearCodeByAccount" class="CodeAction" method="ClearCodeByAccount">
+			</action>
+			<action name="QueryCodeByAccount" class="CodeAction" method="QueryCodeByAccount">
+			</action>
+			<action name="DeleteCode" class="CodeAction" method="DeleteCode">
+			</action>
 			
 			<!-- 提交信息  -->
 			<action name="AddSubmission" class="SubmissionAction" method="AddSubmission">

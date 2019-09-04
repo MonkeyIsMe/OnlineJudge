@@ -38,7 +38,49 @@ public class CodeDAOImpl extends HibernateDaoSupport implements CodeDAO{
 		return result;
 	}
 
-	public List<Code> QueryCodeByUserAccount(final String UserAccount) {
+	public List<Code> QueryCodeByUserAccountByPageSize(final String UserAccount,final int row,final int PageSize) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Code>>() {
+
+			public List<Code> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Code where user_account = ?";
+				Query query = session.createQuery(hql).setFirstResult(
+                        (row - 1) * PageSize).setMaxResults(PageSize);
+				query.setParameter(0, UserAccount);
+				List<Code> result = null;
+				result = query.list();
+				return result;
+			}
+		});
+	}
+
+	public int CountUserCode(String UserAccount) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Code as Code where user_account = '"+UserAccount+"'";  
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
+	public Object DeleteMutiplyCode(final List<Code> Code) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			public Object doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				for(int i = 0; i < Code.size(); i ++) {
+					session.delete(Code.get(i));
+                    if (i % 50 == 0) {  
+                        session.flush();  
+                        session.clear();  
+                    }  
+				}
+				return null;
+			}
+			
+		});
+	}
+
+	public List<Code> QueryCodeByUserAccount(String UserAccount) {
 		// TODO Auto-generated method stub
 		return getHibernateTemplate().execute(new HibernateCallback<List<Code>>() {
 
@@ -46,7 +88,6 @@ public class CodeDAOImpl extends HibernateDaoSupport implements CodeDAO{
 				// TODO Auto-generated method stub
 				String hql = "from Code where user_account = ?";
 				Query query = session.createQuery(hql);
-				query.setParameter(0, UserAccount);
 				List<Code> result = null;
 				result = query.list();
 				return result;
