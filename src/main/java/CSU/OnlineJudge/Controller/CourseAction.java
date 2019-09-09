@@ -63,6 +63,14 @@ public class CourseAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String course_id = request.getParameter("course_id");
+		
+		if(course_id == null || course_id == "" || course_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int cid = Integer.valueOf(course_id);
 		
 		course = CourseService.QueryCourse(cid);
@@ -92,6 +100,14 @@ public class CourseAction extends ActionSupport{
 		String course_time = request.getParameter("course_time");
 		String course_id = request.getParameter("course_id");
 		String course_teacher = request.getParameter("course_teacher");
+		
+		if(course_id == null || course_id == "" || course_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int cid = Integer.valueOf(course_id);
 		
 		course = CourseService.QueryCourse(cid);
@@ -122,6 +138,14 @@ public class CourseAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String course_id = request.getParameter("course_id");
+		
+		if(course_id == null || course_id == "" || course_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int cid = Integer.valueOf(course_id);
 		
 		course = CourseService.QueryCourse(cid);

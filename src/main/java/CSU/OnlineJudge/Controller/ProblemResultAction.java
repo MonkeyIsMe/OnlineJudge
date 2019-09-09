@@ -52,6 +52,13 @@ public class ProblemResultAction extends ActionSupport{
 		String problem_result = request.getParameter("problem_result");
 		String user_account = request.getParameter("user_account");
 		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int pid = Integer.valueOf(problem_id);
 		
 		pr.setProblemId(pid);
@@ -97,6 +104,13 @@ public class ProblemResultAction extends ActionSupport{
 		String problem_id = request.getParameter("problem_id");
 		String problem_result = request.getParameter("problem_result");
 		String user_account = request.getParameter("user_account");
+		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int pid = Integer.valueOf(problem_id);
 		
@@ -150,6 +164,13 @@ public class ProblemResultAction extends ActionSupport{
 		
 		String user_id = request.getParameter("user_id");
 		//String user_account = "AC";
+		
+		if(user_id == null || user_id == "" || user_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int uid = Integer.valueOf(user_id);
 		user = UserService.queryUser(uid);

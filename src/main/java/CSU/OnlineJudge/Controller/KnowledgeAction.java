@@ -61,6 +61,13 @@ public class KnowledgeAction extends ActionSupport{
 		
 		String knowledge_id = request.getParameter("knowledge_id");
 		
+		if(knowledge_id == null || knowledge_id == "" || knowledge_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int kid = Integer.valueOf(knowledge_id);
 		Knowledge knowledge = KnowledgeService.queryKnowledge(kid);
 		
@@ -86,6 +93,13 @@ public class KnowledgeAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String knowledge_id = request.getParameter("knowledge_id");
+		
+		if(knowledge_id == null || knowledge_id == "" || knowledge_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int kid = Integer.valueOf(knowledge_id);
 		Knowledge knowledge = KnowledgeService.queryKnowledge(kid);
@@ -117,6 +131,13 @@ public class KnowledgeAction extends ActionSupport{
 		String knowledge_id = request.getParameter("knowledge_id");
 		String knowledge_info = request.getParameter("knowledge_info");
 		String knowledge_name = request.getParameter("knowledge_name");
+		
+		if(knowledge_id == null || knowledge_id == "" || knowledge_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int kid = Integer.valueOf(knowledge_id);
 		knowledge = KnowledgeService.queryKnowledge(kid);

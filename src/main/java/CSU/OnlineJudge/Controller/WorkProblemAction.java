@@ -55,6 +55,13 @@ public class WorkProblemAction extends ActionSupport{
 		
 		String work_id = request.getParameter("work_id");
 		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int wid = Integer.valueOf(work_id);
 		
 		JSONArray ja = new JSONArray();
@@ -85,6 +92,19 @@ public class WorkProblemAction extends ActionSupport{
 		String work_id = request.getParameter("work_id");
 		String problem_id = request.getParameter("problem_id");
 		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int wid = Integer.valueOf(work_id);
 		int pid = Integer.valueOf(problem_id);
 		
@@ -107,6 +127,13 @@ public class WorkProblemAction extends ActionSupport{
 		
 		String work_id = request.getParameter("work_id");
 		String problem_info = request.getParameter("problem_info");
+		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int wid = Integer.valueOf(work_id);
 		
@@ -148,6 +175,13 @@ public class WorkProblemAction extends ActionSupport{
 		String work_id = request.getParameter("work_id");
 		String problem_info = request.getParameter("problem_info");
 		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		JSONArray ja = JSONArray.fromObject(problem_info);
 		JSONArray add_ja = new JSONArray();
 		int wid = Integer.valueOf(work_id);
@@ -183,6 +217,13 @@ public class WorkProblemAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String workproblem_id = request.getParameter("workproblem_id");
+		
+		if(workproblem_id == null || workproblem_id == "" || workproblem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int wpid = Integer.valueOf(workproblem_id);
 		

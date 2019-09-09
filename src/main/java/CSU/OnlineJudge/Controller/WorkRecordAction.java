@@ -42,6 +42,19 @@ public class WorkRecordAction extends ActionSupport{
 		String work_id = request.getParameter("work_id");
 		String problem_id = request.getParameter("problem_id");
 		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int submission = Integer.valueOf(0);
 		int accept = Integer.valueOf(0);
 		int wrong = Integer.valueOf(0);

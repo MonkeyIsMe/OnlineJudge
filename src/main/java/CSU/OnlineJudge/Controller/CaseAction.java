@@ -44,6 +44,13 @@ public class CaseAction extends ActionSupport{
 		String case_input = request.getParameter("case_input");
 		String case_output = request.getParameter("case_output");
 		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int pid = Integer.valueOf(problem_id);
 		
 		cas.setCaseFlag(1);
@@ -66,6 +73,13 @@ public class CaseAction extends ActionSupport{
 		
 		String case_info = request.getParameter("case_info");
 		String problem_id = request.getParameter("problem_id");
+		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int pid = Integer.valueOf(problem_id);
 		
@@ -99,6 +113,13 @@ public class CaseAction extends ActionSupport{
 		
 		String case_id = request.getParameter("case_id");
 		
+		if(case_id == null || case_id == "" || case_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int cid = Integer.valueOf(case_id);
 		cas = CaseService.QueryCase(cid);
 		
@@ -128,6 +149,19 @@ public class CaseAction extends ActionSupport{
 		String problem_id = request.getParameter("problem_id");
 		String case_input = request.getParameter("case_input");
 		String case_output = request.getParameter("case_output");
+		
+		if(case_id == null || case_id == "" || case_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int cFlag = Integer.valueOf(case_flag);
 		int pid = Integer.valueOf(problem_id);
@@ -161,6 +195,13 @@ public class CaseAction extends ActionSupport{
 		
 		String problem_id = request.getParameter("problem_id");
 		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int pid = Integer.valueOf(problem_id);
 		
 		List<Case> CaseList = CaseService.GetCaseByFlag(pid, 0);
@@ -185,6 +226,13 @@ public class CaseAction extends ActionSupport{
 		
 		String problem_id = request.getParameter("problem_id");
 		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int pid = Integer.valueOf(problem_id);
 		
 		List<Case> CaseList = CaseService.GetCaseByFlag(pid, 1);
@@ -208,6 +256,13 @@ public class CaseAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String problem_id = request.getParameter("problem_id");
+		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int pid = Integer.valueOf(problem_id);
 		

@@ -127,6 +127,14 @@ public class WorkAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String work_id = request.getParameter("work_id");
+		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int wid = Integer.valueOf(work_id);
 		
 		work = WorkService.queryWork(wid);
@@ -158,6 +166,12 @@ public class WorkAction extends ActionSupport{
 		String work_info = request.getParameter("work_info");
 		String work_flag = request.getParameter("work_flag");
 
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int wid = Integer.valueOf(work_id);
 		
@@ -196,6 +210,13 @@ public class WorkAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String work_id = request.getParameter("work_id");
+		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int wid = Integer.valueOf(work_id);
 		
@@ -304,6 +325,13 @@ public class WorkAction extends ActionSupport{
 		String size = request.getParameter("size");
 		String class_id = request.getParameter("class_id");
 		
+		if(class_id == null || class_id == "" || class_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		int cid = Integer.valueOf(class_id);
@@ -331,6 +359,13 @@ public class WorkAction extends ActionSupport{
 		String size = request.getParameter("size");
 		String class_id = request.getParameter("class_id");
 		
+		if(class_id == null || class_id == "" || class_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		int cid = Integer.valueOf(class_id);
@@ -357,6 +392,13 @@ public class WorkAction extends ActionSupport{
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 		String class_id = request.getParameter("class_id");
+		
+		if(class_id == null || class_id == "" || class_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);

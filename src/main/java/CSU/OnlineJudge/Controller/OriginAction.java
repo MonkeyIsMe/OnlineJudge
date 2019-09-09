@@ -43,6 +43,13 @@ public class OriginAction extends ActionSupport{
 		String origin_code = request.getParameter("origin_code");
 		String origin_type = request.getParameter("origin_type");
 		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int pid = Integer.valueOf(problem_id);
 		
 		origin.setOrginType(origin_type);
@@ -65,6 +72,13 @@ public class OriginAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String origin_id = request.getParameter("origin_id");
+		
+		if(origin_id == null || origin_id == "" || origin_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int oid = Integer.valueOf(origin_id);
 		
@@ -92,6 +106,13 @@ public class OriginAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String origin_id = request.getParameter("origin_id");
+		
+		if(origin_id == null || origin_id == "" || origin_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int oid = Integer.valueOf(origin_id);
 		
@@ -125,6 +146,13 @@ public class OriginAction extends ActionSupport{
 		String origin_code = request.getParameter("origin_code");
 		String origin_type = request.getParameter("origin_type");
 		String origin_id = request.getParameter("origin_id");
+		
+		if(origin_id == null || origin_id == "" || origin_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int oid = Integer.valueOf(origin_id);
 		
@@ -180,6 +208,13 @@ public class OriginAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String problem_id = request.getParameter("problem_id");
+		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int pid = Integer.valueOf(problem_id);
 		

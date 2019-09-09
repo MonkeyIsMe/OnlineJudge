@@ -42,6 +42,19 @@ public class WorkCaseRecordAction extends ActionSupport{
 		String test_output = request.getParameter("test_output");
 		String user_account = request.getParameter("user_account");
 		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int wid = Integer.valueOf(work_id);
 		int pid = Integer.valueOf(problem_id);
 		

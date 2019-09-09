@@ -45,6 +45,37 @@ public class WorkUserRecordAction extends ActionSupport{
 		String submission_type = request.getParameter("submission_type");
 		String code_time = request.getParameter("code_time");
 		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(user_id == null || user_id == "" || user_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(submission_code_memory == null || submission_code_memory == "" || submission_code_memory.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(submission_code_memory == null || submission_code_memory == "" || submission_code_memory.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(code_time == null || code_time == "" || code_time.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int wid = Integer.valueOf(work_id);
 		int uid = Integer.valueOf(user_id);
 		int clen = Integer.valueOf(submission_code_memory);
@@ -79,6 +110,13 @@ public class WorkUserRecordAction extends ActionSupport{
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 		String problem_id = request.getParameter("problem_id");
+		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
@@ -133,6 +171,12 @@ public class WorkUserRecordAction extends ActionSupport{
 		String size = request.getParameter("size");
 		String work_id = request.getParameter("work_id");
 		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
@@ -163,6 +207,19 @@ public class WorkUserRecordAction extends ActionSupport{
 		String work_id = request.getParameter("work_id");
 		String problem_id = request.getParameter("problem_id");
 		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		int wid = Integer.valueOf(work_id);
@@ -192,6 +249,13 @@ public class WorkUserRecordAction extends ActionSupport{
 		String work_id = request.getParameter("work_id");
 		String user_account = request.getParameter("user_account");
 		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		int wid = Integer.valueOf(work_id);
@@ -218,6 +282,13 @@ public class WorkUserRecordAction extends ActionSupport{
 		String size = request.getParameter("size");
 		String problem_id = request.getParameter("problem_id");
 		String user_account = request.getParameter("user_account");
+		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
@@ -248,6 +319,19 @@ public class WorkUserRecordAction extends ActionSupport{
 		String user_account = request.getParameter("user_account");
 		String problem_id = request.getParameter("problem_id");
 		String work_id = request.getParameter("work_id");
+		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);

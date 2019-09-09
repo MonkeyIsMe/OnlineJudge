@@ -68,6 +68,19 @@ public class KnowledgeProblemAction extends ActionSupport{
 		String knowledge_id = request.getParameter("knowledge_id");
 		String problem_id = request.getParameter("problem_id");
 		
+		if(knowledge_id == null || knowledge_id == "" || knowledge_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int kid = Integer.valueOf(knowledge_id);
 		int pid = Integer.valueOf(problem_id);
 		
@@ -89,6 +102,13 @@ public class KnowledgeProblemAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String knowledgeproblem_id = request.getParameter("knowledgeproblem_id");
+		
+		if(knowledgeproblem_id == null || knowledgeproblem_id == "" || knowledgeproblem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int kpid = Integer.valueOf(knowledgeproblem_id);
 		
@@ -114,6 +134,13 @@ public class KnowledgeProblemAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String problem_id = request.getParameter("problem_id");
+		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int pid = Integer.valueOf(problem_id);
 		
@@ -146,6 +173,13 @@ public class KnowledgeProblemAction extends ActionSupport{
 		String knowledge_id = request.getParameter("knowledge_id");
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
+		
+		if(knowledge_id == null || knowledge_id == "" || knowledge_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int rows = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
@@ -189,6 +223,13 @@ public class KnowledgeProblemAction extends ActionSupport{
 		
 		String knowledge_id = request.getParameter("knowledge_id");
 
+		if(knowledge_id == null || knowledge_id == "" || knowledge_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int count = 0;
 		
 		if(knowledge_id.equals("none")) {

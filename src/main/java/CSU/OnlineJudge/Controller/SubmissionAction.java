@@ -66,8 +66,34 @@ public class SubmissionAction extends ActionSupport{
 		String problem_id = request.getParameter("problem_id");
 		String submission_code = request.getParameter("submission_code");
 		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(submission_length == null || submission_length == "" || submission_length.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int pid = Integer.valueOf(problem_id);
 		int length = Integer.valueOf(submission_length);
+		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(submission_length == null || submission_length == "" || submission_length.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		//submission.setSubmissionResult(submission_result);
 		submission.setSubmissionTime(du.GetNowDate());
@@ -99,6 +125,12 @@ public class SubmissionAction extends ActionSupport{
 		
 		String submission_id = request.getParameter("submission_id");
 		
+		if(submission_id == null || submission_id == "" || submission_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int sid = Integer.valueOf(submission_id);
 		
 		submission = SubmissionService.querySubmission(sid);
@@ -143,6 +175,34 @@ public class SubmissionAction extends ActionSupport{
 		String submission_time = request.getParameter("submission_time");
 		String submission_memory = request.getParameter("submission_memory");
 		
+		if(submission_id == null || submission_id == "" || submission_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		if(submission_length == null || submission_length == "" || submission_length.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		if(submission_memory == null || submission_memory == "" || submission_memory.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		if(submission_time == null || submission_time == "" || submission_time.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int length = Integer.valueOf(submission_length);
 		int memory = Integer.valueOf(submission_memory);
 		int time = Integer.valueOf(submission_time);
@@ -170,6 +230,13 @@ public class SubmissionAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String submission_id = request.getParameter("submission_id");
+		
+		if(submission_id == null || submission_id == "" || submission_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int sid = Integer.valueOf(submission_id);
 		
@@ -280,6 +347,13 @@ public class SubmissionAction extends ActionSupport{
 		String size = request.getParameter("size");
 		String problem_id = request.getParameter("problem_id");	
 		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		int pid = Integer.valueOf(problem_id);
@@ -335,6 +409,13 @@ public class SubmissionAction extends ActionSupport{
 		String problem_id = request.getParameter("problem_id");
 		String user_account = request.getParameter("user_account");
 		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		int pid = Integer.valueOf(problem_id);
@@ -362,6 +443,13 @@ public class SubmissionAction extends ActionSupport{
 		String size = request.getParameter("size");
 		String problem_id = request.getParameter("problem_id");
 		String submission_result = request.getParameter("submission_result");
+		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
@@ -392,6 +480,13 @@ public class SubmissionAction extends ActionSupport{
 		String user_account = request.getParameter("user_account");
 		String problem_id = request.getParameter("problem_id");	
 		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int pid = Integer.valueOf(problem_id);
 		
 		int row = Integer.valueOf(page);
@@ -403,5 +498,28 @@ public class SubmissionAction extends ActionSupport{
 		out.println(ja.toString());
         out.flush(); 
         out.close();
+	}
+	
+	//判题
+	public void JudgerCode() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String submission_id = request.getParameter("submission_id");
+		
+		if(submission_id == null || submission_id == "" || submission_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int sid = Integer.valueOf(submission_id);
+		
 	}
 }

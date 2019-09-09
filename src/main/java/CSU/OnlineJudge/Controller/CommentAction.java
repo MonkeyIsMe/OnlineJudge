@@ -44,6 +44,13 @@ public class CommentAction extends ActionSupport{
 		String answer_id = request.getParameter("answer_id");
 		String user_account = request.getParameter("user_account");
 		
+		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int aid = Integer.valueOf(answer_id);
 		
 		comment.setAnswerId(aid);
@@ -66,6 +73,13 @@ public class CommentAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String comment_id = request.getParameter("comment_id");
+		
+		if(comment_id == null || comment_id == "" || comment_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int cid = Integer.valueOf(comment_id);
 		
@@ -93,6 +107,13 @@ public class CommentAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String comment_id = request.getParameter("comment_id");
+		
+		if(comment_id == null || comment_id == "" || comment_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int cid = Integer.valueOf(comment_id);
 		
@@ -126,6 +147,13 @@ public class CommentAction extends ActionSupport{
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		String answer_id = request.getParameter("answer_id");
+		
+		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int aid = Integer.valueOf(answer_id);
 		int row = Integer.valueOf(page);
@@ -200,6 +228,13 @@ public class CommentAction extends ActionSupport{
 		
 		String answer_id = request.getParameter("answer_id");
 		
+		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int aid = Integer.valueOf(answer_id);
 		
 		List<Comment> CommentList = CommentService.QueryCommentByAnswerId(aid);
@@ -223,6 +258,13 @@ public class CommentAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String answer_id = request.getParameter("answer_id");
+		
+		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int aid = Integer.valueOf(answer_id);
 		

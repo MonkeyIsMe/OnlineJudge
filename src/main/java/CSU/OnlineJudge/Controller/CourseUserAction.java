@@ -146,6 +146,13 @@ public class CourseUserAction extends ActionSupport{
 		
 		String user_id = request.getParameter("user_id");
 		
+		if(user_id == null || user_id == "" || user_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int uid = Integer.valueOf(user_id);
 		
 		List<CourseUser> CourseUserList = CourseUserService.QueryCourseUserByUserID(uid);
@@ -176,6 +183,13 @@ public class CourseUserAction extends ActionSupport{
 		
 		String user_account = request.getParameter("user_account");
 		String course_id = request.getParameter("course_id");
+		
+		if(course_id == null || course_id == "" || course_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		List<CourseUser> CourseUserList = CourseUserService.QueryCourseUserByUserAccount(user_account);
 		int cid = Integer.valueOf(course_id);
@@ -217,6 +231,19 @@ public class CourseUserAction extends ActionSupport{
 		String course_id = request.getParameter("course_id");
 		String user_id = request.getParameter("user_id");
 		
+		if(course_id == null || course_id == "" || course_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(user_id == null || user_id == "" || user_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int cid = Integer.valueOf(course_id);
 		int uid = Integer.valueOf(user_id);
 		
@@ -239,6 +266,13 @@ public class CourseUserAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String courseuser_id = request.getParameter("courseuser_id");
+		
+		if(courseuser_id == null || courseuser_id == "" || courseuser_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int cuid = Integer.valueOf(courseuser_id);
 		
@@ -266,6 +300,13 @@ public class CourseUserAction extends ActionSupport{
 		
 		String user_id = request.getParameter("user_id");
 		String course_info = request.getParameter("course_info");
+		
+		if(user_id == null || user_id == "" || user_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int uid = Integer.valueOf(user_id);
 		JSONArray ja = JSONArray.fromObject(course_info);

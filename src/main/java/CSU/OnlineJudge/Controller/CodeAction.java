@@ -58,6 +58,13 @@ public class CodeAction extends ActionSupport{
 		HttpSession session = request.getSession();
 		String user_account = (String) session.getAttribute("user_account");
 		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		code.setCodeInfo(code_info);
 		code.setCodeName(code_name);
 		code.setUserAccount(user_account);
@@ -77,6 +84,13 @@ public class CodeAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String code_id = request.getParameter("code_id");
+		
+		if(code_id == null || code_id == "" || code_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int cid = Integer.valueOf(code_id);
 		
@@ -106,6 +120,13 @@ public class CodeAction extends ActionSupport{
 		String code_id = request.getParameter("code_id");
 		String code_name = request.getParameter("code_name");
 		String code_info = request.getParameter("code_info");
+		
+		if(code_id == null || code_id == "" || code_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int cid = Integer.valueOf(code_id);
 		
@@ -139,6 +160,13 @@ public class CodeAction extends ActionSupport{
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
+		if(user_id == null || user_id == "" || user_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size); 
 		int uid = Integer.valueOf(user_id);
@@ -167,8 +195,18 @@ public class CodeAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String user_id = request.getParameter("user_id");
+		
+		if(user_id == null || user_id == "" || user_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int uid = Integer.valueOf(user_id);
+		
 		user = UserService.queryUser(uid);
+		
 		String user_account = user.getUserAccount();
 		
 		List<Code>  CodeList = CodeService.QueryCodeByUserAccount(user_account);
@@ -188,8 +226,18 @@ public class CodeAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String user_id = request.getParameter("user_id");
+		
+		if(user_id == null || user_id == "" || user_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int uid = Integer.valueOf(user_id);
+		
 		user = UserService.queryUser(uid);
+		
 		String user_account = user.getUserAccount();
 		
 		int cnt = CodeService.CountUserCode(user_account);

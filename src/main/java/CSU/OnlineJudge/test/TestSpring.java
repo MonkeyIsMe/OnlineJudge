@@ -219,6 +219,14 @@ public class TestSpring {
 		wd.addWork(work);
 	}
 	
+	@Test
+	public void TestUtil() {
+		String str = "";
+		System.out.println(str == "");
+		System.out.println(str == null);
+		System.out.println(str.equals(""));
+	}
+	
 	@Resource(name="KnowledgeDAO")
 	private KnowledgeDAO kd;
 	@Test

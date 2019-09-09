@@ -78,6 +78,13 @@ public class ProblemAction extends ActionSupport{
 		
 		String problem_id = request.getParameter("problem_id");
 		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int pid = Integer.valueOf(problem_id);
 		Problem problem = ProblemService.QueryProblem(pid);
 		
@@ -117,6 +124,25 @@ public class ProblemAction extends ActionSupport{
 		String case_output = request.getParameter("case_output");
 		String case_info = request.getParameter("case_info");
 		String knowledge_info = request.getParameter("knowledge_info");
+		
+		if(problem_memory == null || problem_memory == "" || problem_memory.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(problem_time == null || problem_time == "" || problem_time.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(problem_flag == null || problem_flag == "" || problem_flag.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int memory = Integer.valueOf(problem_memory);
 		int time = Integer.valueOf(problem_time);
@@ -216,7 +242,30 @@ public class ProblemAction extends ActionSupport{
 		String case_input = request.getParameter("case_input");
 		String case_output = request.getParameter("case_output");
 		
-
+		if(problem_memory == null || problem_memory == "" || problem_memory.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(problem_time == null || problem_time == "" || problem_time.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(problem_flag == null || problem_flag == "" || problem_flag.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int memory = Integer.valueOf(problem_memory);
 		int time = Integer.valueOf(problem_time);
@@ -362,7 +411,14 @@ public class ProblemAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 			
 		String problem_id = request.getParameter("problem_id");
-			
+		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int pid = Integer.valueOf(problem_id);
 			
 		Problem Problem = ProblemService.QueryProblem(pid);
@@ -571,6 +627,13 @@ public class ProblemAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String problem_id = request.getParameter("problem_id");
+		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		//int degree = Integer.valueOf(problem_degree);
 		

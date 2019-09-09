@@ -39,6 +39,14 @@ public class UserAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String user_id = request.getParameter("user_id");
+		
+		if(user_id == null || user_id == "" || user_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int uid = Integer.valueOf(user_id);
 		
 		user = UserService.queryUser(uid);
@@ -64,6 +72,14 @@ public class UserAction extends ActionSupport{
 		
 		String user_id = request.getParameter("user_id");
 		String submission = request.getParameter("flag");
+		
+		if(user_id == null || user_id == "" || user_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int uid = Integer.valueOf(user_id);
 		
 		user = UserService.queryUser(uid);
@@ -132,6 +148,13 @@ public class UserAction extends ActionSupport{
 		//String user_account = "AC";
 		//int uid = Integer.valueOf(user_id);
 		
+		if(user_id == null || user_id == "" || user_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int uid = Integer.valueOf(user_id);
 		user = UserService.queryUser(uid);
 		
@@ -193,6 +216,14 @@ public class UserAction extends ActionSupport{
 		String user_classroom = request.getParameter("user_classroom");
 		String user_info = request.getParameter("user_info");
 		String user_name = request.getParameter("user_name");
+		
+		if(user_id == null || user_id == "" || user_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int uid = Integer.valueOf(user_id);
 		
 		user = UserService.queryUser(uid);

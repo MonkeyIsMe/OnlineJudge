@@ -54,6 +54,13 @@ public class WorkCourseAction extends ActionSupport{
 		
 		String course_id = request.getParameter("course_id");
 		
+		if(course_id == null || course_id == "" || course_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int cid = Integer.valueOf(course_id);
 		
 		JSONArray ja = new JSONArray();
@@ -84,6 +91,19 @@ public class WorkCourseAction extends ActionSupport{
 		String course_id = request.getParameter("course_id");
 		String work_id = request.getParameter("work_id");
 		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(course_id == null || course_id == "" || course_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int cid = Integer.valueOf(course_id);
 		int wid = Integer.valueOf(work_id);
 		
@@ -105,6 +125,13 @@ public class WorkCourseAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String workcourse_id = request.getParameter("workcourse_id");
+		
+		if(workcourse_id == null || workcourse_id == "" || workcourse_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		int wcid = Integer.valueOf(workcourse_id);
 		
