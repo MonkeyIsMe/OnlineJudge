@@ -24,8 +24,8 @@ $(function(){
 	$.post(
 			"QueryProblemList.action",
 			{
-				rows:row,
-				size:30
+				page:row,
+				limit:30
 			}, 
 			function(data) {
 				var data = JSON.parse(data);
@@ -57,8 +57,8 @@ function PrevPage(){
 		$.post(
 				"QueryProblemList.action",
 				{
-					rows:row,
-					size:30
+					page:row,
+					limit:30
 				}, 
 				function(data) {
 					var data = JSON.parse(data);
@@ -90,8 +90,8 @@ function NextPage(){
 		$.post(
 				"QueryProblemList.action",
 				{
-					rows:row,
-					size:30
+					page:row,
+					limit:30
 				}, 
 				function(data) {
 					var data = JSON.parse(data);

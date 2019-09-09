@@ -163,7 +163,28 @@ $(document).ready(function(){
 		    
 		  });
 	  
-		
+	  $("#clear_code").click(function(){
+		  
+		$.post(
+			"ClearCodeByAccount.action",
+			{
+				user_id:sid,
+			},
+			function(data){
+				data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+				if(data == "Fail"){
+					alert("清空失败！");
+				    window.location.replace("ManagerUserCodeSet.html");
+				}
+				else{
+					alert("清空成功!");
+				    window.location.replace("ManagerUserCodeSet.html");
+				}
+			}
+			);
+	  })
+	  
+	  
 });
 
 function refresh(){

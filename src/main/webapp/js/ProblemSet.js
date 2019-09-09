@@ -11,10 +11,12 @@ var cnt = 0;
 var pro_content = null;
 var in_content = null;
 var out_content = null;
+
 window.onload = function () {
+	
 	pro_content = CKEDITOR.replace("content"); //参数‘content’是textarea元素的name属性值，而非id属性值
-	in_content = CKEDITOR.replace("incontent"); 
-	out_content = CKEDITOR.replace("outcontent"); 
+	incontent = CKEDITOR.replace("incontent"); 
+	outcontent = CKEDITOR.replace("outcontent"); 
 }
 
 $(function(){
@@ -241,7 +243,7 @@ $(document).ready(function(){
             var problem_hint = $("#add_problem_hint").val();
             var problem_memory = $("#add_problem_memory").val();
             var problem_time = $("#add_problem_time").val();
-            var problem_input = CKEDITOR.instances.incontent.getData();
+            var problem_input =  CKEDITOR.instances.incontent.getData(); //获取值
             var problem_output = CKEDITOR.instances.outcontent.getData();
             var case_input = $("#add_case_input").val();
             var case_output = $("#add_case_output").val();

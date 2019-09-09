@@ -180,3 +180,7 @@ $(document).ready(function(){
 function refresh(){
 	window.location.replace(url);
 }
+
+function backprev(){
+	window.location.replace("ManagerUserCodeSet.html");
+}

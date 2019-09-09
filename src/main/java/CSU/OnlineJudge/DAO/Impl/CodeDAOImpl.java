@@ -80,7 +80,7 @@ public class CodeDAOImpl extends HibernateDaoSupport implements CodeDAO{
 		});
 	}
 
-	public List<Code> QueryCodeByUserAccount(String UserAccount) {
+	public List<Code> QueryCodeByUserAccount(final String UserAccount) {
 		// TODO Auto-generated method stub
 		return getHibernateTemplate().execute(new HibernateCallback<List<Code>>() {
 
@@ -88,6 +88,7 @@ public class CodeDAOImpl extends HibernateDaoSupport implements CodeDAO{
 				// TODO Auto-generated method stub
 				String hql = "from Code where user_account = ?";
 				Query query = session.createQuery(hql);
+				query.setParameter(0, UserAccount);
 				List<Code> result = null;
 				result = query.list();
 				return result;

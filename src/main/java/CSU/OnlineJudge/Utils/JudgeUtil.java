@@ -8,8 +8,14 @@ import java.net.URLConnection;
 import java.util.List;
 
 import CSU.OnlineJudge.Model.Case;
+import CSU.OnlineJudge.Model.Problem;
+import CSU.OnlineJudge.Model.Submission;
 import CSU.OnlineJudge.Service.CaseService;
+import CSU.OnlineJudge.Service.ProblemService;
+import CSU.OnlineJudge.Service.SubmissionService;
 import CSU.OnlineJudge.Service.Impl.CaseServiceImpl;
+import CSU.OnlineJudge.Service.Impl.ProblemServiceImpl;
+import CSU.OnlineJudge.Service.Impl.SubmissionServiceImpl;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -18,7 +24,7 @@ public class JudgeUtil {
 	//发送http请求
 	public String Judger(String param) {
 		
-		 String url = "http://192.168.1.192:5000/judge";
+		String url = "http://192.168.1.192:5000/judge";
 		
 		PrintWriter out = null;
         BufferedReader in = null;
@@ -108,6 +114,33 @@ public class JudgeUtil {
 			String res = cjo.getString("result");
 		}
 		
+	}
+	
+	//通过提交编号获取题目信息
+	public String GetPorblemInfo(int SubmissionId) {
+		
+		SubmissionService SubmissionService = new SubmissionServiceImpl();
+		Submission sub = SubmissionService.querySubmission(SubmissionId);
+		
+		int pid = sub.getProblemId();
+		String lang = sub.getCodeType();
+		String code = sub.getSubmissionCode();
+		
+		ProblemService ProblemService = new ProblemServiceImpl();
+		Problem problem = ProblemService.QueryProblem(pid);
+		
+		int time = problem.getProblemTimeLimit();
+		int memory = problem.getProblemMemory();
+		
+		JSONObject jo = new JSONObject();
+		
+		jo.put("pid", pid);
+		jo.put("lang", lang);
+		jo.put("code", code);
+		jo.put("time", time);
+		jo.put("memory", memory);
+		
+		return jo.toString();
 	}
 	
 }
