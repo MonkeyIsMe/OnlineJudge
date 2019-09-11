@@ -3,8 +3,19 @@ var url = decodeURI(window.location.href);
 var argsIndex = url .split("?ProblemId=");
 var pid = argsIndex[1];
 
+var pro_content = null;
+var in_content = null;
+var out_content = null;
+
+ 
+
+
 $(document).ready(function(){
 
+	pro_content = CKEDITOR.replace("content"); //参数‘content’是textarea元素的name属性值，而非id属性值
+	incontent = CKEDITOR.replace("incontent"); 
+	outcontent = CKEDITOR.replace("outcontent"); 
+	
 	$(function(){
 		$.ajaxSettings.async = false;
 		$.post(
@@ -16,9 +27,9 @@ $(document).ready(function(){
 					var datas = JSON.parse(data);
 					//console.log(datas);
 					$("#problem_name").val(datas.problemName);
-					$("#problem_content").val(datas.problemInfo);
-					$("#problem_input").val(datas.problemInput);
-					$("#problem_output").val(datas.problemOutput);
+					CKEDITOR.instances.content.setData(datas.problemInfo);
+					CKEDITOR.instances.incontent.setData(datas.problemInput);
+					CKEDITOR.instances.outcontent.setData(datas.problemOutput);
 					$("#problem_hint").val(datas.problemHint);
 					$("#problem_time").val(datas.problemTimeLimit);
 					$("#problem_memory").val(datas.problemMemory);
@@ -90,25 +101,15 @@ $(document).ready(function(){
 	$("#UpdateProblem").click(function(){
 		
 		var problem_name = $("#problem_name").val();
-		var problem_content = $("#problem_content").val();
-		var problem_input = $("#problem_input").val();
-		var problem_output = $("#problem_output").val();
 		var problem_hint = $("#problem_hint").val();
 		var problem_time = $("#problem_time").val();
 		var problem_memory = $("#problem_memory").val();
 		var problem_flag = $('input:radio:checked').val();
 		var case_input = $("#case_input").val();
 		var case_output = $("#case_output").val();
-		
-		//获得所有和题目绑定的知识点
-  		var json =[];
-		$('input[name="know"]:checked').each(function(){
-			var obj = {};
-			obj.knowledgeId = $(this).val();
-			json.push(obj);//向数组中添加元素  
-			});
-		var jsonText = JSON.stringify(json);
-		//console.log(jsonText);
+        var problem_input =  CKEDITOR.instances.incontent.getData(); //获取值
+        var problem_output = CKEDITOR.instances.outcontent.getData();
+        var problem_info = CKEDITOR.instances.content.getData();
 		
 		var mflag = false;
 		var tflag = false;
@@ -116,7 +117,7 @@ $(document).ready(function(){
 		mflag = IsNumber(problem_memory);
 		tflag = IsNumber(problem_time);
 		
-		if(problem_name == null || problem_name == "" || problem_content == null || problem_content == "" || problem_input == null || problem_input == ""
+		if(problem_name == null || problem_name == "" || problem_info == null || problem_info == "" || problem_input == null || problem_input == ""
 			|| problem_output == null || problem_output == "" || problem_hint == null || problem_hint == "" || problem_time == null || problem_time == ""
 				|| problem_memory == null || problem_memory == "" || problem_flag == null || problem_flag == ""){
 			alert("所有项均为非空!");
@@ -129,18 +130,17 @@ $(document).ready(function(){
 		}
 		else{
 			$.post(
-					"QueryKnowledgeByProblemId.action",
+					"UpdateProblem.action",
 					{
 						problem_id:pid,
 						problem_name:problem_name,
-						problem_info:problem_content,
+						problem_info:problem_info,
 						problem_hint:problem_hint,
 						problem_memory:problem_memory,
 						problem_time:problem_time,
 						problem_flag:problem_flag,
 						problem_input:problem_input,
 						problem_output:problem_output,
-						knowledge_info:jsonText,
 						case_input:case_input,
 						case_output:case_output,
 					},
@@ -148,8 +148,7 @@ $(document).ready(function(){
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 						if(data == "Fail"){
 							alert("更新失败！");
-						    var url = "ManagerSingleProblem.html?ProblemId=" + pid;
-						    window.location.replace(url);
+							window.location.replace("ManagerProblemSet.html");
 						}
 						else{
 							alert("更新成功!");

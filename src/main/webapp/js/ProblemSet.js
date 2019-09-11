@@ -245,9 +245,9 @@ $(document).ready(function(){
             var problem_time = $("#add_problem_time").val();
             var problem_input =  CKEDITOR.instances.incontent.getData(); //获取值
             var problem_output = CKEDITOR.instances.outcontent.getData();
+            var problem_info = CKEDITOR.instances.content.getData();
             var case_input = $("#add_case_input").val();
             var case_output = $("#add_case_output").val();
-            var problem_info = CKEDITOR.instances.content.getData();
             var problem_flag = $('input:radio:checked').val();
             
 	  		var json =[];

@@ -40,6 +40,8 @@
 			</action>
 			<action name="UpdateProblemSubmission" class="ProblemAction" method="UpdateProblemSubmission" >
 			</action>
+			<action name="UpdateProblem" class="ProblemAction" method="UpdateProblem" >
+			</action>
 			
 		 	<!-- 作业考试 -->
 		 	<action name="QueryAllWork" class="WorkAction" method="QueryAllWork" >
