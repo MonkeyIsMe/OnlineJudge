@@ -59,6 +59,9 @@ $(function(){
 				$("#problem_limt").append("Time Limit:  " + datas.problemTimeLimit +"MS&nbsp;&nbsp;&nbsp;&nbsp;" + "Memory Limit: " +datas.problemMemory+ "K");
 				$("#problem_submission").append(" Total Submission(s):  " + datas.acceptTimes +"&nbsp;&nbsp;&nbsp;&nbsp;" + "Accepted Submission(s): " +datas.submissionTimes);
 				
+				$("#pname").append(datas.problemName);
+				$("#pinfo").append(datas.problemInfo);
+				//console.log(datas.problemName);
 			}
 	);
 	
@@ -105,4 +108,11 @@ $(function(){
 	
 });
 
+function refresh(){
+	window.location.replace(url);
+}
+
+function backprev(){
+	window.location.replace("ManagerProblemSet.html");
+}
 

@@ -18,19 +18,37 @@
     <script src="./layui/layui.js"></script>
     <script src="js/ProblemContain.js"></script>
 </head>
-<body>    
+<body>
+<button type="button" class="btn btn-default btn-sm" style="margin:10px" onclick="refresh()">
+	<span class="glyphicon glyphicon-refresh"></span> 刷新界面
+</button>
+<button type="button" class="btn btn-default btn-sm" style="margin:10px" onclick="backprev()">
+	<span class="glyphicon glyphicon-refresh"></span> 返回上一页
+</button>
 <div class="layui-form">
-	<div class="layui-form-item" style="margin-top:15px">
-    	<label class="layui-form-label" style="margin-left:60px;font-weight:bold">知识点</label>
+
+	<div class="layui-collapse" style="margin:50px">
+		<div class="layui-colla-item">
+	    	<h2 class="layui-colla-title">题目名字</h2>
+	    	<div class="layui-colla-content layui-show" id="pname"></div>
+	  	</div>
+	  <div class="layui-colla-item" >
+	    <h2 class="layui-colla-title">题目信息</h2>
+	    <div class="layui-colla-content layui-show" id="pinfo"></div>
+	  </div>
+	</div>
+
+	<div class="layui-form-item" style="margin-top:25px">
+    	<label class="layui-form-label" style="margin-left:60px;font-weight:bold">知识点:</label>
 	    <div class="layui-input-block" id="allTime">
 	</div>
 	
-	  <div class="layui-form-item">
-    <div class="layui-input-block">
-      <button class="layui-btn" lay-submit lay-filter="formDemo" id="add_kp">立即提交</button>
-      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
-    </div>
-  </div>
+	<div class="layui-form-item">
+	    <div class="layui-input-block">
+	      <button class="layui-btn" lay-submit lay-filter="formDemo" id="add_kp" style="margin-left:40%;margin-top:60px">立即提交</button>
+	      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+	    </div>
+  	</div>
 </div>
 
 <script>
@@ -43,6 +61,13 @@ layui.use('form', function(){
     //layer.msg(JSON.stringify(data.field));
     return false;
   });
+});
+
+//注意：折叠面板 依赖 element 模块，否则无法进行功能性操作
+layui.use('element', function(){
+  var element = layui.element;
+  
+  //…
 });
 </script>
 </body>

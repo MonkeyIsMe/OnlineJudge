@@ -285,6 +285,9 @@ public class KnowledgeProblemAction extends ActionSupport{
 			add_ja.add(kpjo);
 		}
 		
+		List<KnowledgeProblem> de_list = KnowledgeProblemService.queryKnowledgeProblemByProblemId(pid);
+		KnowledgeProblemService.DeleteMutiplyKnowledgeProblem(de_list);
+		
 		List<KnowledgeProblem> kp_list = JSONArray.toList(add_ja,KnowledgeProblem.class);
 		KnowledgeProblemService.AddMutiplyKnowledgeProblem(kp_list);
 		
