@@ -81,9 +81,10 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'<a><span class="delete pro_info glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" data-toggle="modal" data-target="#update_Modal"></span></a>'
-			        		+'<a><span  class="delete cases glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:20px" ></span></a>'
-			        		+'<a><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
+			        		'<a><span class="delete pro_info glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+			        		+'<a><span  class="delete cases glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:30px" ></span></a>'
+			        		+'<a><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#myModal"></span></a>'
+			        		+'<a><span  class="delete pro_know glyphicon glyphicon-cog" style="cursor:pointer;margin-left:30px"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
                     $trTemp.appendTo("#KnowList");
@@ -124,9 +125,10 @@ function PrevPage(){
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-				        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" data-toggle="modal" data-target="#update_Modal"></span></a>'
-				        		+'<a><span  class="delete cases glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:20px" ></span></a>'
-				        		+'<a><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
+				        		'<a><span class="delete pro_info glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+				        		+'<a><span  class="delete cases glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:30px" ></span></a>'
+				        		+'<a><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#myModal"></span></a>'
+				        		+'<a><span  class="delete glyphicon glyphicon-cog" style="cursor:pointer;margin-left:30px"></span></a>'
 				        		+"</td>");
 	                    // $("#J_TbData").append($trTemp);
 	                    $trTemp.appendTo("#KnowList");
@@ -165,9 +167,10 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" data-toggle="modal" data-target="#update_Modal"></span></a>'
-	    			        		+'<a><span  class="delete cases glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:20px" ></span></a>'
-	    			        		+'<a><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
+	    			        		'<a><span class="delete pro_info glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+	    			        		+'<a><span  class="delete cases glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:30px" ></span></a>'
+	    			        		+'<a><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#myModal"></span></a>'
+	    			        		+'<a><span  class="delete glyphicon glyphicon-cog" style="cursor:pointer;margin-left:30px"></span></a>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
@@ -210,6 +213,17 @@ $(document).ready(function(){
 		    
 		    pid = col1;
 		    var url = "ManagerSingleProblem.html?ProblemId=" + pid;
+		    window.location.replace(url);
+		    
+		  });
+	  
+	  $("#myTable").on('click','.pro_know',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    
+		    pid = col1;
+		    var url = "ManagerProblemKnow.html?ProblemId=" + pid;
 		    window.location.replace(url);
 		    
 		  });

@@ -144,7 +144,8 @@
 			</action>
 			<action name="QueryKnowledgeByProblemId" class="KnowledgeProblemAction" method="QueryKnowledgeByProblemId" >
 			</action>
-			
+			<action name="AddMutiplyKnowledgeProblem" class="KnowledgeProblemAction" method="AddMutiplyKnowledgeProblem" >
+			</action>
 			
 			<!-- 作业/考试题目关联  -->
 			<action name="AddManyWorkProblem" class="WorkProblemAction" method="AddManyWorkProblem" >

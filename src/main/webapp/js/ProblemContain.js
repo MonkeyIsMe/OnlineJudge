@@ -3,6 +3,43 @@ var url = decodeURI(window.location.href);
 var argsIndex = url .split("?ProblemId=");
 var pid = argsIndex[1];
 
+$(function(){
+	$.ajaxSettings.async = false;
+	$.post(
+			"QueryAllKnowledge.action",
+			{
+			},
+			function(data){
+				var data = JSON.parse(data);
+				//console.log(data);
+		           for(var i=0 ;i<data.length;i++){ //几个人有几个checkbox
+		        	   $("#allTime").append(
+				                "<span>"+
+				                    "<input  type='checkbox' class='time' name='know' value='"+data[i].knowledgeId+"' title='"+data[i].knowledgeName+"'>" 
+				                 +"</span>");
+		           }
+			}
+			);
+	
+});
+
+$(function(){
+	$.ajaxSettings.async = false;
+	$.post(
+			"QueryKnowledgeByProblemId.action",
+			{
+				problem_id:pid,
+			},
+			function(data){
+				var data = JSON.parse(data);
+				//console.log(data);
+				for(var i = 0; i < data.length; i ++){
+					$('input:checkbox[name="know"][value='+data[i].knowledgeId+']').prop('checked', true);
+				}
+			}
+			);
+	
+});
 
 $(function(){
 	$.post(
@@ -12,7 +49,8 @@ $(function(){
 			}, 
 			function(data) {
 				var datas = JSON.parse(data);
-				console.log(datas);
+				//console.log(datas);
+				$("#tittle").append(datas.problemName);
 				$("#problem_name").append(datas.problemName);
 				$("#problem_content").append(datas.problemInfo);
 				$("#problem_input").append(datas.problemInput);
@@ -34,5 +72,37 @@ $(function(){
 			window.location.href = url;
 	})
 	
+	$("#add_kp").click(function(){
+			var json =[];
+			$('input[name="know"]:checked').each(function(){
+				var obj = {};
+				obj.knowledgeId = $(this).val();
+				json.push(obj);//向数组中添加元素  
+				});
+			var jsonText = JSON.stringify(json);
+			//console.log(json);
+			
+			$.post(
+					"AddMutiplyKnowledgeProblem.action",
+					{
+						problem_id:pid,
+						knowledge_info:jsonText,
+					}, 
+					function(data) {
+						
+						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+						if(data == "Fail"){
+							alert("更新失败！");
+							window.location.replace("ManagerProblemSet.html");
+						}
+						else{
+							alert("更新成功!");
+							window.location.replace("ManagerProblemSet.html");
+						}
+					}
+			);
+	})
+	
 });
+
 

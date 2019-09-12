@@ -250,4 +250,43 @@ public class KnowledgeProblemAction extends ActionSupport{
 	    out.close();
 		
 	}
+	
+	//批量添加知识点题目关联
+	public void AddMutiplyKnowledgeProblem() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String knowledge_info = request.getParameter("knowledge_info");
+		String problem_id = request.getParameter("problem_id");
+
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int pid = Integer.valueOf(problem_id);
+		
+		JSONArray add_ja = new JSONArray();
+		JSONArray ja = JSONArray.fromObject(knowledge_info);
+		for(int i = 0; i < ja.size(); i ++) {
+			JSONObject jo = ja.getJSONObject(i);
+			String KnowledgeId = jo.getString("knowledgeId");
+			int kid = Integer.valueOf(KnowledgeId);
+			kp.setKnowledgeId(kid);
+			kp.setProblemId(pid);
+			JSONObject kpjo = JSONObject.fromObject(kp);
+			add_ja.add(kpjo);
+		}
+		
+		List<KnowledgeProblem> kp_list = JSONArray.toList(add_ja,KnowledgeProblem.class);
+		KnowledgeProblemService.AddMutiplyKnowledgeProblem(kp_list);
+		
+	}
 }
