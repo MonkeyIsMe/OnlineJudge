@@ -6,7 +6,7 @@ var i = 0;
 
 $(document).ready(function(){
     $("#head").load('MainHead.html');
-    
+    $("#editor").css("display","none");
     
     $("#saveserver").click(function(){
     	var val = $('input[name="code"]:checked').val(); 
@@ -114,43 +114,70 @@ $("#CreateCode").click(function(){
     var filename = $("#CodeName").val();
     var language = choosed;
     var lang;
-    if(language == 'C++' || language == 'C'){
-        lang = 'cpp'
-    }
-    if(language == 'Java'){
-        lang = 'class'
-    }
-    if(language == 'Python'){
-        lang = 'py'
-    }
-    if(i == 0){
-        var html ="<div class='file'><input id='"+filename+"' type='radio' value='" + filename + "' checked=\"checked\" name='code' onclick=inputcode('" + filename + "')>"+filename+"."+lang+"</div>";
-        first = filename;
-        var arr ={
-            key:filename,
-            value:""
+    
+    var flag = IsCreate(filename);
+    
+    if(flag == true){
+        if(language == 'C++' || language == 'C'){
+            lang = 'cpp';
+            editor.session.setMode("ace/mode/c_cpp");
         }
-        array.push(arr)
-        i++;
+        if(language == 'Java'){
+            lang = 'class';
+            editor.session.setMode("ace/mode/java");
+        }
+        if(language == 'Python'){
+            lang = 'py';
+            editor.session.setMode("ace/mode/python");
+        }
+        else if(language =="" || language == null){
+        	alert("请先选择语言!");
+        }
+        else if(filename == null || filename ==""){
+        	alert("文件不能为空!");
+        }
+        else{
+        	
+        	$("#editor").css("display","block");
+        	
+            if(i == 0){
+                var html ="<div class='file'><input id='"+filename+"' type='radio' value='" + filename + "' checked=\"checked\" name='code' onclick=inputcode('" + filename + "')>"+filename+"."+lang+"</div>";
+                first = filename;
+                var arr ={
+                    key:filename,
+                    value:""
+                }
+                editor.setValue("");
+                array.push(arr)
+                i++;
+            }
+            else{
+                var html ="<div class='file'><input id='"+filename+"' type='radio' value='" + filename + "'checked=\"checked\"  name='code' onclick=inputcode('" + filename + "')>"+filename+"."+lang+"</div>";
+                var arr ={
+                    key:filename,
+                    value:""
+                }
+                editor.setValue("");
+                array.push(arr)
+            }
+        }
+
+        $("#content").append(html);
+        $("#CodeName").val("");
     }
     else{
-        var html ="<div class='file'><input id='"+filename+"' type='radio' value='" + filename + "' name='code' onclick=inputcode('" + filename + "')>"+filename+"."+lang+"</div>";
-        var arr ={
-            key:filename,
-            value:""
-        }
-        array.push(arr)
+    	alert("文件已存在！");
+    	$("#CodeName").val("");
     }
+    
 
-
-    $("#content").append(html);
 })
 
 $("#clear").click(function () {
     editor.setValue("");
 })
 
-
+//筛选和存储文件
 function inputcode(filename) {
 
     var firstcode = editor.getValue();
@@ -171,4 +198,15 @@ function inputcode(filename) {
     if(secondcode == null) secondcode ="";
     editor.setValue(secondcode);
 
+}
+
+//判断文件是否存在
+function IsCreate(filename){
+	var flag = true;
+    for(var j in array){
+        if(array[j].key == filename){
+            flag = false;
+        }
+    }
+    return flag;
 }

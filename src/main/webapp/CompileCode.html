@@ -12,7 +12,7 @@
 
     <link href="css/Compile.css" type="text/css" rel="styleSheet">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <title>A+B</title>
+    <title>编译器</title>
 </head>
 <body>
 
@@ -77,7 +77,7 @@
     </div>
 </div>
 <div id="editor" class="editor" ></div>
-<div>
+<div style="margin-top:50px">
     <div class="form-group" style="float: left">
         <textarea class="form-control" id="input" rows="3"  placeholder="输入数据" style="width: 300px;height: 200px;margin-left: 50px;margin-top: 10px;resize:none;overflow:scroll;"></textarea>
     </div>
@@ -85,8 +85,8 @@
         <textarea class="form-control" id="output" rows="3" placeholder="输出数据" style="width: 300px;height: 200px;margin-left: 20px;margin-top: 10px;resize:none;overflow:scroll;"></textarea>
     </div>
     <div class="btn-group btn-group-lg" style="margin-top: 100px">
-        <button type="button" class="btn btn-primary" style="margin-left: 50px">测试</button>
-        <button type="button" class="btn btn-primary"style="margin-left: 50px" id="submit">提交</button>
+        <button type="button" class="btn btn-primary" style="margin-left: 50px;padding-bottom:30px;border-radius: 20px;">测试</button>
+        <button type="button" class="btn btn-primary"style="margin-left: 50px;padding-bottom:30px;border-radius: 20px;" id="submit">提交</button>
     </div>
 </div>
 <!-- 模态框（Modal） -->
@@ -103,7 +103,7 @@
             </div>
             <div class="modal-body">
                 <label class="radio-inline">
-                    <input type="radio" name="optionsRadiosinline" id="C++" onclick=ChooseLang("C++") > C++
+                    <input type="radio" name="optionsRadiosinline"  id="C++" onclick=ChooseLang("C++") > C++
                 </label>
                 <label class="radio-inline">
                     <input type="radio" name="optionsRadiosinline" id="C" onclick=ChooseLang("C") > C
