@@ -170,4 +170,23 @@ public class WorkUserRecordDAOImpl extends HibernateDaoSupport implements WorkUs
 		});
 	}
 
+	public List<WorkUserRecord> queryWorkUserRecordByPageSizeWithUserIdWork(final int row, final int PageSize, final int UserId,
+			final int WorkId) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<WorkUserRecord>>() {
+			
+
+			public List<WorkUserRecord> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from WorkUserRecord where user_id = ? and work_id = ?";
+				Query query = session.createQuery(hql).setFirstResult(
+                        (row - 1) * PageSize).setMaxResults(PageSize);
+				query.setParameter(0, UserId);
+				query.setParameter(1, WorkId);
+				List<WorkUserRecord> list = query.list();
+				return list;
+			}
+		});
+	}
+
 }

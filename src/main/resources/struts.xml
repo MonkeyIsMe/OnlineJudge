@@ -222,6 +222,12 @@
 			</action>
 			<action name="CountComment" class="CommentAction" method="CountComment">
 			</action>
+			
+			<!-- 评论 -->
+			<action name="CountByWorkId" class="WorkRecordAction" method="CountByWorkId">
+			</action>
+			<action name="QueryByWorkIdPageSize" class="WorkRecordAction" method="QueryByWorkIdPageSize">
+			</action>
 	</package>
 </struts>
 	

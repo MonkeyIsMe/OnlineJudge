@@ -291,25 +291,6 @@ public class ProblemAction extends ActionSupport{
 			CaseService.AddCase(cas);
 		}
 		
-
-		
-//		List<KnowledgeProblem> del_kp_list = KnowledgeProblemService.queryKnowledgeProblemByProblemId(pid);
-//		KnowledgeProblemService.DeleteMutiplyKnowledgeProblem(del_kp_list);
-//		
-//		JSONArray know_ja = JSONArray.fromObject(knowledge_info);
-//		for(int i = 0; i < know_ja.size(); i ++) {
-//			JSONObject jo = know_ja.getJSONObject(i);
-//			String KnowledgeId = jo.getString("knowledgeId");
-//			int kid = Integer.valueOf(KnowledgeId);
-//			kp.setKnowledgeId(kid);
-//			kp.setProblemId(pid);
-//			JSONObject kpjo = JSONObject.fromObject(kp);
-//			know_ja.add(kpjo);
-//		}
-//		
-//		List<KnowledgeProblem> kp_list = JSONArray.toList(know_ja,KnowledgeProblem.class);
-//		KnowledgeProblemService.AddMutiplyKnowledgeProblem(kp_list);
-		
 		if(problem == null) {
 			out.println("Fail");
 			out.flush(); 

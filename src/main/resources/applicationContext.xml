@@ -97,6 +97,13 @@
 	<bean name="CommentAction" class="CSU.OnlineJudge.Controller.CommentAction" scope="prototype" >
 		<property name="CommentService" ref="CommentService" ></property>
 	</bean>
+	<bean name="WorkUserRecordAction" class="CSU.OnlineJudge.Controller.WorkUserRecordAction" scope="prototype" >
+		<property name="WorkUserRecordService" ref="WorkUserRecordService" ></property>
+	</bean>
+	<bean name="WorkRecordAction" class="CSU.OnlineJudge.Controller.WorkRecordAction" scope="prototype" >
+		<property name="WorkRecordService" ref="WorkRecordService" ></property>
+		<property name="ProblemService" ref="ProblemService" ></property>
+	</bean>
 	
 	<!-- service -->
  	<bean name="CaseService" class="CSU.OnlineJudge.Service.Impl.CaseServiceImpl" >

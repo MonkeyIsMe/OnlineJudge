@@ -47,5 +47,15 @@ public class WorkRecordServiceImpl implements WorkRecordService{
 		return wrd.QueryWorkRecordByPageSizeWithProblemId(row, PageSize, ProblemId);
 	}
 
+	public List<WorkRecord> QueryWorkRecordByPageSizeWithWorkId(int row, int PageSize, int WorkId) {
+		// TODO Auto-generated method stub
+		return wrd.QueryWorkRecordByPageSizeWithWorkId(row, PageSize, WorkId);
+	}
+
+	public int CountWorkRecordByWorkId(int WorkId) {
+		// TODO Auto-generated method stub
+		return wrd.CountWorkRecordByWorkId(WorkId);
+	}
+
 
 }

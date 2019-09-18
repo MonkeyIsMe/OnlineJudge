@@ -19,4 +19,6 @@ public interface CourseUserDAO {
 	public List<CourseUser> QueryCourseUserByUserAccount(String UserAccount);
 	
 	public Object addMutiplyCourseUser(List<CourseUser> cu);
+	
+	public Object deleteMutiplyCourseUser(List<CourseUser> cu);
 }

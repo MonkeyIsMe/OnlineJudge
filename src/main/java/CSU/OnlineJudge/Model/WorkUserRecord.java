@@ -51,6 +51,8 @@ public class WorkUserRecord {
 	@Column(name="submission_type")
 	private String CodeType;  // 代码类型
 	
+	@Column(name="submission_code")
+	private String SumissionCode;  // 代码
 	
 	public int getUserId() {
 		return UserId;
@@ -118,7 +120,12 @@ public class WorkUserRecord {
 	public void setCodeType(String codeType) {
 		CodeType = codeType;
 	}
-	
+	public String getSumissionCode() {
+		return SumissionCode;
+	}
+	public void setSumissionCode(String sumissionCode) {
+		SumissionCode = sumissionCode;
+	}
 	
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
@@ -132,7 +139,7 @@ public class WorkUserRecord {
 		jo.put("CodeTime", this.CodeTime);
 		jo.put("UserAccount", this.UserAccount);
 		jo.put("CodeType", this.CodeType);
-		
+		jo.put("SumissionCode", this.SumissionCode);
 		return jo;
 	}
 	

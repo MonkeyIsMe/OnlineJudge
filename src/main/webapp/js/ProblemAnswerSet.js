@@ -1,5 +1,5 @@
 /**
- * Created by CallMeDad on 2019/8/8.
+ * Created by CallMeDad on 2019/9/8.
  */
 var row = 1;  //页数
 var count; //总记录数
@@ -50,8 +50,8 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" ></span></a>'
-			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:70px" data-toggle="modal" data-target="#myModal"></span></a>'
+			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:72px" ></span></a>'
+			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:45px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
                     $trTemp.appendTo("#KnowList");
@@ -91,8 +91,8 @@ function PrevPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" ></span></a>'
-	    			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:70px" data-toggle="modal" data-target="#myModal"></span></a>'
+	    			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:72px" ></span></a>'
+	    			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:45px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
@@ -131,8 +131,8 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50px" ></span></a>'
-	    			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:70px" data-toggle="modal" data-target="#myModal"></span></a>'
+	    			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:72px" ></span></a>'
+	    			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:45px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");

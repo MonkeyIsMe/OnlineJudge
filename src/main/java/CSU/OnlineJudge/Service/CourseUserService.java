@@ -18,5 +18,7 @@ public interface CourseUserService {
 	
 	public List<CourseUser> QueryCourseUserByUserAccount(String UserAccount);
 	
-	public Object addMutiplyCourseUser(List<CourseUser> cu);
+	public Object AddMutiplyCourseUser(List<CourseUser> cu);
+	
+	public Object DeleteMutiplyCourseUser(List<CourseUser> cu);
 }

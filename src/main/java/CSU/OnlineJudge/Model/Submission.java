@@ -51,6 +51,8 @@ public class Submission {
 	@Column(name="submission_code")
 	private String SubmissionCode; //提交的代码
 	
+	@Column(name="work_id")
+	private int WorkId;  // 作业考试编号
 	
 	public String getSubmissionCode() {
 		return SubmissionCode;
@@ -139,6 +141,13 @@ public class Submission {
 	public void setProblemId(int problemId) {
 		ProblemId = problemId;
 	}
+	public int getWorkId() {
+		return WorkId;
+	}
+
+	public void setWorkId(int workId) {
+		WorkId = workId;
+	}
 
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
@@ -153,7 +162,7 @@ public class Submission {
 		jo.put("StudentId", this.StudentId);
 		jo.put("ProblemId", this.ProblemId);
 		jo.put("SubmissionCode", this.SubmissionCode);
-		
+		jo.put("WorkId", this.WorkId);
 		return jo;
 	}
 	

@@ -97,7 +97,7 @@ public class WorkUserRecordAction extends ActionSupport{
 		
 	}
 	
-	//根据用户题目查记录
+	//根据题目编号查记录
 	public void queryWorkUserRecordByPageSizeWithProblemId() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
@@ -347,4 +347,44 @@ public class WorkUserRecordAction extends ActionSupport{
 		
 	}
 	
+	//根据用户编号作业查记录
+	public void queryWorkUserRecordByWorkUserIdPageSize() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String page = request.getParameter("page");
+		String size = request.getParameter("limit");
+		String user_id = request.getParameter("user_id");
+		String work_id = request.getParameter("work_id");
+		
+		if(user_id == null || user_id == "" || user_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int uid = Integer.valueOf(user_id);
+		int wid = Integer.valueOf(work_id);
+		int row = Integer.valueOf(page);
+		int PageSize = Integer.valueOf(size);
+		
+		List<WorkUserRecord> ResultList = WorkUserRecordService.queryWorkUserRecordByPageSizeWithUserIdWork(row, PageSize, uid, wid);
+		
+		JSONArray ja = JSONArray.fromObject(ResultList);
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+	}
 }

@@ -28,5 +28,6 @@ public interface WorkUserRecordService {
 	
 	public List<WorkUserRecord> queryWorkUserRecordByProblemWorkAccountPageSize(int row,int PageSize,int ProblemId,int WorkId,String UserAccount);
 	
+	public List<WorkUserRecord> queryWorkUserRecordByPageSizeWithUserIdWork(int row,int PageSize,int UserId,int WorkId);
 	
 }

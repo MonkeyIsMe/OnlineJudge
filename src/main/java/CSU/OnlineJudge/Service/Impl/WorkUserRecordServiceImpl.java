@@ -14,8 +14,6 @@ public class WorkUserRecordServiceImpl implements WorkUserRecordService{
 
 	private  WorkUserRecordDAO wurd;
 	
-	
-	
 	public WorkUserRecordDAO getWurd() {
 		return wurd;
 	}
@@ -82,6 +80,12 @@ public class WorkUserRecordServiceImpl implements WorkUserRecordService{
 			int WorkId, String UserAccount) {
 		// TODO Auto-generated method stub
 		return wurd.queryWorkUserRecordByProblemWorkAccountPageSize(row, PageSize, ProblemId, WorkId, UserAccount);
+	}
+
+	public List<WorkUserRecord> queryWorkUserRecordByPageSizeWithUserIdWork(int row, int PageSize, int UserId,
+			int WorkId) {
+		// TODO Auto-generated method stub
+		return wurd.queryWorkUserRecordByPageSizeWithUserIdWork(row, PageSize, UserId, WorkId);
 	}
 
 }

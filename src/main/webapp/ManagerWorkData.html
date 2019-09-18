@@ -14,7 +14,7 @@
     <link href="css/bootstrap-theme.css" type="text/css" rel="styleSheet">
     <link href="css/bootstrap.css" type="text/css" rel="styleSheet">
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/WorkSet.js"></script>
+    <script src="js/WorkDataSet.js"></script>
 </head>
 <body>
 <button type="button" class="btn btn-default btn-sm" style="margin:10px" onclick="refresh()">
@@ -29,7 +29,7 @@
         <th style="width:12%;text-align:center">作业/考试创建时间</th>
         <th style="width:48%;text-align:center" >作业/考试描述</th>
         <th style="width:10%;text-align:center" >作业/考试创建者</th>
-        <th style="width:10%;text-align:center" >编辑-题目-删除</th>
+        <th style="width:10%;text-align:center" >用户-题目-作业</th>
     </tr>
     </thead>
     <tbody id="KnowList" bgcolor="#D7EBFF" align="center"  style="color: black">
@@ -42,25 +42,5 @@
     <div id="TotalPage" style="float:left;margin-top:10px;font-size:18px;margin-left:5px"></div>
     <div id="NowPage" style="float:left;margin-top:10px;font-size:18px;margin-left:5px"></div>
 </body>
-<!-- 删除的模态框 -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">删除界面</h4>
-            </div>
-            <div class="modal-body">是否删除该作业/考试</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="del_work">确定</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-
-
-
-
 
 </html>

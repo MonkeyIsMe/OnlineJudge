@@ -273,6 +273,9 @@ public class KnowledgeProblemAction extends ActionSupport{
 		
 		int pid = Integer.valueOf(problem_id);
 		
+		List<KnowledgeProblem> de_list = KnowledgeProblemService.queryKnowledgeProblemByProblemId(pid);
+		KnowledgeProblemService.DeleteMutiplyKnowledgeProblem(de_list);
+		
 		JSONArray add_ja = new JSONArray();
 		JSONArray ja = JSONArray.fromObject(knowledge_info);
 		for(int i = 0; i < ja.size(); i ++) {
@@ -285,8 +288,6 @@ public class KnowledgeProblemAction extends ActionSupport{
 			add_ja.add(kpjo);
 		}
 		
-		List<KnowledgeProblem> de_list = KnowledgeProblemService.queryKnowledgeProblemByProblemId(pid);
-		KnowledgeProblemService.DeleteMutiplyKnowledgeProblem(de_list);
 		
 		List<KnowledgeProblem> kp_list = JSONArray.toList(add_ja,KnowledgeProblem.class);
 		KnowledgeProblemService.AddMutiplyKnowledgeProblem(kp_list);

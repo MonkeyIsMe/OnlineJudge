@@ -43,6 +43,9 @@ public class WorkRecord {
 	@Column(name="submission_accept")
 	private int AcceptTimes;   // 正确次数
 	
+	@Column(name="problem_name")
+	private String ProblemName;   // 题目名称
+	
 	
 	public int getWorkRecordId() {
 		return WorkRecordId;
@@ -98,6 +101,13 @@ public class WorkRecord {
 	public void setAcceptTimes(int acceptTimes) {
 		AcceptTimes = acceptTimes;
 	}
+	public String getProblemName() {
+		return ProblemName;
+	}
+	public void setProblemName(String problemName) {
+		ProblemName = problemName;
+	}
+	
 	
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
@@ -110,6 +120,7 @@ public class WorkRecord {
 		jo.put("RuntimeErrorTimes", this.RuntimeErrorTimes);
 		jo.put("CompileErrorTimes", this.CompileErrorTimes);
 		jo.put("AcceptTimes", this.AcceptTimes);
+		jo.put("ProblemName", this.ProblemName);
 		return jo;
 	}
 	

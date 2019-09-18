@@ -301,6 +301,7 @@ public class CourseUserAction extends ActionSupport{
 		String user_id = request.getParameter("user_id");
 		String course_info = request.getParameter("course_info");
 		
+		
 		if(user_id == null || user_id == "" || user_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -309,9 +310,17 @@ public class CourseUserAction extends ActionSupport{
 		}
 		
 		int uid = Integer.valueOf(user_id);
+		
+		List<CourseUser> delete_list = CourseUserService.QueryCourseUserByUserID(uid);
+		System.out.println("delete_list = " + delete_list.size());
+		CourseUserService.DeleteMutiplyCourseUser(delete_list);
+		
+		List<CourseUser> list = CourseUserService.QueryCourseUserByUserID(uid);
+		System.out.println("list = " + list.size());
+		
 		JSONArray ja = JSONArray.fromObject(course_info);
+		System.out.println("course_info = " + course_info);
 		JSONArray add_ja = new JSONArray();
-		System.out.println(user_id + "   " +uid);
 		for(int i = 0; i < ja.size(); i ++) {
 			JSONObject jo = ja.getJSONObject(i);
 			String course_id = jo.getString("courseId");
@@ -321,8 +330,10 @@ public class CourseUserAction extends ActionSupport{
 			//System.out.println(cu.toString());
 			add_ja.add(cu);
 		}
+		
+		
 		List<CourseUser> cu_list = JSONArray.toList(add_ja, CourseUser.class);
-		CourseUserService.addMutiplyCourseUser(cu_list);
+		CourseUserService.AddMutiplyCourseUser(cu_list);
 		
 	}
 }
