@@ -1,7 +1,10 @@
 package CSU.OnlineJudge.Controller;
 
 import java.io.PrintWriter;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,20 +12,31 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Model.WorkUserRecord;
+import CSU.OnlineJudge.Service.UserService;
 import CSU.OnlineJudge.Service.WorkUserRecordService;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 public class WorkUserRecordAction extends ActionSupport{
 
 	private WorkUserRecordService WorkUserRecordService;
 	private WorkUserRecord wur = new WorkUserRecord();
+	private UserService UserService;
+	private User user = new User();
 	
 	public WorkUserRecordService getWorkUserRecordService() {
 		return WorkUserRecordService;
 	}
 	public void setWorkUserRecordService(WorkUserRecordService workUserRecordService) {
 		WorkUserRecordService = workUserRecordService;
+	}
+	public UserService getUserService() {
+		return UserService;
+	}
+	public void setUserService(UserService userService) {
+		UserService = userService;
 	}
 	
 	//增加记录
@@ -348,7 +362,7 @@ public class WorkUserRecordAction extends ActionSupport{
 	}
 	
 	//根据用户编号作业查记录
-	public void queryWorkUserRecordByWorkUserIdPageSize() throws Exception{
+	public void QueryWorkUserRecordByWorkUserIdPageSize() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
 		HttpServletRequest request= ServletActionContext.getRequest();
@@ -384,6 +398,87 @@ public class WorkUserRecordAction extends ActionSupport{
 		
 		JSONArray ja = JSONArray.fromObject(ResultList);
 		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+	}
+	
+	//根据作业查用户
+	public void QueryUserInWorkUserRecordPageSize() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String page = request.getParameter("page");
+		String size = request.getParameter("limit");
+		String work_id = request.getParameter("work_id");
+
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		Set<User> set = new HashSet<User>();
+		int wid = Integer.valueOf(work_id);
+		int row = Integer.valueOf(page);
+		int PageSize = Integer.valueOf(size);
+		JSONArray ja = new JSONArray();
+		List<WorkUserRecord> ResultList = WorkUserRecordService.queryWorkUserRecordByPageSizeWithWorkId(row, PageSize, wid);
+		for(WorkUserRecord example :ResultList) {
+			int uid = example.getUserId();
+			user = UserService.queryUser(uid);
+			if(user == null) continue;
+			JSONObject jo = JSONObject.fromObject(user);
+			set.add(user);
+		}
+		
+		for(User u : set) {
+			ja.add(u);
+		}
+		
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+	}
+	
+	//根据作业,用户查数据总数
+	public void CountRecordByWorkUser() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String work_id = request.getParameter("work_id");
+		String user_id = request.getParameter("user_id");
+
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(user_id == null || user_id == "" || user_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int uid = Integer.valueOf(user_id);
+		int wid = Integer.valueOf(work_id);
+		
+		int count = WorkUserRecordService.CountWorkUserRecordWithUserIdWorkId(uid, wid);
+		JSONObject jo = new JSONObject();
+		jo.put("WorkUserRecordCount", count);
+		
+		out.println(jo.toString());
         out.flush(); 
         out.close();
 	}

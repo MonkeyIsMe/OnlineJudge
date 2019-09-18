@@ -9,6 +9,7 @@ import CSU.OnlineJudge.DAO.KnowledgeDAO;
 import CSU.OnlineJudge.DAO.ProblemDAO;
 import CSU.OnlineJudge.DAO.UserDAO;
 import CSU.OnlineJudge.DAO.WorkDAO;
+import CSU.OnlineJudge.DAO.WorkUserRecordDAO;
 import CSU.OnlineJudge.Model.Case;
 import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.User;
@@ -190,6 +191,13 @@ public class TestSpring {
 		for(Object[] pro : pro_list) {
 			System.out.println(pro[4]);
 		}
+	}
+	
+	@Resource(name="WorkUserRecordDAO")
+	private WorkUserRecordDAO wurd;
+	@Test
+	public void CountWorkUserRecord() {
+		System.out.println(wurd.CountWorkUserRecordWithUserIdWorkId(1, 1));
 	}
 	
 	@Test

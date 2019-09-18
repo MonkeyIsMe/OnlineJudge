@@ -30,4 +30,5 @@ public interface WorkUserRecordService {
 	
 	public List<WorkUserRecord> queryWorkUserRecordByPageSizeWithUserIdWork(int row,int PageSize,int UserId,int WorkId);
 	
+	public int CountWorkUserRecordWithUserIdWorkId(int UserId,int WorkId);
 }

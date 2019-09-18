@@ -88,4 +88,9 @@ public class WorkUserRecordServiceImpl implements WorkUserRecordService{
 		return wurd.queryWorkUserRecordByPageSizeWithUserIdWork(row, PageSize, UserId, WorkId);
 	}
 
+	public int CountWorkUserRecordWithUserIdWorkId(int UserId, int WorkId) {
+		// TODO Auto-generated method stub
+		return wurd.CountWorkUserRecordWithUserIdWorkId(UserId, WorkId);
+	}
+
 }

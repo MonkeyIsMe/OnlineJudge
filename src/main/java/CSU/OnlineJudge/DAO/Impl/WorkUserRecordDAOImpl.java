@@ -189,4 +189,11 @@ public class WorkUserRecordDAOImpl extends HibernateDaoSupport implements WorkUs
 		});
 	}
 
+	public int CountWorkUserRecordWithUserIdWorkId(int UserId, int WorkId) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from WorkUserRecord as WorkUserRecord where work_id = '"+WorkId+"'" +"AND user_id = '"+UserId+"'";  
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
+
 }

@@ -26,6 +26,8 @@ public interface WorkUserRecordDAO {
 	
 	public List<WorkUserRecord> queryWorkUserRecordByPageSizeWithUserIdWork(int row,int PageSize,int UserId,int WorkId);
 	
+	public int CountWorkUserRecordWithUserIdWorkId(int UserId,int WorkId);
+	
 	public List<WorkUserRecord> queryWorkUserRecordByPageSizeWithProblemAccount(int row,int PageSize,int ProblemId,String UserAccount);
 	
 	public List<WorkUserRecord> queryWorkUserRecordByProblemWorkAccountPageSize(int row,int PageSize,int ProblemId,int WorkId,String UserAccount);

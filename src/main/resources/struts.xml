@@ -223,11 +223,20 @@
 			<action name="CountComment" class="CommentAction" method="CountComment">
 			</action>
 			
-			<!-- 评论 -->
+			<!-- 考试作业记录 -->
 			<action name="CountByWorkId" class="WorkRecordAction" method="CountByWorkId">
 			</action>
 			<action name="QueryByWorkIdPageSize" class="WorkRecordAction" method="QueryByWorkIdPageSize">
 			</action>
+						
+			<!-- 考试用户作业记录 -->
+			<action name="QueryUserInWorkUserRecordPageSize" class="WorkUserRecordAction" method="QueryUserInWorkUserRecordPageSize">
+			</action>
+			<action name="QueryWorkUserRecordByWorkUserIdPageSize" class="WorkUserRecordAction" method="QueryWorkUserRecordByWorkUserIdPageSize">
+			</action>
+			<action name="CountRecordByWorkUser" class="WorkUserRecordAction" method="CountRecordByWorkUser">
+			</action>
+			
 	</package>
 </struts>
 	

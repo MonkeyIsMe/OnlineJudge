@@ -47,8 +47,8 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workInfo  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workOwner  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'<a ><span class="delete check glyphicon glyphicon-user" style="cursor:pointer;margin-left:15px"></span></a>'
-			        		+'<a ><span class="delete work glyphicon glyphicon-inbox" style="cursor:pointer;margin-left:20px"></span></a>'
+			        		'<a ><span class="delete see_user glyphicon glyphicon-user" style="cursor:pointer;margin-left:15px"></span></a>'
+			        		+'<a ><span class="delete see_pro glyphicon glyphicon-inbox" style="cursor:pointer;margin-left:20px"></span></a>'
 			        		+'<a ><span class="delete see_work glyphicon glyphicon-list-alt" style="cursor:pointer;margin-left:20px" ></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
@@ -89,7 +89,7 @@ function PrevPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workInfo  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workOwner  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a ><span class="delete check glyphicon glyphicon-user" style="cursor:pointer;margin-left:15px"></span></a>'
+	    			        		'<a ><span class="delete see_user glyphicon glyphicon-user" style="cursor:pointer;margin-left:15px"></span></a>'
 	    			        		+'<a ><span class="delete work glyphicon glyphicon-inbox" style="cursor:pointer;margin-left:20px"></span></a>'
 	    			        		+'<a ><span class="delete see_work glyphicon glyphicon-list-alt" style="cursor:pointer;margin-left:20px" ></span></a>'
 	    			        		+"</td>");
@@ -130,7 +130,7 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workInfo  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workOwner  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a ><span class="delete check glyphicon glyphicon-user" style="cursor:pointer;margin-left:15px"></span></a>'
+	    			        		'<a ><span class="delete see_user glyphicon glyphicon-user" style="cursor:pointer;margin-left:15px"></span></a>'
 	    			        		+'<a ><span class="delete work glyphicon glyphicon-inbox" style="cursor:pointer;margin-left:20px"></span></a>'
 	    			        		+'<a ><span class="delete see_work glyphicon glyphicon-list-alt" style="cursor:pointer;margin-left:20px" ></span></a>'
 	    			        		+"</td>");
@@ -163,6 +163,25 @@ $(document).ready(function(){
 		    window.location.replace(url);
 		    
 		  });
+	  
+	  $("#myTable").on('click','.see_user',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    var url = "WorkUserData.html?WorkId=" + col1;
+		    window.location.replace(url);
+		    
+		  });
+	  
+	  $("#myTable").on('click','.see_pro',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    var url = "WorkUserData.html?WorkId=" + col1;
+		    window.location.replace(url);
+		    
+		  });
+	  
 	  
 		$("#del_work").click(function(){
 			//console.log(cid);

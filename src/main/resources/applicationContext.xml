@@ -99,6 +99,7 @@
 	</bean>
 	<bean name="WorkUserRecordAction" class="CSU.OnlineJudge.Controller.WorkUserRecordAction" scope="prototype" >
 		<property name="WorkUserRecordService" ref="WorkUserRecordService" ></property>
+		<property name="UserService" ref="UserService" ></property>
 	</bean>
 	<bean name="WorkRecordAction" class="CSU.OnlineJudge.Controller.WorkRecordAction" scope="prototype" >
 		<property name="WorkRecordService" ref="WorkRecordService" ></property>
