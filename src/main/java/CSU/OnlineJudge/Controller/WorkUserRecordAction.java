@@ -482,4 +482,33 @@ public class WorkUserRecordAction extends ActionSupport{
         out.flush(); 
         out.close();
 	}
+
+	//根据记录编号查记录
+	public void QuerySingleRecord() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String record_id = request.getParameter("record_id");
+
+		if(record_id == null || record_id == "" || record_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int rid = Integer.valueOf(record_id);
+		
+		wur = WorkUserRecordService.queryWorkUserRecord(rid);
+		JSONObject jo = JSONObject.fromObject(wur);
+	
+		out.println(jo.toString());
+        out.flush(); 
+        out.close();
+	}
 }

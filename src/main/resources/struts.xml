@@ -236,6 +236,8 @@
 			</action>
 			<action name="CountRecordByWorkUser" class="WorkUserRecordAction" method="CountRecordByWorkUser">
 			</action>
+			<action name="QuerySingleRecord" class="WorkUserRecordAction" method="QuerySingleRecord">
+			</action>
 			
 	</package>
 </struts>
