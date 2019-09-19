@@ -43,7 +43,7 @@ public class WorkProblemAction extends ActionSupport{
 		WorkProblemService = workProblemService;
 	}
 
-	//根据作业编号查询题目
+	//根据作业-考试编号查询题目
 	public void QueryPublicProblem() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
@@ -238,5 +238,35 @@ public class WorkProblemAction extends ActionSupport{
 		
 		WorkProblemService.deleteWorkProblem(wp);
 		
+	}
+
+	//根据作业-考试编号查询题目数据
+	public void QueryRecordByWorkId() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String work_id = request.getParameter("work_id");
+		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int wid = Integer.valueOf(work_id);
+		
+		List<WorkProblem> ResultList = WorkProblemService.QueryWorkProblemByWorkId(wid);
+		
+		JSONArray ja = JSONArray.fromObject(ResultList);
+		
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
 	}
 }
