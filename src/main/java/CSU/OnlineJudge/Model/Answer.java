@@ -36,6 +36,9 @@ public class Answer {
 	
 	@Column(name="problem_name")
 	private String ProblemName;  //题目名称
+	
+	@Column(name="answer_name")
+	private String AnswerName;  //题目名称
 
 	public int getAnswerId() {
 		return AnswerId;
@@ -91,6 +94,13 @@ public class Answer {
 	public void setProblemName(String problemName) {
 		ProblemName = problemName;
 	}
+	public String getAnswerName() {
+		return AnswerName;
+	}
+
+	public void setAnswerName(String answerName) {
+		AnswerName = answerName;
+	}
 
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
@@ -100,6 +110,7 @@ public class Answer {
 		jo.put("UserAccount", this.UserAccount);
 		jo.put("AnswerTime", this.AnswerTime);
 		jo.put("AnswerInfo", this.AnswerInfo);
+		jo.put("AnswerName", this.AnswerName);
 		jo.put("ProblemName", this.ProblemName);
 		return jo;
 	}

@@ -24,4 +24,6 @@ public interface CommentService {
 	
 	public List<Comment> QueryCommentByAnswerId(int answer_id);
 	
+	public int CountCommentByAnswerId(int AnswerId);
+	
 }

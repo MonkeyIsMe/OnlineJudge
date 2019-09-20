@@ -23,4 +23,6 @@ public interface AnswerService {
 	public Object DeleteMutiplyAnswer(List<Answer> AnswerList);
 	
 	public List<Answer> QueryAnswerByProblemId(int ProblemId);
+	
+	public int CountAnswerByProblem(int ProblemId);
 }

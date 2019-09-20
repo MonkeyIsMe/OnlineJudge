@@ -5,7 +5,7 @@ $(function(){
 			}, 
 			function(data) {
 				var data = JSON.parse(data);
-				console.log(data);
+				//console.log(data);
 				for(var i = 0 ; i < data.length ; i ++){
 				    for( var i = 0; i < data.length; i++ ) {
 				        //动态创建一个tr行标签,并且转换成jQuery对象

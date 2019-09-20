@@ -66,4 +66,9 @@ public class CommentServiceImpl implements CommentService{
 		return cd.QueryCommentByAnswerId(answer_id);
 	}
 
+	public int CountCommentByAnswerId(int AnswerId) {
+		// TODO Auto-generated method stub
+		return cd.CountCommentByAnswerId(AnswerId);
+	}
+
 }

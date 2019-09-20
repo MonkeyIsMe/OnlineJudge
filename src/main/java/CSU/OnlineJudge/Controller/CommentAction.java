@@ -195,7 +195,7 @@ public class CommentAction extends ActionSupport{
 		
 	}
 	
-	//评论总数
+	//查询评论总数
 	public void CountComment() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
@@ -206,6 +206,39 @@ public class CommentAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		int count = CommentService.CountComment();
+		
+		JSONObject jo = new JSONObject();
+		jo.put("CommentCount", count);
+		
+		out.println(jo.toString());
+	    out.flush(); 
+	    out.close();
+		
+	}
+	
+	
+	//通过题解编号查询评论总数
+	public void CountCommentByAnswerId() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String answer_id = request.getParameter("answer_id");
+		
+		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int aid = Integer.valueOf(answer_id);
+		
+		int count = CommentService.CountCommentByAnswerId(aid);
 		
 		JSONObject jo = new JSONObject();
 		jo.put("CommentCount", count);

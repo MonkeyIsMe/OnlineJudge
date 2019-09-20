@@ -20,6 +20,8 @@ public interface CommentDAO {
 	
 	public int CountComment();
 	
+	public int CountCommentByAnswerId(int AnswerId);
+	
 	public Object deleteMutiplyAnswer(List<Comment> CommentList);
 	
 	public List<Comment> QueryCommentByAnswerId(int answer_id);

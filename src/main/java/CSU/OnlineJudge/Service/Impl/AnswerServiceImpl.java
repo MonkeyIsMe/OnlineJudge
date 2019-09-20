@@ -66,4 +66,9 @@ public class AnswerServiceImpl implements AnswerService{
 		return ad.QueryAnswerByProblemId(ProblemId);
 	}
 
+	public int CountAnswerByProblem(int ProblemId) {
+		// TODO Auto-generated method stub
+		return ad.CountAnswerByProblem(ProblemId);
+	}
+
 }

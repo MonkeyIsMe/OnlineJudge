@@ -23,4 +23,6 @@ public interface AnswerDAO {
 	public Object deleteMutiplyAnswer(List<Answer> AnswerList);
 	
 	public List<Answer> QueryAnswerByProblemId(int ProblemId);
+	
+	public int CountAnswerByProblem(int ProblemId);
 }

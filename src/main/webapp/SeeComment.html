@@ -17,34 +17,24 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="./layui/layui.js"></script>
     <script src="js/ckeditor/ckeditor.js"></script>
-    <script src="js/ProblemDiscuss.js"></script>
+    <script src="js/AnswerComment.js"></script>
+    <script type="text/javascript">
+	    $(document).ready(function(){
+	        $("#head").load('MainHead.html');
+	    })
+    </script>
 </head>
 <body>
 <div id="head"></div>
-	<div class="layui-collapse" style="margin-top:10px;margin-left:10%;width:80%">
-		<div class="layui-colla-item">
-	    	<h2 class="layui-colla-title">题目名字</h2>
-	    	<div class="layui-colla-content layui-show" id="pname"></div>
-	  	</div>
-	  <div class="layui-colla-item" >
-	    <h2 class="layui-colla-title">题目信息</h2>
-	    <div class="layui-colla-content layui-show" id="pinfo"></div>
-	  </div>
-	</div>
-<table class="layui-table" id="myTable" lay-skin="line" style="margin-left:10%;width:80%">
-    <thead>
-    <tr align="center" class="table_header" height="22">
-        <th style="width:25%;text-align:center">编号</th>
-        <th style="width:25%;text-align:center">题解名称</th>
-        <th style="width:25%;text-align:center">发表时间</th>
-        <th style="width:25%;text-align:center" >查看</th>
-    </tr>
-    </thead>
-    <tbody id="KnowList" bgcolor="#D7EBFF" align="center"  style="color: black">
-    </tbody>
-</table>
+<div class="layui-card" style="width:80%;margin-left:10%">
+  <div class="layui-card-header" style="background-color: #d2d2d2" id="aname"></div>
+  <div class="layui-card-body" style="background-color: #f2f2f2" id="ainfo"></div>
+</div>
+<div id="comment">
+
+</div>
 <div style="float:left;margin-left:42%">
-	<button type="button" class="layui-btn" data-toggle="modal" data-target="#myModal">发表题解</button>
+	<button type="button" class="layui-btn" data-toggle="modal" data-target="#myModal">发表评论</button>
     <button type="button" class="layui-btn" onclick="PrevPage()">上一页</button>
     <button type="button" class="layui-btn" onclick="NextPage()">下一页</button>
 </div>
@@ -58,40 +48,15 @@
                 <h4 class="modal-title" id="myModalLabel">发表界面</h4>
             </div>
             <div class="modal-body">发表该题解的评论</div>
-  			<div class="input-group input-group-lg" style="margin-left:5%;width:90%;margin-bottom:20px;">
-            	<input type="text" class="form-control" placeholder="题解名称" id="answer_name">
-        	</div>
             <div style="width: 90%;resize: none;margin-left:5%">
 		    	<textarea id="content" name="content" class="ckeditor" style="resize: none"></textarea>
 			</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="add_answer">确定</button>
+                <button type="button" class="btn btn-primary" id="add_comment">确定</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
 </body>
-<script>
-$(document).ready(function(){
-    $("#head").load('MainHead.html');
-})
-//Demo
-layui.use('form', function(){
-  var form = layui.form;
-  
-  //监听提交
-  form.on('submit(formDemo)', function(data){
-    //layer.msg(JSON.stringify(data.field));
-    return false;
-  });
-});
-
-//注意：折叠面板 依赖 element 模块，否则无法进行功能性操作
-layui.use('element', function(){
-  var element = layui.element;
-  
-  //…
-});
-</script>
 </html>

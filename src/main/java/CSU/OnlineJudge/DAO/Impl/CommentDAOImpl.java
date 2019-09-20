@@ -108,4 +108,10 @@ public class CommentDAOImpl extends HibernateDaoSupport implements CommentDAO{
 		});
 	}
 
+	public int CountCommentByAnswerId(int AnswerId) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Comment as Comment where answer_id = '"+AnswerId+"'";  
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
 }

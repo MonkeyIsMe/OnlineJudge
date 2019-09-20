@@ -51,6 +51,7 @@ public class AnswerAction extends ActionSupport{
 		
 		String answer_info = request.getParameter("answer_info");
 		String user_account = request.getParameter("user_account");
+		String answer_name = request.getParameter("answer_name");
 		String problem_id = request.getParameter("problem_id");
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
@@ -66,6 +67,7 @@ public class AnswerAction extends ActionSupport{
 		answer.setAnswerInfo(answer_info);
 		answer.setUserAccount(user_account);
 		answer.setProblemId(pid);
+		answer.setAnswerName(answer_name);
 		answer.setAnswerTime(du.GetNowDate());
 		answer.setProblemName(problem.getProblemName());
 		
@@ -218,6 +220,38 @@ public class AnswerAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		int count = AnswerService.CountAnswer();
+		
+		JSONObject jo = new JSONObject();
+		jo.put("AnswerCount", count);
+		
+		out.println(jo.toString());
+	    out.flush(); 
+	    out.close();
+		
+	}
+	
+	//根据题目查询题解数目
+	public void CountAnswerByProblem() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String problem_id = request.getParameter("problem_id");
+		
+		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int pid = Integer.valueOf(problem_id);
+		
+		int count = AnswerService.CountAnswerByProblem(pid);
 		
 		JSONObject jo = new JSONObject();
 		jo.put("AnswerCount", count);

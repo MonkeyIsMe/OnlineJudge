@@ -108,4 +108,10 @@ public class AnswerDAOImpl extends HibernateDaoSupport implements AnswerDAO{
 		});
 	}
 
+	public int CountAnswerByProblem(int ProblemId) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Answer as Answer where problem_id = '"+ProblemId+"'";  
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
 }
