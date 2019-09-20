@@ -50,7 +50,7 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:72px" ></span></a>'
+			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:62px" ></span></a>'
 			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:45px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
@@ -91,7 +91,7 @@ function PrevPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:72px" ></span></a>'
+	    			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:62px" ></span></a>'
 	    			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:45px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
@@ -131,7 +131,7 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:72px" ></span></a>'
+	    			        		'<a><span class="delete ans glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:62px" ></span></a>'
 	    			        		+'<a><span  class="delete clear glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:45px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);

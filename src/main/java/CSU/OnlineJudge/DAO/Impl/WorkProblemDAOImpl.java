@@ -94,4 +94,10 @@ public class WorkProblemDAOImpl extends HibernateDaoSupport implements WorkProbl
 		});
 	}
 
+	public int CountByWorkId(int WorkId) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from WorkProblem as WorkProblem where work_id = '"+WorkId+"'";  
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
 }

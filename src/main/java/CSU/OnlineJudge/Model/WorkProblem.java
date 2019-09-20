@@ -133,6 +133,7 @@ public class WorkProblem {
 	public void setAcceptTimes(int acceptTimes) {
 		AcceptTimes = acceptTimes;
 	}
+	
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
 		jo.put("WorkId", this.WorkId);

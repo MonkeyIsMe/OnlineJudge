@@ -156,6 +156,8 @@
 			</action>
 			<action name="QueryRecordByWorkId" class="WorkProblemAction" method="QueryRecordByWorkId" >
 			</action>
+			<action name="CountRecordByWorkId" class="WorkProblemAction" method="CountRecordByWorkId" >
+			</action>
 			
 			<!-- 代码  -->
 			<action name="AddCode" class="CodeAction" method="AddCode">

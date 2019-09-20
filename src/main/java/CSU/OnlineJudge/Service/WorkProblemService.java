@@ -19,4 +19,6 @@ public interface WorkProblemService {
 	public Object AddMutiplyWorkProblem(List<WorkProblem> wp_list);
 	
 	public Object DeleteMutiplyWorkProblem(List<WorkProblem> wp_list);
+	
+	public int CountByWorkId(int WorkId);
 }

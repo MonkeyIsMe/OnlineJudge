@@ -16,6 +16,7 @@ import CSU.OnlineJudge.Service.WorkProblemService;
 import CSU.OnlineJudge.Service.WorkService;
 import CSU.OnlineJudge.Service.Impl.ProblemServiceImpl;
 import CSU.OnlineJudge.Service.Impl.WorkProblemServiceImpl;
+import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -266,6 +267,37 @@ public class WorkProblemAction extends ActionSupport{
 		JSONArray ja = JSONArray.fromObject(ResultList);
 		
 		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+	}
+	
+	//根据作业-考试编号查询题目数据总数
+	public void CountRecordByWorkId() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String work_id = request.getParameter("work_id");
+		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int wid = Integer.valueOf(work_id);
+		
+		int count = WorkProblemService.CountByWorkId(wid);
+		
+		JSONObject jo = new JSONObject();
+		jo.put("WorkProblemCount", count);
+		
+		out.println(jo.toString());
         out.flush(); 
         out.close();
 	}

@@ -12,7 +12,7 @@
 
     <link href="css/Compile.css" type="text/css" rel="styleSheet">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <title>A+B</title>
+    <title id="tittle"></title>
 </head>
 <body>
 
@@ -71,22 +71,30 @@
         </div>
     </nav>
 </div>
+<div class="pro_content">
+	<div id="ptittle"></div>
+	<div id="pcontent"></div>
+	<div id="pin" class="pframe"></div>
+	<div id="pout" class="pframe"></div>
+	<div id="pincase" class="pframe"></div>
+	<div id="poutcase" class="pframe"></div>
+</div>
 <div id="left">
     <div style="color: #4F84F3;text-align: center;padding-top: 15px;font-size: 20px">文件目录</div>
     <div id="content">
     </div>
 </div>
-<div id="editor" class="editor" ></div>
-<div>
-    <div class="form-group" style="float: left">
+<div id="peditor" class="peditor" style="display:none"></div>
+<div style="width:1000px;margin-top:1020px;margin-left:35px">
+    <div class="form-group" style="float:left">
         <textarea class="form-control" id="input" rows="3"  placeholder="输入数据" style="width: 300px;height: 200px;margin-left: 50px;margin-top: 10px;resize:none;overflow:scroll;"></textarea>
     </div>
-    <div class="form-group" style="float: left">
+    <div class="form-group" style="float:left">
         <textarea class="form-control" id="output" rows="3" placeholder="输出数据" style="width: 300px;height: 200px;margin-left: 20px;margin-top: 10px;resize:none;overflow:scroll;"></textarea>
     </div>
     <div class="btn-group btn-group-lg" style="margin-top: 100px">
-        <button type="button" class="btn btn-primary" style="margin-left: 50px">测试</button>
-        <button type="button" class="btn btn-primary"style="margin-left: 50px" id="submit">提交</button>
+        <button type="button" class="btn btn-primary" style="margin-left: 50px;padding-bottom:35px;border-radius: 20px;">测试</button>
+        <button type="button" class="btn btn-primary"style="margin-left: 50px;padding-bottom:35px;border-radius: 20px;" id="submit">提交</button>
     </div>
 </div>
 <!-- 模态框（Modal） -->

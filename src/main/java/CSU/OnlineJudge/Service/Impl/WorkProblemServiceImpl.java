@@ -58,4 +58,9 @@ public class WorkProblemServiceImpl implements WorkProblemService{
 		return wpd.DeleteMutiplyWorkProblem(wp_list);
 	}
 
+	public int CountByWorkId(int WorkId) {
+		// TODO Auto-generated method stub
+		return wpd.CountByWorkId(WorkId);
+	}
+
 }

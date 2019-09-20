@@ -75,6 +75,11 @@ $(function(){
 			window.location.href = url;
 	})
 	
+		$("#discuss").click(function(){
+			var url = "ProblemDiscuss.html?ProblemId=" + pid;
+			window.location.href = url;
+	})
+	
 	$("#add_kp").click(function(){
 			var json =[];
 			$('input[name="know"]:checked').each(function(){

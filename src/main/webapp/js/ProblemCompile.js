@@ -7,10 +7,40 @@ let first; //存放一个选择框
 var array = [];
 
 var choosed;
-var i = 0;
+var cnt = 0;
 
 $(document).ready(function(){
     $("#head").load('MainHead.html');
+    
+	$.post(
+			"QuerySingleProblem.action",
+			{
+				problem_id:pid,
+			}, 
+			function(data) {
+				var datas = JSON.parse(data);
+				//console.log(datas);
+				
+				$("#tittle").append(datas.problemName);
+				$("#ptittle").append(datas.problemName);
+				$("#pcontent").append(datas.problemInfo);
+				$("#pin").append("输入描述：" + datas.problemInput);
+				$("#pout").append("输出描述：" + datas.problemOutput);
+			}
+	);
+	
+	$.post(
+			"QueryInCase.action",
+			{
+				problem_id:pid,
+			}, 
+			function(data) {
+				var datas = JSON.parse(data);
+				//console.log(datas);
+				$("#pincase").append("输入：" + datas[0].caseInput);
+				$("#poutcase").append("输出：" + datas[0].caseOutput);
+			}
+	);
     
     
     $("#saveserver").click(function(){
@@ -76,7 +106,7 @@ $(document).ready(function(){
 
 //编译器
 ace.require("ace/ext/language_tools");
-var editor = ace.edit("editor");
+var editor = ace.edit("peditor");
 editor.setTheme("ace/theme/dreamweaver");
 editor.session.setMode("ace/mode/java");
 editor.setShowPrintMargin(true);
@@ -147,36 +177,62 @@ $("#CreateCode").click(function(){
     var filename = $("#CodeName").val();
     var language = choosed;
     var lang;
-    if(language == 'C++' || language == 'C'){
-        lang = 'cpp'
-    }
-    if(language == 'Java'){
-        lang = 'class'
-    }
-    if(language == 'Python'){
-        lang = 'py'
-    }
-    if(i == 0){
-        var html ="<div class='file'><input id='"+filename+"' type='radio' value='" + filename + "' checked=\"checked\" name='code' onclick=inputcode('" + filename + "')>"+filename+"."+lang+"</div>";
-        first = filename;
-        var arr ={
-            key:filename,
-            value:""
+    
+    var flag = IsCreate(filename);
+    
+    if(flag == true){
+        if(language == 'C++' || language == 'C'){
+            lang = 'cpp';
+            editor.session.setMode("ace/mode/c_cpp");
         }
-        array.push(arr)
-        i++;
+        if(language == 'Java'){
+            lang = 'class';
+            editor.session.setMode("ace/mode/java");
+        }
+        if(language == 'Python'){
+            lang = 'py';
+            editor.session.setMode("ace/mode/python");
+        }
+        else if(language =="" || language == null){
+        	alert("请先选择语言!");
+        }
+        else if(filename == null || filename ==""){
+        	alert("文件不能为空!");
+        }
+        else{
+        	
+        	$("#peditor").css("display","block");
+        	
+            if(cnt == 0){
+                var html ="<div class='file'><input id='"+filename+"' type='radio' value='" + filename + "' checked=\"checked\" name='code' onclick=inputcode('" + filename + "')>"+filename+"."+lang+"</div>";
+                first = filename;
+                var arr ={
+                    key:filename,
+                    value:""
+                }
+                editor.setValue("");
+                array.push(arr)
+                cnt++;
+            }
+            else{
+                var html ="<div class='file'><input id='"+filename+"' type='radio' value='" + filename + "'checked=\"checked\"  name='code' onclick=inputcode('" + filename + "')>"+filename+"."+lang+"</div>";
+                var arr ={
+                    key:filename,
+                    value:""
+                }
+                editor.setValue("");
+                array.push(arr)
+            }
+        }
+
+        $("#content").append(html);
+        $("#CodeName").val("");
     }
     else{
-        var html ="<div class='file'><input id='"+filename+"' type='radio' value='" + filename + "' name='code' onclick=inputcode('" + filename + "')>"+filename+"."+lang+"</div>";
-        var arr ={
-            key:filename,
-            value:""
-        }
-        array.push(arr)
+    	alert("文件已存在！");
+    	$("#CodeName").val("");
     }
 
-
-    $("#content").append(html);
 })
 
 $("#clear").click(function () {
@@ -204,4 +260,15 @@ function inputcode(filename) {
     if(secondcode == null) secondcode ="";
     editor.setValue(secondcode);
 
+}
+
+//判断文件是否存在
+function IsCreate(filename){
+	var flag = true;
+    for(var j in array){
+        if(array[j].key == filename){
+            flag = false;
+        }
+    }
+    return flag;
 }

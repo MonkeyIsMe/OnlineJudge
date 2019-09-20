@@ -81,7 +81,7 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'<a><span class="delete pro_info glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:40px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+			        		'<a><span class="delete pro_info glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:43px" data-toggle="modal" data-target="#update_Modal"></span></a>'
 			        		+'<a><span  class="delete cases glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:30px" ></span></a>'
 			        		+'<a><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+'<a><span  class="delete pro_know glyphicon glyphicon-cog" style="cursor:pointer;margin-left:30px"></span></a>'
@@ -125,7 +125,7 @@ function PrevPage(){
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-				        		'<a><span class="delete pro_info glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:40px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+				        		'<a><span class="delete pro_info glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:43px" data-toggle="modal" data-target="#update_Modal"></span></a>'
 				        		+'<a><span  class="delete cases glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:30px" ></span></a>'
 				        		+'<a><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#myModal"></span></a>'
 				        		+'<a><span  class="delete glyphicon glyphicon-cog" style="cursor:pointer;margin-left:30px"></span></a>'
@@ -167,7 +167,7 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].know  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].people  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a><span class="delete pro_info glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:40px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+	    			        		'<a><span class="delete pro_info glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:43px" data-toggle="modal" data-target="#update_Modal"></span></a>'
 	    			        		+'<a><span  class="delete cases glyphicon glyphicon-tasks" style="cursor:pointer;margin-left:30px" ></span></a>'
 	    			        		+'<a><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+'<a><span  class="delete glyphicon glyphicon-cog" style="cursor:pointer;margin-left:30px"></span></a>'

@@ -6,10 +6,10 @@ body{
     height: 100%;
 }
 
-.editor {
+.peditor {
     margin-top: 52px;
-    width: 80%;
-    height: 650px;
+    width: 35%;
+    height: 125%;
     border: 1px solid lightgray;
     max-lines: 30;
     autoScrollEditorIntoView: true;
@@ -30,8 +30,8 @@ body{
 #left{
     margin-top: 12px;
     float: left;
-    width: 20%;
-    height: 110%;
+    width: 10%;
+    height: 125%;
     background-color: #EDEDED;
 }
 
@@ -43,3 +43,41 @@ body{
     white-space: nowrap;
 }
 
+.pro_content{
+	margin-top:30px;
+	width:55%;
+	height:200px;
+	float:left;
+	
+}
+
+#ptittle{
+	font-size:20px;
+	text-align: center;
+	margin-bottom:10px;
+	background-color:#E5F0F8;
+	width:80%;
+	padding:2%;
+	margin-left:10%;
+}
+
+#pcontent{
+	margin-left:10%;
+	font-size:16px;
+	width:80%;
+	font-weight:bold;
+	padding:5%;
+	background-color:#E5F0F8;
+	font-family:"Times New Roman",Georgia,Serif;
+}
+
+
+.pframe{
+	font-size:16px;
+	margin-bottom:10px;
+	background-color:#E5F0F8;
+	width:80%;
+	margin-top:2%;
+	padding:2%;
+	margin-left:10%;
+}

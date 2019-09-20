@@ -177,7 +177,7 @@ $(document).ready(function(){
 		    //获得当前行
 		    var currentRow=$(this).closest("tr"); 
 		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
-		    var url = "ProblemWorkData.html?WorkId=" + col1;
+		    var url = "WorkProblemData.html?WorkId=" + col1;
 		    window.location.replace(url);
 		    
 		  });
