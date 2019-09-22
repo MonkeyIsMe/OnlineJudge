@@ -105,6 +105,9 @@
 		<property name="WorkRecordService" ref="WorkRecordService" ></property>
 		<property name="ProblemService" ref="ProblemService" ></property>
 	</bean>
+	<bean name="NoticeAction" class="CSU.OnlineJudge.Controller.NoticeAction" scope="prototype" >
+		<property name="NoticeAction" ref="NoticeAction" ></property>
+	</bean>
 	
 	<!-- service -->
  	<bean name="CaseService" class="CSU.OnlineJudge.Service.Impl.CaseServiceImpl" >
@@ -167,6 +170,9 @@
 	<bean name="CommentService" class="CSU.OnlineJudge.Service.Impl.CommentServiceImpl" >
 		<property name="cd" ref="CommentDAO" ></property>
 	</bean>
+	<bean name="NoticeService" class="CSU.OnlineJudge.Service.Impl.NoticeServiceImpl" >
+		<property name="nd" ref="NoticeService" ></property>
+	</bean>
 	
 	<!-- Dao -->
 	<bean name="CaseDAO" class="CSU.OnlineJudge.DAO.Impl.CaseDAOImpl" >
@@ -227,6 +233,9 @@
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
 	<bean name="CommentDAO" class="CSU.OnlineJudge.DAO.Impl.CommentDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+		<bean name="NoticeDAO" class="CSU.OnlineJudge.DAO.Impl.NoticeDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
 	

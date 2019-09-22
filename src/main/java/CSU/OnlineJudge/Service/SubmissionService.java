@@ -29,4 +29,6 @@ public interface SubmissionService {
 	public List<Submission> QuerySubmissionByPageSizeWithUserAccountResultProblem(int row,int PageSize,String UserAccount,String result,int ProblemId);
 
 	public List<Submission> QuerySubmissionByPageSizeWithResult(int row,int PageSize,String Result);
+	
+	public List<Submission> QuerySubmissionByPageSizeWithWorkId(int row,int PageSize,int WorkId);
 }

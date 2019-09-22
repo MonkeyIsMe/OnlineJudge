@@ -20,6 +20,8 @@ public interface SubmissionDAO {
 	
 	public List<Submission> QuerySubmissionByPageSizeWithProblemId(int row,int PageSize,int ProblemId);
 	
+	public List<Submission> QuerySubmissionByPageSizeWithWorkId(int row,int PageSize,int WorkId);
+	
 	public List<Submission> QuerySubmissionByPageSizeWithResult(int row,int PageSize,String Result);
 	
 	public List<Submission> QuerySubmissionByPageSizeWithProblemIdResult(int row,int PageSize,int ProblemId,String result);

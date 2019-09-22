@@ -11,9 +11,11 @@
      <link href="css/Common.css" type="text/css" rel="stylesheet">
     <link href="css/bootstrap.css" type="text/css" rel="styleSheet">
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/WorkDetail.js"></script>
+    <link href="css/Compile.css" type="text/css" rel="styleSheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<nav class="navbar navbar-default" role="navigation" style="height: 5%">
+<nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand  MainFont" href="Main.html" style="padding-top:20px">CSUOJ</a>
@@ -45,103 +47,22 @@
                         <li><a href="manage.html">管理</a></li>
                     </ul>
                 </li>
-
                 <li><a href="#"><span></span>登出</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="modal fade" id="update_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">更新个人信息</h4>
-            </div>
-	        <div class="form-group head_input">
-	            <label>用户姓名：</label>
-	            <input type="text" class="form-control" id="user_name" maxlength="15" placeholder="请输入用户姓名">
-	        </div>
-	        <div class="form-group myform">
-	            <label>课程备注：</label>
-	            <textarea type="text" class="form-control" style="resize: none;height: 280px;" id="user_info" maxlength="15" placeholder="请输入学生备注"></textarea>
-	        </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="update_myinfo">确定</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
 <body class="layui-layout-body">
     <div class="layui-side layui-bg-black" style="margin-top: 60px">
         <div class="layui-side-scroll">
             <!-- 左侧垂直导航区域-->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                <li class="layui-nav-item">
-                    <a class="" href="javascript:;">题目管理</a>
-                    <dl class="layui-nav-child">
-                        <dd>
-                            <a href="javascript:;" data-id="1" data-title="题目列表" data-url="ManagerProblemSet.html"
-                               class="site-demo-active" data-type="tabAdd">题目列表</a></dd>
-                        <dd><a href="javascript:;" data-id="2" data-title="添加题目" data-url="AddProblem.html"
-                               class="site-demo-active" data-type="tabAdd">添加题目</a></dd>
-                      	<dd><a href="javascript:;" data-id="3" data-title="标程管理" data-url="ManagerCode.html"
-                               class="site-demo-active" data-type="tabAdd">标程管理</a></dd>
-                    </dl>
-                </li>
-                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;">作业-考试管理</a>
-                    <dl class="layui-nav-child">
-                        <dd>
-                            <a href="javascript:;" data-id="4" data-title="作业-考试列表" data-url="ManagerWorkSet.html"
-                               class="site-demo-active" data-type="tabAdd">作业-考试列表</a></dd>
-                       	<dd><a href="javascript:;" data-id="5" data-title="作业考试-数据" data-url="ManagerWorkData.html"
-                               class="site-demo-active" data-type="tabAdd">作业考试-数据</a></dd>
-                        <dd><a href="javascript:;" data-id="6" data-title="添加作业-考试" data-url="AddWork.html"
-                               class="site-demo-active" data-type="tabAdd">添加作业-考试</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a class="" href="javascript:;">信息管理</a>
-                    <dl class="layui-nav-child">
-                        <dd>
-                            <a href="javascript:;" data-id="7" data-title="知识点信息管理" data-url="ManagerKnowledgeSet.html"
-                               class="site-demo-active" data-type="tabAdd">知识点信息管理</a></dd>
-                        <dd>
-                            <a href="javascript:;" data-id="8" data-title="用户信息管理" data-url="ManagerUserSet.html"
-                               class="site-demo-active" data-type="tabAdd">用户信息管理</a></dd>
-                        <dd>
-                            <a href="javascript:;" data-id="9" data-title="用户代码管理" data-url="ManagerUserCodeSet.html"
-                               class="site-demo-active" data-type="tabAdd">用户代码管理</a></dd>
-                       	<dd>
-                            <a href="javascript:;" data-id="10" data-title="题解管理" data-url="ManagerProblemAnswerSet.html"
-                               class="site-demo-active" data-type="tabAdd">题解管理</a></dd>
-                        <dd>
-                            <a href="javascript:;" data-id="11" data-title="评论管理" data-url="ManagerAnswerComment.html"
-                               class="site-demo-active" data-type="tabAdd">评论管理</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a class="" href="javascript:;">课程管理</a>
-                    <dl class="layui-nav-child">
-                        <dd>
-                            <a href="javascript:;" data-id="12" data-title="课程信息管理" data-url="ManagerCourseSet.html"
-                               class="site-demo-active" data-type="tabAdd">课程信息管理</a></dd>
-                        <dd><a href="javascript:;" data-id="13" data-title="课程学生信息管理" data-url="ManagerCourseUser.html"
-                               class="site-demo-active" data-type="tabAdd">课程学生信息管理</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a class="" href="javascript:;">提交数据管理</a>
-                    <dl class="layui-nav-child">
-                           <dd>
-                            <a href="javascript:;" data-id="14" data-title="用户提交数据管理" data-url="ManagerUserSubmission.html"
-                               class="site-demo-active" data-type="tabAdd">用户提交数据管理</a></dd>
-                        <dd><a href="javascript:;" data-id="15" data-title="题目提交数据管理" data-url="ManagerProblemSubmission.html"
-                               class="site-demo-active" data-type="tabAdd">题目提交数据管理</a></dd>
-                    </dl>
-                </li>
+            <li class="layui-nav-item"><a href="javascript:;" data-id="1" data-title="RankList" id="a_first"
+                               class="site-demo-active" data-type="tabAdd">产品</a></li>
+            <li class="layui-nav-item"><a href="javascript:;" data-id="2" data-title="RankList" id="a_second"
+                               class="site-demo-active" data-type="tabAdd">产品</a></li>
+             <li class="layui-nav-item"><a href="javascript:;" data-id="3" data-title="RankList" id="a_third"
+                               class="site-demo-active" data-type="tabAdd">产品</a></li>
             </ul>
         </div>
     </div>

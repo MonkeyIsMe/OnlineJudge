@@ -84,4 +84,9 @@ public class SubmissionServiceImpl implements SubmissionService{
 		return sd.QuerySubmissionByPageSizeWithResult(row, PageSize, Result);
 	}
 
+	public List<Submission> QuerySubmissionByPageSizeWithWorkId(int row, int PageSize, int WorkId) {
+		// TODO Auto-generated method stub
+		return sd.QuerySubmissionByPageSizeWithWorkId(row, PageSize, WorkId);
+	}
+
 }

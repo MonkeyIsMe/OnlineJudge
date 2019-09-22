@@ -77,7 +77,6 @@ public class SubmissionDAOImpl extends HibernateDaoSupport implements Submission
 	public List<Submission> QuerySubmissionByPageSizeWithProblemId(final int row, final int PageSize, final int ProblemId) {
 		// TODO Auto-generated method stub
 		return getHibernateTemplate().execute(new HibernateCallback<List<Submission>>() {
-			
 
 			public List<Submission> doInHibernate(Session session) throws HibernateException {
 				// TODO Auto-generated method stub
@@ -177,6 +176,22 @@ public class SubmissionDAOImpl extends HibernateDaoSupport implements Submission
 				query.setParameter(0, UserAccount);
 				query.setParameter(1, result);
 				query.setParameter(2, ProblemId);
+				List<Submission> list = query.list();
+				return list;
+			}
+		});
+	}
+
+	public List<Submission> QuerySubmissionByPageSizeWithWorkId(final int row, final int PageSize, final int WorkId) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Submission>>() {
+
+			public List<Submission> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Submission where work_id = ?";
+				Query query = session.createQuery(hql).setFirstResult(
+                        (row - 1) * PageSize).setMaxResults(PageSize);
+				query.setParameter(0, WorkId);
 				List<Submission> list = query.list();
 				return list;
 			}

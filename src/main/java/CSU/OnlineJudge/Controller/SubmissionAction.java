@@ -159,7 +159,7 @@ public class SubmissionAction extends ActionSupport{
 		
 	}
 	
-	//更新一个提交记录
+	//rejudge
 	public void UpdateSubmission() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
@@ -170,10 +170,6 @@ public class SubmissionAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String submission_id = request.getParameter("submission_id");
-		String submission_result = request.getParameter("submission_result");
-		String submission_length = request.getParameter("submission_length");
-		String submission_time = request.getParameter("submission_time");
-		String submission_memory = request.getParameter("submission_memory");
 		
 		if(submission_id == null || submission_id == "" || submission_id.equals("")) {
 			out.println("Fail");
@@ -182,39 +178,12 @@ public class SubmissionAction extends ActionSupport{
 	        return ;
 		}
 		
-		if(submission_length == null || submission_length == "" || submission_length.equals("")) {
-			out.println("Fail");
-	        out.flush(); 
-	        out.close();
-	        return ;
-		}
-		
-		if(submission_memory == null || submission_memory == "" || submission_memory.equals("")) {
-			out.println("Fail");
-	        out.flush(); 
-	        out.close();
-	        return ;
-		}
-		
-		if(submission_time == null || submission_time == "" || submission_time.equals("")) {
-			out.println("Fail");
-	        out.flush(); 
-	        out.close();
-	        return ;
-		}
-		
-		int length = Integer.valueOf(submission_length);
-		int memory = Integer.valueOf(submission_memory);
-		int time = Integer.valueOf(submission_time);
+		DateUtil du = new DateUtil();
 		int sid = Integer.valueOf(submission_id);
 		
 		submission = SubmissionService.querySubmission(sid);
 		
-		submission.setSubmissionResult(submission_result);
-		submission.setCodeLength(length);
-		submission.setCodeMemory(memory);
-		submission.setCodeTime(time);
-		
+		submission.setSubmissionTime(du.GetNowDate());
 		SubmissionService.updateSubmission(submission);
 
 	}
@@ -522,4 +491,39 @@ public class SubmissionAction extends ActionSupport{
 		int sid = Integer.valueOf(submission_id);
 		
 	}
+	
+	
+	//根据作业考试分页查询所有提交
+	public void QuerySubmissionByWork() throws Exception{
+			
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+			
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+			
+		String page = request.getParameter("rows");
+		String size = request.getParameter("size");
+		String work_id = request.getParameter("work_id");	
+			
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+		    out.flush(); 
+		    out.close();
+		    return ;
+		    }
+			
+		int row = Integer.valueOf(page);
+		int PageSize = Integer.valueOf(size);
+		int wid = Integer.valueOf(work_id);
+			
+		List<Submission> SubList = SubmissionService.QuerySubmissionByPageSizeWithWorkId(row, PageSize, wid);
+			
+		JSONArray ja = JSONArray.fromObject(SubList);
+		out.println(ja.toString());
+	    out.flush(); 
+	    out.close();
+			
+		}
 }
