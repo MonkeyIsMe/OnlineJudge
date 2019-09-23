@@ -18,7 +18,7 @@ import net.sf.json.JSONObject;
 public class NoticeAction extends ActionSupport{
 
 	private NoticeService NoticeService;
-	private Notice notice;
+	private Notice notice = new Notice();
 	
 	public NoticeService getNoticeService() {
 		return NoticeService;
@@ -39,7 +39,7 @@ public class NoticeAction extends ActionSupport{
 		
 		String notice_name = request.getParameter("notice_name");
 		String notice_info = request.getParameter("notice_info");
-		
+		//System.out.println(notice_name + " " + notice_info);
 		DateUtil du = new DateUtil();
 		
 		notice.setNoticeName(notice_name);

@@ -251,6 +251,16 @@
 			<action name="QuerySingleRecord" class="WorkUserRecordAction" method="QuerySingleRecord">
 			</action>
 
+						
+			<!-- 公告 -->
+			<action name="AddNotice" class="NoticeAction" method="AddNotice">
+			</action>
+			<action name="DeleteNotice" class="NoticeAction" method="DeleteNotice">
+			</action>
+			<action name="QueryNoticeByPageSize" class="NoticeAction" method="QueryNoticeByPageSize">
+			</action>
+			<action name="CountNotice" class="NoticeAction" method="CountNotice">
+			</action>
 			
 	</package>
 </struts>

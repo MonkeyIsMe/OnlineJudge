@@ -27,6 +27,10 @@ public class Notice {
 	
 	@Column(name="notice_time")
 	private String NoticeTime;  //公告发布时间
+	
+	@Column(name="notice_people")
+	private String NoticePeople;  //公告发布者
+
 
 	public int getNoticeId() {
 		return NoticeId;
@@ -59,13 +63,22 @@ public class Notice {
 	public void setNoticeTime(String noticeTime) {
 		NoticeTime = noticeTime;
 	}
-	
+
+	public String getNoticePeople() {
+		return NoticePeople;
+	}
+
+	public void setNoticePeople(String noticePeople) {
+		NoticePeople = noticePeople;
+	}
+
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
 		jo.put("NoticeId", this.NoticeId);
 		jo.put("NoticeName", this.NoticeName);
 		jo.put("NoticeInfo", this.NoticeInfo);
 		jo.put("NoticeTime", this.NoticeTime);
+		jo.put("NoticePeople", this.NoticePeople);
 		return jo;
 	}
 	

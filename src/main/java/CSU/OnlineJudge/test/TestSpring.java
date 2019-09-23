@@ -15,6 +15,7 @@ import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Model.Work;
 import CSU.OnlineJudge.Service.CaseService;
+import CSU.OnlineJudge.Service.NoticeService;
 import CSU.OnlineJudge.Service.UserService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -65,6 +66,9 @@ public class TestSpring {
 	
 	@Resource(name="UserService")
 	private UserService us;
+	
+	@Resource(name="NoticeService")
+	private NoticeService ns;
 	
 	@Test
 	public void QueryUserRank() {

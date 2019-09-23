@@ -106,7 +106,7 @@
 		<property name="ProblemService" ref="ProblemService" ></property>
 	</bean>
 	<bean name="NoticeAction" class="CSU.OnlineJudge.Controller.NoticeAction" scope="prototype" >
-		<property name="NoticeAction" ref="NoticeAction" ></property>
+		<property name="NoticeService" ref="NoticeService" ></property>
 	</bean>
 	
 	<!-- service -->
@@ -171,7 +171,7 @@
 		<property name="cd" ref="CommentDAO" ></property>
 	</bean>
 	<bean name="NoticeService" class="CSU.OnlineJudge.Service.Impl.NoticeServiceImpl" >
-		<property name="nd" ref="NoticeService" ></property>
+		<property name="nd" ref="NoticeDAO" ></property>
 	</bean>
 	
 	<!-- Dao -->
