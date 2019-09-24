@@ -14,6 +14,7 @@ import CSU.OnlineJudge.Model.WorkRecord;
 import CSU.OnlineJudge.Service.ProblemService;
 import CSU.OnlineJudge.Service.WorkRecordService;
 import CSU.OnlineJudge.Service.Impl.WorkRecordServiceImpl;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class WorkRecordAction extends ActionSupport{
@@ -101,8 +102,40 @@ public class WorkRecordAction extends ActionSupport{
 		int wid = Integer.valueOf(work_id);
 		
 		List<WorkRecord> wr_list = WorkRecordService.QueryWorkRecordByPageSizeWithWorkId(row, PageSize, wid);
+		JSONArray ja = JSONArray.fromObject(wr_list);
 		
-		out.println(wr_list.toString());
+		out.println(ja.toString());
+	    out.flush(); 
+	    out.close();
+	}
+
+	
+	//根据考试作业编号分页查询单一数据
+	public void QuerySingleRecordByWorkId() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String work_id = request.getParameter("work_id");
+		
+		
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int wid = Integer.valueOf(work_id);
+		
+		wr = WorkRecordService.QueryWorkRecordByWorkId(wid);
+		
+		JSONObject jo = JSONObject.fromObject(wr);
+		out.println(jo.toString());
 	    out.flush(); 
 	    out.close();
 	}

@@ -20,4 +20,6 @@ public interface WorkRecordDAO {
 	
 	public int CountWorkRecordByWorkId(int WorkId);
 	
+	public List<WorkRecord> QueryWorkRecordByWorkId(int WorkId);
+	
 }

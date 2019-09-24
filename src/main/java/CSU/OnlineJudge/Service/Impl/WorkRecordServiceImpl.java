@@ -57,5 +57,12 @@ public class WorkRecordServiceImpl implements WorkRecordService{
 		return wrd.CountWorkRecordByWorkId(WorkId);
 	}
 
+	public WorkRecord QueryWorkRecordByWorkId(int WorkId) {
+		// TODO Auto-generated method stub
+		List<WorkRecord> result = wrd.QueryWorkRecordByWorkId(WorkId);
+		if(result.size() == 0) return null;
+		return result.get(0);
+	}
+
 
 }

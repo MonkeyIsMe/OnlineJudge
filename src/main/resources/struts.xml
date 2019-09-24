@@ -240,6 +240,8 @@
 			</action>
 			<action name="QueryByWorkIdPageSize" class="WorkRecordAction" method="QueryByWorkIdPageSize">
 			</action>
+			<action name="QuerySingleRecordByWorkId" class="WorkRecordAction" method="QuerySingleRecordByWorkId">
+			</action>
 						
 			<!-- 考试用户作业记录 -->
 			<action name="QueryUserInWorkUserRecordPageSize" class="WorkUserRecordAction" method="QueryUserInWorkUserRecordPageSize">
@@ -263,6 +265,16 @@
 			<action name="QueryNoticeByPageSize" class="NoticeAction" method="QueryNoticeByPageSize">
 			</action>
 			<action name="CountNotice" class="NoticeAction" method="CountNotice">
+			</action>
+			
+			<!-- 用户作业考试数据 -->
+			<action name="AddWorkUser" class="WorkUserAction" method="AddWorkUser">
+			</action>
+			<action name="UpdateWorkUser" class="WorkUserAction" method="UpdateWorkUser">
+			</action>
+			<action name="CountWorkUser" class="WorkUserAction" method="CountWorkUser">
+			</action>
+			<action name="QueryWorkUserByPageSize" class="WorkUserAction" method="QueryWorkUserByPageSize">
 			</action>
 			
 	</package>

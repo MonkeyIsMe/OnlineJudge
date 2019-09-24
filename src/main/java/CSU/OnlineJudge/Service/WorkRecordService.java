@@ -19,4 +19,6 @@ public interface WorkRecordService {
 	public List<WorkRecord> QueryWorkRecordByPageSizeWithWorkId(int row,int PageSize,int WorkId);
 	
 	public int CountWorkRecordByWorkId(int WorkId);
+	
+	public WorkRecord QueryWorkRecordByWorkId(int WorkId);
 }

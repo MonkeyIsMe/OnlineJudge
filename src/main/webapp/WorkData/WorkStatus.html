@@ -1,10 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/layui.css">
+    <link href="../css/bootstrap-theme.css" type="text/css" rel="styleSheet">
+    <script src="../js/jquery.min.js"></script>
+    <link href="../css/Common.css" type="text/css" rel="stylesheet">
+    <link href="../css/bootstrap.css" type="text/css" rel="styleSheet">
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/WorkData/WorkStatus.js"></script>
+    <link href="../css/Compile.css" type="text/css" rel="styleSheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-
+<body style="background-color: #1E9FFF">
+<button type="button" class="btn btn-default btn-sm" style="margin:10px" onclick="refresh()">
+	<span class="glyphicon glyphicon-refresh"></span> 刷新界面
+</button>
+<div style="width:70%;margin-left:15%;">
+	<div class="layui-card">
+	  	<div class="layui-card-header">提交次数</div>
+			  <div class="layui-card-body" id="sub">
+			  </div>
+	</div>
+	<div class="layui-card">
+	  	<div class="layui-card-header">正确次数</div>
+			  <div class="layui-card-body" id="ac">
+			  </div>
+	</div>
+	<div class="layui-card">
+	  	<div class="layui-card-header">错误次数</div>
+			  <div class="layui-card-body" id="wa">
+			  </div>
+	</div>
+	<div class="layui-card">
+	  	<div class="layui-card-header">RTE次数</div>
+			  <div class="layui-card-body" id="rte">
+			  </div>
+	</div>
+	<div class="layui-card">
+	  	<div class="layui-card-header">超时次数</div>
+			  <div class="layui-card-body" id="tle">
+			  </div>
+	</div>
+	<div class="layui-card">
+	  	<div class="layui-card-header">编译错误次数</div>
+			  <div class="layui-card-body" id="ce">
+			  </div>
+	</div>
+	<div class="layui-card">
+	  	<div class="layui-card-header">正确率</div>
+			  <div class="layui-card-body" id="rate">
+			  </div>
+	</div>
+</div>
 </body>
 </html>

@@ -42,7 +42,6 @@ public class WorkRecordDAOImpl extends HibernateDaoSupport implements WorkRecord
 	public List<WorkRecord> QueryWorkRecordByPageSizeWithProblemId(final int row, final int PageSize, final int ProblemId) {
 		// TODO Auto-generated method stub
 		return getHibernateTemplate().execute(new HibernateCallback<List<WorkRecord>>() {
-			
 
 			public List<WorkRecord> doInHibernate(Session session) throws HibernateException {
 				// TODO Auto-generated method stub
@@ -77,6 +76,21 @@ public class WorkRecordDAOImpl extends HibernateDaoSupport implements WorkRecord
 		// TODO Auto-generated method stub
 		String hql = "select count(*) from WorkRecord as WorkRecord where work_id = '"+WorkId+"'";  
 		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
+	public List<WorkRecord> QueryWorkRecordByWorkId(final int WorkId) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<WorkRecord>>() {
+
+			public List<WorkRecord> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from WorkRecord where work_id = ?";
+				Query query = session.createQuery(hql);
+				query.setParameter(0, WorkId);
+				List<WorkRecord> list = query.list();
+				return list;
+			}
+		});
 	}
 
 
