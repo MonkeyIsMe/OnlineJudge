@@ -101,12 +101,15 @@
 		<property name="WorkUserRecordService" ref="WorkUserRecordService" ></property>
 		<property name="UserService" ref="UserService" ></property>
 	</bean>
+	<bean name="NoticeAction" class="CSU.OnlineJudge.Controller.NoticeAction" scope="prototype" >
+		<property name="NoticeService" ref="NoticeService" ></property>
+	</bean>
+	<bean name="WorkUserAction" class="CSU.OnlineJudge.Controller.WorkUserAction" scope="prototype" >
+		<property name="WorkUserService" ref="WorkUserService" ></property>
+	</bean>
 	<bean name="WorkRecordAction" class="CSU.OnlineJudge.Controller.WorkRecordAction" scope="prototype" >
 		<property name="WorkRecordService" ref="WorkRecordService" ></property>
 		<property name="ProblemService" ref="ProblemService" ></property>
-	</bean>
-	<bean name="NoticeAction" class="CSU.OnlineJudge.Controller.NoticeAction" scope="prototype" >
-		<property name="NoticeService" ref="NoticeService" ></property>
 	</bean>
 	
 	<!-- service -->
@@ -149,9 +152,6 @@
 	 <bean name="WorkProblemService" class="CSU.OnlineJudge.Service.Impl.WorkProblemServiceImpl" >
 		<property name="wpd" ref="WorkProblemDAO" ></property>
 	</bean>
-	 <bean name="WorkRecordService" class="CSU.OnlineJudge.Service.Impl.WorkRecordServiceImpl" >
-		<property name="wrd" ref="WorkRecordDAO" ></property>
-	</bean>
 	 <bean name="WorkService" class="CSU.OnlineJudge.Service.Impl.WorkServiceImpl" >
 		<property name="wd" ref="WorkDAO" ></property>
 	</bean>
@@ -172,6 +172,12 @@
 	</bean>
 	<bean name="NoticeService" class="CSU.OnlineJudge.Service.Impl.NoticeServiceImpl" >
 		<property name="nd" ref="NoticeDAO" ></property>
+	</bean>
+	<bean name="WorkRecordService" class="CSU.OnlineJudge.Service.Impl.WorkRecordServiceImpl" >
+		<property name="wrd" ref="WorkRecordDAO" ></property>
+	</bean>
+	<bean name="WorkUserService" class="CSU.OnlineJudge.Service.Impl.WorkUserServiceImpl" >
+		<property name="wud" ref="WorkUserDAO" ></property>
 	</bean>
 	
 	<!-- Dao -->
@@ -214,9 +220,6 @@
 	<bean name="WorkProblemDAO" class="CSU.OnlineJudge.DAO.Impl.WorkProblemDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
-	<bean name="WorkRecordDAO" class="CSU.OnlineJudge.DAO.Impl.WorkRecordDAOImpl" >
-		<property name="sessionFactory" ref="sessionFactory" ></property>
-	</bean>
 	<bean name="WorkUserRecordDAO" class="CSU.OnlineJudge.DAO.Impl.WorkUserRecordDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
@@ -235,8 +238,13 @@
 	<bean name="CommentDAO" class="CSU.OnlineJudge.DAO.Impl.CommentDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
-		<bean name="NoticeDAO" class="CSU.OnlineJudge.DAO.Impl.NoticeDAOImpl" >
+	<bean name="NoticeDAO" class="CSU.OnlineJudge.DAO.Impl.NoticeDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
-	
+	<bean name="WorkRecordDAO" class="CSU.OnlineJudge.DAO.Impl.WorkRecordDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+	<bean name="WorkUserDAO" class="CSU.OnlineJudge.DAO.Impl.WorkUserDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
 </beans>

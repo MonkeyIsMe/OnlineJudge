@@ -19,8 +19,6 @@ public class WorkRecord {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int WorkRecordId; // 主键
 	
-	@Column(name="problem_id")
-	private int ProblemId; // 问题编号
 	
 	@Column(name="work_id")
 	private int WorkId; // 作业/作业编号
@@ -43,21 +41,12 @@ public class WorkRecord {
 	@Column(name="submission_accept")
 	private int AcceptTimes;   // 正确次数
 	
-	@Column(name="problem_name")
-	private String ProblemName;   // 题目名称
-	
 	
 	public int getWorkRecordId() {
 		return WorkRecordId;
 	}
 	public void setWorkRecordId(int workRecordId) {
 		WorkRecordId = workRecordId;
-	}
-	public int getProblemId() {
-		return ProblemId;
-	}
-	public void setProblemId(int problemId) {
-		ProblemId = problemId;
 	}
 	public int getWorkId() {
 		return WorkId;
@@ -101,26 +90,19 @@ public class WorkRecord {
 	public void setAcceptTimes(int acceptTimes) {
 		AcceptTimes = acceptTimes;
 	}
-	public String getProblemName() {
-		return ProblemName;
-	}
-	public void setProblemName(String problemName) {
-		ProblemName = problemName;
-	}
+
 	
 	
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
 		jo.put("WorkId", this.WorkId);
 		jo.put("WorkRecordId", this.WorkRecordId);
-		jo.put("ProblemId", this.ProblemId);
 		jo.put("SubmitNumber", this.SubmitNumber);
 		jo.put("WrongAnswerTimes", this.WrongAnswerTimes);
 		jo.put("TimeLimitTimes", this.TimeLimitTimes);
 		jo.put("RuntimeErrorTimes", this.RuntimeErrorTimes);
 		jo.put("CompileErrorTimes", this.CompileErrorTimes);
 		jo.put("AcceptTimes", this.AcceptTimes);
-		jo.put("ProblemName", this.ProblemName);
 		return jo;
 	}
 	

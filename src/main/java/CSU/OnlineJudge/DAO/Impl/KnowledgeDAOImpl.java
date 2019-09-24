@@ -43,7 +43,6 @@ public class KnowledgeDAOImpl extends HibernateDaoSupport implements KnowledgeDA
 		// TODO Auto-generated method stub
 		return getHibernateTemplate().execute(new HibernateCallback<List<Knowledge>>() {
 			
-
 			public List<Knowledge> doInHibernate(Session session) throws HibernateException {
 				// TODO Auto-generated method stub
 				String hql = "from Knowledge";

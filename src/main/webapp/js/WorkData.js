@@ -53,7 +53,6 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].AcceptTimes  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].TimeLimitTimes  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].RuntimeErrorTimes  +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].ProblemName  +"</td>");
                     // $("#J_TbData").append($trTemp);
                     $trTemp.appendTo("#KnowList");
                 }
@@ -89,7 +88,6 @@ function PrevPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].AcceptTimes  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].TimeLimitTimes  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].RuntimeErrorTimes  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].ProblemName  +"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
 	                    }
@@ -124,7 +122,6 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].AcceptTimes  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].TimeLimitTimes  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].RuntimeErrorTimes  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].ProblemName  +"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
 	                    }

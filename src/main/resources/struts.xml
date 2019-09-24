@@ -250,7 +250,10 @@
 			</action>
 			<action name="QuerySingleRecord" class="WorkUserRecordAction" method="QuerySingleRecord">
 			</action>
-
+			<action name="CountRecordByWork" class="WorkUserRecordAction" method="CountRecordByWork">
+			</action>
+			<action name="queryWorkUserRecordByPageSizeWithWorkId" class="WorkUserRecordAction" method="queryWorkUserRecordByPageSizeWithWorkId">
+			</action>
 						
 			<!-- 公告 -->
 			<action name="AddNotice" class="NoticeAction" method="AddNotice">

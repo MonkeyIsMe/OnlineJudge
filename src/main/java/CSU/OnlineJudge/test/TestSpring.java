@@ -14,9 +14,11 @@ import CSU.OnlineJudge.Model.Case;
 import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Model.Work;
+import CSU.OnlineJudge.Model.WorkProblem;
 import CSU.OnlineJudge.Service.CaseService;
 import CSU.OnlineJudge.Service.NoticeService;
 import CSU.OnlineJudge.Service.UserService;
+import CSU.OnlineJudge.Service.WorkProblemService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -69,6 +71,17 @@ public class TestSpring {
 	
 	@Resource(name="NoticeService")
 	private NoticeService ns;
+	
+	@Resource(name="WorkProblemService")
+	private WorkProblemService wps;
+	
+	@Test
+	public void AddWorkProblem() {
+		WorkProblem wp = new WorkProblem();
+		wp.setProblemId(123);
+		wp.setWorkId(132);
+		wps.addWorkProblem(wp);
+	}
 	
 	@Test
 	public void QueryUserRank() {

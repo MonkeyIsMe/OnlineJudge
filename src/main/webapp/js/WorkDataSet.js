@@ -155,15 +155,6 @@ $(document).ready(function(){
 	  });
 	  
 	  
-	  $("#myTable").on('click','.see_work',function(){
-		    //获得当前行
-		    var currentRow=$(this).closest("tr"); 
-		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
-		    var url = "WorkData.html?WorkId=" + col1;
-		    window.location.replace(url);
-		    
-		  });
-	  
 	  $("#myTable").on('click','.see_user',function(){
 		    //获得当前行
 		    var currentRow=$(this).closest("tr"); 

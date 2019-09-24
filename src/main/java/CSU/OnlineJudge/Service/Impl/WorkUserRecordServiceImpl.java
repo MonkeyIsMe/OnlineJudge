@@ -93,4 +93,9 @@ public class WorkUserRecordServiceImpl implements WorkUserRecordService{
 		return wurd.CountWorkUserRecordWithUserIdWorkId(UserId, WorkId);
 	}
 
+	public int CountWorkUserRecordWithWorkId(int WorkId) {
+		// TODO Auto-generated method stub
+		return wurd.CountWorkUserRecordWithWorkId(WorkId);
+	}
+
 }

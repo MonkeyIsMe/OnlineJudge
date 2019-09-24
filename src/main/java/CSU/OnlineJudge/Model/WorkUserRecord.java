@@ -13,11 +13,11 @@ import org.json.JSONObject;
 
 //考试-作业记录，用户关联表
 @Entity
-@Table(name="tab_workuser")
+@Table(name="tab_workuserrecord")
 public class WorkUserRecord {
 	
 	@Id
-	@Column(name="wu_id")
+	@Column(name="wur_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int WorkUserRecordId;// 主键
 	

@@ -181,8 +181,8 @@ public class WorkUserRecordAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String page = request.getParameter("rows");
-		String size = request.getParameter("size");
+		String page = request.getParameter("page");
+		String size = request.getParameter("limit");
 		String work_id = request.getParameter("work_id");
 		
 		if(work_id == null || work_id == "" || work_id.equals("")) {
@@ -507,6 +507,36 @@ public class WorkUserRecordAction extends ActionSupport{
 		wur = WorkUserRecordService.queryWorkUserRecord(rid);
 		JSONObject jo = JSONObject.fromObject(wur);
 	
+		out.println(jo.toString());
+        out.flush(); 
+        out.close();
+	}
+	
+	//根据作业查数据总数
+	public void CountRecordByWork() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String work_id = request.getParameter("work_id");
+
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int wid = Integer.valueOf(work_id);
+		
+		int count = WorkUserRecordService.CountWorkUserRecordWithWorkId(wid);
+		JSONObject jo = new JSONObject();
+		jo.put("WorkUserRecordCount", count);
+		
 		out.println(jo.toString());
         out.flush(); 
         out.close();
