@@ -7,6 +7,7 @@ import CSU.OnlineJudge.DAO.CaseDAO;
 import CSU.OnlineJudge.DAO.CodeDAO;
 import CSU.OnlineJudge.DAO.KnowledgeDAO;
 import CSU.OnlineJudge.DAO.ProblemDAO;
+import CSU.OnlineJudge.DAO.SubmissionDAO;
 import CSU.OnlineJudge.DAO.UserDAO;
 import CSU.OnlineJudge.DAO.WorkDAO;
 import CSU.OnlineJudge.DAO.WorkUserRecordDAO;
@@ -17,6 +18,7 @@ import CSU.OnlineJudge.Model.Work;
 import CSU.OnlineJudge.Model.WorkProblem;
 import CSU.OnlineJudge.Service.CaseService;
 import CSU.OnlineJudge.Service.NoticeService;
+import CSU.OnlineJudge.Service.SubmissionService;
 import CSU.OnlineJudge.Service.UserService;
 import CSU.OnlineJudge.Service.WorkProblemService;
 import CSU.OnlineJudge.Utils.JudgeUtil;
@@ -261,54 +263,80 @@ public class TestSpring {
 		System.out.println(kd.CountKnowledge());
 	}
 	
+	@Resource(name="SubmissionDAO")
+	private SubmissionDAO sd;
+	
+	@Resource(name="SubmissionService")
+	private SubmissionService ss;
+	
+	@Test
+	public void querySubmission() {
+		System.out.println(ss.querySubmission(6));
+	}
+	
 	@Test
 	public void Judger() {
 		JudgeUtil ju = new JudgeUtil();
     	JSONObject fianljo = new JSONObject();
     	JSONArray caseja = new JSONArray();
     	JSONObject casejo = new JSONObject();
-		List<Case> clist = cs.GetCaseByFlag(10, 1);
+		List<Case> clist = cs.GetCaseByFlag(2, 1);
 		for(int i = 0; i < clist.size(); i ++) {
 			Case c = clist.get(i);
     		casejo.put("stdin",c.getCaseInput());
     		casejo.put("stdout",c.getCaseOutput());
-    		//System.out.println(casejo.toString());
     		caseja.add(casejo);
 		}
-/*    	fianljo.put("lang", "CPP");
-    	fianljo.put("source_code", "#include<cstdio>\r\n" + 
-    			"#include<cstring>\r\n" + 
-    			"#include<algorithm>\r\n" + 
-    			"#include<iostream>\r\n" + 
-    			"using namespace std;\r\n" + 
-    			"\r\n" + 
-    			"int main()\r\n" + 
-    			"{\r\n" + 
-    			"    int a,b;\r\n" + 
-    			"    cin>>a>>b;\r\n" + 
-    			"    cout<<a+b<<endl;\r\n" + 
-    			"    return 0;\r\n" + 
-    			"}");
-    	
-    	fianljo.put("time_limit", 3);
-    	fianljo.put("memory_limit", 228);
-    	fianljo.put("test_cases", caseja.toString());
-        String url = "http://192.168.1.192:5000/judge";
-        String str = ju.Judger(fianljo.toString());
-        System.out.println(str);*/
-
-    	System.out.println(ju.Judger(ju.DealCase(caseja.toString(), "CPP", 3, 228, "#include<cstdio>\r\n" + 
-    			"#include<cstring>\r\n" + 
-    			"#include<algorithm>\r\n" + 
-    			"#include<iostream>\r\n" + 
-    			"using namespace std;\r\n" + 
-    			"\r\n" + 
-    			"int main()\r\n" + 
-    			"{\r\n" + 
-    			"    int a,b;\r\n" + 
-    			"    cin>>a>>b;\r\n" + 
-    			"    cout<<a+b<<endl;\r\n" + 
-    			"    return 0;\r\n" + 
-    			"}")));
+		System.out.println(casejo.toString());
+		String str = ju.Judger(ju.DealCase(caseja.toString(), "CPP", 3, 228,"#include<cstdio>\r\n" + 
+				"#include<cstring>\r\n" + 
+				"#include<iostream>\r\n" + 
+				"#include<algorithm>\r\n" + 
+				"using namespace std;\r\n" + 
+				"\r\n" + 
+				"int n,m;\r\n" + 
+				"const int maxn = 105;\r\n" + 
+				"char mapp[maxn][maxn];\r\n" + 
+				"\r\n" + 
+				"void dfs(int x,int y)\r\n" + 
+				"{\r\n" + 
+				"    mapp[x][y] = '.';\r\n" + 
+				"    for(int dx = -1; dx <= 1; dx ++){\r\n" + 
+				"        for(int dy = -1; dy <= 1; dy ++){\r\n" + 
+				"            int nx = x + dx;\r\n" + 
+				"            int ny = y + dy;\r\n" + 
+				"            if(nx < n && nx >= 0 && ny < m && ny >= 0 && mapp[nx][ny] == 'W'){\r\n" + 
+				"                dfs(nx,ny);\r\n" + 
+				"            }\r\n" + 
+				"        }\r\n" + 
+				"    }\r\n" + 
+				"    return ;\r\n" + 
+				"}\r\n" + 
+				"\r\n" + 
+				"int main()\r\n" + 
+				"{\r\n" + 
+				"    while(scanf(\"%d%d\",&n,&m)!=EOF){\r\n" + 
+				"        int cnt = 0;\r\n" + 
+				"        for(int i = 0; i < n; i ++){\r\n" + 
+				"            scanf(\"%s\",mapp[i]);\r\n" + 
+				"        }\r\n" + 
+				"        for(int i = 0; i < n; i ++){\r\n" + 
+				"            for(int j = 0; j < m; j ++){\r\n" + 
+				"                if(mapp[i][j] == 'W'){\r\n" + 
+				"                    dfs(i,j);\r\n" + 
+				"                    cnt ++;\r\n" + 
+				"                }\r\n" + 
+				"            }\r\n" + 
+				"        }\r\n" + 
+				"        printf(\"%d\\n\",cnt);\r\n" + 
+				"    }\r\n" + 
+				"    return 0;\r\n" + 
+				"}\r\n" + 
+				""));
+    	System.out.println(str);
+    	String result = ju.ResultUtil(str);
+    	System.out.println(result);
+    	String total = ju.TotalResultUtil(str);
+    	System.out.println(total);
 	}
 }

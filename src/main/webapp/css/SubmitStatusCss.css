@@ -13,3 +13,36 @@
     padding-top: 20px;
     margin-left: 10%;
 }
+
+.total_result{
+	height:100px;
+	font-size:24px;
+	text-align:center;
+	line-height:100px;
+	background-color: #FFB800;
+}
+
+.result{
+	width: 80%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-left: 10%;
+}
+
+.case_result{
+	border-radius:50%;
+	width:100px;
+	height:100px;
+	font-size:24px;
+	text-align:center;
+	line-height:100px;
+	float:left;
+}
+
+.ac{
+	background-color: #5FB878;
+}
+
+.other{
+	background-color: red;
+}

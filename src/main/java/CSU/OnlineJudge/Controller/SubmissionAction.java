@@ -58,7 +58,6 @@ public class SubmissionAction extends ActionSupport{
 		CaseService = caseService;
 	}
 
-
 	//增加一个提交的记录
 	public void AddSubmission() throws Exception{
 		
@@ -96,8 +95,6 @@ public class SubmissionAction extends ActionSupport{
 		
 		submission.setSubmissionTime(du.GetNowDate());
 		submission.setCodeLength(submission_code.length());
-		submission.setCodeMemory(problem.getProblemMemory());
-		submission.setCodeTime(problem.getProblemTimeLimit());
 		submission.setUserAccount(user_account);
 		submission.setCodeType(submission_type);
 		submission.setProblemId(pid);
@@ -130,16 +127,16 @@ public class SubmissionAction extends ActionSupport{
 	        return ;
 		}
 		int sid = Integer.valueOf(submission_id);
-		
+
 		submission = SubmissionService.querySubmission(sid);
 		
 		int pid = submission.getProblemId();
 		problem = ProblemService.QueryProblem(pid);
-		int time = problem.getTimeLimitTimes();
+		int time = problem.getProblemTimeLimit();
 		int memory = problem.getProblemMemory();
 		String lang = submission.getCodeType();
 		String code = submission.getSubmissionCode();
-		
+	
 		if(lang.equals("cpp")) {
 			lang = "CPP";
 		}
@@ -147,31 +144,55 @@ public class SubmissionAction extends ActionSupport{
 			lang = "JAVA8";
 		}
 		
+
+		List<Case> clist = CaseService.GetCaseByFlag(pid, 1);
+		
     	JSONArray caseja = new JSONArray();
     	JSONObject casejo = new JSONObject();
-		List<Case> clist = CaseService.GetCaseByFlag(pid, 1);
 		for(int i = 0; i < clist.size(); i ++) {
 			Case c = clist.get(i);
     		casejo.put("stdin",c.getCaseInput());
     		casejo.put("stdout",c.getCaseOutput());
-    		//System.out.println(casejo.toString());
+    		
     		caseja.add(casejo);
 		}
 		
 		JudgeUtil judger = new JudgeUtil();
-		String json = judger.DealCase(caseja.toString(), lang, time, memory, code);
+		String json = judger.DealCase(caseja.toString(), "CPP", time, memory, code);
 		String result_str = judger.Judger(json);
+		
 		
 		JSONObject result_ja = JSONObject.fromObject(result_str);
 		String result = result_ja.getString("result");
-		String result_time = result_ja.getString("time");
-		String result_memory = result_ja.getString("memory");
 		
-		submission.setCodeMemory(Integer.valueOf(result_memory));
-		submission.setCodeTime(Integer.valueOf(result_time));
-		submission.setSubmissionResult(result);
-		SubmissionService.updateSubmission(submission);
+		JSONObject jo = new JSONObject();
 		
+		if(result.equals("SE")) {
+			jo.put("result", "SE");
+		}
+		else {
+			String result_time = result_ja.getString("time");
+			String result_memory = result_ja.getString("memory");
+			String case_result = judger.ResultUtil(result_str);
+			
+			submission.setCodeMemory(result_memory);
+			submission.setCodeTime(result_time);
+			submission.setSubmissionResult(result);
+			SubmissionService.updateSubmission(submission);
+			
+			
+			jo.put("result", result);
+			jo.put("result_time", result_time);
+			jo.put("result_memory", result_memory);
+			jo.put("case_result", case_result);
+		}
+		
+
+		
+		out.println(jo.toString());
+        out.flush(); 
+        out.close();
+        return ;
 		
 	}
 	
@@ -251,8 +272,8 @@ public class SubmissionAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String page = request.getParameter("rows");
-		String size = request.getParameter("size");
+		String page = request.getParameter("page");
+		String size = request.getParameter("limit");
 		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
@@ -485,29 +506,6 @@ public class SubmissionAction extends ActionSupport{
         out.close();
 	}
 	
-	//判题
-	public void JudgerCode() throws Exception{
-		
-		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
-		HttpServletRequest request= ServletActionContext.getRequest();
-		
-		//返回结果
-		PrintWriter out = null;
-		out = ServletActionContext.getResponse().getWriter();
-		
-		String submission_id = request.getParameter("submission_id");
-		
-		if(submission_id == null || submission_id == "" || submission_id.equals("")) {
-			out.println("Fail");
-	        out.flush(); 
-	        out.close();
-	        return ;
-		}
-		
-		int sid = Integer.valueOf(submission_id);
-		
-	}
-	
 	
 	//根据作业考试分页查询所有提交
 	public void QuerySubmissionByWork() throws Exception{
@@ -542,4 +540,27 @@ public class SubmissionAction extends ActionSupport{
 	    out.close();
 			
 		}
+
+	//查询所有提交总数
+	public void CountSubmission() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+			
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		int count = SubmissionService.CountSubmission();
+		
+		JSONObject jo = new JSONObject();
+		
+		jo.put("SubmissionCount", count);
+		
+		out.println(jo.toString());
+	    out.flush(); 
+	    out.close();
+	}
+	
+
 }

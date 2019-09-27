@@ -82,6 +82,7 @@
 	<bean name="SubmissionAction" class="CSU.OnlineJudge.Controller.SubmissionAction" scope="prototype" >
 		<property name="ProblemService" ref="ProblemService" ></property>
 		<property name="SubmissionService" ref="SubmissionService" ></property>
+		<property name="CaseService" ref="CaseService" ></property>
 	</bean>
 	<bean name="ProblemResultAction" class="CSU.OnlineJudge.Controller.ProblemResultAction" scope="prototype" >
 		<property name="ProblemResultService" ref="ProblemResultService" ></property>

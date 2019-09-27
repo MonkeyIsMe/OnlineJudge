@@ -176,6 +176,12 @@
 			</action>
 			<action name="GetSubmissionResult" class="SubmissionAction" method="GetSubmissionResult">
 			</action>
+			<action name="QuerySubmissionByPageSize" class="SubmissionAction" method="QuerySubmissionByPageSize">
+			</action>
+			<action name="CountSubmission" class="SubmissionAction" method="CountSubmission">
+			</action>
+			<action name="QuerySingleSubmission" class="SubmissionAction" method="QuerySingleSubmission">
+			</action>
 			
 			<!-- 题目结果  -->
 			<action name="QueryAcceptProblem" class="ProblemResultAction" method="QueryAcceptProblem">

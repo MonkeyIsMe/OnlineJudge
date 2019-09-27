@@ -91,17 +91,30 @@ public class JudgeUtil {
 	}
 	
 	//每个样例结果的处理
-	public void ResultUtil(String result,int ProblemId) {
+	public String ResultUtil(String result) {
 		
 		JSONObject jo = JSONObject.fromObject(result);
 		String case_info =  jo.getString("test_cases");
 		JSONArray ja = JSONArray.fromObject(case_info);
+		JSONArray rja = new JSONArray();
 		for(int i = 0; i < ja.size(); i ++) {
 			JSONObject cjo = ja.getJSONObject(i);
 			String error = cjo.getString("error_message");
 			String res = cjo.getString("result");
+			JSONObject rjo = new JSONObject();
+			rjo.put("result", res);
+			rjo.put("error_message", error);
+			rja.add(rjo);
 		}
+		return rja.toString();
+	}
+	
+	//总结果的处理
+	public String TotalResultUtil(String result) {
 		
+		JSONObject jo = JSONObject.fromObject(result);
+		String total =  jo.getString("result");
+		return total.toString();
 	}
 	
 	//通过提交编号获取题目信息

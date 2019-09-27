@@ -34,10 +34,10 @@ public class Submission {
 	private int CodeLength;  // 代码长度
 	
 	@Column(name="submission_time")
-	private int CodeTime;  // 代码运行时间
+	private String CodeTime;  // 代码运行时间
 	
 	@Column(name="submission_memory")
-	private int CodeMemory;  // 代码消耗内存
+	private String CodeMemory;  // 代码消耗内存
 
 	@Column(name="user_account")
 	private String UserAccount;  // 学生账号
@@ -102,19 +102,21 @@ public class Submission {
 		CodeLength = codeLength;
 	}
 
-	public int getCodeTime() {
+
+	public String getCodeTime() {
 		return CodeTime;
 	}
 
-	public void setCodeTime(int codeTime) {
+	public void setCodeTime(String codeTime) {
 		CodeTime = codeTime;
 	}
 
-	public int getCodeMemory() {
+
+	public String getCodeMemory() {
 		return CodeMemory;
 	}
 
-	public void setCodeMemory(int codeMemory) {
+	public void setCodeMemory(String codeMemory) {
 		CodeMemory = codeMemory;
 	}
 

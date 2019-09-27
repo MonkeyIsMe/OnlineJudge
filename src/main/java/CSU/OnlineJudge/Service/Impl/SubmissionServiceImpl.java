@@ -39,7 +39,7 @@ public class SubmissionServiceImpl implements SubmissionService{
 
 	public Submission querySubmission(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return sd.querySubmission(id);
 	}
 
 	public List<Submission> QuerySubmissionByPageSize(int row, int PageSize) {
@@ -87,6 +87,11 @@ public class SubmissionServiceImpl implements SubmissionService{
 	public List<Submission> QuerySubmissionByPageSizeWithWorkId(int row, int PageSize, int WorkId) {
 		// TODO Auto-generated method stub
 		return sd.QuerySubmissionByPageSizeWithWorkId(row, PageSize, WorkId);
+	}
+
+	public int CountSubmission() {
+		// TODO Auto-generated method stub
+		return sd.CountSubmission();
 	}
 
 }
