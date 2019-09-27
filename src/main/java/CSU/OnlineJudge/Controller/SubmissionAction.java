@@ -9,8 +9,10 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import CSU.OnlineJudge.Model.Case;
 import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.Submission;
+import CSU.OnlineJudge.Service.CaseService;
 import CSU.OnlineJudge.Service.ProblemService;
 import CSU.OnlineJudge.Service.SubmissionService;
 import CSU.OnlineJudge.Service.Impl.SubmissionServiceImpl;
@@ -25,6 +27,8 @@ public class SubmissionAction extends ActionSupport{
 	private SubmissionService SubmissionService;
 	private Problem problem = new Problem();
 	private ProblemService ProblemService;
+	private CaseService CaseService;
+	private Case Case = new Case();
 
 	public SubmissionService getSubmissionService() {
 		return SubmissionService;
@@ -45,6 +49,15 @@ public class SubmissionAction extends ActionSupport{
 		ProblemService = problemService;
 	}
 
+	public CaseService getCaseService() {
+		return CaseService;
+	}
+
+
+	public void setCaseService(CaseService caseService) {
+		CaseService = caseService;
+	}
+
 
 	//增加一个提交的记录
 	public void AddSubmission() throws Exception{
@@ -58,9 +71,6 @@ public class SubmissionAction extends ActionSupport{
 		
 		DateUtil du = new DateUtil();
 		
-		//String submission_result = request.getParameter("submission_result");
-		//String submit_time = request.getParameter("submit_time");
-		String submission_length = request.getParameter("submission_length");
 		String user_account = request.getParameter("user_account");
 		String submission_type = request.getParameter("submission_type");
 		String problem_id = request.getParameter("problem_id");
@@ -72,15 +82,8 @@ public class SubmissionAction extends ActionSupport{
 	        out.close();
 	        return ;
 		}
-		if(submission_length == null || submission_length == "" || submission_length.equals("")) {
-			out.println("Fail");
-	        out.flush(); 
-	        out.close();
-	        return ;
-		}
-		
+		System.out.println(submission_type);
 		int pid = Integer.valueOf(problem_id);
-		int length = Integer.valueOf(submission_length);
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
 			out.println("Fail");
@@ -88,22 +91,17 @@ public class SubmissionAction extends ActionSupport{
 	        out.close();
 	        return ;
 		}
-		if(submission_length == null || submission_length == "" || submission_length.equals("")) {
-			out.println("Fail");
-	        out.flush(); 
-	        out.close();
-	        return ;
-		}
 		
-		//submission.setSubmissionResult(submission_result);
+		problem = ProblemService.QueryProblem(pid);
+		
 		submission.setSubmissionTime(du.GetNowDate());
-		submission.setCodeLength(length);
-		//submission.setCodeMemory(memory);
-		//submission.setCodeTime(time);
+		submission.setCodeLength(submission_code.length());
+		submission.setCodeMemory(problem.getProblemMemory());
+		submission.setCodeTime(problem.getProblemTimeLimit());
 		submission.setUserAccount(user_account);
 		submission.setCodeType(submission_type);
 		submission.setProblemId(pid);
-		
+		submission.setSubmissionCode(submission_code);
 		int sid = SubmissionService.addSubmission(submission);
 		
 		JSONObject jo = new JSONObject();
@@ -142,8 +140,26 @@ public class SubmissionAction extends ActionSupport{
 		String lang = submission.getCodeType();
 		String code = submission.getSubmissionCode();
 		
+		if(lang.equals("cpp")) {
+			lang = "CPP";
+		}
+		else if(lang.equals("class")) {
+			lang = "JAVA8";
+		}
+		
+    	JSONArray caseja = new JSONArray();
+    	JSONObject casejo = new JSONObject();
+		List<Case> clist = CaseService.GetCaseByFlag(pid, 1);
+		for(int i = 0; i < clist.size(); i ++) {
+			Case c = clist.get(i);
+    		casejo.put("stdin",c.getCaseInput());
+    		casejo.put("stdout",c.getCaseOutput());
+    		//System.out.println(casejo.toString());
+    		caseja.add(casejo);
+		}
+		
 		JudgeUtil judger = new JudgeUtil();
-		String json = judger.DealCase(pid, lang, time, memory, code);
+		String json = judger.DealCase(caseja.toString(), lang, time, memory, code);
 		String result_str = judger.Judger(json);
 		
 		JSONObject result_ja = JSONObject.fromObject(result_str);

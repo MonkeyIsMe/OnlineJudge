@@ -72,31 +72,52 @@ $(document).ready(function(){
     	}
     })
     
+    $("#test").click(function(){
+    	var info = editor.getValue();
+    	var input = $("#input").val();
+    	input = input +"";
+    	console.log(input)
+    	var datas = [];
+    	datas.push(input);
+    	   $.ajax({
+    	        url:'http://192.168.1.144:8089/consumer/judge.do',
+    	        type:'POST',
+    	        contentType: 'application/json; charset=UTF-8',
+    	        async:false,
+    	        dataType:'json',
+    	        data:JSON.stringify({
+    	        	input:datas,
+    	        	timeLimit:1000,
+    	        	memoryLimit:65535,
+    	        	judgeId:4,
+    	        	src:info,
+    	        }),
+    	        success: function (response) {
+    	            console.log(response);
+    	        }
+    	    })
+    	
+    })
     
     $("#submit").click(function(){
+    	var info = editor.getValue();
+    	var val = $('input[type="radio"]:checked').val(); 
+    	var lang = val.split(".");
+    	$.post(
+    			"AddSubmission.action",
+    			{
+    				submission_type:lang[1],
+    				problem_id:pid,
+    				submission_code:info,
+    			},
+    			function(data){
+    				var data = JSON.parse(data);
+    				var sid = data.SubmissionId;
+    			    var url = "SeeResult.html?sid=" + sid;
+    			    window.location.replace(url);
+    			}
+    			);
     	
-		$.post(
-				"AddSubmission.action",
-				{
-					submit_time:"",
-					submission_length:"",
-					submission_type:"",
-					problem_id:pid,
-					submission_code:submission_code,
-				},
-				function(data){
-					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-					if(data == "Fail"){
-						alert("保存失败！");
-						//window.location.replace("ManagerUserSet.html");
-					}
-					else{
-						alert("保存成功!");
-						//window.location.replace("ManagerUserSet.html");
-					}
-				}
-				);
-		
     })
     
 })
@@ -123,6 +144,9 @@ editor.setOptions({
 $("#ambiance").click(function () {
     editor.setTheme("ace/theme/ambiance");
     $("#theme").text("ambiance");
+    
+
+    
 })
 
 
@@ -204,7 +228,7 @@ $("#CreateCode").click(function(){
         	$("#peditor").css("display","block");
         	
             if(cnt == 0){
-                var html ="<div class='file'><input id='"+filename+"' type='radio' value='" + filename + "' checked=\"checked\" name='code' onclick=inputcode('" + filename + "')>"+filename+"."+lang+"</div>";
+                var html ="<div class='file'><input id='"+filename+"' type='radio' value='" + filename+"."+lang+  "'checked name=code onclick=inputcode('" + filename + "')>"+filename+"."+lang+"</div>";
                 first = filename;
                 var arr ={
                     key:filename,
@@ -215,7 +239,7 @@ $("#CreateCode").click(function(){
                 cnt++;
             }
             else{
-                var html ="<div class='file'><input id='"+filename+"' type='radio' value='" + filename + "'checked=\"checked\"  name='code' onclick=inputcode('" + filename + "')>"+filename+"."+lang+"</div>";
+            	var html ="<div class='file'><input id='"+filename+"' type='radio' value='" + filename+"."+lang+  "'checked name=code onclick=inputcode('" + filename + "')>"+filename+"."+lang+"</div>";
                 var arr ={
                     key:filename,
                     value:""
@@ -272,3 +296,4 @@ function IsCreate(filename){
     }
     return flag;
 }
+

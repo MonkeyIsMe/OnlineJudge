@@ -21,6 +21,7 @@ import net.sf.json.JSONObject;
 
 public class JudgeUtil {
 	
+	
 	//发送http请求
 	public String Judger(String param) {
 		
@@ -77,26 +78,13 @@ public class JudgeUtil {
 	}
 	
 	//合成样例
-	public String DealCase(int ProblemId,String lang,int time,int memory,String code) {
-		
-		CaseService cs = new CaseServiceImpl();
-		List<Case> CaseList = cs.GetCaseByFlag(ProblemId, 1);
+	public String DealCase(String CaseInfo,String lang,int time,int memory,String code) {
     	JSONObject finaljo = new JSONObject();
-    	JSONArray caseja = new JSONArray();
-    	JSONObject casejo = new JSONObject();
-    	for(int i = 0; i < CaseList.size(); i ++) {
-    		Case cas = CaseList.get(i);
-    		casejo.put("stdin", cas.getCaseInput());
-    		casejo.put("stdout", cas.getCaseOutput());
-    		//System.out.println(casejo.toString());
-    		caseja.add(casejo);
-    	}
-    	
     	finaljo.put("lang", lang);
     	finaljo.put("source_code", code);
     	finaljo.put("time_limit", time);
     	finaljo.put("memory_limit", memory);
-    	finaljo.put("test_cases", caseja.toString());
+    	finaljo.put("test_cases", CaseInfo);
     	
     	
 		return finaljo.toString();

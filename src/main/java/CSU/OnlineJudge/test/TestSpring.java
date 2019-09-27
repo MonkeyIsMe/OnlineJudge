@@ -19,6 +19,7 @@ import CSU.OnlineJudge.Service.CaseService;
 import CSU.OnlineJudge.Service.NoticeService;
 import CSU.OnlineJudge.Service.UserService;
 import CSU.OnlineJudge.Service.WorkProblemService;
+import CSU.OnlineJudge.Utils.JudgeUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -254,8 +255,60 @@ public class TestSpring {
 	
 	@Resource(name="KnowledgeDAO")
 	private KnowledgeDAO kd;
+	
 	@Test
 	public void CountKnowledge() {
 		System.out.println(kd.CountKnowledge());
+	}
+	
+	@Test
+	public void Judger() {
+		JudgeUtil ju = new JudgeUtil();
+    	JSONObject fianljo = new JSONObject();
+    	JSONArray caseja = new JSONArray();
+    	JSONObject casejo = new JSONObject();
+		List<Case> clist = cs.GetCaseByFlag(10, 1);
+		for(int i = 0; i < clist.size(); i ++) {
+			Case c = clist.get(i);
+    		casejo.put("stdin",c.getCaseInput());
+    		casejo.put("stdout",c.getCaseOutput());
+    		//System.out.println(casejo.toString());
+    		caseja.add(casejo);
+		}
+/*    	fianljo.put("lang", "CPP");
+    	fianljo.put("source_code", "#include<cstdio>\r\n" + 
+    			"#include<cstring>\r\n" + 
+    			"#include<algorithm>\r\n" + 
+    			"#include<iostream>\r\n" + 
+    			"using namespace std;\r\n" + 
+    			"\r\n" + 
+    			"int main()\r\n" + 
+    			"{\r\n" + 
+    			"    int a,b;\r\n" + 
+    			"    cin>>a>>b;\r\n" + 
+    			"    cout<<a+b<<endl;\r\n" + 
+    			"    return 0;\r\n" + 
+    			"}");
+    	
+    	fianljo.put("time_limit", 3);
+    	fianljo.put("memory_limit", 228);
+    	fianljo.put("test_cases", caseja.toString());
+        String url = "http://192.168.1.192:5000/judge";
+        String str = ju.Judger(fianljo.toString());
+        System.out.println(str);*/
+
+    	System.out.println(ju.Judger(ju.DealCase(caseja.toString(), "CPP", 3, 228, "#include<cstdio>\r\n" + 
+    			"#include<cstring>\r\n" + 
+    			"#include<algorithm>\r\n" + 
+    			"#include<iostream>\r\n" + 
+    			"using namespace std;\r\n" + 
+    			"\r\n" + 
+    			"int main()\r\n" + 
+    			"{\r\n" + 
+    			"    int a,b;\r\n" + 
+    			"    cin>>a>>b;\r\n" + 
+    			"    cout<<a+b<<endl;\r\n" + 
+    			"    return 0;\r\n" + 
+    			"}")));
 	}
 }
