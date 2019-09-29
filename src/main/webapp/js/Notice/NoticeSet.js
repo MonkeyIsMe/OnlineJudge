@@ -46,7 +46,7 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].noticeName +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].noticePeople  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].noticeTime  +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].noticeInfo  +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center;display: table-cell;"  + ">" +data[i].noticeInfo  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 			        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50%" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
@@ -82,7 +82,7 @@ function PrevPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].noticeName +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].noticePeople  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].noticeTime  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].noticeInfo  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;display: table-cell;"  + ">" +data[i].noticeInfo  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 	    			        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50%" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");
@@ -117,7 +117,7 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].noticeName +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].noticePeople  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].noticeTime  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].noticeInfo  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;display: table-cell;"  + ">" +data[i].noticeInfo  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 	    			        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:50%" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");

@@ -47,7 +47,7 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].problemName +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].answerTime  +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].answerInfo  +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center;display: table-cell;"  + ">" +data[i].answerInfo  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 			        		'<a><span class="delete comment glyphicon glyphicon-th-large" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+'<a><span class="delete clear glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#myModal"></span></a>'
@@ -86,7 +86,7 @@ function PrevPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].problemName +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].answerTime  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].answerInfo  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;display: table-cell;"  + ">" +data[i].answerInfo  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 	    			        		'<a><span class="delete comment glyphicon glyphicon-th-large" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+'<a><span class="delete clear glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#myModal"></span></a>'
@@ -124,7 +124,7 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center;"  + ">"  + data[i].problemName +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].answerTime  +"</td>");
-	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].answerInfo  +"</td>");
+	    			        $trTemp.append("<td style=" + "text-align:center;display: table-cell;"  + ">" +data[i].answerInfo  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 	    			        		'<a><span class="delete comment glyphicon glyphicon-th-large" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+'<a><span class="delete clear glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#myModal"></span></a>'

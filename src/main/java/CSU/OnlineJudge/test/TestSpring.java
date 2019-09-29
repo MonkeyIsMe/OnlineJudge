@@ -280,7 +280,7 @@ public class TestSpring {
     	JSONObject fianljo = new JSONObject();
     	JSONArray caseja = new JSONArray();
     	JSONObject casejo = new JSONObject();
-		List<Case> clist = cs.GetCaseByFlag(2, 1);
+		List<Case> clist = cs.GetCaseByFlag(1, 1);
 		for(int i = 0; i < clist.size(); i ++) {
 			Case c = clist.get(i);
     		casejo.put("stdin",c.getCaseInput());
@@ -290,46 +290,15 @@ public class TestSpring {
 		System.out.println(casejo.toString());
 		String str = ju.Judger(ju.DealCase(caseja.toString(), "CPP", 3, 228,"#include<cstdio>\r\n" + 
 				"#include<cstring>\r\n" + 
-				"#include<iostream>\r\n" + 
 				"#include<algorithm>\r\n" + 
+				"#include<iostream>\r\n" + 
 				"using namespace std;\r\n" + 
-				"\r\n" + 
-				"int n,m;\r\n" + 
-				"const int maxn = 105;\r\n" + 
-				"char mapp[maxn][maxn];\r\n" + 
-				"\r\n" + 
-				"void dfs(int x,int y)\r\n" + 
-				"{\r\n" + 
-				"    mapp[x][y] = '.';\r\n" + 
-				"    for(int dx = -1; dx <= 1; dx ++){\r\n" + 
-				"        for(int dy = -1; dy <= 1; dy ++){\r\n" + 
-				"            int nx = x + dx;\r\n" + 
-				"            int ny = y + dy;\r\n" + 
-				"            if(nx < n && nx >= 0 && ny < m && ny >= 0 && mapp[nx][ny] == 'W'){\r\n" + 
-				"                dfs(nx,ny);\r\n" + 
-				"            }\r\n" + 
-				"        }\r\n" + 
-				"    }\r\n" + 
-				"    return ;\r\n" + 
-				"}\r\n" + 
 				"\r\n" + 
 				"int main()\r\n" + 
 				"{\r\n" + 
-				"    while(scanf(\"%d%d\",&n,&m)!=EOF){\r\n" + 
-				"        int cnt = 0;\r\n" + 
-				"        for(int i = 0; i < n; i ++){\r\n" + 
-				"            scanf(\"%s\",mapp[i]);\r\n" + 
-				"        }\r\n" + 
-				"        for(int i = 0; i < n; i ++){\r\n" + 
-				"            for(int j = 0; j < m; j ++){\r\n" + 
-				"                if(mapp[i][j] == 'W'){\r\n" + 
-				"                    dfs(i,j);\r\n" + 
-				"                    cnt ++;\r\n" + 
-				"                }\r\n" + 
-				"            }\r\n" + 
-				"        }\r\n" + 
-				"        printf(\"%d\\n\",cnt);\r\n" + 
-				"    }\r\n" + 
+				"    int a,b;\r\n" + 
+				"    cin>>a>>b;\r\n" + 
+				"    cout<<a+b<<endl;\r\n" + 
 				"    return 0;\r\n" + 
 				"}\r\n" + 
 				""));

@@ -37,6 +37,7 @@ $(function(){
 				        //往行里面追加 td单元格
 				        $trTemp.append("<td style=" + "text-align:center;font-size:16px"  + ">"+ data[i].ProblemId +"</td>");
 				        $trTemp.append("<td onclick=SeeProblem('"+data[i].ProblemId+"') style=" + "text-align:center;font-size:16px"  + ">"  +data[i].ProblemName +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center;font-size:16px"  + ">" + GetPercent(data[i].AcceptTimes, data[i].SubmissionTimes) +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center;font-size:16px"  + ">" + data[i].AcceptTimes+"/"+data[i].SubmissionTimes +"</td>");
 				        // $("#J_TbData").append($trTemp);
 				        $trTemp.appendTo("#ProblemList");
@@ -70,6 +71,7 @@ function PrevPage(){
 					        //往行里面追加 td单元格
 					        $trTemp.append("<td style=" + "text-align:center;font-size:16px"  + ">"+ data[i].ProblemId +"</td>");
 					        $trTemp.append("<td onclick=SeeProblem('"+data[i].ProblemId+"') style=" + "text-align:center;font-size:16px"  + ">"  +data[i].ProblemName +"</td>");
+					        $trTemp.append("<td style=" + "text-align:center;font-size:16px"  + ">" + GetPercent(data[i].AcceptTimes, data[i].SubmissionTimes) +"</td>");
 					        $trTemp.append("<td style=" + "text-align:center;font-size:16px"  + ">" + data[i].AcceptTimes+"/"+data[i].SubmissionTimes +"</td>");
 					        // $("#J_TbData").append($trTemp);
 					        $trTemp.appendTo("#ProblemList");
@@ -103,6 +105,7 @@ function NextPage(){
 					        //往行里面追加 td单元格
 					        $trTemp.append("<td style=" + "text-align:center;font-size:16px"  + ">"+ data[i].ProblemId +"</td>");
 					        $trTemp.append("<td onclick=SeeProblem('"+data[i].ProblemId+"') style=" + "text-align:center;font-size:16px"  + ">"  +data[i].ProblemName +"</td>");
+					        $trTemp.append("<td style=" + "text-align:center;font-size:16px"  + ">" + GetPercent(data[i].AcceptTimes, data[i].SubmissionTimes) +"</td>");
 					        $trTemp.append("<td style=" + "text-align:center;font-size:16px"  + ">" + data[i].AcceptTimes+"/"+data[i].SubmissionTimes +"</td>");
 					        // $("#J_TbData").append($trTemp);
 					        $trTemp.appendTo("#ProblemList");
@@ -117,4 +120,13 @@ function NextPage(){
 function SeeProblem(pid){
 	var url = "ProblemPage.html?ProblemId=" + pid;
 	window.location.href = url;
+}
+
+function GetPercent(num, total) {
+    num = parseFloat(num);
+    total = parseFloat(total);
+    if (isNaN(num) || isNaN(total)) {
+        return "-";
+    }
+    return total <= 0 ? "0%" : (Math.round(num / total * 10000) / 100.00)+"%";
 }

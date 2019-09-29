@@ -47,9 +47,8 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workInfo  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workOwner  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'<a ><span class="delete see_user glyphicon glyphicon-user" style="cursor:pointer;margin-left:15px"></span></a>'
+			        		'<a ><span class="delete see_user glyphicon glyphicon-user" style="cursor:pointer;margin-left:30%"></span></a>'
 			        		+'<a ><span class="delete see_pro glyphicon glyphicon-inbox" style="cursor:pointer;margin-left:20px"></span></a>'
-			        		+'<a ><span class="delete see_work glyphicon glyphicon-list-alt" style="cursor:pointer;margin-left:20px" ></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
                     $trTemp.appendTo("#KnowList");
@@ -89,9 +88,8 @@ function PrevPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workInfo  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workOwner  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a ><span class="delete see_user glyphicon glyphicon-user" style="cursor:pointer;margin-left:15px"></span></a>'
-	    			        		+'<a ><span class="delete work glyphicon glyphicon-inbox" style="cursor:pointer;margin-left:20px"></span></a>'
-	    			        		+'<a ><span class="delete see_work glyphicon glyphicon-list-alt" style="cursor:pointer;margin-left:20px" ></span></a>'
+	    			        		'<a ><span class="delete see_user glyphicon glyphicon-user" style="cursor:pointer;margin-left:30%"></span></a>'
+	    			        		+'<a ><span class="delete see_pro glyphicon glyphicon-inbox" style="cursor:pointer;margin-left:20px"></span></a>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
@@ -130,9 +128,8 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workInfo  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workOwner  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a ><span class="delete see_user glyphicon glyphicon-user" style="cursor:pointer;margin-left:15px"></span></a>'
-	    			        		+'<a ><span class="delete work glyphicon glyphicon-inbox" style="cursor:pointer;margin-left:20px"></span></a>'
-	    			        		+'<a ><span class="delete see_work glyphicon glyphicon-list-alt" style="cursor:pointer;margin-left:20px" ></span></a>'
+	    			        		'<a ><span class="delete see_user glyphicon glyphicon-user" style="cursor:pointer;margin-left:30%"></span></a>'
+	    			        		+'<a ><span class="delete see_pro glyphicon glyphicon-inbox" style="cursor:pointer;margin-left:20px"></span></a>'
 	    			        		+"</td>");
 	                        // $("#J_TbData").append($trTemp);
 	                        $trTemp.appendTo("#KnowList");
