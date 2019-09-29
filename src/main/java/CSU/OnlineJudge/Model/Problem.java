@@ -64,6 +64,9 @@ public class Problem {
 	@Column(name="problem_output")
 	private String ProblemOutput; // 题目输出
 	
+	@Column(name="problem_server")
+	private int ServerErrorTimes; // 题目输出
+	
 	public int getProblemId() {
 		return ProblemId;
 	}
@@ -76,12 +79,7 @@ public class Problem {
 	public void setProblemName(String problemName) {
 		ProblemName = problemName;
 	}
-/*	public Blob getProblemInfo() {
-		return ProblemInfo;
-	}
-	public void setProblemInfo(Blob problemInfo) {
-		ProblemInfo = problemInfo;
-	}*/
+
 	
 	public String getProblemHint() {
 		return ProblemHint;
@@ -89,84 +87,98 @@ public class Problem {
 	public String getProblemInfo() {
 		return ProblemInfo;
 	}
+	
 	public void setProblemInfo(String problemInfo) {
 		ProblemInfo = problemInfo;
 	}
 	public void setProblemHint(String problemHint) {
 		ProblemHint = problemHint;
 	}
+	
 	public int getProblemMemory() {
 		return ProblemMemory;
 	}
 	public void setProblemMemory(int problemMemory) {
 		ProblemMemory = problemMemory;
 	}
+	
 	public int getProblemTimeLimit() {
 		return ProblemTimeLimit;
 	}
 	public void setProblemTimeLimit(int problemTimeLimit) {
 		ProblemTimeLimit = problemTimeLimit;
 	}
+	
 	public int getProblemDegree() {
 		return ProblemDegree;
 	}
 	public void setProblemDegree(int problemDegree) {
 		ProblemDegree = problemDegree;
 	}
+	
 	public int getWrongAnswerTimes() {
 		return WrongAnswerTimes;
 	}
 	public void setWrongAnswerTimes(int wrongAnswerTimes) {
 		WrongAnswerTimes = wrongAnswerTimes;
 	}
+	
 	public int getTimeLimitTimes() {
 		return TimeLimitTimes;
 	}
 	public void setTimeLimitTimes(int timeLimitTimes) {
 		TimeLimitTimes = timeLimitTimes;
 	}
+	
 	public int getRuntimeErrorTimes() {
 		return RuntimeErrorTimes;
 	}
 	public void setRuntimeErrorTimes(int runtimeErrorTimes) {
 		RuntimeErrorTimes = runtimeErrorTimes;
 	}
+	
 	public int getCompileErrorTimes() {
 		return CompileErrorTimes;
 	}
 	public void setCompileErrorTimes(int compileErrorTimes) {
 		CompileErrorTimes = compileErrorTimes;
 	}
+	
 	public int getAcceptTimes() {
 		return AcceptTimes;
 	}
 	public void setAcceptTimes(int acceptTimes) {
 		AcceptTimes = acceptTimes;
 	}
+	
 	public String getProblemPeople() {
 		return ProblemPeople;
 	}
 	public void setProblemPeople(String problemPeople) {
 		ProblemPeople = problemPeople;
 	}
+	
 	public int getPublicOrNot() {
 		return PublicOrNot;
 	}
 	public void setPublicOrNot(int publicOrNot) {
 		PublicOrNot = publicOrNot;
 	}
+	
 	public int getSubmissionTimes() {
 		return SubmissionTimes;
 	}
 	public void setSubmissionTimes(int submissionTimes) {
 		SubmissionTimes = submissionTimes;
 	}
+	
 	public String getProblemInput() {
 		return ProblemInput;
 	}
 	public void setProblemInput(String problemInput) {
 		ProblemInput = problemInput;
 	}
+	
 	public String getProblemOutput() {
 		return ProblemOutput;
 	}
@@ -174,6 +186,12 @@ public class Problem {
 		ProblemOutput = problemOutput;
 	}
 	
+	public int getServerErrorTimes() {
+		return ServerErrorTimes;
+	}
+	public void setServerErrorTimes(int serverErrorTimes) {
+		ServerErrorTimes = serverErrorTimes;
+	}
 	
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
@@ -194,6 +212,7 @@ public class Problem {
 		jo.put("PublicOrNot", this.PublicOrNot);
 		jo.put("ProblemInput", this.ProblemInput);
 		jo.put("ProblemOutput", this.ProblemOutput);
+		jo.put("ServerErrorTimes", this.ServerErrorTimes);
 		return jo;
 	}
 	

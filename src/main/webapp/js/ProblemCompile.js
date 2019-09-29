@@ -45,10 +45,12 @@ $(document).ready(function(){
     
     $("#saveserver").click(function(){
     	var val = $('input[name="code"]:checked').val(); 
+    	var name = val.split(".");
     	//alert(val);
     	for(var i = 0; i <array.length; i ++){
     		//console.log(array);
-    		if(array[i].key == val){
+    		if(array[i].key == name[0]){
+    			//alert(val);
     			//console.log(array[i]);
     			$.post(
     					"AddCode.action",

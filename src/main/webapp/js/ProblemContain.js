@@ -67,6 +67,22 @@ $(function(){
 	
 });
 
+$(function(){
+	$.post(
+			"QueryInCase.action",
+			{
+				problem_id:pid,
+			}, 
+			function(data) {
+				var datas = JSON.parse(data);
+				//console.log(datas);
+				$("#example_input").append(datas[0].caseInput);
+				$("#example_output").append(datas[0].caseOutput);
+			}
+	);
+	
+});
+
 
 $(function(){
 	

@@ -165,6 +165,55 @@ public class SubmissionAction extends ActionSupport{
 		JSONObject result_ja = JSONObject.fromObject(result_str);
 		String result = result_ja.getString("result");
 		
+		if(result.equals("AC")) {
+			int num = problem.getSubmissionTimes();
+			int re = problem.getAcceptTimes();
+			num ++;
+			re ++;
+			problem.setSubmissionTimes(num);
+			problem.setAcceptTimes(re);
+		}
+		else if(result.equals("WA")) {
+			int num = problem.getSubmissionTimes();
+			int re = problem.getWrongAnswerTimes();
+			num ++;
+			re ++;
+			problem.setSubmissionTimes(num);
+			problem.setWrongAnswerTimes(re);
+		}
+		else if(result.equals("CE")) {
+			int num = problem.getSubmissionTimes();
+			int re = problem.getCompileErrorTimes();
+			num ++;
+			re ++;
+			problem.setSubmissionTimes(num);
+			problem.setCompileErrorTimes(re);
+		}
+		else if(result.equals("RTE")) {
+			int num = problem.getSubmissionTimes();
+			int re = problem.getRuntimeErrorTimes();
+			num ++;
+			re ++;
+			problem.setSubmissionTimes(num);
+			problem.setRuntimeErrorTimes(re);
+		}
+		else if(result.equals("TLE")) {
+			int num = problem.getSubmissionTimes();
+			int re = problem.getTimeLimitTimes();
+			num ++;
+			re ++;
+			problem.setSubmissionTimes(num);
+			problem.setTimeLimitTimes(re);
+		}
+		else if(result.equals("SE")) {
+			int num = problem.getSubmissionTimes();
+			int re = problem.getServerErrorTimes();
+			num ++;
+			re ++;
+			problem.setSubmissionTimes(num);
+			problem.setServerErrorTimes(re);
+		}
+		
 		JSONObject jo = new JSONObject();
 		
 		if(result.equals("SE")) {
