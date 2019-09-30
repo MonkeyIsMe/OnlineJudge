@@ -27,13 +27,13 @@
 	<div class="layui-input-inline myform">
            <label class="layui-input-inline">考试/作业开始时间</label>
            <div class="layui-input-block">
-                <input type="text" class="layui-input" id="add_begin">
+                <input type="text" class="layui-input" id="add_begin" class="layui-input">
           </div>
    	</div>
    	 <div class="layui-input-inline myform">
            <label class="layui-input-inline">考试/作业结束时间</label>
            <div class="layui-input-block">
-                <input type="text" class="layui-input" id="add_end">
+                <input type="text" class="layui-input" id="add_end" class="layui-input">
           </div>
    	</div>
    	 <div class="layui-input-inline myform">
@@ -60,10 +60,30 @@
 
 
 
-
   
 </body>
 <script type="text/javascript">
+
+layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  
+	  //执行一个laydate实例
+	  laydate.render({
+	    elem: '#add_begin' //指定元素
+	    	,type: 'datetime'
+	  });
+	});
+	
+layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  
+	  //执行一个laydate实例
+	  laydate.render({
+	    elem: '#add_end' //指定元素
+	    	,type: 'datetime'
+	  });
+	});
+
 layui.use('form', function(){
 	  var form = layui.form;
 	  

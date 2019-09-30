@@ -21,6 +21,7 @@ import CSU.OnlineJudge.Service.WorkCourseService;
 import CSU.OnlineJudge.Service.WorkProblemService;
 import CSU.OnlineJudge.Service.WorkService;
 import CSU.OnlineJudge.Service.Impl.WorkServiceImpl;
+import CSU.OnlineJudge.Utils.DateUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -82,31 +83,21 @@ public class WorkAction extends ActionSupport{
 		String work_createtime = request.getParameter("work_createtime");
 		String work_info = request.getParameter("work_info");
 		String work_flag = request.getParameter("work_flag");
-		//String class_id = request.getParameter("class_id");
 		String work_onwer = request.getParameter("work_onwer");
-		//String problem_info = request.getParameter("problem_info");
-		
-		//int cid = Integer.valueOf(class_id);
-		//JSONArray ja = JSONArray.fromObject(problem_info);
+
+		DateUtil du = new DateUtil();
 		
 		work.setWorkName(work_name);
 		work.setWorkInfo(work_info);
 		work.setWorkFlag(work_flag);
-		//work.setClassId(cid);
 		work.setWorkOwner(work_onwer);
+		work.setWorkCreatTime(du.GetNowDate());
 		work.setWorkBeginTime(work_starttime);
 		work.setWorkEndTime(work_endtime);
 		work.setWorkCreatTime(work_createtime);
 		
 		int wid = WorkService.addWork(work);
-/*		for(int i = 0; i < ja.size(); i ++) {
-			JSONObject jo = ja.getJSONObject(i);
-			String problem_id = jo.getString("problem_id");
-			int pid = Integer.valueOf(problem_id);
-			wp.setWorkId(wid);
-			wp.setProblemId(pid);
-			WorkProblemService.addWorkProblem(wp);
-		}*/
+
 		
 		JSONObject jo = new JSONObject();
 		jo.put("WorkId", wid);
