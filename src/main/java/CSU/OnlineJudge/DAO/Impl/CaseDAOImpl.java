@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import CSU.OnlineJudge.DAO.CaseDAO;
 import CSU.OnlineJudge.Model.Case;
-import CSU.OnlineJudge.Utils.HibernateUtil;
 
 @Transactional
 public class CaseDAOImpl extends HibernateDaoSupport implements CaseDAO{

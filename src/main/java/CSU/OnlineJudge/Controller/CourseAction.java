@@ -12,6 +12,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import CSU.OnlineJudge.Model.Course;
 import CSU.OnlineJudge.Service.CourseService;
 import CSU.OnlineJudge.Service.Impl.CourseServiceImpl;
+import CSU.OnlineJudge.Utils.HtmlUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -37,7 +38,7 @@ public class CourseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String course_name = request.getParameter("course_name");
 		String course_info = request.getParameter("course_info");
 		String course_time = request.getParameter("course_time");
@@ -61,7 +62,7 @@ public class CourseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String course_id = request.getParameter("course_id");
 		
 		if(course_id == null || course_id == "" || course_id.equals("")) {
@@ -94,7 +95,7 @@ public class CourseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String course_name = request.getParameter("course_name");
 		String course_info = request.getParameter("course_info");
 		String course_time = request.getParameter("course_time");
@@ -136,7 +137,7 @@ public class CourseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String course_id = request.getParameter("course_id");
 		
 		if(course_id == null || course_id == "" || course_id.equals("")) {
@@ -172,7 +173,7 @@ public class CourseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		int cnt = CourseService.CountCourse();
 		
 		JSONObject jo = new JSONObject();
@@ -192,7 +193,7 @@ public class CourseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
@@ -216,6 +217,9 @@ public class CourseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
+		
+		HtmlUtil hu = new HtmlUtil();
+		if(hu.IsLogin() == false ) return ;
 		
 		List<Course> CourseList = CourseService.QueryAllCourse();
 		

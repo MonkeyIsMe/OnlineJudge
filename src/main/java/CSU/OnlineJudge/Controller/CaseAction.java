@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import CSU.OnlineJudge.Model.Case;
 import CSU.OnlineJudge.Service.CaseService;
 import CSU.OnlineJudge.Service.Impl.CaseServiceImpl;
+import CSU.OnlineJudge.Utils.HtmlUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -39,7 +40,7 @@ public class CaseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String problem_id = request.getParameter("problem_id");
 		String case_input = request.getParameter("case_input");
 		String case_output = request.getParameter("case_output");
@@ -70,7 +71,7 @@ public class CaseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String case_info = request.getParameter("case_info");
 		String problem_id = request.getParameter("problem_id");
 		
@@ -110,7 +111,7 @@ public class CaseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String case_id = request.getParameter("case_id");
 		
 		if(case_id == null || case_id == "" || case_id.equals("")) {
@@ -143,7 +144,7 @@ public class CaseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String case_id = request.getParameter("case_id");
 		String case_flag = request.getParameter("case_flag");
 		String problem_id = request.getParameter("problem_id");
@@ -192,7 +193,7 @@ public class CaseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String problem_id = request.getParameter("problem_id");
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
@@ -223,7 +224,7 @@ public class CaseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String problem_id = request.getParameter("problem_id");
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
@@ -254,7 +255,7 @@ public class CaseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String problem_id = request.getParameter("problem_id");
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {

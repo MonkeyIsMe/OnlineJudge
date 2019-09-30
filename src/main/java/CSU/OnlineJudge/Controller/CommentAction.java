@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import CSU.OnlineJudge.Model.Comment;
 import CSU.OnlineJudge.Service.CommentService;
 import CSU.OnlineJudge.Utils.DateUtil;
+import CSU.OnlineJudge.Utils.HtmlUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -39,7 +40,7 @@ public class CommentAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		DateUtil du = new DateUtil();
-		
+
 		String comment_info = request.getParameter("comment_info");
 		String answer_id = request.getParameter("answer_id");
 		String user_account = request.getParameter("user_account");
@@ -71,7 +72,7 @@ public class CommentAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String comment_id = request.getParameter("comment_id");
 		
 		if(comment_id == null || comment_id == "" || comment_id.equals("")) {
@@ -105,7 +106,7 @@ public class CommentAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String comment_id = request.getParameter("comment_id");
 		
 		if(comment_id == null || comment_id == "" || comment_id.equals("")) {
@@ -143,7 +144,7 @@ public class CommentAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		String answer_id = request.getParameter("answer_id");
@@ -178,7 +179,7 @@ public class CommentAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
@@ -204,7 +205,7 @@ public class CommentAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		int count = CommentService.CountComment();
 		
 		JSONObject jo = new JSONObject();
@@ -226,7 +227,7 @@ public class CommentAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String answer_id = request.getParameter("answer_id");
 		
 		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
@@ -289,7 +290,7 @@ public class CommentAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String answer_id = request.getParameter("answer_id");
 		
 		if(answer_id == null || answer_id == "" || answer_id.equals("")) {

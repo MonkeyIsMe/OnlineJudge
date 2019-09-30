@@ -14,6 +14,7 @@ import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Service.AnswerService;
 import CSU.OnlineJudge.Service.ProblemService;
 import CSU.OnlineJudge.Utils.DateUtil;
+import CSU.OnlineJudge.Utils.HtmlUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -84,7 +85,7 @@ public class AnswerAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String answer_id = request.getParameter("answer_id");
 		
 		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
@@ -119,7 +120,7 @@ public class AnswerAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String answer_id = request.getParameter("answer_id");
 		
 		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
@@ -157,7 +158,7 @@ public class AnswerAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		String problem_id = request.getParameter("problem_id");
@@ -192,7 +193,7 @@ public class AnswerAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
@@ -218,7 +219,7 @@ public class AnswerAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		int count = AnswerService.CountAnswer();
 		
 		JSONObject jo = new JSONObject();
@@ -239,7 +240,7 @@ public class AnswerAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String problem_id = request.getParameter("problem_id");
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
@@ -271,7 +272,7 @@ public class AnswerAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String problem_id = request.getParameter("problem_id");
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {

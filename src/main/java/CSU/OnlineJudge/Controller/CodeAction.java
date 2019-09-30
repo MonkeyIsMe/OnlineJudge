@@ -14,6 +14,7 @@ import CSU.OnlineJudge.Model.Code;
 import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Service.CodeService;
 import CSU.OnlineJudge.Service.UserService;
+import CSU.OnlineJudge.Utils.HtmlUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.processors.JsonBeanProcessor;
@@ -50,7 +51,7 @@ public class CodeAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String code_name = request.getParameter("code_name");
 		String code_info = request.getParameter("code_info");
 		//String user_account = request.getParameter("user_account");
@@ -82,7 +83,7 @@ public class CodeAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String code_id = request.getParameter("code_id");
 		
 		if(code_id == null || code_id == "" || code_id.equals("")) {
@@ -116,7 +117,7 @@ public class CodeAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String code_id = request.getParameter("code_id");
 		String code_name = request.getParameter("code_name");
 		String code_info = request.getParameter("code_info");
@@ -155,7 +156,7 @@ public class CodeAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String user_id = request.getParameter("user_id");
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
@@ -193,7 +194,7 @@ public class CodeAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String user_id = request.getParameter("user_id");
 		
 		if(user_id == null || user_id == "" || user_id.equals("")) {
@@ -224,7 +225,7 @@ public class CodeAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String user_id = request.getParameter("user_id");
 		
 		if(user_id == null || user_id == "" || user_id.equals("")) {

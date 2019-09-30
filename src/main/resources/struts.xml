@@ -120,6 +120,8 @@
 			</action>
 			<action name="RecieveMessage" class="UserAction" method="RecieveMessage" >
 			</action>
+			<action name="AddMutiplyUser" class="UserAction" method="AddMutiplyUser" >
+			</action>
 			
 			<!-- 样例 -->
 			<action name="AddCase" class="CaseAction" method="AddCase" >

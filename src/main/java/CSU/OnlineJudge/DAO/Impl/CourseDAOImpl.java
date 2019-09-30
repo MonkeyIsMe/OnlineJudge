@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import CSU.OnlineJudge.DAO.CourseDAO;
 import CSU.OnlineJudge.Model.Course;
 import CSU.OnlineJudge.Model.Problem;
-import CSU.OnlineJudge.Utils.HibernateUtil;
 
 @Transactional
 public class CourseDAOImpl extends HibernateDaoSupport implements CourseDAO{

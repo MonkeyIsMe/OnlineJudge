@@ -7,6 +7,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import CSU.OnlineJudge.Model.Case;
 import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.Submission;
@@ -144,4 +148,6 @@ public class JudgeUtil {
 		return jo.toString();
 	}
 	
+	
+
 }

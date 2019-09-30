@@ -19,6 +19,7 @@ import CSU.OnlineJudge.Service.CourseUserService;
 import CSU.OnlineJudge.Service.UserService;
 import CSU.OnlineJudge.Service.Impl.CourseServiceImpl;
 import CSU.OnlineJudge.Service.Impl.CourseUserServiceImpl;
+import CSU.OnlineJudge.Utils.HtmlUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -64,8 +65,7 @@ public class CourseUserAction extends ActionSupport{
 		
 		//返回结果
 		PrintWriter out = null;
-		out = ServletActionContext.getResponse().getWriter();
-		
+		out = ServletActionContext.getResponse().getWriter();	
 		
 		HttpSession session = request.getSession();
 		String user_account = (String) session.getAttribute("user_account");
@@ -142,7 +142,6 @@ public class CourseUserAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
 		
 		String user_id = request.getParameter("user_id");
 		
@@ -226,7 +225,7 @@ public class CourseUserAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String user_account = request.getParameter("user_account");
 		String course_id = request.getParameter("course_id");
 		String user_id = request.getParameter("user_id");
@@ -264,7 +263,7 @@ public class CourseUserAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String courseuser_id = request.getParameter("courseuser_id");
 		
 		if(courseuser_id == null || courseuser_id == "" || courseuser_id.equals("")) {
@@ -297,7 +296,7 @@ public class CourseUserAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-		
+
 		String user_id = request.getParameter("user_id");
 		String course_info = request.getParameter("course_info");
 		
