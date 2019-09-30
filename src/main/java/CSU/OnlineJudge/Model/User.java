@@ -50,10 +50,10 @@ public class User {
 	private String UserName; //名字
 	
 	@Column(name="user_password")
-	private String UserPassword; //名字
+	private String UserPassword; //密码
 	
-	
-	
+	@Column(name="user_role")
+	private String UserRole; //权限
 	
 	public int getUserId() {
 		return UserId;
@@ -150,6 +150,14 @@ public class User {
 	public void setUserPassword(String userPassword) {
 		UserPassword = userPassword;
 	}
+	
+	public String getUserRole() {
+		return UserRole;
+	}
+
+	public void setUserRole(String userRole) {
+		UserRole = userRole;
+	}
 
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
@@ -165,6 +173,7 @@ public class User {
 		jo.put("SubmissionTimes", this.SubmissionTimes);
 		jo.put("UserName", this.UserName);
 		jo.put("UserPassword", this.UserPassword);
+		jo.put("UserRole", this.UserRole);
 		return jo;
 	}
 	

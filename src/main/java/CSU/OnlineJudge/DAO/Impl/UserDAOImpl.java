@@ -5,14 +5,12 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
 import CSU.OnlineJudge.DAO.UserDAO;
 import CSU.OnlineJudge.Model.User;
-import CSU.OnlineJudge.Utils.HibernateUtil;
 
 @Transactional
 public class UserDAOImpl extends HibernateDaoSupport implements UserDAO{
@@ -89,6 +87,25 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO{
 				List<User> list = query.list();
 				return list;
 			}
+		});
+	}
+
+	public Object AddMutiplyUser(final List<User> UserList) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			public Object doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				for(int i = 0; i < UserList.size(); i ++) {
+					session.save(UserList.get(i));
+                    if (i % 50 == 0) {  
+                        session.flush();  
+                        session.clear();  
+                    }  
+				}
+				return null;
+			}
+			
 		});
 	}
 

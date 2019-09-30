@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -12,6 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Service.UserService;
 import CSU.OnlineJudge.Service.Impl.UserServiceImpl;
+import CSU.OnlineJudge.Utils.DesUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -358,4 +360,91 @@ public class UserAction extends ActionSupport{
         out.close();
 		
 	}
+	
+	//接收登录信息
+	public void RecieveMessage() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String info = request.getParameter("token");
+		
+		DesUtil du = new DesUtil();
+		String msg = du.strDec(info, "csu", "vlab", "214");
+		
+		JSONObject jo = JSONObject.fromObject(msg);
+		String name = jo.getString("name");
+		String useraccount = jo.getString("username");
+		String role = jo.getString("role");
+		
+		user = UserService.QueryUserByName(useraccount);
+		if(user == null) {
+			User u = new User();
+			u.setUserName(name);
+			u.setUserRole(role);
+			u.setUserAccount(useraccount);
+			UserService.addUser(u);
+		}
+		
+		request.getSession().setAttribute("username", name);
+		request.getSession().setAttribute("useraccount", useraccount);
+		request.getSession().setAttribute("role", role);
+		if(role.equals("1")) {
+			response.sendRedirect("http://localhost:8080/OnlineJudge/manage.html");
+		}
+		else {
+			response.sendRedirect("http://localhost:8080/OnlineJudge/Main.html");
+		}
+	}
+	
+	//从excel读取用户信息
+	public void AddMutiplyUser() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String user_info = request.getParameter("user_info");
+		
+		JSONArray ja = JSONArray.fromObject(user_info);
+		JSONArray add_ja = new JSONArray();
+		
+		for(int i = 0; i < ja.size(); i ++) {
+			
+			JSONObject jo = ja.getJSONObject(i);
+			
+			String user_name = jo.getString("姓名");
+			String user_account = jo.getString("学号");
+			String user_role = jo.getString("角色");
+			String user_class = jo.getString("班级");
+			String user_oinfo = jo.getString("备注信息");
+			
+			String role = "2";
+			
+			if(user_role.equals("老师"))  role = "1";
+			
+			
+			user.setUserName(user_name);
+			user.setUserAccount(user_account);
+			user.setUserRole(role);
+			user.setStudentClassroom(user_class);
+			user.setUserInfo(user_oinfo);
+			
+			JSONObject add_jo = JSONObject.fromObject(user);
+			add_ja.add(add_jo);
+		}
+		
+		List<User> UserList = JSONArray.toList(add_ja,User.class);
+		UserService.AddMutiplyUser(UserList);
+		
+	}
+	
 }

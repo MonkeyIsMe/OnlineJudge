@@ -65,4 +65,9 @@ public class UserServiceImpl implements UserService{
 		return ud.QueryAcceptNumber(row, PageSize);
 	}
 
+	public Object AddMutiplyUser(List<User> UserList) {
+		// TODO Auto-generated method stub
+		return ud.AddMutiplyUser(UserList);
+	}
+
 }

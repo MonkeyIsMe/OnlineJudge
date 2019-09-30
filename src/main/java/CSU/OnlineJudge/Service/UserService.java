@@ -22,4 +22,6 @@ public interface UserService {
 	
 	public List<User> QueryAcceptNumber(int row,int PageSize);
 	
+	public Object AddMutiplyUser(List<User> UserList);
+	
 }
