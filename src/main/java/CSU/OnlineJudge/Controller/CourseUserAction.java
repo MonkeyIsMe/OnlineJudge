@@ -311,14 +311,11 @@ public class CourseUserAction extends ActionSupport{
 		int uid = Integer.valueOf(user_id);
 		
 		List<CourseUser> delete_list = CourseUserService.QueryCourseUserByUserID(uid);
-		System.out.println("delete_list = " + delete_list.size());
 		CourseUserService.DeleteMutiplyCourseUser(delete_list);
 		
 		List<CourseUser> list = CourseUserService.QueryCourseUserByUserID(uid);
-		System.out.println("list = " + list.size());
 		
 		JSONArray ja = JSONArray.fromObject(course_info);
-		System.out.println("course_info = " + course_info);
 		JSONArray add_ja = new JSONArray();
 		for(int i = 0; i < ja.size(); i ++) {
 			JSONObject jo = ja.getJSONObject(i);
@@ -335,4 +332,53 @@ public class CourseUserAction extends ActionSupport{
 		CourseUserService.AddMutiplyCourseUser(cu_list);
 		
 	}
+	
+	//excel批量导入学生课程信息
+	public void AddMutiplyCourseUser() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+
+		String course_id = request.getParameter("course_id");
+		String user_info = request.getParameter("user_info");
+		
+		
+		if(course_id == null || course_id == "" || course_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int cid = Integer.valueOf(course_id);
+		
+		JSONArray ja = JSONArray.fromObject(user_info);
+		JSONArray add_ja = new JSONArray();
+		
+		for(int i = 0; i < ja.size(); i ++) {
+			
+			JSONObject jo = ja.getJSONObject(i);
+			String user_account = jo.getString("学号");
+			
+			user = UserService.QueryUserByName(user_account);
+			if(user == null) continue;
+			int uid = user.getUserId();
+			CourseUser new_cu = new CourseUser();
+			
+			new_cu.setCourseId(cid);
+			new_cu.setUserAccount(user_account);
+			new_cu.setCourseUserId(uid);
+			
+			add_ja.add(new_cu);
+			
+		}
+		
+		List<CourseUser> cu_list = JSONArray.toList(add_ja,User.class);
+		CourseUserService.AddMutiplyCourseUser(cu_list);
+	}
+	
 }

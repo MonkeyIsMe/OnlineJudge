@@ -27,6 +27,11 @@
 <script type="text/javascript">
 var user_str;
 
+var url = decodeURI(window.location.href);
+
+var argsIndex = url .split("?CourseId=");
+var cid = argsIndex[1];
+
 $('#excel-file').change(function(e) {
     var files = e.target.files;
 
@@ -66,10 +71,7 @@ $('#excel-file').change(function(e) {
                 ,page: true //开启分页
                 ,cols: [[
                     {field:'姓名', title: '姓名'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                    ,{field:'备注信息', title: '备注信息'}
-                    ,{field:'班级', title: '班级'}
                     ,{field:'学号', title: '学号'}
-                    ,{field:'角色', title: '角色'}
                 ]]
             });
         });

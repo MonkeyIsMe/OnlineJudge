@@ -47,8 +47,9 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseInfo  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].courseTeacher  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'    <a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30px" data-toggle="modal" data-target="#update_Modal"></span></a>    '
-			        		+'  <a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>    '
+			        		'<a id="pic"><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30%" data-toggle="modal" data-target="#update_Modal"></span></a>'
+			        		+'<a id="pic"><span  class="delete add_stu glyphicon glyphicon-book" style="cursor:pointer;margin-left:20px" ></span></a>'
+			        		+'<a id="pic"><span  class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
                     $trTemp.appendTo("#KnowList");
@@ -154,6 +155,20 @@ $(document).ready(function(){
 	    $("#update_teacher").val(cteacher);
 	    $("#update_time").val(ctime);	    
 	  });
+	  
+	  
+	  $("#myTable").on('click','.add_stu',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    
+		    cid = col1;
+		    
+		    var url = "AddStudentCourse.html?CourseId=" + cid;
+			window.location.replace(url);
+		    
+		  });
+	  
 	  
 		$("#del_know").click(function(){
 			//console.log(cid);
