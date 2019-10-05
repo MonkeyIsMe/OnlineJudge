@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -70,11 +71,19 @@ public class SubmissionAction extends ActionSupport{
 		
 		DateUtil du = new DateUtil();
 		
-		String user_account = request.getParameter("user_account");
 		String submission_type = request.getParameter("submission_type");
 		String problem_id = request.getParameter("problem_id");
 		String submission_code = request.getParameter("submission_code");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 

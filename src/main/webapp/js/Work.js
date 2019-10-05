@@ -20,6 +20,26 @@ $(function(){
 });
 
 $(function(){
+	$.ajaxSettings.async = false;
+	$.post(
+			"QueryAllCourse.action",
+			{
+			},
+			function(data){
+				var data = JSON.parse(data);
+				//console.log(data);
+		           for(var i=0 ;i<data.length;i++){ //几个人有几个checkbox
+		        	   $("#allTime").append(
+				                "<span>"+
+				                    "<input  type='checkbox' class='time' name='course' value='"+data[i].courseId+"' title='"+data[i].courseName+"'>" 
+				                 +"</span>");
+		           }
+			}
+			);
+	
+});
+
+$(function(){
 	$.post(
 			"QueryAllWork.action",
 			{
@@ -152,7 +172,13 @@ $(document).ready(function(){
 		var end = $("#add_end").val();
 		var info = $("#add_info").val(); 
 		var type = $("input[name='work']:checked").val();
-		
+  		var json =[];
+		$('input[name="course"]:checked').each(function(){
+			var obj = {};
+			obj.courseId = $(this).val();
+			json.push(obj);//向数组中添加元素  
+			});
+		var jsonText = JSON.stringify(json);
 		var flag = 0;
 		if(type == "考试") flag = 1;
 		
@@ -174,9 +200,20 @@ $(document).ready(function(){
 						var WorkId = data.WorkId;
 						//console.log(data);
 						if(WorkId != null){
-							alert("添加成功！");
-						    var url = "AddProblemForWork.html?WorkId=" + WorkId;
-						    window.location.replace(url);
+							
+							$.post(
+									"AddWorkForCourse.action",
+									{
+										work_id:wid,
+										course_info:jsonText,
+									},
+									function(data){
+										alert("添加成功！");
+									    var url = "AddProblemForWork.html?WorkId=" + WorkId;
+									    window.location.replace(url);
+									}
+									);
+
 						}
 						else{
 							alert("添加失败!");

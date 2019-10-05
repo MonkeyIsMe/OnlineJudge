@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -43,7 +44,16 @@ public class CommentAction extends ActionSupport{
 
 		String comment_info = request.getParameter("comment_info");
 		String answer_id = request.getParameter("answer_id");
-		String user_account = request.getParameter("user_account");
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
 			out.println("Fail");

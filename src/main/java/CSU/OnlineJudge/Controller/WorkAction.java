@@ -80,13 +80,12 @@ public class WorkAction extends ActionSupport{
 		String work_name = request.getParameter("work_name");
 		String work_starttime = request.getParameter("work_starttime");
 		String work_endtime = request.getParameter("work_endtime");
-		String work_createtime = request.getParameter("work_createtime");
 		String work_info = request.getParameter("work_info");
 		String work_flag = request.getParameter("work_flag");
 		String work_onwer = request.getParameter("work_onwer");
-
-		DateUtil du = new DateUtil();
 		
+		DateUtil du = new DateUtil();
+		String ct = du.GetNowDate();
 		work.setWorkName(work_name);
 		work.setWorkInfo(work_info);
 		work.setWorkFlag(work_flag);
@@ -94,7 +93,6 @@ public class WorkAction extends ActionSupport{
 		work.setWorkCreatTime(du.GetNowDate());
 		work.setWorkBeginTime(work_starttime);
 		work.setWorkEndTime(work_endtime);
-		work.setWorkCreatTime(work_createtime);
 		
 		int wid = WorkService.addWork(work);
 

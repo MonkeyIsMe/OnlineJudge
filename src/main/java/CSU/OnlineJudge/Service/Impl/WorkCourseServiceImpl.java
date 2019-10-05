@@ -52,4 +52,14 @@ public class WorkCourseServiceImpl implements WorkCourseService{
 		return wcd.QueryWorkCourseByWorkId(WorkId);
 	}
 
+	public Object AddMutiplyWorkCourse(List<WorkCourse> wc) {
+		// TODO Auto-generated method stub
+		return wcd.addMutiplyWorkCourse(wc);
+	}
+
+	public Object DeleteMutiplyWorkCourse(List<WorkCourse> wc) {
+		// TODO Auto-generated method stub
+		return wcd.deleteMutiplyWorkCourse(wc);
+	}
+
 }

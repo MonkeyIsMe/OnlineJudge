@@ -9,12 +9,14 @@ import CSU.OnlineJudge.DAO.KnowledgeDAO;
 import CSU.OnlineJudge.DAO.ProblemDAO;
 import CSU.OnlineJudge.DAO.SubmissionDAO;
 import CSU.OnlineJudge.DAO.UserDAO;
+import CSU.OnlineJudge.DAO.WorkCourseDAO;
 import CSU.OnlineJudge.DAO.WorkDAO;
 import CSU.OnlineJudge.DAO.WorkUserRecordDAO;
 import CSU.OnlineJudge.Model.Case;
 import CSU.OnlineJudge.Model.Problem;
 import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Model.Work;
+import CSU.OnlineJudge.Model.WorkCourse;
 import CSU.OnlineJudge.Model.WorkProblem;
 import CSU.OnlineJudge.Service.CaseService;
 import CSU.OnlineJudge.Service.NoticeService;
@@ -69,6 +71,9 @@ public class TestSpring {
 	@Resource(name="CodeDAO")
 	private CodeDAO cod;
 	
+	@Resource(name="WorkCourseDAO")
+	private WorkCourseDAO wcd;
+	
 	@Resource(name="UserService")
 	private UserService us;
 	
@@ -77,6 +82,14 @@ public class TestSpring {
 	
 	@Resource(name="WorkProblemService")
 	private WorkProblemService wps;
+	
+	@Test
+	public void AddWorkCourse() {
+		WorkCourse wc = new WorkCourse();
+		wc.setCourseId(1);
+		wc.setWorkId(1);
+		wcd.addWorkCourse(wc);
+	}
 	
 	@Test
 	public void AddWorkProblem() {

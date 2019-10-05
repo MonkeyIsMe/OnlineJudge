@@ -17,4 +17,8 @@ public interface WorkCourseDAO {
 	public List<WorkCourse> QueryWorkCourseByClassId(int ClassId);
 	
 	public List<WorkCourse> QueryWorkCourseByWorkId(int WorkId);
+	
+	public Object addMutiplyWorkCourse(List<WorkCourse> wc);
+	
+	public Object deleteMutiplyWorkCourse(List<WorkCourse> wc);
 }

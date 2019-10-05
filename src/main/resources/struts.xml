@@ -286,7 +286,13 @@
 			</action>
 			<action name="QueryWorkUserByPageSize" class="WorkUserAction" method="QueryWorkUserByPageSize">
 			</action>
-
+			
+			<!-- 课程作业 -->
+			<action name="AddWorkForCourse" class="WorkCourseAction" method="AddWorkForCourse">
+			</action>
+			<action name="QueryCourseByWorkId" class="WorkCourseAction" method="QueryCourseByWorkId">
+			</action>
+			
 	</package>
 </struts>
 	

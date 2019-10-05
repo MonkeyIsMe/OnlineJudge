@@ -147,8 +147,6 @@ public class UserAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String user_id = request.getParameter("user_id");
-		//String user_account = "AC";
-		//int uid = Integer.valueOf(user_id);
 		
 		if(user_id == null || user_id == "" || user_id.equals("")) {
 			out.println("Fail");

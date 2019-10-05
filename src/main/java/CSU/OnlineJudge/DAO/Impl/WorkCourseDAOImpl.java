@@ -72,4 +72,45 @@ public class WorkCourseDAOImpl extends HibernateDaoSupport implements WorkCourse
 		});
 	}
 
+	public Object addMutiplyWorkCourse(final List<WorkCourse> wc) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			public Object doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				for(int i = 0; i < wc.size(); i ++) {
+					//System.out.println(wc.toString());
+					session.save(wc.get(i));
+					//System.out.println(cu.toString());
+                    if (i % 50 == 0) {  
+                        session.flush();  
+                        session.clear();  
+                    }  
+				}
+				return null;
+			}
+			
+		});
+	}
+
+	public Object deleteMutiplyWorkCourse(final List<WorkCourse> wc) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			public Object doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				for(int i = 0; i < wc.size(); i ++) {
+					session.delete(wc.get(i));
+					//System.out.println(cu.toString());
+                    if (i % 50 == 0) {  
+                        session.flush();  
+                        session.clear();  
+                    }  
+				}
+				return null;
+			}
+			
+		});
+	}
+
 }

@@ -18,4 +18,8 @@ public interface WorkCourseService {
 	
 	public List<WorkCourse> QueryWorkCourseByWorkId(int WorkId);
 	
+	public Object AddMutiplyWorkCourse(List<WorkCourse> wc);
+	
+	public Object DeleteMutiplyWorkCourse(List<WorkCourse> wc);
+	
 }

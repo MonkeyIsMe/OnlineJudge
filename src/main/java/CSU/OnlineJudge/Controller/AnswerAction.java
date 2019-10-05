@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -51,16 +52,25 @@ public class AnswerAction extends ActionSupport{
 		DateUtil du = new DateUtil();
 		
 		String answer_info = request.getParameter("answer_info");
-		String user_account = request.getParameter("user_account");
 		String answer_name = request.getParameter("answer_name");
 		String problem_id = request.getParameter("problem_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
 	        out.close();
 	        return ;
 		}
+
 		
 		int pid = Integer.valueOf(problem_id);
 		problem = ProblemService.QueryProblem(pid);

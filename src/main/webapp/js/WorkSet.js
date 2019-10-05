@@ -47,7 +47,7 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workInfo  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workOwner  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'<a ><span class="delete check glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:17px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+			        		'<a ><span class="delete check glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30%" data-toggle="modal" data-target="#update_Modal"></span></a>'
 			        		+'<a ><span class="delete work glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px"></span></a>'
 			        		+'<a ><span class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
@@ -89,7 +89,7 @@ function PrevPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workInfo  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workOwner  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a ><span class="delete check glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:17px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+	    			        		'<a ><span class="delete check glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30%" data-toggle="modal" data-target="#update_Modal"></span></a>'
 	    			        		+'<a ><span class="delete work glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px"></span></a>'
 	    			        		+'<a ><span class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");
@@ -130,7 +130,7 @@ function NextPage(){
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workInfo  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].workOwner  +"</td>");
 	    			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-	    			        		'<a ><span class="delete check glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:17px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+	    			        		'<a ><span class="delete check glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:30%" data-toggle="modal" data-target="#update_Modal"></span></a>'
 	    			        		+'<a ><span class="delete work glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px"></span></a>'
 	    			        		+'<a ><span class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 	    			        		+"</td>");

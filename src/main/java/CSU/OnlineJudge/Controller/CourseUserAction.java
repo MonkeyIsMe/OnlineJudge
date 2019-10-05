@@ -14,6 +14,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import CSU.OnlineJudge.Model.Course;
 import CSU.OnlineJudge.Model.CourseUser;
 import CSU.OnlineJudge.Model.User;
+import CSU.OnlineJudge.Model.WorkCourse;
 import CSU.OnlineJudge.Service.CourseService;
 import CSU.OnlineJudge.Service.CourseUserService;
 import CSU.OnlineJudge.Service.UserService;
@@ -69,6 +70,13 @@ public class CourseUserAction extends ActionSupport{
 		
 		HttpSession session = request.getSession();
 		String user_account = (String) session.getAttribute("user_account");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		List<CourseUser> CourseUserList = CourseUserService.QueryCourseUserByUserAccount(user_account);
 		JSONArray ja = new JSONArray();
@@ -215,6 +223,7 @@ public class CourseUserAction extends ActionSupport{
 		}
 		
 	}
+
 	
 	//添加学生课程关联
 	public void AddCourseUser() throws Exception{
@@ -226,10 +235,18 @@ public class CourseUserAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 
-		String user_account = request.getParameter("user_account");
 		String course_id = request.getParameter("course_id");
 		String user_id = request.getParameter("user_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(course_id == null || course_id == "" || course_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 

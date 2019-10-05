@@ -112,6 +112,10 @@
 		<property name="WorkRecordService" ref="WorkRecordService" ></property>
 		<property name="ProblemService" ref="ProblemService" ></property>
 	</bean>
+	<bean name="WorkCourseAction" class="CSU.OnlineJudge.Controller.WorkCourseAction" scope="prototype" >
+		<property name="WorkCourseService" ref="WorkCourseService" ></property>
+		<property name="WorkService" ref="WorkService" ></property>
+	</bean>
 	
 	<!-- service -->
  	<bean name="CaseService" class="CSU.OnlineJudge.Service.Impl.CaseServiceImpl" >

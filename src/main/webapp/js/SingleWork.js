@@ -210,6 +210,14 @@ $(document).ready(function(){
 		var work_info = $("#update_info").val();
 		var work_flag = $("input[type='radio']:checked").val();
 		
+  		var json =[];
+		$('input[name="course"]:checked').each(function(){
+			var obj = {};
+			obj.courseId = $(this).val();
+			json.push(obj);//向数组中添加元素  
+			});
+		var jsonText = JSON.stringify(json);
+		
 		var wflag = 0;
 		if(work_flag == "考试") wflag = 1;
 		
@@ -230,8 +238,20 @@ $(document).ready(function(){
 					function(data) {
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 						if(data == "Success"){
-							alert("更新成功！");
-							window.location.replace("ManagerWorkSet.html");
+							
+							$.post(
+									"AddWorkForCourse.action",
+									{
+										work_id:wid,
+										course_info:jsonText,
+									},
+									function(data){
+										alert("更新成功！");
+										window.location.replace("ManagerWorkSet.html");
+									    window.location.replace(url);
+									}
+									);
+							
 						}
 						else{
 							alert("更新失败!");
@@ -386,28 +406,42 @@ $(document).ready(function(){
 	})
 });
 
-
-
-function PrevPage(){
-
+$(function(){
 	$.ajaxSettings.async = false;
 	$.post(
-			"CountProblemByKnowledgeId.action",
+			"QueryAllCourse.action",
 			{
-				knowledge_id:select_know,
 			},
 			function(data){
 				var data = JSON.parse(data);
 				//console.log(data);
-				var sum = data.count;
-				count = Math.ceil(sum/15);
-				$("#TotalPage").html("");
-				$("#NowPage").html("");
-				var total = "共" + Math.ceil(sum/15) + "页";
-				$("#TotalPage").append(total);
-				$("#NowPage").append("，当前第" + row + "页");
+		           for(var i=0 ;i<data.length;i++){ //几个人有几个checkbox
+		        	   $("#allTime").append(
+				                "<span>"+
+				                    "<input  type='checkbox' class='time' name='course' value='"+data[i].courseId+"' title='"+data[i].courseName+"'>" 
+				                 +"</span>");
+		           }
 			}
 			);
+	
+	
+	$.post(
+			"QueryCourseByWorkId.action",
+			{
+				work_id:wid
+			},
+			function(data){
+				var data = JSON.parse(data);
+				//console.log(data);
+				for(var i = 0; i < data.length; i ++){
+					$('input:checkbox[value='+data[i].courseId+']').attr('checked', true);
+				}
+			}
+			);
+	
+});
+
+function PrevPage(){
 	
 	if(row == 1){
 		alert("没有前一页了");
@@ -449,25 +483,6 @@ function PrevPage(){
 }
 
 function NextPage(){
-	
-	$.ajaxSettings.async = false;
-	$.post(
-			"CountProblemByKnowledgeId.action",
-			{
-				knowledge_id:select_know,
-			},
-			function(data){
-				var data = JSON.parse(data);
-				//console.log(data);
-				var sum = data.count;
-				count = Math.ceil(sum/15);
-				$("#TotalPage").html("");
-				$("#NowPage").html("");
-				var total = "共" + Math.ceil(sum/15) + "页";
-				$("#TotalPage").append(total);
-				$("#NowPage").append("，当前第" + row + "页");
-			}
-			);
 	
 	if(row == count){
 		alert("没有后一页了");
