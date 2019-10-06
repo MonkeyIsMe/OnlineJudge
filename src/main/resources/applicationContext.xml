@@ -83,6 +83,8 @@
 		<property name="ProblemService" ref="ProblemService" ></property>
 		<property name="SubmissionService" ref="SubmissionService" ></property>
 		<property name="CaseService" ref="CaseService" ></property>
+		<property name="UserService" ref="UserService" ></property>
+		<property name="ProblemResultService" ref="ProblemResultService" ></property>
 	</bean>
 	<bean name="ProblemResultAction" class="CSU.OnlineJudge.Controller.ProblemResultAction" scope="prototype" >
 		<property name="ProblemResultService" ref="ProblemResultService" ></property>

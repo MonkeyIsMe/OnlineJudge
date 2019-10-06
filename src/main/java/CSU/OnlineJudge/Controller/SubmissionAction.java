@@ -12,10 +12,14 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import CSU.OnlineJudge.Model.Case;
 import CSU.OnlineJudge.Model.Problem;
+import CSU.OnlineJudge.Model.ProblemResult;
 import CSU.OnlineJudge.Model.Submission;
+import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Service.CaseService;
+import CSU.OnlineJudge.Service.ProblemResultService;
 import CSU.OnlineJudge.Service.ProblemService;
 import CSU.OnlineJudge.Service.SubmissionService;
+import CSU.OnlineJudge.Service.UserService;
 import CSU.OnlineJudge.Service.Impl.SubmissionServiceImpl;
 import CSU.OnlineJudge.Utils.DateUtil;
 import CSU.OnlineJudge.Utils.JudgeUtil;
@@ -24,12 +28,37 @@ import net.sf.json.JSONObject;
 
 public class SubmissionAction extends ActionSupport{
 
-	private Submission submission = new Submission();
+	
 	private SubmissionService SubmissionService;
-	private Problem problem = new Problem();
+	private UserService UserService;
 	private ProblemService ProblemService;
 	private CaseService CaseService;
+	private ProblemResultService ProblemResultService;
 	private Case Case = new Case();
+	private User user = new User();
+	private ProblemResult pr = new ProblemResult();
+	private Problem problem = new Problem();
+	private Submission submission = new Submission();
+	
+	
+	
+	
+	public ProblemResultService getProblemResultService() {
+		return ProblemResultService;
+	}
+
+	public void setProblemResultService(ProblemResultService problemResultService) {
+		ProblemResultService = problemResultService;
+	}
+
+	public UserService getUserService() {
+		return UserService;
+	}
+
+	public void setUserService(UserService userService) {
+		UserService = userService;
+	}
+
 
 	public SubmissionService getSubmissionService() {
 		return SubmissionService;
@@ -90,7 +119,7 @@ public class SubmissionAction extends ActionSupport{
 	        out.close();
 	        return ;
 		}
-		System.out.println(submission_type);
+		
 		int pid = Integer.valueOf(problem_id);
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
@@ -129,17 +158,31 @@ public class SubmissionAction extends ActionSupport{
 		
 		String submission_id = request.getParameter("submission_id");
 		
+		
 		if(submission_id == null || submission_id == "" || submission_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
 	        out.close();
 	        return ;
 		}
+		
 		int sid = Integer.valueOf(submission_id);
-
+		//查询提交
 		submission = SubmissionService.querySubmission(sid);
 		
+		//查询用户
+		String user_account = submission.getUserAccount();
+		user = UserService.QueryUserByName(user_account);
+		
+		if(user == null) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int pid = submission.getProblemId();
+		//查询题目
 		problem = ProblemService.QueryProblem(pid);
 		int time = problem.getProblemTimeLimit();
 		int memory = problem.getProblemMemory();
@@ -153,7 +196,7 @@ public class SubmissionAction extends ActionSupport{
 			lang = "JAVA8";
 		}
 		
-
+		//获取样例
 		List<Case> clist = CaseService.GetCaseByFlag(pid, 1);
 		
     	JSONArray caseja = new JSONArray();
@@ -166,6 +209,7 @@ public class SubmissionAction extends ActionSupport{
     		caseja.add(casejo);
 		}
 		
+		//判题
 		JudgeUtil judger = new JudgeUtil();
 		String json = judger.DealCase(caseja.toString(), "CPP", time, memory, code);
 		String result_str = judger.Judger(json);
@@ -173,7 +217,7 @@ public class SubmissionAction extends ActionSupport{
 		
 		JSONObject result_ja = JSONObject.fromObject(result_str);
 		String result = result_ja.getString("result");
-		
+		//处理结果
 		if(result.equals("AC")) {
 			int num = problem.getSubmissionTimes();
 			int re = problem.getAcceptTimes();
@@ -181,6 +225,15 @@ public class SubmissionAction extends ActionSupport{
 			re ++;
 			problem.setSubmissionTimes(num);
 			problem.setAcceptTimes(re);
+			
+			int unum = user.getSubmissionTimes();
+			int ure = user.getAcceptTimes();
+			
+			unum ++;
+			ure ++;
+			user.setAcceptTimes(ure);
+			user.setSubmissionTimes(unum);
+			
 		}
 		else if(result.equals("WA")) {
 			int num = problem.getSubmissionTimes();
@@ -189,6 +242,14 @@ public class SubmissionAction extends ActionSupport{
 			re ++;
 			problem.setSubmissionTimes(num);
 			problem.setWrongAnswerTimes(re);
+			
+			int unum = user.getSubmissionTimes();
+			int ure = user.getWrongAnswerTimes();
+			
+			unum ++;
+			ure ++;
+			user.setAcceptTimes(ure);
+			user.setWrongAnswerTimes(unum);
 		}
 		else if(result.equals("CE")) {
 			int num = problem.getSubmissionTimes();
@@ -197,6 +258,14 @@ public class SubmissionAction extends ActionSupport{
 			re ++;
 			problem.setSubmissionTimes(num);
 			problem.setCompileErrorTimes(re);
+			
+			int unum = user.getSubmissionTimes();
+			int ure = user.getCompileErrorTimes();
+			
+			unum ++;
+			ure ++;
+			user.setCompileErrorTimes(ure);
+			user.setSubmissionTimes(unum);
 		}
 		else if(result.equals("RTE")) {
 			int num = problem.getSubmissionTimes();
@@ -205,6 +274,14 @@ public class SubmissionAction extends ActionSupport{
 			re ++;
 			problem.setSubmissionTimes(num);
 			problem.setRuntimeErrorTimes(re);
+			
+			int unum = user.getSubmissionTimes();
+			int ure = user.getRuntimeErrorTimes();
+			
+			unum ++;
+			ure ++;
+			user.setRuntimeErrorTimes(ure);
+			user.setSubmissionTimes(unum);
 		}
 		else if(result.equals("TLE")) {
 			int num = problem.getSubmissionTimes();
@@ -213,6 +290,14 @@ public class SubmissionAction extends ActionSupport{
 			re ++;
 			problem.setSubmissionTimes(num);
 			problem.setTimeLimitTimes(re);
+			
+			int unum = user.getSubmissionTimes();
+			int ure = user.getTimeLimitTimes();
+			
+			unum ++;
+			ure ++;
+			user.setTimeLimitTimes(ure);
+			user.setSubmissionTimes(unum);
 		}
 		else if(result.equals("SE")) {
 			int num = problem.getSubmissionTimes();
@@ -221,9 +306,20 @@ public class SubmissionAction extends ActionSupport{
 			re ++;
 			problem.setSubmissionTimes(num);
 			problem.setServerErrorTimes(re);
+			
 		}
 		
 		JSONObject jo = new JSONObject();
+		//更新信息
+		int uid = user.getUserId();
+		UserService.updateUser(user);
+		
+		
+		pr.setProblemResult(result);
+		pr.setUserId(uid);
+		pr.setUserAccount(user_account);
+		pr.setProblemId(pid);
+		ProblemResultService.AddProblemResult(pr);
 		
 		if(result.equals("SE")) {
 			jo.put("result", "SE");

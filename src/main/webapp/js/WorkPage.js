@@ -62,7 +62,7 @@ $(function(){
 });
 
 function SeeProblem(pid){
-	var url = "ProblemPage.html?ProblemId=" + pid;
+	var url = "WorkProblem.html?ProblemId=" + pid;
 	window.location.href = url;
 }
 

@@ -280,7 +280,7 @@ public class ProblemAction extends ActionSupport{
 		
 		if(flag) {
 			cas = CaseList.get(0);
-			cas.setCaseInput(problem_input);
+			cas.setCaseInput(case_input);
 			cas.setCaseOutput(case_output);
 			CaseService.UpdateCase(cas);
 		}
