@@ -84,6 +84,15 @@ public class WorkAction extends ActionSupport{
 		String work_flag = request.getParameter("work_flag");
 		String work_onwer = request.getParameter("work_onwer");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		DateUtil du = new DateUtil();
 		String ct = du.GetNowDate();
 		work.setWorkName(work_name);
@@ -115,6 +124,15 @@ public class WorkAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String work_id = request.getParameter("work_id");
 		
 		if(work_id == null || work_id == "" || work_id.equals("")) {
@@ -148,6 +166,15 @@ public class WorkAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String work_id = request.getParameter("work_id");
 		String work_name = request.getParameter("work_name");
 		String work_starttime = request.getParameter("work_starttime");
@@ -198,6 +225,15 @@ public class WorkAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String work_id = request.getParameter("work_id");
 		
 		if(work_id == null || work_id == "" || work_id.equals("")) {
@@ -234,6 +270,15 @@ public class WorkAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
@@ -259,6 +304,15 @@ public class WorkAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 		
@@ -285,6 +339,15 @@ public class WorkAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 		
@@ -310,6 +373,15 @@ public class WorkAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 		String class_id = request.getParameter("class_id");
@@ -344,6 +416,15 @@ public class WorkAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 		String class_id = request.getParameter("class_id");
@@ -382,6 +463,15 @@ public class WorkAction extends ActionSupport{
 		String size = request.getParameter("size");
 		String class_id = request.getParameter("class_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(class_id == null || class_id == "" || class_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -412,6 +502,15 @@ public class WorkAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 		String work_onwer = request.getParameter("work_onwer");
@@ -441,6 +540,12 @@ public class WorkAction extends ActionSupport{
 		HttpSession session = request.getSession();
 		String user_account = (String) session.getAttribute("user_account");
 		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		JSONArray ja = new JSONArray();
 		
 		List<CourseUser> cu_list = CourseUserService.QueryCourseUserByUserAccount(user_account);
@@ -467,6 +572,15 @@ public class WorkAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int cnt = WorkService.CountWork();
 		JSONObject jo = new JSONObject();
 		jo.put("WorkCount", cnt);

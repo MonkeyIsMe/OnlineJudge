@@ -56,9 +56,9 @@ public class AnswerAction extends ActionSupport{
 		String problem_id = request.getParameter("problem_id");
 		
 		HttpSession session = request.getSession();
-		String user_account = (String) session.getAttribute("useraccount");
+		String useraccount = (String) session.getAttribute("useraccount");
 		
-		if(user_account == null || user_account == "" || user_account.equals("")) {
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
 	        out.close();
@@ -76,7 +76,7 @@ public class AnswerAction extends ActionSupport{
 		problem = ProblemService.QueryProblem(pid);
 		
 		answer.setAnswerInfo(answer_info);
-		answer.setUserAccount(user_account);
+		answer.setUserAccount(useraccount);
 		answer.setProblemId(pid);
 		answer.setAnswerName(answer_name);
 		answer.setAnswerTime(du.GetNowDate());
@@ -97,7 +97,15 @@ public class AnswerAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 
 		String answer_id = request.getParameter("answer_id");
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
 		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -132,7 +140,15 @@ public class AnswerAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 
 		String answer_id = request.getParameter("answer_id");
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
 		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -168,7 +184,17 @@ public class AnswerAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-
+		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		String problem_id = request.getParameter("problem_id");
@@ -207,6 +233,16 @@ public class AnswerAction extends ActionSupport{
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size); 
 		
@@ -229,7 +265,17 @@ public class AnswerAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-
+		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		int count = AnswerService.CountAnswer();
 		
 		JSONObject jo = new JSONObject();
@@ -250,7 +296,17 @@ public class AnswerAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-
+		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		String problem_id = request.getParameter("problem_id");
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
@@ -282,7 +338,17 @@ public class AnswerAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-
+		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		String problem_id = request.getParameter("problem_id");
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {

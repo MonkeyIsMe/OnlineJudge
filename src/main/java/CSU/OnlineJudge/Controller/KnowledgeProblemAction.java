@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -68,6 +69,15 @@ public class KnowledgeProblemAction extends ActionSupport{
 		String knowledge_id = request.getParameter("knowledge_id");
 		String problem_id = request.getParameter("problem_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(knowledge_id == null || knowledge_id == "" || knowledge_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -101,6 +111,15 @@ public class KnowledgeProblemAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String knowledgeproblem_id = request.getParameter("knowledgeproblem_id");
 		
 		if(knowledgeproblem_id == null || knowledgeproblem_id == "" || knowledgeproblem_id.equals("")) {
@@ -135,6 +154,15 @@ public class KnowledgeProblemAction extends ActionSupport{
 		
 		String problem_id = request.getParameter("problem_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -174,6 +202,15 @@ public class KnowledgeProblemAction extends ActionSupport{
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(knowledge_id == null || knowledge_id == "" || knowledge_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -222,7 +259,16 @@ public class KnowledgeProblemAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String knowledge_id = request.getParameter("knowledge_id");
-
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(knowledge_id == null || knowledge_id == "" || knowledge_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -263,7 +309,16 @@ public class KnowledgeProblemAction extends ActionSupport{
 		
 		String knowledge_info = request.getParameter("knowledge_info");
 		String problem_id = request.getParameter("problem_id");
-
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 

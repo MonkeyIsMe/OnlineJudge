@@ -54,12 +54,12 @@ public class CodeAction extends ActionSupport{
 
 		String code_name = request.getParameter("code_name");
 		String code_info = request.getParameter("code_info");
-		//String user_account = request.getParameter("user_account");
+		//String useraccount = request.getParameter("useraccount");
 		
 		HttpSession session = request.getSession();
-		String user_account = (String) session.getAttribute("user_account");
+		String useraccount = (String) session.getAttribute("useraccount");
 		
-		if(user_account == null || user_account == "" || user_account.equals("")) {
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
 	        out.close();
@@ -68,7 +68,7 @@ public class CodeAction extends ActionSupport{
 		
 		code.setCodeInfo(code_info);
 		code.setCodeName(code_name);
-		code.setUserAccount(user_account);
+		code.setUserAccount(useraccount);
 		
 		CodeService.AddCode(code);
 		
@@ -85,6 +85,16 @@ public class CodeAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 
 		String code_id = request.getParameter("code_id");
+		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		if(code_id == null || code_id == "" || code_id.equals("")) {
 			out.println("Fail");
@@ -117,7 +127,17 @@ public class CodeAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-
+		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		String code_id = request.getParameter("code_id");
 		String code_name = request.getParameter("code_name");
 		String code_info = request.getParameter("code_info");
@@ -156,7 +176,17 @@ public class CodeAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-
+		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		String user_id = request.getParameter("user_id");
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
@@ -172,9 +202,9 @@ public class CodeAction extends ActionSupport{
 		int PageSize = Integer.valueOf(size); 
 		int uid = Integer.valueOf(user_id);
 		user = UserService.queryUser(uid);
-		String user_account = user.getUserAccount();
+		String u_account = user.getUserAccount();
 		
-		List<Code>  CodeList = CodeService.QueryCodeByUserAccountByPageSize(user_account,row,PageSize);
+		List<Code>  CodeList = CodeService.QueryCodeByUserAccountByPageSize(u_account,row,PageSize);
 		
 		JSONArray ja = JSONArray.fromObject(CodeList);
 		
@@ -197,6 +227,16 @@ public class CodeAction extends ActionSupport{
 
 		String user_id = request.getParameter("user_id");
 		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		if(user_id == null || user_id == "" || user_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -208,9 +248,9 @@ public class CodeAction extends ActionSupport{
 		
 		user = UserService.queryUser(uid);
 		
-		String user_account = user.getUserAccount();
+		String u_account = user.getUserAccount();
 		
-		List<Code>  CodeList = CodeService.QueryCodeByUserAccount(user_account);
+		List<Code>  CodeList = CodeService.QueryCodeByUserAccount(u_account);
 
 		CodeService.DeleteMutiplyCode(CodeList);
 		
@@ -225,7 +265,17 @@ public class CodeAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-
+		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		String user_id = request.getParameter("user_id");
 		
 		if(user_id == null || user_id == "" || user_id.equals("")) {
@@ -239,9 +289,9 @@ public class CodeAction extends ActionSupport{
 		
 		user = UserService.queryUser(uid);
 		
-		String user_account = user.getUserAccount();
+		String u_account = user.getUserAccount();
 		
-		int cnt = CodeService.CountUserCode(user_account);
+		int cnt = CodeService.CountUserCode(u_account);
 		
 		JSONObject jo = new JSONObject();
 		jo.put("CodeCount", cnt);

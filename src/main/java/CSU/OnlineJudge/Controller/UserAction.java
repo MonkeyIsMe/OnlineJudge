@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -40,6 +41,15 @@ public class UserAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String user_id = request.getParameter("user_id");
 		
 		if(user_id == null || user_id == "" || user_id.equals("")) {
@@ -75,6 +85,15 @@ public class UserAction extends ActionSupport{
 		String user_id = request.getParameter("user_id");
 		String submission = request.getParameter("flag");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(user_id == null || user_id == "" || user_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -148,6 +167,15 @@ public class UserAction extends ActionSupport{
 		
 		String user_id = request.getParameter("user_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(user_id == null || user_id == "" || user_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -217,6 +245,15 @@ public class UserAction extends ActionSupport{
 		String user_info = request.getParameter("user_info");
 		String user_name = request.getParameter("user_name");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(user_id == null || user_id == "" || user_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -256,6 +293,15 @@ public class UserAction extends ActionSupport{
 		String user_info = request.getParameter("user_info");
 		String user_name = request.getParameter("user_name");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		user.setStudentClassroom(user_classroom);
 		user.setUserInfo(user_info);
 		user.setUserName(user_name);
@@ -283,6 +329,15 @@ public class UserAction extends ActionSupport{
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
@@ -306,6 +361,15 @@ public class UserAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int cnt = UserService.CountUser();
 		
 		JSONObject jo = new JSONObject();
@@ -330,6 +394,15 @@ public class UserAction extends ActionSupport{
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
@@ -412,6 +485,15 @@ public class UserAction extends ActionSupport{
 		
 		String user_info = request.getParameter("user_info");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		JSONArray ja = JSONArray.fromObject(user_info);
 		JSONArray add_ja = new JSONArray();
 		
@@ -420,7 +502,7 @@ public class UserAction extends ActionSupport{
 			JSONObject jo = ja.getJSONObject(i);
 			
 			String user_name = jo.getString("姓名");
-			String user_account = jo.getString("学号");
+			String u_account = jo.getString("学号");
 			String user_role = jo.getString("角色");
 			String user_class = jo.getString("班级");
 			String user_oinfo = jo.getString("备注信息");
@@ -431,7 +513,7 @@ public class UserAction extends ActionSupport{
 			
 			
 			user.setUserName(user_name);
-			user.setUserAccount(user_account);
+			user.setUserAccount(u_account);
 			user.setUserRole(role);
 			user.setStudentClassroom(user_class);
 			user.setUserInfo(user_oinfo);

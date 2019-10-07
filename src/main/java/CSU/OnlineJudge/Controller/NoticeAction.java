@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -37,6 +38,15 @@ public class NoticeAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String notice_name = request.getParameter("notice_name");
 		String notice_info = request.getParameter("notice_info");
 		//System.out.println(notice_name + " " + notice_info);
@@ -62,6 +72,15 @@ public class NoticeAction extends ActionSupport{
 		
 		String notice_id = request.getParameter("notice_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(notice_id == null || notice_id == "" || notice_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -85,6 +104,15 @@ public class NoticeAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String notice_id = request.getParameter("notice_id");
 		String notice_name = request.getParameter("notice_name");
 		String notice_info = request.getParameter("notice_info");
@@ -122,6 +150,15 @@ public class NoticeAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String notice_id = request.getParameter("notice_id");
 		
 		if(notice_id == null || notice_id == "" || notice_id.equals("")) {
@@ -152,6 +189,15 @@ public class NoticeAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
@@ -178,6 +224,15 @@ public class NoticeAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int count = NoticeService.CountNotice();
 		
 		JSONObject jo = new JSONObject();

@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -44,6 +45,15 @@ public class CourseAction extends ActionSupport{
 		String course_time = request.getParameter("course_time");
 		String course_teacher = request.getParameter("course_teacher");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		course.setCourseName(course_name);
 		course.setCourseInfo(course_info);
 		course.setCourseTime(course_time);
@@ -62,7 +72,16 @@ public class CourseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String course_id = request.getParameter("course_id");
 		
 		if(course_id == null || course_id == "" || course_id.equals("")) {
@@ -95,7 +114,16 @@ public class CourseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String course_name = request.getParameter("course_name");
 		String course_info = request.getParameter("course_info");
 		String course_time = request.getParameter("course_time");
@@ -137,7 +165,16 @@ public class CourseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String course_id = request.getParameter("course_id");
 		
 		if(course_id == null || course_id == "" || course_id.equals("")) {
@@ -173,7 +210,16 @@ public class CourseAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int cnt = CourseService.CountCourse();
 		
 		JSONObject jo = new JSONObject();
@@ -197,6 +243,15 @@ public class CourseAction extends ActionSupport{
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
@@ -218,6 +273,15 @@ public class CourseAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		HtmlUtil hu = new HtmlUtil();
 		if(hu.IsLogin() == false ) return ;
 		

@@ -85,6 +85,15 @@ public class CommentAction extends ActionSupport{
 
 		String comment_id = request.getParameter("comment_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(comment_id == null || comment_id == "" || comment_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -119,6 +128,15 @@ public class CommentAction extends ActionSupport{
 
 		String comment_id = request.getParameter("comment_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(comment_id == null || comment_id == "" || comment_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -159,6 +177,15 @@ public class CommentAction extends ActionSupport{
 		String size = request.getParameter("limit");
 		String answer_id = request.getParameter("answer_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -193,6 +220,15 @@ public class CommentAction extends ActionSupport{
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size); 
 		
@@ -215,7 +251,16 @@ public class CommentAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int count = CommentService.CountComment();
 		
 		JSONObject jo = new JSONObject();
@@ -240,6 +285,15 @@ public class CommentAction extends ActionSupport{
 
 		String answer_id = request.getParameter("answer_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -270,6 +324,15 @@ public class CommentAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String answer_id = request.getParameter("answer_id");
 		
 		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
@@ -303,6 +366,15 @@ public class CommentAction extends ActionSupport{
 
 		String answer_id = request.getParameter("answer_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(answer_id == null || answer_id == "" || answer_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 

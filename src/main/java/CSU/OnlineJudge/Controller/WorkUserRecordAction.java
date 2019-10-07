@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -55,10 +56,18 @@ public class WorkUserRecordAction extends ActionSupport{
 		String submission_time = request.getParameter("submission_time");
 		String submission_code_length = request.getParameter("submission_code_length");
 		String submission_code_memory = request.getParameter("submission_code_memory");
-		String user_account = request.getParameter("user_account");
 		String submission_type = request.getParameter("submission_type");
 		String code_time = request.getParameter("code_time");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(work_id == null || work_id == "" || work_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -121,6 +130,15 @@ public class WorkUserRecordAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 		String problem_id = request.getParameter("problem_id");
@@ -185,6 +203,15 @@ public class WorkUserRecordAction extends ActionSupport{
 		String size = request.getParameter("limit");
 		String work_id = request.getParameter("work_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(work_id == null || work_id == "" || work_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -221,6 +248,15 @@ public class WorkUserRecordAction extends ActionSupport{
 		String work_id = request.getParameter("work_id");
 		String problem_id = request.getParameter("problem_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(work_id == null || work_id == "" || work_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -371,6 +407,15 @@ public class WorkUserRecordAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		String user_id = request.getParameter("user_id");
@@ -415,7 +460,16 @@ public class WorkUserRecordAction extends ActionSupport{
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		String work_id = request.getParameter("work_id");
-
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(work_id == null || work_id == "" || work_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -457,7 +511,16 @@ public class WorkUserRecordAction extends ActionSupport{
 		
 		String work_id = request.getParameter("work_id");
 		String user_id = request.getParameter("user_id");
-
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(work_id == null || work_id == "" || work_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -494,7 +557,16 @@ public class WorkUserRecordAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String record_id = request.getParameter("record_id");
-
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(record_id == null || record_id == "" || record_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -523,7 +595,16 @@ public class WorkUserRecordAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String work_id = request.getParameter("work_id");
-
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(work_id == null || work_id == "" || work_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 

@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -76,6 +77,15 @@ public class ProblemAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String problem_id = request.getParameter("problem_id");
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
@@ -111,6 +121,15 @@ public class ProblemAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String problem_name = request.getParameter("problem_name");
 		String problem_info = request.getParameter("problem_info");
 		String problem_hint = request.getParameter("problem_hint");
@@ -228,6 +247,15 @@ public class ProblemAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String problem_id = request.getParameter("problem_id");
 		String problem_name = request.getParameter("problem_name");
 		String problem_info = request.getParameter("problem_info");
@@ -321,7 +349,16 @@ public class ProblemAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-			
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 		
@@ -345,7 +382,16 @@ public class ProblemAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-			
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 			
@@ -369,7 +415,16 @@ public class ProblemAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-			
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 			
@@ -393,7 +448,16 @@ public class ProblemAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-			
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}	
 		String problem_id = request.getParameter("problem_id");
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
@@ -422,7 +486,16 @@ public class ProblemAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-			
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}	
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 		String problem_name = request.getParameter("problem_name");	
@@ -447,7 +520,16 @@ public class ProblemAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-			
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}	
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 		String problem_name = request.getParameter("problem_name");
@@ -472,7 +554,16 @@ public class ProblemAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-			
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 		String problem_people = request.getParameter("problem_people");
@@ -497,7 +588,16 @@ public class ProblemAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-			
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
@@ -533,6 +633,15 @@ public class ProblemAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int cnt = ProblemService.CountProblem();
 		
 		JSONObject jo = new JSONObject();
@@ -552,7 +661,16 @@ public class ProblemAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-			
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}	
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
@@ -610,6 +728,15 @@ public class ProblemAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String problem_id = request.getParameter("problem_id");
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
@@ -645,7 +772,16 @@ public class ProblemAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-			
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		

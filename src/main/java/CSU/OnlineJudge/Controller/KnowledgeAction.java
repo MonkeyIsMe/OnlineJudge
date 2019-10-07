@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -39,6 +40,15 @@ public class KnowledgeAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String knowledge_info = request.getParameter("knowledge_info");
 		String knowledge_name = request.getParameter("knowledge_name");
 		
@@ -61,6 +71,15 @@ public class KnowledgeAction extends ActionSupport{
 		
 		String knowledge_id = request.getParameter("knowledge_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(knowledge_id == null || knowledge_id == "" || knowledge_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -92,6 +111,15 @@ public class KnowledgeAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String knowledge_id = request.getParameter("knowledge_id");
 		
 		if(knowledge_id == null || knowledge_id == "" || knowledge_id.equals("")) {
@@ -132,6 +160,15 @@ public class KnowledgeAction extends ActionSupport{
 		String knowledge_info = request.getParameter("knowledge_info");
 		String knowledge_name = request.getParameter("knowledge_name");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(knowledge_id == null || knowledge_id == "" || knowledge_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -166,6 +203,15 @@ public class KnowledgeAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
@@ -189,6 +235,15 @@ public class KnowledgeAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int KnowledgeCount = KnowledgeService.CountKnowledge();
 		
 		JSONObject jo = new JSONObject();
@@ -209,6 +264,15 @@ public class KnowledgeAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		List<Knowledge> Knowledge_list = KnowledgeService.QueryAllKnowledge();
 		
 		JSONArray ja = JSONArray.fromObject(Knowledge_list);

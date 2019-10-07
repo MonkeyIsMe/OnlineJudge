@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -43,6 +44,15 @@ public class LogAction extends ActionSupport{
 		
 		String log_time = request.getParameter("log_time");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int submission = Integer.valueOf(0);
 		int accept = Integer.valueOf(0);
 		int lsong = Integer.valueOf(0);

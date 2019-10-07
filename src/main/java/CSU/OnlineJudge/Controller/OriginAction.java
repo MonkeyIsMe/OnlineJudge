@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -43,6 +44,15 @@ public class OriginAction extends ActionSupport{
 		String origin_code = request.getParameter("origin_code");
 		String origin_type = request.getParameter("origin_type");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -73,6 +83,15 @@ public class OriginAction extends ActionSupport{
 		
 		String origin_id = request.getParameter("origin_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(origin_id == null || origin_id == "" || origin_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -105,6 +124,15 @@ public class OriginAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String origin_id = request.getParameter("origin_id");
 		
 		if(origin_id == null || origin_id == "" || origin_id.equals("")) {
@@ -143,6 +171,15 @@ public class OriginAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String origin_code = request.getParameter("origin_code");
 		String origin_type = request.getParameter("origin_type");
 		String origin_id = request.getParameter("origin_id");
@@ -182,6 +219,15 @@ public class OriginAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
@@ -207,6 +253,15 @@ public class OriginAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String problem_id = request.getParameter("problem_id");
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {

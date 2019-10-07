@@ -159,6 +159,15 @@ public class SubmissionAction extends ActionSupport{
 		String submission_id = request.getParameter("submission_id");
 		
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(submission_id == null || submission_id == "" || submission_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -171,8 +180,8 @@ public class SubmissionAction extends ActionSupport{
 		submission = SubmissionService.querySubmission(sid);
 		
 		//查询用户
-		String user_account = submission.getUserAccount();
-		user = UserService.QueryUserByName(user_account);
+		String u_account = submission.getUserAccount();
+		user = UserService.QueryUserByName(u_account);
 		
 		if(user == null) {
 			out.println("Fail");
@@ -362,6 +371,15 @@ public class SubmissionAction extends ActionSupport{
 		
 		String submission_id = request.getParameter("submission_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(submission_id == null || submission_id == "" || submission_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -391,6 +409,15 @@ public class SubmissionAction extends ActionSupport{
 		
 		String submission_id = request.getParameter("submission_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(submission_id == null || submission_id == "" || submission_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -426,6 +453,15 @@ public class SubmissionAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
@@ -481,6 +517,15 @@ public class SubmissionAction extends ActionSupport{
 		String size = request.getParameter("size");
 		String submission_result = request.getParameter("submission_result");	
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
@@ -507,6 +552,15 @@ public class SubmissionAction extends ActionSupport{
 		String size = request.getParameter("size");
 		String problem_id = request.getParameter("problem_id");	
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -599,6 +653,15 @@ public class SubmissionAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 		String problem_id = request.getParameter("problem_id");
@@ -674,7 +737,16 @@ public class SubmissionAction extends ActionSupport{
 		String page = request.getParameter("rows");
 		String size = request.getParameter("size");
 		String work_id = request.getParameter("work_id");	
-			
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(work_id == null || work_id == "" || work_id.equals("")) {
 			out.println("Fail");
 		    out.flush(); 
@@ -705,6 +777,15 @@ public class SubmissionAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int count = SubmissionService.CountSubmission();
 		
 		JSONObject jo = new JSONObject();

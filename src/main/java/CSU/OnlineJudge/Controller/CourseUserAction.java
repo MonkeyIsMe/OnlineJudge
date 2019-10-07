@@ -68,8 +68,9 @@ public class CourseUserAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();	
 		
+		
 		HttpSession session = request.getSession();
-		String user_account = (String) session.getAttribute("user_account");
+		String user_account = (String) session.getAttribute("useraccount");
 		
 		if(user_account == null || user_account == "" || user_account.equals("")) {
 			out.println("Fail");
@@ -107,6 +108,15 @@ public class CourseUserAction extends ActionSupport{
 		String page = request.getParameter("page");
 		String size = request.getParameter("limit");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		int row = Integer.valueOf(page);
 		int PageSize = Integer.valueOf(size);
 		
@@ -153,6 +163,15 @@ public class CourseUserAction extends ActionSupport{
 		
 		String user_id = request.getParameter("user_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(user_id == null || user_id == "" || user_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -188,9 +207,17 @@ public class CourseUserAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String user_account = request.getParameter("user_account");
 		String course_id = request.getParameter("course_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(course_id == null || course_id == "" || course_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -283,6 +310,15 @@ public class CourseUserAction extends ActionSupport{
 
 		String courseuser_id = request.getParameter("courseuser_id");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		if(courseuser_id == null || courseuser_id == "" || courseuser_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -317,6 +353,15 @@ public class CourseUserAction extends ActionSupport{
 		String user_id = request.getParameter("user_id");
 		String course_info = request.getParameter("course_info");
 		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		if(user_id == null || user_id == "" || user_id.equals("")) {
 			out.println("Fail");
@@ -359,7 +404,16 @@ public class CourseUserAction extends ActionSupport{
 		//返回结果
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
-
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		String course_id = request.getParameter("course_id");
 		String user_info = request.getParameter("user_info");
 		
@@ -379,15 +433,15 @@ public class CourseUserAction extends ActionSupport{
 		for(int i = 0; i < ja.size(); i ++) {
 			
 			JSONObject jo = ja.getJSONObject(i);
-			String user_account = jo.getString("学号");
+			String u_account = jo.getString("学号");
 			
-			user = UserService.QueryUserByName(user_account);
+			user = UserService.QueryUserByName(u_account);
 			if(user == null) continue;
 			int uid = user.getUserId();
 			CourseUser new_cu = new CourseUser();
 			
 			new_cu.setCourseId(cid);
-			new_cu.setUserAccount(user_account);
+			new_cu.setUserAccount(u_account);
 			new_cu.setCourseUserId(uid);
 			
 			add_ja.add(new_cu);

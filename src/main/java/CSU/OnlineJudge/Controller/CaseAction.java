@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -45,6 +46,16 @@ public class CaseAction extends ActionSupport{
 		String case_input = request.getParameter("case_input");
 		String case_output = request.getParameter("case_output");
 		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -74,6 +85,16 @@ public class CaseAction extends ActionSupport{
 
 		String case_info = request.getParameter("case_info");
 		String problem_id = request.getParameter("problem_id");
+		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
 			out.println("Fail");
@@ -114,6 +135,16 @@ public class CaseAction extends ActionSupport{
 
 		String case_id = request.getParameter("case_id");
 		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		if(case_id == null || case_id == "" || case_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -150,6 +181,16 @@ public class CaseAction extends ActionSupport{
 		String problem_id = request.getParameter("problem_id");
 		String case_input = request.getParameter("case_input");
 		String case_output = request.getParameter("case_output");
+		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		if(case_id == null || case_id == "" || case_id.equals("")) {
 			out.println("Fail");
@@ -196,6 +237,16 @@ public class CaseAction extends ActionSupport{
 
 		String problem_id = request.getParameter("problem_id");
 		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -227,6 +278,16 @@ public class CaseAction extends ActionSupport{
 
 		String problem_id = request.getParameter("problem_id");
 		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -257,6 +318,16 @@ public class CaseAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 
 		String problem_id = request.getParameter("problem_id");
+		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
 		
 		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
 			out.println("Fail");
