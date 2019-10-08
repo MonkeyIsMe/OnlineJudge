@@ -465,12 +465,39 @@ public class UserAction extends ActionSupport{
 		request.getSession().setAttribute("username", name);
 		request.getSession().setAttribute("useraccount", useraccount);
 		request.getSession().setAttribute("role", role);
+		//System.out.println("2.useraccount = " + useraccount);
+		//System.out.println(request.getSession().getAttribute("useraccount"));
 		if(role.equals("1")) {
-			response.sendRedirect("http://localhost:8080/OnlineJudge/manage.html");
+			response.sendRedirect("http://202.197.66.200:1188/OnlineJudge/manage.html");
 		}
 		else {
-			response.sendRedirect("http://localhost:8080/OnlineJudge/Main.html");
+			response.sendRedirect("http://202.197.66.200:1188/OnlineJudge/Main.html");
 		}
+	}
+	
+	//设置用户信息
+	public void SetUserInfo() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		String user_name = (String) session.getAttribute("username");
+		String user_role = (String) session.getAttribute("role");
+		
+		JSONObject jo = new JSONObject();
+		jo.put("user_account", user_account);
+		jo.put("user_name", user_name);
+		jo.put("user_role", user_role);
+		
+		out.println(jo.toString());
+	    out.flush(); 
+	    out.close();
 	}
 	
 	//从excel读取用户信息

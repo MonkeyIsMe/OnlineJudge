@@ -35,5 +35,12 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-
+    <filter>
+  	<filter-name>loginFilter</filter-name>
+  	<filter-class>CSU.OnlineJudge.Utils.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>loginFilter</filter-name>
+  	<url-pattern>*.html</url-pattern>
+  </filter-mapping>
 </web-app>

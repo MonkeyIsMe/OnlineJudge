@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.struts2.ServletActionContext;
+
 
 
 public class LoginFilter extends HttpServlet implements Filter{
@@ -28,13 +30,17 @@ public class LoginFilter extends HttpServlet implements Filter{
 		//System.out.println(111);
 		HttpServletRequest request=(HttpServletRequest) req;  
         HttpServletResponse response = (HttpServletResponse) res;
-        HttpSession session = request.getSession();
-        String url = request.getRequestURI();  //获取请求的地址
-        String contextPath=request.getContextPath();  //得到相对路径
-        String useraccount = (String) session.getAttribute("useraccount");
+		HttpSession session = request.getSession();
+        String useraccount = (String) request.getSession().getAttribute("useraccount");
+        //System.out.println("1.useraccount = " + useraccount);
 
-         if(url.indexOf("welcome.html")>-1&&(useraccount==null || useraccount == "" )){
-        	 chain.doFilter(req, res);
+/*		String[] names = session.getValueNames();
+		for(int i = 0;i < names.length;i++){
+			System.out.println(names[i] + "," + session.getValue(names[i]));
+		}*/
+
+         if((useraccount==null || useraccount == "" )){
+        	 response.sendRedirect("http://vlab.csu.edu.cn/portal/index.html?sysId=3"); 
          }
          else{
         	 chain.doFilter(req, res);

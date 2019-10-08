@@ -10,6 +10,23 @@ var kinfo; //记录第几行的备注信息
 $(function(){
 	$.ajaxSettings.async = false;
 	$.post(
+			"SetUserInfo.action",
+			{
+			},
+			function(data){
+				var data = JSON.parse(data);
+				if(data.user_role == '2'){
+				    var url = "http://202.197.66.200:1188/OnlineJudge/Main.html";
+				    window.location.replace(url);
+				}
+			}
+			);
+	
+});
+
+$(function(){
+	$.ajaxSettings.async = false;
+	$.post(
 			"CountKnowledge.action",
 			{
 			},
