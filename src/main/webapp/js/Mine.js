@@ -31,6 +31,7 @@ $(function(){
 			{
 			}, 
 			function(data) {
+				//console.log(data);
 				var data = JSON.parse(data);
 				//console.log(data);
 				$("#user_name").append(data.userName);

@@ -14,16 +14,20 @@ import CSU.OnlineJudge.DAO.WorkDAO;
 import CSU.OnlineJudge.DAO.WorkUserRecordDAO;
 import CSU.OnlineJudge.Model.Case;
 import CSU.OnlineJudge.Model.Problem;
+import CSU.OnlineJudge.Model.ProblemResult;
 import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Model.Work;
 import CSU.OnlineJudge.Model.WorkCourse;
 import CSU.OnlineJudge.Model.WorkProblem;
 import CSU.OnlineJudge.Service.CaseService;
 import CSU.OnlineJudge.Service.NoticeService;
+import CSU.OnlineJudge.Service.ProblemResultService;
+import CSU.OnlineJudge.Service.ProblemService;
 import CSU.OnlineJudge.Service.SubmissionService;
 import CSU.OnlineJudge.Service.UserService;
 import CSU.OnlineJudge.Service.WorkProblemService;
 import CSU.OnlineJudge.Utils.JudgeUtil;
+import CSU.OnlineJudge.Utils.PropertiesUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -38,8 +42,12 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 import javax.annotation.Resource;
 
@@ -282,9 +290,26 @@ public class TestSpring {
 	@Resource(name="SubmissionService")
 	private SubmissionService ss;
 	
+	@Resource(name="ProblemResultService")
+	private ProblemResultService prs;
+	
+	@Test
+	public void AddProblemResult() {
+		ProblemResult pr = new ProblemResult();
+		pr.setProblemId(1);
+		prs.AddProblemResult(pr);
+	}
+	
 	@Test
 	public void querySubmission() {
 		System.out.println(ss.querySubmission(6));
+	}
+	
+	@Test
+	public void ReadProperties() throws IOException {
+
+		System.out.println(new PropertiesUtil().getUrlValue("url"));
+		
 	}
 	
 	@Test
@@ -293,25 +318,47 @@ public class TestSpring {
     	JSONObject fianljo = new JSONObject();
     	JSONArray caseja = new JSONArray();
     	JSONObject casejo = new JSONObject();
-		List<Case> clist = cs.GetCaseByFlag(1, 1);
+		List<Case> clist = cs.GetCaseByFlag(33, 1);
 		for(int i = 0; i < clist.size(); i ++) {
 			Case c = clist.get(i);
     		casejo.put("stdin",c.getCaseInput());
     		casejo.put("stdout",c.getCaseOutput());
     		caseja.add(casejo);
+    		System.out.println(c.toString());
 		}
 		System.out.println(casejo.toString());
 		String str = ju.Judger(ju.DealCase(caseja.toString(), "CPP", 3, 228,"#include<cstdio>\r\n" + 
 				"#include<cstring>\r\n" + 
 				"#include<algorithm>\r\n" + 
 				"#include<iostream>\r\n" + 
+				"#include<queue>\r\n" + 
 				"using namespace std;\r\n" + 
+				"\r\n" + 
+				"typedef long long ll;\r\n" + 
+				"priority_queue<int, vector<int>, greater<int> > pq;\r\n" + 
 				"\r\n" + 
 				"int main()\r\n" + 
 				"{\r\n" + 
-				"    int a,b;\r\n" + 
-				"    cin>>a>>b;\r\n" + 
-				"    cout<<a+b<<endl;\r\n" + 
+				"    int n;\r\n" + 
+				"    while(scanf(\"%d\",&n)!=EOF){\r\n" + 
+				"        int x;\r\n" + 
+				"        for(int i = 0; i < n; i ++){\r\n" + 
+				"            scanf(\"%d\",&x);\r\n" + 
+				"            pq.push(x);\r\n" + 
+				"        }\r\n" + 
+				"        ll sum = 0;\r\n" + 
+				"        while(pq.size() > 1){\r\n" + 
+				"            int xx = pq.top();\r\n" + 
+				"            pq.pop();\r\n" + 
+				"            int yy = pq.top();\r\n" + 
+				"            pq.pop();\r\n" + 
+				"            //cout<<xx<<\" \"<<yy<<endl;\r\n" + 
+				"            sum += xx + yy;\r\n" + 
+				"            pq.push(xx + yy);\r\n" + 
+				"        }\r\n" + 
+				"       // sum += pq.top();\r\n" + 
+				"        printf(\"%lld\\n\",sum);\r\n" + 
+				"    }\r\n" + 
 				"    return 0;\r\n" + 
 				"}\r\n" + 
 				""));

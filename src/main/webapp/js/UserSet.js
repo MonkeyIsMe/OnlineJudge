@@ -9,6 +9,23 @@ var sinfo; //记录第几行的备注信息
 var sclassroom; //记录第几行的教室
 var userid; //记录用户的编号
 
+$(function(){
+	$.ajaxSettings.async = false;
+	$.post(
+			"SetUserInfo.action",
+			{
+			},
+			function(data){
+				var data = JSON.parse(data);
+				if(data.user_role == '2'){
+				    var url = "http://202.197.66.200:1188/OnlineJudge/Main.html";
+				    window.location.replace(url);
+				}
+			}
+			);
+	
+});
+
 var sub_row = 1;
 var sub_count; //总记录数
 $(function(){

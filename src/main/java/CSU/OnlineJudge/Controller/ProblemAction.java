@@ -172,7 +172,7 @@ public class ProblemAction extends ActionSupport{
 		JSONArray know_ja = new JSONArray();
 		
 		problem.setProblemName(problem_name);
-		problem.setProblemInfo(problem_input);
+		problem.setProblemInfo(problem_info);
 		problem.setProblemHint(problem_hint);
 		problem.setProblemMemory(memory);
 		problem.setProblemTimeLimit(time);

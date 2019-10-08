@@ -48,7 +48,7 @@ public class SubmissionDAOImpl extends HibernateDaoSupport implements Submission
 
 			public List<Submission> doInHibernate(Session session) throws HibernateException {
 				// TODO Auto-generated method stub
-				String hql = "from Submission";
+				String hql = "from Submission order by submit_time desc";
 				Query query = session.createQuery(hql).setFirstResult(
                         (row - 1) * PageSize).setMaxResults(PageSize);
 				List<Submission> list = query.list();

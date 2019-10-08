@@ -1,7 +1,10 @@
 package CSU.OnlineJudge.Controller;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +18,7 @@ import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Service.UserService;
 import CSU.OnlineJudge.Service.Impl.UserServiceImpl;
 import CSU.OnlineJudge.Utils.DesUtil;
+import CSU.OnlineJudge.Utils.PropertiesUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -210,9 +214,8 @@ public class UserAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String user_account = request.getParameter("user_account");
-		//String user_account = "AC";
-		//int uid = Integer.valueOf(user_id);
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
 		
 		user = UserService.QueryUserByName(user_account);
 		
@@ -465,13 +468,15 @@ public class UserAction extends ActionSupport{
 		request.getSession().setAttribute("username", name);
 		request.getSession().setAttribute("useraccount", useraccount);
 		request.getSession().setAttribute("role", role);
-		//System.out.println("2.useraccount = " + useraccount);
-		//System.out.println(request.getSession().getAttribute("useraccount"));
+
+		String url = new PropertiesUtil().getUrlValue("url");
+		
 		if(role.equals("1")) {
-			response.sendRedirect("http://202.197.66.200:1188/OnlineJudge/manage.html");
+			response.sendRedirect(url + "manage.html");
+			//response.sendRedirect("http://localhost:8080/OnlineJudge/manage.html");
 		}
 		else {
-			response.sendRedirect("http://202.197.66.200:1188/OnlineJudge/Main.html");
+			response.sendRedirect(url + "Main.html");
 		}
 	}
 	

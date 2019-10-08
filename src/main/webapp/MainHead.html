@@ -5,11 +5,28 @@
     <title>CSUOJ</title>
     <link href="css/Common.css" type="text/css" rel="stylesheet">
 </head>
+<script type="text/javascript">
+
+$(function(){
+	$.ajaxSettings.async = false;
+	$.post(
+			"SetUserInfo.action",
+			{
+			},
+			function(data){
+				var data = JSON.parse(data);
+				$("#UserName").append(data.user_name);
+			}
+			);
+	
+});
+
+</script>
 <body>
 <nav class="navbar navbar-default" role="navigation" style="height: 5%">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand  MainFont" href="http://localhost:8080/OnlineJudge/Main.html" style="padding-top:20px">CSUOJ</a>
+            <a class="navbar-brand  MainFont" href="Main.html" style="padding-top:20px">CSUOJ</a>
         </div>
         <div>
             <ul class="nav navbar-nav MainFont">
@@ -18,13 +35,14 @@
                 <li><a href="Ranklist.html"  style="padding-top:20px">排名</a></li>
                 <li><a href="SubmitStaus.html"  style="padding-top:20px">状态</a></li>
                 <li><a href="ProblemHint.html"  style="padding-top:20px">常见问题</a></li>
-                <li><a href="notice/NoticeSet.html"  style="padding-top:20px">公告</a></li>
+                <li><a href="NoticeSet.html"  style="padding-top:20px">公告</a></li>
                 <!-- <li><a href="CompileCode.html"  style="padding-top:20px">编译器</a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right" style="margin-right: 25px;padding-top:10px">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="UserName">
-                        用户名 <b class="caret"></b>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+                    	<div id="UserName" style="float:left"></div>
+                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="#" style="cursor:pointer" data-toggle="modal" data-target="#update_user">更新个人信息</a></li>

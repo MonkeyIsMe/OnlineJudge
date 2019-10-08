@@ -180,23 +180,7 @@ $(document).ready(function(){
 	    var col5=currentRow.find("td:eq(4)").text(); //获得当前行第一个TD值
 	    
 	    sid = col1;
-/*		$(function(){
-			$.ajaxSettings.async = false;
-			$.post(
-					"QueryCourseByUserId.action",
-					{
-						user_id:sid,
-					},
-					function(data){
-						var data = JSON.parse(data);
-						//console.log(data);
-						for(var i = 0; i < data.length; i ++){
-							$('input:checkbox[value='+data[i].courseId+']').attr('checked', true);
-						}
-					}
-					);
-			
-		});*/
+
 
 	    
 	  });

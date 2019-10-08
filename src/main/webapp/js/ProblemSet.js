@@ -12,6 +12,23 @@ var pro_content = null;
 var in_content = null;
 var out_content = null;
 
+$(function(){
+	$.ajaxSettings.async = false;
+	$.post(
+			"SetUserInfo.action",
+			{
+			},
+			function(data){
+				var data = JSON.parse(data);
+				if(data.user_role == '2'){
+				    var url = "http://202.197.66.200:1188/OnlineJudge/Main.html";
+				    window.location.replace(url);
+				}
+			}
+			);
+	
+});
+
 window.onload = function () {
 	
 	pro_content = CKEDITOR.replace("content"); //参数‘content’是textarea元素的name属性值，而非id属性值

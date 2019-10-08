@@ -32,7 +32,7 @@ public class LoginFilter extends HttpServlet implements Filter{
         HttpServletResponse response = (HttpServletResponse) res;
 		HttpSession session = request.getSession();
         String useraccount = (String) request.getSession().getAttribute("useraccount");
-        //System.out.println("1.useraccount = " + useraccount);
+        /*System.out.println("1.useraccount = " + useraccount);*/
 
 /*		String[] names = session.getValueNames();
 		for(int i = 0;i < names.length;i++){
