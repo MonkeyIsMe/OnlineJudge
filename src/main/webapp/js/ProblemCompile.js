@@ -37,8 +37,8 @@ $(document).ready(function(){
 			function(data) {
 				var datas = JSON.parse(data);
 				//console.log(datas);
-				$("#pincase").append("输入：" + datas[0].caseInput);
-				$("#poutcase").append("输出：" + datas[0].caseOutput);
+				$("#pincase").append("输入：<br>" + datas[0].caseInput);
+				$("#poutcase").append("输出：<br>" + datas[0].caseOutput);
 			}
 	);
     
@@ -48,15 +48,17 @@ $(document).ready(function(){
     	var name = val.split(".");
     	//alert(val);
     	for(var i = 0; i <array.length; i ++){
-    		//console.log(array);
+    		var code_in;
     		if(array[i].key == name[0]){
-    			//alert(val);
-    			//console.log(array[i]);
+    			if(array[i].value == null || array[i].value == ""){
+    				code_in = editor.getValue();
+    			}
+    			//console.log(editor.getValue());
     			$.post(
     					"AddCode.action",
     					{
     						code_name:val,
-    						code_info:array[i].value
+    						code_info:code_in
     					},
     					function(data){
     						data = data.replace(/^\s*/, "").replace(/\s*$/, "");

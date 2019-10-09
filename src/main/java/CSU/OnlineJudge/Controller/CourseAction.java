@@ -282,8 +282,6 @@ public class CourseAction extends ActionSupport{
 	        out.close();
 	        return ;
 		}
-		HtmlUtil hu = new HtmlUtil();
-		if(hu.IsLogin() == false ) return ;
 		
 		List<Course> CourseList = CourseService.QueryAllCourse();
 		

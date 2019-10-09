@@ -538,8 +538,8 @@ public class WorkAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		HttpSession session = request.getSession();
-		String user_account = (String) session.getAttribute("user_account");
-		
+		String user_account = (String) session.getAttribute("useraccount");
+		//System.out.println(user_account);
 		if(user_account == null || user_account == "" || user_account.equals("")) {
 			out.println("Fail");
 	        out.flush(); 
@@ -549,6 +549,7 @@ public class WorkAction extends ActionSupport{
 		JSONArray ja = new JSONArray();
 		
 		List<CourseUser> cu_list = CourseUserService.QueryCourseUserByUserAccount(user_account);
+		//System.out.println(user_account);
 		for(CourseUser cu : cu_list) {
 			int cuid = cu.getCourseId();
 			List<WorkCourse> wc_list = WorkCourseService.QueryWorkCourseByClassId(cuid);
@@ -557,6 +558,7 @@ public class WorkAction extends ActionSupport{
 				ja.add(jo);
 			}
 		}
+		//System.out.println(ja.size());
 		out.println(ja.toString());
         out.flush(); 
         out.close();

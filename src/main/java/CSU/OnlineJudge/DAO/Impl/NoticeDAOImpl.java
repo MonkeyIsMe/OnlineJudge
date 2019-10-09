@@ -41,7 +41,7 @@ public class NoticeDAOImpl extends HibernateDaoSupport implements NoticeDAO{
 
 			public List<Notice> doInHibernate(Session session) throws HibernateException {
 				// TODO Auto-generated method stub
-				String hql = "from Notice";
+				String hql = "from Notice order by notice_time desc";
 				Query query = session.createQuery(hql).setFirstResult(
                         (rows - 1) * PageSize).setMaxResults(PageSize);;
 				List<Notice> result = null;

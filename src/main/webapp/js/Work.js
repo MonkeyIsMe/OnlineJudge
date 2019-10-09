@@ -8,7 +8,6 @@ $(function(){
 			},
 			function(data){
 				var data = JSON.parse(data);
-				//console.log(data);
 				var sum = data.WorkCount;
 				count = Math.ceil(sum/25);
 				var total = "共" + Math.ceil(sum/25) + "页";
@@ -27,7 +26,6 @@ $(function(){
 			},
 			function(data){
 				var data = JSON.parse(data);
-				//console.log(data);
 		           for(var i=0 ;i<data.length;i++){ //几个人有几个checkbox
 		        	   $("#allTime").append(
 				                "<span>"+

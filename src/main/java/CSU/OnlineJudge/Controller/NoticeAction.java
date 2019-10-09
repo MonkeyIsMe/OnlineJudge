@@ -52,6 +52,7 @@ public class NoticeAction extends ActionSupport{
 		//System.out.println(notice_name + " " + notice_info);
 		DateUtil du = new DateUtil();
 		
+		notice.setNoticePeople(user_account);
 		notice.setNoticeName(notice_name);
 		notice.setNoticeInfo(notice_info);
 		notice.setNoticeTime(du.GetNowDate());

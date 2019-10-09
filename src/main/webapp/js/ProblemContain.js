@@ -54,6 +54,7 @@ $(function(){
 				$("#problem_name").append(datas.problemName);
 				$("#problem_content").append(datas.problemInfo);
 				$("#problem_input").append(datas.problemInput);
+				console.log(datas.problemInput);
 				$("#problem_output").append(datas.problemOutput);
 				$("#problem_hint").append(datas.problemHint);
 				$("#problem_limt").append("Time Limit:  " + datas.problemTimeLimit +"MS&nbsp;&nbsp;&nbsp;&nbsp;" + "Memory Limit: " +datas.problemMemory+ "K");

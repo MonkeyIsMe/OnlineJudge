@@ -188,6 +188,8 @@
 			</action>
 			<action name="QuerySingleSubmission" class="SubmissionAction" method="QuerySingleSubmission">
 			</action>
+			<action name="UpdateSubmission" class="SubmissionAction" method="UpdateSubmission">
+			</action>
 			
 			<!-- 题目结果  -->
 			<action name="QueryAcceptProblem" class="ProblemResultAction" method="QueryAcceptProblem">
