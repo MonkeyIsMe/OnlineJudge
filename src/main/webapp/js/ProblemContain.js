@@ -89,7 +89,7 @@ $(function(){
 	
 	$("#submit").click(function(){
 			var url = "ProblemCode.html?ProblemId=" + pid;
-			window.location.href = url;
+			window.open(url);
 	})
 	
 		$("#discuss").click(function(){

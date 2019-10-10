@@ -8,7 +8,7 @@ body{
 
 .peditor {
     margin-top: 52px;
-    width: 35%;
+    width: 85%;
     height: 125%;
     border: 1px solid lightgray;
     max-lines: 30;
@@ -30,7 +30,7 @@ body{
 #left{
     margin-top: 12px;
     float: left;
-    width: 10%;
+    width: 15%;
     height: 125%;
     background-color: #EDEDED;
 }
@@ -69,6 +69,14 @@ body{
 	padding:5%;
 	background-color:#E5F0F8;
 	font-family:"Times New Roman",Georgia,Serif;
+}
+
+.testarea{
+	width:100%;
+	height:300px;
+	resize:none;
+	font-family:"Ubuntu Light","Ubuntu","Ubuntu Mono","Segoe Print","Segoe UI";
+	border:5px solid black;
 }
 
 

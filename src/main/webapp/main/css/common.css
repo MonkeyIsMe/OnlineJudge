@@ -4,6 +4,12 @@
 html {height: 100%;}
 body {min-width: 320px; max-width: 1920px; line-height: 1.6; margin: auto; -webkit-transition: -webkit-transform 0.3s ease; transition: transform 0.3s ease;}
 
+.foot{
+	height: 100px;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
 
 .nobbo {
   background: none;

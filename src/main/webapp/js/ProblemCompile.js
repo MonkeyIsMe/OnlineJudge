@@ -12,22 +12,6 @@ var cnt = 0;
 $(document).ready(function(){
     $("#head").load('MainHead.html');
     
-	$.post(
-			"QuerySingleProblem.action",
-			{
-				problem_id:pid,
-			}, 
-			function(data) {
-				var datas = JSON.parse(data);
-				//console.log(datas);
-				
-				$("#tittle").append(datas.problemName);
-				$("#ptittle").append(datas.problemName);
-				$("#pcontent").append(datas.problemInfo);
-				$("#pin").append("输入描述：" + datas.problemInput);
-				$("#pout").append("输出描述：" + datas.problemOutput);
-			}
-	);
 	
 	$.post(
 			"QueryInCase.action",
@@ -46,14 +30,12 @@ $(document).ready(function(){
     $("#saveserver").click(function(){
     	var val = $('input[name="code"]:checked').val(); 
     	var name = val.split(".");
-    	//alert(val);
     	for(var i = 0; i <array.length; i ++){
     		var code_in;
     		if(array[i].key == name[0]){
     			if(array[i].value == null || array[i].value == ""){
     				code_in = editor.getValue();
     			}
-    			//console.log(editor.getValue());
     			$.post(
     					"AddCode.action",
     					{
@@ -64,11 +46,9 @@ $(document).ready(function(){
     						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
     						if(data == "Fail"){
     							alert("保存失败！");
-    							//window.location.replace("ManagerUserSet.html");
     						}
     						else{
     							alert("保存成功!");
-    							//window.location.replace("ManagerUserSet.html");
     						}
     					}
     					);
@@ -80,14 +60,12 @@ $(document).ready(function(){
     	var info = editor.getValue();
     	var input = $("#input").val();
     	input = input +"";
-    	console.log(input)
     	var datas = [];
     	datas.push(input);
     	   $.ajax({
     	        url:'http://192.168.1.144:8089/consumer/judge.do',
     	        type:'POST',
     	        contentType: 'application/json; charset=UTF-8',
-    	        async:false,
     	        dataType:'json',
     	        data:JSON.stringify({
     	        	input:datas,
@@ -96,8 +74,37 @@ $(document).ready(function(){
     	        	judgeId:4,
     	        	src:info,
     	        }),
-    	        success: function (response) {
+    	        function (response) {
     	            console.log(response);
+    	        }
+    	    })
+    	
+    })
+    
+    $("#compile").click(function(){
+    	//alert(123);
+    	var info = editor.getValue();
+    	   $.ajax({
+    	        url:'http://192.168.1.144:8089/consumer/judge.do',
+    	        type:'POST',
+    	        contentType: 'application/json; charset=UTF-8',
+    	        dataType:'json',
+    	        data:JSON.stringify({
+    	        	input:[""],
+    	        	timeLimit:1000,
+    	        	memoryLimit:65535,
+    	        	judgeId:4,
+    	        	src:info,
+    	        }),
+    	        success: function (data) {
+    	        	var str = JSON.stringify(data);
+    	        	var datas = JSON.parse(str);
+    	        	if(datas.globalMsg == null || datas.globalMsg ==""){
+    	        		$("#area").append("编译成功");
+    	        	}
+    	        	else{
+    	        		$("#area").val(datas.globalMsg);
+    	        	}
     	        }
     	    })
     	

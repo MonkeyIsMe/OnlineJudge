@@ -555,7 +555,8 @@ public class WorkAction extends ActionSupport{
 			List<WorkCourse> wc_list = WorkCourseService.QueryWorkCourseByClassId(cuid);
 			for(WorkCourse wc : wc_list) {
 				JSONObject jo = JSONObject.fromObject(wc);
-				ja.add(jo);
+				work = WorkService.queryWork(wc.getWorkId());
+				ja.add(work);
 			}
 		}
 		//System.out.println(ja.size());

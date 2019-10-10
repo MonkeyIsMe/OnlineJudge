@@ -318,50 +318,30 @@ public class TestSpring {
     	JSONObject fianljo = new JSONObject();
     	JSONArray caseja = new JSONArray();
     	JSONObject casejo = new JSONObject();
-		List<Case> clist = cs.GetCaseByFlag(33, 1);
+		List<Case> clist = cs.GetCaseByFlag(8, 1);
 		for(int i = 0; i < clist.size(); i ++) {
 			Case c = clist.get(i);
     		casejo.put("stdin",c.getCaseInput());
     		casejo.put("stdout",c.getCaseOutput());
     		caseja.add(casejo);
-    		System.out.println(c.toString());
+    		//System.out.println(c.toString());
 		}
-		System.out.println(casejo.toString());
+		//System.out.println(casejo.toString());
 		String str = ju.Judger(ju.DealCase(caseja.toString(), "CPP", 3, 228,"#include<cstdio>\r\n" + 
 				"#include<cstring>\r\n" + 
-				"#include<algorithm>\r\n" + 
 				"#include<iostream>\r\n" + 
-				"#include<queue>\r\n" + 
 				"using namespace std;\r\n" + 
-				"\r\n" + 
-				"typedef long long ll;\r\n" + 
-				"priority_queue<int, vector<int>, greater<int> > pq;\r\n" + 
 				"\r\n" + 
 				"int main()\r\n" + 
 				"{\r\n" + 
-				"    int n;\r\n" + 
-				"    while(scanf(\"%d\",&n)!=EOF){\r\n" + 
-				"        int x;\r\n" + 
-				"        for(int i = 0; i < n; i ++){\r\n" + 
-				"            scanf(\"%d\",&x);\r\n" + 
-				"            pq.push(x);\r\n" + 
-				"        }\r\n" + 
-				"        ll sum = 0;\r\n" + 
-				"        while(pq.size() > 1){\r\n" + 
-				"            int xx = pq.top();\r\n" + 
-				"            pq.pop();\r\n" + 
-				"            int yy = pq.top();\r\n" + 
-				"            pq.pop();\r\n" + 
-				"            //cout<<xx<<\" \"<<yy<<endl;\r\n" + 
-				"            sum += xx + yy;\r\n" + 
-				"            pq.push(xx + yy);\r\n" + 
-				"        }\r\n" + 
-				"       // sum += pq.top();\r\n" + 
-				"        printf(\"%lld\\n\",sum);\r\n" + 
-				"    }\r\n" + 
+				"        int n;\r\n" + 
+				"        cin>>n;\r\n" + 
+				"        n--;\r\n" + 
+				"        cout<<1;\r\n" + 
+				"        while(n--) cout<<0;\r\n" + 
+				"        cout<<endl;\r\n" + 
 				"    return 0;\r\n" + 
-				"}\r\n" + 
-				""));
+				"}"));
     	System.out.println(str);
     	String result = ju.ResultUtil(str);
     	System.out.println(result);

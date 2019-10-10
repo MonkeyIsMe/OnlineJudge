@@ -47,10 +47,10 @@ public class WorkCourseDAOImpl extends HibernateDaoSupport implements WorkCourse
 
 			public List<WorkCourse> doInHibernate(Session session) throws HibernateException {
 				// TODO Auto-generated method stub
-				String hql = "from WorkCourse where class_id = ?";
+				String hql = "from WorkCourse where course_id = ?";
 				Query query = session.createQuery(hql);
-				List<WorkCourse> list = query.list();
 				query.setParameter(0, ClassId);
+				List<WorkCourse> list = query.list();
 				return list;
 			}
 		});

@@ -358,7 +358,7 @@ public class SubmissionAction extends ActionSupport{
 		}
 		
 
-		
+
 		out.println(jo.toString());
         out.flush(); 
         out.close();
