@@ -58,7 +58,7 @@ $(function(){
 				$("#problem_output").append(datas.problemOutput);
 				$("#problem_hint").append(datas.problemHint);
 				$("#problem_limt").append("Time Limit:  " + datas.problemTimeLimit +"MS&nbsp;&nbsp;&nbsp;&nbsp;" + "Memory Limit: " +datas.problemMemory+ "K");
-				$("#problem_submission").append(" Total Submission(s):  " + datas.acceptTimes +"&nbsp;&nbsp;&nbsp;&nbsp;" + "Accepted Submission(s): " +datas.submissionTimes);
+				$("#problem_submission").append(" Total Submission(s):  " + datas.submissionTimes +"&nbsp;&nbsp;&nbsp;&nbsp;" + "Accepted Submission(s): " +datas.acceptTimes);
 				
 				$("#pname").append(datas.problemName);
 				$("#pinfo").append(datas.problemInfo);

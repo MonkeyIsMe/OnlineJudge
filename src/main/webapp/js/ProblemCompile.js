@@ -29,31 +29,35 @@ $(document).ready(function(){
     
     $("#saveserver").click(function(){
     	var val = $('input[name="code"]:checked').val(); 
-    	var name = val.split(".");
-    	for(var i = 0; i <array.length; i ++){
-    		var code_in;
-    		if(array[i].key == name[0]){
-    			if(array[i].value == null || array[i].value == ""){
-    				code_in = editor.getValue();
-    			}
-    			$.post(
-    					"AddCode.action",
-    					{
-    						code_name:val,
-    						code_info:code_in
-    					},
-    					function(data){
-    						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-    						if(data == "Fail"){
-    							alert("保存失败！");
-    						}
-    						else{
-    							alert("保存成功!");
-    						}
-    					}
-    					);
-    		}
+    	if(val == null || val == "") alert("没有代码！");
+    	else{
+        	var name = val.split(".");
+        	for(var i = 0; i <array.length; i ++){
+        		var code_in;
+        		if(array[i].key == name[0]){
+        			if(array[i].value == null || array[i].value == ""){
+        				code_in = editor.getValue();
+        			}
+        			$.post(
+        					"AddCode.action",
+        					{
+        						code_name:val,
+        						code_info:code_in
+        					},
+        					function(data){
+        						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+        						if(data == "Fail"){
+        							alert("保存失败！");
+        						}
+        						else{
+        							alert("保存成功!");
+        						}
+        					}
+        					);
+        		}
+        	}
     	}
+
     })
     
     $("#test").click(function(){
@@ -274,16 +278,35 @@ $("#clear").click(function () {
     editor.setValue("");
 })
 
+document.addEventListener('keydown', function(e) {
+  if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
+        e.preventDefault();
+        var val = $('input[name="code"]:checked').val(); 
+        //console.log(val);
+        var lang = val.split(".");
+        //console.log(lang[0] + "  " + lang[1]);
+        var name = lang[0];
+        var code = editor.getValue();
+        for(var j in array){
+            if(array[j].key == name){
+                array[j].value = code;
+            }
+        }
+/*        for(var j in array){
+        	console.log(array[j]);
+        }*/
+      }
+});
 
 function inputcode(filename) {
 
-    var firstcode = editor.getValue();
+/*    var firstcode = editor.getValue();
     for(var j in array){
         if(array[j].key == first){
             array[j].value = firstcode;
         }
     }
-
+    
     first = filename;
     var secondcode = "";
     for(var k in array){
@@ -293,8 +316,14 @@ function inputcode(filename) {
     }
 
     if(secondcode == null) secondcode ="";
-    editor.setValue(secondcode);
-
+    editor.setValue(secondcode);*/
+	var code;
+    for(var j in array){
+        if(array[j].key == filename){
+        	code = array[j].value;
+        }
+    }
+    editor.setValue(code);
 }
 
 //判断文件是否存在

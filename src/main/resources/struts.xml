@@ -72,6 +72,8 @@
 			</action>
 			<action name="UpdateCourseUser" class="CourseUserAction" method="UpdateCourseUser" >
 			</action>
+			<action name="QueryWorkToUser" class="CourseUserAction" method="QueryWorkToUser" >
+			</action>
 			
 			<!-- 知识点 -->
 		 	<action name="QueryKnowledgeByPageSize" class="KnowledgeAction" method="QueryKnowledgeByPageSize" >

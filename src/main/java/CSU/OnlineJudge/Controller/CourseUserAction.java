@@ -18,6 +18,7 @@ import CSU.OnlineJudge.Model.WorkCourse;
 import CSU.OnlineJudge.Service.CourseService;
 import CSU.OnlineJudge.Service.CourseUserService;
 import CSU.OnlineJudge.Service.UserService;
+import CSU.OnlineJudge.Service.WorkCourseService;
 import CSU.OnlineJudge.Service.Impl.CourseServiceImpl;
 import CSU.OnlineJudge.Service.Impl.CourseUserServiceImpl;
 import CSU.OnlineJudge.Utils.HtmlUtil;
@@ -26,13 +27,15 @@ import net.sf.json.JSONObject;
 
 public class CourseUserAction extends ActionSupport{
 	
-	private CourseUser cu = new CourseUser();
+	
 	private CourseUserService CourseUserService;
 	private CourseService CourseService;
 	private UserService UserService;
+	private WorkCourseService WorkCourseService;
 	private User user = new User();
 	private Course course = new Course();
-	
+	private CourseUser cu = new CourseUser();
+	private WorkCourse wc = new WorkCourse();
 	
 	public UserService getUserService() {
 		return UserService;
@@ -56,6 +59,15 @@ public class CourseUserAction extends ActionSupport{
 
 	public void setCourseService(CourseService courseService) {
 		CourseService = courseService;
+	}
+	
+	
+	public WorkCourseService getWorkCourseService() {
+		return WorkCourseService;
+	}
+
+	public void setWorkCourseService(WorkCourseService workCourseService) {
+		WorkCourseService = workCourseService;
 	}
 
 	//查询指定学生的课程
@@ -250,7 +262,6 @@ public class CourseUserAction extends ActionSupport{
 		}
 		
 	}
-
 	
 	//添加学生课程关联
 	public void AddCourseUser() throws Exception{
@@ -452,4 +463,62 @@ public class CourseUserAction extends ActionSupport{
 		CourseUserService.AddMutiplyCourseUser(cu_list);
 	}
 	
+
+	//学生是否属于某一个作业
+	public void QueryWorkToUser() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String work_id = request.getParameter("work_id");
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int wid = Integer.valueOf(work_id);
+		
+		boolean flag = false;
+		
+		List<CourseUser> cu_list = CourseUserService.QueryCourseUserByUserAccount(user_account);
+		for(CourseUser cuu : cu_list) {
+			int cid = cuu.getCourseId();
+			List<WorkCourse> wc_list = WorkCourseService.QueryWorkCourseByClassId(cid);
+			for(WorkCourse wcc : wc_list) {
+				int w_id = wcc.getWorkId();
+				if(w_id == wid) {
+					flag = true;
+					break;
+				}
+			}
+			if(flag) break;
+		}
+		
+		if(flag) {
+			out.println("Success");
+			out.flush(); 
+			out.close(); 
+		}
+		else {
+			out.println("Fail");
+			out.flush(); 
+			out.close(); 
+		}
+	}
 }

@@ -228,6 +228,20 @@ $(document).ready(function(){
 })
 
 function SeeProblem(wid){
+	$.ajaxSettings.async = false;
+	var vflag = false;
+	$.post(
+			"QueryWorkToUser.action",
+			{
+				work_id:wid
+			},
+			function(data){
+				data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+				if(data == "Success"){
+					vflag = true;
+				}
+			}
+			);
 	
 	$.post(
 			"QuerySingleWork.action",
@@ -236,13 +250,16 @@ function SeeProblem(wid){
 			},
 			function(data){
 				var data = JSON.parse(data);
-				console.log(data);
+				//console.log(vflag);
 				var flag = "考试";
 				if(data.workFlag == '0'){
 					flag = "作业";
 				}
 				var time = getNowFormatDate();
-				if(data.workBeginTime > time){
+				if(vflag == false){
+					alert("该" + flag + data.workName +"不属于你课程的一部分！");
+				}
+				else if(data.workBeginTime > time){
 					alert("该" + flag + data.workName +"还未开始，请等待开始！");
 				}
 				else if(data.workEndTime < time){
