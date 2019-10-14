@@ -82,7 +82,6 @@ public class WorkAction extends ActionSupport{
 		String work_endtime = request.getParameter("work_endtime");
 		String work_info = request.getParameter("work_info");
 		String work_flag = request.getParameter("work_flag");
-		String work_onwer = request.getParameter("work_onwer");
 		
 		HttpSession session = request.getSession();
 		String user_account = (String) session.getAttribute("useraccount");
@@ -98,7 +97,7 @@ public class WorkAction extends ActionSupport{
 		work.setWorkName(work_name);
 		work.setWorkInfo(work_info);
 		work.setWorkFlag(work_flag);
-		work.setWorkOwner(work_onwer);
+		work.setWorkOwner(user_account);
 		work.setWorkCreatTime(du.GetNowDate());
 		work.setWorkBeginTime(work_starttime);
 		work.setWorkEndTime(work_endtime);

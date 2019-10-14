@@ -202,7 +202,7 @@ $(document).ready(function(){
 							$.post(
 									"AddWorkForCourse.action",
 									{
-										work_id:wid,
+										work_id:WorkId,
 										course_info:jsonText,
 									},
 									function(data){

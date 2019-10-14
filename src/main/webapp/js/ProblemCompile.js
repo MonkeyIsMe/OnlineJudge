@@ -9,20 +9,22 @@ var array = [];
 var choosed;
 var cnt = 0;
 
+
+
+
+
 $(document).ready(function(){
     $("#head").load('MainHead.html');
     
 	
 	$.post(
-			"QueryInCase.action",
+			"QuerySingleProblem.action",
 			{
 				problem_id:pid,
 			}, 
 			function(data) {
 				var datas = JSON.parse(data);
-				//console.log(datas);
-				$("#pincase").append("输入：<br>" + datas[0].caseInput);
-				$("#poutcase").append("输出：<br>" + datas[0].caseOutput);
+				$("#tittle").append(datas.problemName);
 			}
 	);
     
@@ -62,26 +64,30 @@ $(document).ready(function(){
     
     $("#test").click(function(){
     	var info = editor.getValue();
-    	var input = $("#input").val();
-    	input = input +"";
-    	var datas = [];
-    	datas.push(input);
-    	   $.ajax({
-    	        url:'http://192.168.1.144:8089/consumer/judge.do',
-    	        type:'POST',
-    	        contentType: 'application/json; charset=UTF-8',
-    	        dataType:'json',
-    	        data:JSON.stringify({
-    	        	input:datas,
-    	        	timeLimit:1000,
-    	        	memoryLimit:65535,
-    	        	judgeId:4,
-    	        	src:info,
-    	        }),
-    	        function (response) {
-    	            console.log(response);
-    	        }
-    	    })
+    	if(info == null || info == "") alert("没有代码！");
+    	else{
+        	var input = $("#input").val();
+        	input = input +"";
+        	var datas = [];
+        	datas.push(input);
+        	   $.ajax({
+        	        url:'http://192.168.1.144:8089/consumer/judge.do',
+        	        type:'POST',
+        	        contentType: 'application/json; charset=UTF-8',
+        	        dataType:'json',
+        	        data:JSON.stringify({
+        	        	input:datas,
+        	        	timeLimit:1000,
+        	        	memoryLimit:65535,
+        	        	judgeId:4,
+        	        	src:info,
+        	        }),
+        	        function (response) {
+        	            console.log(response);
+        	        }
+        	    })
+    	}
+
     	
     })
     
@@ -117,21 +123,25 @@ $(document).ready(function(){
     $("#submit").click(function(){
     	var info = editor.getValue();
     	var val = $('input[type="radio"]:checked').val(); 
-    	var lang = val.split(".");
-    	$.post(
-    			"AddSubmission.action",
-    			{
-    				submission_type:lang[1],
-    				problem_id:pid,
-    				submission_code:info,
-    			},
-    			function(data){
-    				var data = JSON.parse(data);
-    				var sid = data.SubmissionId;
-    			    var url = "SeeResult.html?sid=" + sid;
-    			    window.location.replace(url);
-    			}
-    			);
+    	if(val == null || val == "") alert("没有代码！");
+    	else{
+        	var lang = val.split(".");
+        	$.post(
+        			"AddSubmission.action",
+        			{
+        				submission_type:lang[1],
+        				problem_id:pid,
+        				submission_code:info,
+        			},
+        			function(data){
+        				var data = JSON.parse(data);
+        				var sid = data.SubmissionId;
+        			    var url = "SeeResult.html?sid=" + sid;
+        			    window.location.replace(url);
+        			}
+        			);
+    	}
+
     	
     })
     
@@ -143,7 +153,7 @@ $(document).ready(function(){
 //编译器
 ace.require("ace/ext/language_tools");
 var editor = ace.edit("peditor");
-editor.setTheme("ace/theme/dreamweaver");
+editor.setTheme("ace/theme/dracula");
 editor.session.setMode("ace/mode/java");
 editor.setShowPrintMargin(true);
 editor.session.getLength();
@@ -154,6 +164,17 @@ editor.setOptions({
     enableLiveAutocompletion: true,//只能补全
 });
 
+var apeditor = document.getElementById('peditor');
+
+//禁止复制
+apeditor.oncopy = function(){
+     return false;
+}
+//禁止粘贴
+apeditor.onpaste = function(){
+	editor.setValue("");
+    return false;
+}
 
 //对主题的切换
 $("#ambiance").click(function () {
@@ -203,7 +224,7 @@ $("#terminal").click(function () {
 
 //字体大小设置
 function fontsize(size) {
-    $("#editor").css("font-size",size);
+    $("#peditor").css("font-size",size);
 }
 
 function ChooseLang(ch) {
@@ -240,6 +261,7 @@ $("#CreateCode").click(function(){
         }
         else{
         	
+        	$("#bjk").css("display","none");
         	$("#peditor").css("display","block");
         	
             if(cnt == 0){
@@ -337,3 +359,15 @@ function IsCreate(filename){
     return flag;
 }
 
+
+
+/*document.onkeydown = function(event) {
+
+    var e = event || window.event || arguments.callee.caller.arguments[0];
+    console.log(event);
+    if (e && e.keyCode == 86 && e.ctrlKey) { // 按 Esc 
+        //要做的事情
+    	clipboardData.setData('Text', "");
+    }
+
+};*/

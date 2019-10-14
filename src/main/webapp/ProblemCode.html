@@ -13,9 +13,8 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <title id="tittle"></title>
 </head>
-<body>
 
-
+<body style="background-color:#1A1A2A " >
 <div id="head"></div>
 <div id="menu">
     <nav class="navbar navbar-default" role="navigation">
@@ -73,14 +72,19 @@
     </nav>
 </div>
 <div id="left">
-    <div style="color: #4F84F3;text-align: center;padding-top: 15px;font-size: 20px">文件目录</div>
+    <div style="color: white;text-align: center;padding-top: 15px;font-size: 20px">文件目录</div>
     <div id="content">
     </div>
 </div>
 <!-- style="display:none" -->
-<div id="peditor" class="peditor" style="display:none"></div>
+<div id="peditor" class="peditor" style="display:none;" ></div>
+
+<div id="bjk" class="bjk" style="color:white">
+		<div class="bjk_info" style="margin-top:20%">欢迎来到编辑界面</div>
+		<div class="bjk_info" style="margin-top:10px">请先到上方创建你的代码文件</div>
+</div>
 <div>
-	<textarea  type="text" class="testarea" id="area"></textarea>
+	<textarea  type="text" class="testarea" id="area" placeholder="输出框"></textarea>
 </div>
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

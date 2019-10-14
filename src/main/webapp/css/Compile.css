@@ -4,12 +4,31 @@ html{
 
 body{
     height: 100%;
+    
+}
+
+
+.bjk_info{
+	font-family:"Ubuntu Light","Ubuntu","Ubuntu Mono","Segoe Print","Segoe UI";
+	text-align: center;
+	font-size:20px;
+}
+
+.bjk{
+	font-family:"Ubuntu Light","Ubuntu","Ubuntu Mono","Segoe Print","Segoe UI";
+	margin-top: 52px;
+    width: 85%;
+    height: 75%;
+    border: 1px solid lightgray;
+    max-lines: 30;
+    autoScrollEditorIntoView: true;
+    margin-left:15%;
 }
 
 .peditor {
     margin-top: 52px;
     width: 85%;
-    height: 125%;
+    height: 75%;
     border: 1px solid lightgray;
     max-lines: 30;
     autoScrollEditorIntoView: true;
@@ -31,11 +50,14 @@ body{
     margin-top: 12px;
     float: left;
     width: 15%;
-    height: 125%;
-    background-color: #EDEDED;
+    height: 75%;
+    background-color: #1E2233;
+    border:1px solid white;
 }
 
 .file{
+	font-family:"Times New Roman",Georgia,Serif;
+	color:white;
     text-align: center;
     font-size: 17px;
     overflow: hidden;
@@ -76,7 +98,9 @@ body{
 	height:300px;
 	resize:none;
 	font-family:"Ubuntu Light","Ubuntu","Ubuntu Mono","Segoe Print","Segoe UI";
-	border:2px solid black;
+	border:1px solid white;
+	background-color: #1E2233;
+	color:white;
 }
 
 
@@ -88,4 +112,30 @@ body{
 	margin-top:2%;
 	padding:2%;
 	margin-left:10%;
+}
+
+
+textarea::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: white;
+  font-family:"Ubuntu Light","Ubuntu","Ubuntu Mono","Segoe Print","Segoe UI";
+  font-size:20px;
+}
+textarea:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: white;
+  font-family:"Ubuntu Light","Ubuntu","Ubuntu Mono","Segoe Print","Segoe UI";
+  font-size:20px;
+}
+textarea::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: white;
+  font-family:"Ubuntu Light","Ubuntu","Ubuntu Mono","Segoe Print","Segoe UI";
+  font-size:20px;
+}
+textarea::-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: white;
+  font-family:"Ubuntu Light","Ubuntu","Ubuntu Mono","Segoe Print","Segoe UI";
+  font-size:20px;
 }
