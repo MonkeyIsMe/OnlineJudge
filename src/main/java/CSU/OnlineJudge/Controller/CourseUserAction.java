@@ -491,7 +491,7 @@ public class CourseUserAction extends ActionSupport{
 	        out.close();
 	        return ;
 		}
-		
+		System.out.println(work_id);
 		int wid = Integer.valueOf(work_id);
 		
 		boolean flag = false;

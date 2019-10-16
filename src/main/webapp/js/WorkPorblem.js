@@ -1,9 +1,10 @@
 var url = decodeURI(window.location.href);
- 
-var argsIndex = url .split("?ProblemId=");
-var pid = argsIndex[1];
 
-
+URL = url.split("?")[1]; 
+var a = URL.split("&");       
+var pid = a[0].split("=")[1]; 
+var wid = a[1].split("=")[1]; 
+//console.log(wid + " " + pid)
 $(function(){
 	$.post(
 			"QuerySingleProblem.action",
@@ -50,7 +51,7 @@ $(function(){
 $(function(){
 	
 	$("#submit").click(function(){
-			var url = "WorkProblemCode.html?ProblemId=" + pid;
+			var url = "WorkProblemCode.html?ProblemId=" + pid +"&WorkId=" + wid;
 			window.location.href = url;
 	})
 	

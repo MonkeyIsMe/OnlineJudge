@@ -24,7 +24,7 @@ public class WorkProblemServiceImpl implements WorkProblemService{
 
 	public void addWorkProblem(WorkProblem wp) {
 		// TODO Auto-generated method stub
-		System.out.println("service = " + wp.toString());
+		//System.out.println("service = " + wp.toString());
 		wpd.addWorkProblem(wp);
 	}
 
@@ -61,6 +61,13 @@ public class WorkProblemServiceImpl implements WorkProblemService{
 	public int CountByWorkId(int WorkId) {
 		// TODO Auto-generated method stub
 		return wpd.CountByWorkId(WorkId);
+	}
+
+	public WorkProblem QueryWorkProblemByWorkProblem(int WorkId, int ProblemId) {
+		// TODO Auto-generated method stub
+		List<WorkProblem> wp_list = wpd.QueryWorkProblemByWorkProblem(WorkId, ProblemId);
+		if(wp_list.size() == 0) return null;
+		return wp_list.get(0);
 	}
 
 }

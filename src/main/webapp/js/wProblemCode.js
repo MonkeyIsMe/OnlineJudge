@@ -1,7 +1,9 @@
 var url = decodeURI(window.location.href);
  
-var argsIndex = url .split("?ProblemId=");
-var pid = argsIndex[1];
+URL = url.split("?")[1]; 
+var a = URL.split("&");       
+var pid = a[0].split("=")[1]; 
+var wid = a[1].split("=")[1]; 
 
 let first; //存放一个选择框
 var array = [];
@@ -9,10 +11,7 @@ var array = [];
 var choosed;
 var cnt = 0;
 
-
-
-
-
+//console.log(wid + " " + pid);
 $(document).ready(function(){
     $("#head").load('MainHead.html');
     
@@ -43,9 +42,7 @@ $(document).ready(function(){
         			$.post(
         					"AddCode.action",
         					{
-        						code_file:val,
-        						code_type:name[1],
-        						code_name:name[0],
+        						code_name:val,
         						code_info:code_in
         					},
         					function(data){
@@ -69,7 +66,6 @@ $(document).ready(function(){
     	if(info == null || info == "") alert("没有代码！");
     	else{
         	var input = $("#input").val();
-        	console.log(input);
         	input = input +"";
         	var datas = [];
         	datas.push(input);
@@ -85,12 +81,8 @@ $(document).ready(function(){
         	        	judgeId:4,
         	        	src:info,
         	        }),
-        	        success: function (response) {
-        	        	var str = JSON.stringify(response);
-        	        	var datas = JSON.parse(str);
-        	        	var result = datas.result[0].out;
-        	        	//console.log(result);
-        	        	$("#area").val(result);
+        	        function (response) {
+        	            console.log(response);
         	        }
         	    })
     	}
@@ -139,6 +131,7 @@ $(document).ready(function(){
         				submission_type:lang[1],
         				problem_id:pid,
         				submission_code:info,
+        				work_id:wid,
         			},
         			function(data){
         				var data = JSON.parse(data);
@@ -365,16 +358,3 @@ function IsCreate(filename){
     }
     return flag;
 }
-
-
-
-/*document.onkeydown = function(event) {
-
-    var e = event || window.event || arguments.callee.caller.arguments[0];
-    console.log(event);
-    if (e && e.keyCode == 86 && e.ctrlKey) { // 按 Esc 
-        //要做的事情
-    	clipboardData.setData('Text', "");
-    }
-
-};*/

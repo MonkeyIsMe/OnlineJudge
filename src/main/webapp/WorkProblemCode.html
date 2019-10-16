@@ -6,16 +6,15 @@
     <link href="css/bootstrap-theme.css" type="text/css" rel="styleSheet">
     <link href="css/bootstrap.css" type="text/css" rel="styleSheet">
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" type="text/css" rel="styleSheet">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link href="css/Compile.css" type="text/css" rel="styleSheet">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <title id="tittle"></title>
 </head>
-<body>
 
-
+<body style="background-color:#1A1A2A " >
 <div id="head"></div>
 <div id="menu">
     <nav class="navbar navbar-default" role="navigation">
@@ -28,11 +27,14 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu" style="font-size:16px">
-                            <li><a id="savelocal">保存到本地</a></li>
+                            <!-- <li><a id="savelocal">保存到本地</a></li> -->
                             <li><a  id="saveserver">保存到服务器</a></li>
                         </ul>
                     </li>
                     <li><a  id="create"  data-toggle="modal" data-target="#myModal">创建</a></li>
+                    <li><a  id="compile">编译</a></li>
+                    <li><a  data-toggle="modal" data-target="#myModal_test">测试</a></li>
+                    <li><a  id="submit">提交</a></li>
                     <li><a  id="clear">清空</a></li>
                     <li class="dropdown">
                         <a  class="dropdown-toggle" data-toggle="dropdown" id="theme">
@@ -69,31 +71,20 @@
         </div>
     </nav>
 </div>
-<div class="pro_content">
-	<div id="ptittle"></div>
-	<div id="pcontent"></div>
-	<div id="pin" class="pframe"></div>
-	<div id="pout" class="pframe"></div>
-	<div id="pincase" class="pframe"></div>
-	<div id="poutcase" class="pframe"></div>
-</div>
 <div id="left">
-    <div style="color: #4F84F3;text-align: center;padding-top: 15px;font-size: 20px">文件目录</div>
+    <div style="color: white;text-align: center;padding-top: 15px;font-size: 20px">文件目录</div>
     <div id="content">
     </div>
 </div>
-<div id="peditor" class="peditor" style="display:none"></div>
-<div style="width:1000px;margin-left:35px">
-    <div class="form-group" style="float:left">
-        <textarea class="form-control" id="input" rows="3"  placeholder="输入数据" style="width: 300px;height: 200px;margin-left: 50px;margin-top: 10px;resize:none;overflow:scroll;"></textarea>
-    </div>
-    <div class="form-group" style="float:left">
-        <textarea class="form-control" id="output" rows="3" placeholder="输出数据" style="width: 300px;height: 200px;margin-left: 20px;margin-top: 10px;resize:none;overflow:scroll;"></textarea>
-    </div>
-    <div class="btn-group btn-group-lg" style="margin-top: 100px">
-        <button type="button" class="btn btn-primary" style="margin-left: 50px;padding-bottom:35px;border-radius: 20px;" id="test">测试</button>
-        <button type="button" class="btn btn-primary"style="margin-left: 50px;padding-bottom:35px;border-radius: 20px;" id="submit">提交</button>
-    </div>
+<!-- style="display:none" -->
+<div id="peditor" class="peditor" style="display:none;" ></div>
+
+<div id="bjk" class="bjk" style="color:white">
+		<div class="bjk_info" style="margin-top:20%">欢迎来到编辑界面</div>
+		<div class="bjk_info" style="margin-top:10px">请先到上方创建你的代码文件</div>
+</div>
+<div>
+	<textarea  type="text" class="testarea" id="area" placeholder="输出框（编译信息，输出信息将会展现在这里）"></textarea>
 </div>
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -135,9 +126,33 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+<div class="modal fade" id="myModal_test" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                   测试输入
+                </h4>
+            </div>
+            <div class="modal-body">
+            	<textarea  type="text" class="testarea" id="input"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="test">
+                    提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 </body>
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ext-language_tools.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/ProblemCompile.js" type="text/javascript"></script>
+<script src="js/wProblemCode.js" type="text/javascript"></script>
 </html>

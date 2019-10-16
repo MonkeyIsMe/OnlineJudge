@@ -12,7 +12,7 @@ var cnt = 0;
 $(function(){
 	$.ajaxSettings.async = false;
 	$.post(
-			"CountCodeByAccount.action",
+			"CountCodeByUserId.action",
 			{
 				user_id:uid,
 			},
@@ -32,7 +32,7 @@ $(function(){
 
 $(function(){
     $.post(
-        "QueryCodeByAccount.action",
+        "QueryCodeByUserId.action",
         {
             page:row,
             limit:25,
@@ -50,7 +50,7 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].codeInfo  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:80px"></span></a>'
+			        		'<a><span class="delete update_code glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:80px" data-toggle="modal" data-target="#update_myModal"></span></a>'
 			        		+'<a><span class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
@@ -70,7 +70,7 @@ function PrevPage(){
 		row--;
 		$("#KnowList").html("");
 	    $.post(
-	            "QueryAnswerByProblemId.action",
+	            "QueryCodeByUserId.action",
 	            {
 	                page:row,
 	                limit:25,
@@ -89,7 +89,7 @@ function PrevPage(){
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].codeInfo  +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-				        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:80px"></span></a>'
+				        		'<a><span class="delete update_code glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:80px" data-toggle="modal" data-target="#update_myModal"></span></a>'
 				        		+'<a><span class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 				        		+"</td>");
 	                    // $("#J_TbData").append($trTemp);
@@ -108,7 +108,7 @@ function NextPage(){
 		row ++;
 		$("#KnowList").html("");
 	    $.post(
-	            "QueryAnswerByProblemId.action",
+	            "QueryCodeByUserId.action",
 	            {
 	                page:row,
 	                limit:25,
@@ -127,7 +127,7 @@ function NextPage(){
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].codeInfo  +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].userAccount  +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-				        		'<a><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:80px"></span></a>'
+				        		'<a><span class="delete update_code glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:80px" data-toggle="modal" data-target="#update_myModal"></span></a>'
 				        		+'<a><span class="delete glyphicon glyphicon-trash" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 				        		+"</td>");
 	                    // $("#J_TbData").append($trTemp);
@@ -170,7 +170,39 @@ $(document).ready(function(){
 					);
 	  })
 	  
-
+	  //用于读取所选表行单元格数据（值）的代码
+	  $("#myTable").on('click','.update_code',function(){
+	    //获得当前行
+	    var currentRow=$(this).closest("tr"); 
+	    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+	    
+	    cid = col1;
+		$.post(
+				"QuerySingleCode.action",
+				{
+					code_id:cid,
+				},
+				function(data){
+					var data = JSON.parse(data);
+					editor.setValue(data.CodeInfo);
+					if(data.CodeType == "class"){
+						$("#add_lang").find("option[value='Java']").attr("selected",true);
+						editor.session.setMode("ace/mode/java");
+					}
+					else if(data.CodeType == "cpp"){
+						$("#add_lang").find("option[value='C++']").attr("selected",true);
+						editor.session.setMode("ace/mode/c_cpp");
+					}
+					else{
+						$("#add_lang").find("option[value='Python']").attr("selected",true);
+						 editor.session.setMode("ace/mode/python");
+					}
+				}
+				);
+	    
+	  });
+	  
+	  
 	  
 	  
 });
@@ -184,3 +216,17 @@ function refresh(){
 function backprev(){
 	window.location.replace("ManagerUserCodeSet.html");
 }
+
+//更新的编译器
+ace.require("ace/ext/language_tools");
+var editor = ace.edit("editor");
+editor.setTheme("ace/theme/dreamweaver");
+editor.session.setMode("ace/mode/java");
+editor.setShowPrintMargin(true);
+editor.session.getLength();
+editor.session.setUseWrapMode(true);
+editor.setOptions({
+    enableBasicAutocompletion: true,
+    enableSnippets: true,
+    enableLiveAutocompletion: true,//只能补全
+});

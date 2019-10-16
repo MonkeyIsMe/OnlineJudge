@@ -3,6 +3,8 @@ var url = decodeURI(window.location.href);
 var argsIndex = url .split("?WorkId=");
 var wid = argsIndex[1];
 
+
+
 $(function(){
 
 	$.post(
@@ -12,7 +14,7 @@ $(function(){
 			},
 			function(data){
 				var data = JSON.parse(data);
-				console.log(data);
+				//console.log(data);
 				var flag = "考试";
 				if(data.workFlag == '0'){
 					flag = "作业";
@@ -42,17 +44,17 @@ $(function(){
 			}, 
 			function(data) {
 				var data = JSON.parse(data);
-				//console.log(data);
+				console.log(data);
 				    for( var i = 0; i < data.length; i++ ) {
 				    	if(data[i] == null) continue;
-				    	if(data[i].problemId == null || data[i].problemId == "") continue;
+				    	if(data[i].ProblemId == null || data[i].ProblemId == "") continue;
 				    	
 				        //动态创建一个tr行标签,并且转换成jQuery对象
 				        var $trTemp = $("<tr></tr>");
 				        //往行里面追加 td单元格
-				        $trTemp.append("<td style=" + "text-align:center;font-size:16px;font-family: inherit;"  + ">"+ data[i].problemId +"</td>");
-				        $trTemp.append("<td onclick=SeeProblem('"+data[i].problemId+"') style=" + "text-align:center;font-size:16px;font-family: inherit;"  + ">"  +data[i].problemName +"</td>");
-				        $trTemp.append("<td style=" + "text-align:center;font-size:16px;font-family: inherit;"  + ">" + data[i].acceptTimes+"/"+data[i].submissionTimes +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center;font-size:16px;font-family: inherit;"  + ">"+ data[i].ProblemId +"</td>");
+				        $trTemp.append("<td onclick=SeeProblem('"+data[i].ProblemId+"') style=" + "text-align:center;font-size:16px;font-family: inherit;"  + ">"  +data[i].ProblemName +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center;font-size:16px;font-family: inherit;"  + ">" + data[i].AcceptTimes+"/"+data[i].SubmissionTimes +"</td>");
 				        // $("#J_TbData").append($trTemp);
 				        $trTemp.appendTo("#ProblemList");
 				    }
@@ -62,7 +64,7 @@ $(function(){
 });
 
 function SeeProblem(pid){
-	var url = "WorkProblem.html?ProblemId=" + pid;
+	var url = "WorkProblem.html?ProblemId=" + pid + "&WorkId=" + wid;
 	window.location.href = url;
 }
 

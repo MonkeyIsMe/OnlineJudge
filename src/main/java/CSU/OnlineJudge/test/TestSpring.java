@@ -318,7 +318,7 @@ public class TestSpring {
     	JSONObject fianljo = new JSONObject();
     	JSONArray caseja = new JSONArray();
     	JSONObject casejo = new JSONObject();
-		List<Case> clist = cs.GetCaseByFlag(8, 1);
+		List<Case> clist = cs.GetCaseByFlag(13, 1);
 		for(int i = 0; i < clist.size(); i ++) {
 			Case c = clist.get(i);
     		casejo.put("stdin",c.getCaseInput());
@@ -330,18 +330,37 @@ public class TestSpring {
 		String str = ju.Judger(ju.DealCase(caseja.toString(), "CPP", 3, 228,"#include<cstdio>\r\n" + 
 				"#include<cstring>\r\n" + 
 				"#include<iostream>\r\n" + 
+				"#include<algorithm>\r\n" + 
 				"using namespace std;\r\n" + 
+				"\r\n" + 
+				"const int maxn = 100005;\r\n" + 
+				"int vis[maxn],a[maxn];\r\n" + 
 				"\r\n" + 
 				"int main()\r\n" + 
 				"{\r\n" + 
-				"        int n;\r\n" + 
-				"        cin>>n;\r\n" + 
-				"        n--;\r\n" + 
-				"        cout<<1;\r\n" + 
-				"        while(n--) cout<<0;\r\n" + 
-				"        cout<<endl;\r\n" + 
+				"    int n,m;\r\n" + 
+				"    while(scanf(\"%d%d\",&n,&m)!=EOF){\r\n" + 
+				"        memset(vis,0,sizeof(vis));\r\n" + 
+				"        for(int i = 0;i < n;i ++){\r\n" + 
+				"            cin>>a[i];\r\n" + 
+				"            vis[a[i]]++;\r\n" + 
+				"        }\r\n" + 
+				"        bool flag = false;\r\n" + 
+				"        for(int i = 0;i < n; i ++){\r\n" + 
+				"            if(m - a[i] > 0){\r\n" + 
+				"                int sum = m - a[i];\r\n" + 
+				"                if(vis[sum]){\r\n" + 
+				"                    flag = true;\r\n" + 
+				"                    break;\r\n" + 
+				"                }\r\n" + 
+				"            }\r\n" + 
+				"        }\r\n" + 
+				"        if(flag) cout<<\"Yes\"<<endl;\r\n" + 
+				"        else cout<<\"No\"<<endl;\r\n" + 
+				"    }\r\n" + 
 				"    return 0;\r\n" + 
-				"}"));
+				"}\r\n" + 
+				""));
     	System.out.println(str);
     	String result = ju.ResultUtil(str);
     	System.out.println(result);

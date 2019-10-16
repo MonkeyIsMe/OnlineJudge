@@ -7,9 +7,6 @@ var url = decodeURI(window.location.href);
 var argsIndex = url .split("?ProblemId=");
 var pid = argsIndex[1];
 
-
-
-
 var cid; //记录第几行的编号
 var cflag //记录第几行的标志位
 var cin; //记录第几行的输入

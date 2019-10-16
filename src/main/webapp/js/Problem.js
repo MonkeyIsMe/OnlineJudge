@@ -25,13 +25,12 @@ $(function(){
 			"QueryProblemList.action",
 			{
 				page:row,
-				limit:30
+				limit:20
 			}, 
 			function(data) {
 				var data = JSON.parse(data);
 				//console.log(data);
 				for(var i = 0 ; i < data.length ; i ++){
-				    for( var i = 0; i < data.length; i++ ) {
 				        //动态创建一个tr行标签,并且转换成jQuery对象
 				        var $trTemp = $("<tr ></tr>");
 				        //往行里面追加 td单元格
@@ -41,7 +40,6 @@ $(function(){
 				        $trTemp.append("<td style=" + "text-align:center;font-size:16px"  + ">" + data[i].AcceptTimes+"/"+data[i].SubmissionTimes +"</td>");
 				        // $("#J_TbData").append($trTemp);
 				        $trTemp.appendTo("#ProblemList");
-				    }
 				}
 		}
 	);
@@ -59,13 +57,12 @@ function PrevPage(){
 				"QueryProblemList.action",
 				{
 					page:row,
-					limit:30
+					limit:20
 				}, 
 				function(data) {
 					var data = JSON.parse(data);
 					//console.log(data);
 					for(var i = 0 ; i < data.length ; i ++){
-					    for( var i = 0; i < data.length; i++ ) {
 					        //动态创建一个tr行标签,并且转换成jQuery对象
 					        var $trTemp = $("<tr ></tr>");
 					        //往行里面追加 td单元格
@@ -75,7 +72,6 @@ function PrevPage(){
 					        $trTemp.append("<td style=" + "text-align:center;font-size:16px"  + ">" + data[i].AcceptTimes+"/"+data[i].SubmissionTimes +"</td>");
 					        // $("#J_TbData").append($trTemp);
 					        $trTemp.appendTo("#ProblemList");
-					    }
 					}
 			}
 		);
@@ -93,13 +89,12 @@ function NextPage(){
 				"QueryProblemList.action",
 				{
 					page:row,
-					limit:30
+					limit:20
 				}, 
 				function(data) {
 					var data = JSON.parse(data);
 					//console.log(data);
 					for(var i = 0 ; i < data.length ; i ++){
-					    for( var i = 0; i < data.length; i++ ) {
 					        //动态创建一个tr行标签,并且转换成jQuery对象
 					        var $trTemp = $("<tr ></tr>");
 					        //往行里面追加 td单元格
@@ -109,7 +104,6 @@ function NextPage(){
 					        $trTemp.append("<td style=" + "text-align:center;font-size:16px"  + ">" + data[i].AcceptTimes+"/"+data[i].SubmissionTimes +"</td>");
 					        // $("#J_TbData").append($trTemp);
 					        $trTemp.appendTo("#ProblemList");
-					    }
 					}
 			}
 		);

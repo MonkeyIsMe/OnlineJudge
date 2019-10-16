@@ -16,6 +16,8 @@ public interface SubmissionDAO {
 	
 	public int CountSubmission();
 	
+	public int CountSubmissionByUser(String UserAccount);
+	
 	public List<Submission> QuerySubmissionByPageSize(int row,int PageSize);
 	
 	public List<Submission> QuerySubmissionByPageSizeWithUserAccount(int row,int PageSize,String UserAccount);

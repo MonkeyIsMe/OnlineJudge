@@ -22,11 +22,20 @@ public class Code {
 	@Column(name="user_account")
 	private String UserAccount; // 用户账号
 	
-	@Column(name="code_name")
-	private String CodeName; // 代码名字
+	@Column(name="code_file")
+	private String CodeFile; // 文件
 	
 	@Column(name="code_info")
 	private String CodeInfo; // 代码
+	
+	@Column(name="code_time")
+	private String CodeTime; // 创建时间
+	
+	@Column(name="code_name")
+	private String CodeName; // 代码名字
+	
+	@Column(name="code_type")
+	private String CodeType; // 代码类型
 
 	public int getCodeId() {
 		return CodeId;
@@ -60,12 +69,39 @@ public class Code {
 		CodeInfo = codeInfo;
 	}
 	
+	public String getCodeTime() {
+		return CodeTime;
+	}
+
+	public void setCodeTime(String codeTime) {
+		CodeTime = codeTime;
+	}
+
+	public String getCodeFile() {
+		return CodeFile;
+	}
+
+	public void setCodeFile(String codeFile) {
+		CodeFile = codeFile;
+	}
+
+	public String getCodeType() {
+		return CodeType;
+	}
+
+	public void setCodeType(String codeType) {
+		CodeType = codeType;
+	}
+
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
-		jo.put("CaseId", this.CodeId);
-		jo.put("CaseFlag", this.UserAccount);
-		jo.put("ProblemId", this.CodeName);
-		jo.put("CaseInput", this.CodeInfo);
+		jo.put("CodeId", this.CodeId);
+		jo.put("UserAccount", this.UserAccount);
+		jo.put("CodeName", this.CodeName);
+		jo.put("CodeInfo", this.CodeInfo);
+		jo.put("CodeTime", this.CodeTime);
+		jo.put("CodeFile", this.CodeFile);
+		jo.put("CodeType", this.CodeType);
 		return jo;
 	}
 	

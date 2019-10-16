@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>所有作业-考试</title>
+    <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
-     <link href="css/Common.css" type="text/css" rel="styleSheet">
+    <link href="css/Common.css" type="text/css" rel="styleSheet">
+    <link href="css/bootstrap.min.css" type="text/css" rel="styleSheet">
     <link rel="stylesheet" href="css/layui.css">
     <link rel="stylesheet" href="css/modules/layer/default/layer.css">
     <link href="css/bootstrap-theme.css" type="text/css" rel="styleSheet">
@@ -16,56 +18,60 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.params.js"></script>
     <script src="./layui/layui.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#head").load('MainHead.html');
+        })
+    </script>
 </head>
 <body>
-<button type="button" class="btn btn-default btn-sm" style="margin:10px" onclick="refresh()">
-	<span class="glyphicon glyphicon-refresh"></span> 刷新界面
-</button>
-<button type="button" class="btn btn-default btn-sm" style="margin:10px" onclick="backprev()">
-	<span class="glyphicon glyphicon-arrow-left"></span> 返回上一页
-</button>
-<table class="layui-table" id="myTable">
+
+<div id="head"></div>
+<center style="width:80%;margin-left:10%">
+	<h1 style="color: #1A5CC8;text-align: center;">考试/作业</h1>
+</center>
+<table class="layui-table" style="width:80%;margin-left:10%" id="myTable">
     <thead>
-    <tr align="center" class="table_header" height="22">
-        <th style="width:10%;text-align:center">代码编号</th>
-        <th style="width:10%;text-align:center">代码名称</th>
-        <th style="width:55%;text-align:center">代码简略</th>
-        <th style="width:10%;text-align:center">用户名称</th>
-        <th style="width:15%;text-align:center" >查看-删除</th>
+    <tr align="center"  height="22">
+        <th style="width:20%;text-align:center;font-size:18px;">编号</th>
+        <th style="width:20%;text-align:center;font-size:18px;">代码名称</th>
+        <th style="width:20%;text-align:center;font-size:18px;" >代码类型</th>
+        <th style="width:20%;text-align:center;font-size:18px;" >创建日期</th>
+        <th style="width:20%;text-align:center;font-size:18px;" >查看-删除</th>
     </tr>
     </thead>
-    <tbody id="KnowList" bgcolor="#D7EBFF" align="center"  style="color: black">
+    <tbody id="WorkList" bgcolor="#D7EBFF" align="center"  style="color: black">
     </tbody>
 </table>
-<div style="float:left;margin-left:42%">
+<div style="float:left;margin-left:42%;margin-top:10px;margin-bottom:10px">
     <button type="button" class="layui-btn" onclick="PrevPage()">上一页</button>
     <button type="button" class="layui-btn" onclick="NextPage()">下一页</button>
 </div>
-    <div id="TotalPage" style="float:left;margin-top:10px;font-size:18px;margin-left:5px"></div>
-    <div id="NowPage" style="float:left;margin-top:10px;font-size:18px;margin-left:5px"></div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="TotalPage" style="float:left;margin-top:15px;font-size:18px;margin-left:10px"></div>
+<div id="NowPage" style="float:left;margin-top:15px;font-size:18px;margin-left:10px"></div>
+ <div class="modal fade" id="clearModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">删除界面</h4>
             </div>
-            <div class="modal-body">是否删除该代码</div>
+            <div class="modal-body">是否删除代码</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="delete_code">确定</button>
+                <button type="button" class="btn btn-primary" id="clear_code">确定</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-<div class="modal fade" id="update_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">查看界面</h4>
             </div>
-            <div class="modal-body">是否查看该代码</div>
+            <div class="modal-body">是否查看代码</div>
             <form class="layui-form" action="" style="width:350px">
             	<div class="layui-form-item">
 				    <label class="layui-form-label" style="width:100px">语言类型</label>
@@ -91,7 +97,7 @@
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ext-language_tools.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/UserCode.js"></script>
+<script src="js/Code/MyCodeSet.js"></script>
 <script>
 //Demo
 layui.use('form', function(){

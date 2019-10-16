@@ -94,4 +94,9 @@ public class SubmissionServiceImpl implements SubmissionService{
 		return sd.CountSubmission();
 	}
 
+	public int CountSubmissionByUser(String UserAccount) {
+		// TODO Auto-generated method stub
+		return sd.CountSubmissionByUser(UserAccount);
+	}
+
 }

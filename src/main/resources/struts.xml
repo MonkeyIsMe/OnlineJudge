@@ -170,13 +170,19 @@
 			<!-- 代码  -->
 			<action name="AddCode" class="CodeAction" method="AddCode">
 			</action>
-			<action name="CountCodeByAccount" class="CodeAction" method="CountCodeByAccount">
+			<action name="CountCodeByUserId" class="CodeAction" method="CountCodeByUserId">
 			</action>
 			<action name="ClearCodeByAccount" class="CodeAction" method="ClearCodeByAccount">
 			</action>
-			<action name="QueryCodeByAccount" class="CodeAction" method="QueryCodeByAccount">
+			<action name="QueryCodeByUserId" class="CodeAction" method="QueryCodeByUserId">
 			</action>
 			<action name="DeleteCode" class="CodeAction" method="DeleteCode">
+			</action>
+			<action name="CountCodeByUserAccount" class="CodeAction" method="CountCodeByUserAccount">
+			</action>
+			<action name="QueryCodeByUserAccount" class="CodeAction" method="QueryCodeByUserAccount">
+			</action>
+			<action name="QuerySingleCode" class="CodeAction" method="QuerySingleCode">
 			</action>
 			
 			<!-- 提交信息  -->
@@ -191,6 +197,10 @@
 			<action name="QuerySingleSubmission" class="SubmissionAction" method="QuerySingleSubmission">
 			</action>
 			<action name="UpdateSubmission" class="SubmissionAction" method="UpdateSubmission">
+			</action>
+			<action name="QueryUserSubmission" class="SubmissionAction" method="QueryUserSubmission">
+			</action>
+			<action name="CountUserSubmission" class="SubmissionAction" method="CountUserSubmission">
 			</action>
 			
 			<!-- 题目结果  -->

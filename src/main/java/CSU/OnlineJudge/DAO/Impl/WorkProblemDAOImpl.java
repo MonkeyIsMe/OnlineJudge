@@ -100,4 +100,21 @@ public class WorkProblemDAOImpl extends HibernateDaoSupport implements WorkProbl
 		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
 	}
 
+	public List<WorkProblem> QueryWorkProblemByWorkProblem(final int WorkId, final int ProblemId) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<WorkProblem>>() {
+
+			public List<WorkProblem> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from WorkProblem where work_id = ? AND problem_id = ?";
+				Query query = session.createQuery(hql);
+				query.setParameter(0, WorkId);
+				query.setParameter(1, ProblemId);
+				List<WorkProblem> result = null;
+				result = query.list();
+				return result;
+			}
+		});
+	}
+
 }

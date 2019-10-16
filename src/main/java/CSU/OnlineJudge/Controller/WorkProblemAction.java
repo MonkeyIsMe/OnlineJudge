@@ -80,8 +80,13 @@ public class WorkProblemAction extends ActionSupport{
 		List<WorkProblem> WorkProblemList = WorkProblemService.QueryWorkProblemByWorkId(wid);
 		for(WorkProblem wpl :WorkProblemList) {
 			int pid = wpl.getProblemId();
+			wp = WorkProblemService.QueryWorkProblemByWorkProblem(wid, pid);
 			Problem problem = ProblemService.QueryProblem(pid);
-			JSONObject jo = JSONObject.fromObject(problem);
+			JSONObject jo = new JSONObject();
+			jo.put("ProblemId", problem.getProblemId());
+			jo.put("ProblemName", problem.getProblemName());
+			jo.put("SubmissionTimes", wp.getSubmissionTimes());
+			jo.put("AcceptTimes", wp.getAcceptTimes());
 			ja.add(jo);
 		}
 		

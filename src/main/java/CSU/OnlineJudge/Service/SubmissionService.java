@@ -33,4 +33,6 @@ public interface SubmissionService {
 	public List<Submission> QuerySubmissionByPageSizeWithResult(int row,int PageSize,String Result);
 	
 	public List<Submission> QuerySubmissionByPageSizeWithWorkId(int row,int PageSize,int WorkId);
+	
+	public int CountSubmissionByUser(String UserAccount);
 }

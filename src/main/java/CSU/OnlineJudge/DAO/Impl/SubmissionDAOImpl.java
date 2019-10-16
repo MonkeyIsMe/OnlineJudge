@@ -204,6 +204,12 @@ public class SubmissionDAOImpl extends HibernateDaoSupport implements Submission
 		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
 	}
 
+	public int CountSubmissionByUser(String UserAccount) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Submission as Submission where user_account = '"+UserAccount+"'";  
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
 
 
 }

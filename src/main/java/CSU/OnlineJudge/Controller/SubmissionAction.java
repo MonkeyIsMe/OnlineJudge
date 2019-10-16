@@ -105,6 +105,7 @@ public class SubmissionAction extends ActionSupport{
 		String submission_type = request.getParameter("submission_type");
 		String problem_id = request.getParameter("problem_id");
 		String submission_code = request.getParameter("submission_code");
+		String work_id = request.getParameter("work_id");
 		
 		HttpSession session = request.getSession();
 		String user_account = (String) session.getAttribute("useraccount");
@@ -121,15 +122,14 @@ public class SubmissionAction extends ActionSupport{
 	        out.close();
 	        return ;
 		}
+		int wid = 0;
+		if(work_id == null || work_id == "" || work_id.equals("")) {
+			wid = 0;
+		}
+		else wid = Integer.valueOf(work_id);
 		
 		int pid = Integer.valueOf(problem_id);
 		
-		if(problem_id == null || problem_id == "" || problem_id.equals("")) {
-			out.println("Fail");
-	        out.flush(); 
-	        out.close();
-	        return ;
-		}
 		
 		problem = ProblemService.QueryProblem(pid);
 		
@@ -138,9 +138,10 @@ public class SubmissionAction extends ActionSupport{
 		submission.setUserAccount(user_account);
 		submission.setCodeType(submission_type);
 		submission.setProblemId(pid);
-		submission.setSubmissionCode(submission_code);
-		int sid = SubmissionService.addSubmission(submission);
+		submission.setWorkId(wid);
 		
+		int sid = SubmissionService.addSubmission(submission);
+		System.out.println(submission.toString());
 		JSONObject jo = new JSONObject();
 		jo.put("SubmissionId", sid);
 		out.println(jo.toString());
@@ -1058,5 +1059,68 @@ public class SubmissionAction extends ActionSupport{
 	    out.close();
 	}
 	
+	//根据用户分页查询所有提交
+	public void QueryUserSubmission() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String page = request.getParameter("page");
+		String size = request.getParameter("limit");
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int row = Integer.valueOf(page);
+		int PageSize = Integer.valueOf(size);
+		
+		List<Submission> SubList = SubmissionService.QuerySubmissionByPageSizeWithUserAccount(row, PageSize, user_account);
+		
+		JSONArray ja = JSONArray.fromObject(SubList);
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+		
+	}
 
+	//根据用户账号查询其所有提交总数
+	public void CountUserSubmission() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+			
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		HttpSession session = request.getSession();
+		String user_account = (String) session.getAttribute("useraccount");
+		
+		if(user_account == null || user_account == "" || user_account.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		int count = SubmissionService.CountSubmissionByUser(user_account);
+		
+		JSONObject jo = new JSONObject();
+		
+		jo.put("SubmissionCount", count);
+		
+		out.println(jo.toString());
+	    out.flush(); 
+	    out.close();
+	}
 }

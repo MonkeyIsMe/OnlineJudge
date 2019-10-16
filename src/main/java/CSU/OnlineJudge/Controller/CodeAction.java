@@ -14,6 +14,7 @@ import CSU.OnlineJudge.Model.Code;
 import CSU.OnlineJudge.Model.User;
 import CSU.OnlineJudge.Service.CodeService;
 import CSU.OnlineJudge.Service.UserService;
+import CSU.OnlineJudge.Utils.DateUtil;
 import CSU.OnlineJudge.Utils.HtmlUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -54,7 +55,10 @@ public class CodeAction extends ActionSupport{
 
 		String code_name = request.getParameter("code_name");
 		String code_info = request.getParameter("code_info");
-		//String useraccount = request.getParameter("useraccount");
+		String code_file = request.getParameter("code_file");
+		String code_type = request.getParameter("code_type");
+		
+		DateUtil du = new DateUtil();
 		
 		HttpSession session = request.getSession();
 		String useraccount = (String) session.getAttribute("useraccount");
@@ -69,6 +73,9 @@ public class CodeAction extends ActionSupport{
 		code.setCodeInfo(code_info);
 		code.setCodeName(code_name);
 		code.setUserAccount(useraccount);
+		code.setCodeFile(code_file);
+		code.setCodeType(code_type);
+		code.setCodeTime(du.GetNowDate());
 		
 		CodeService.AddCode(code);
 		
@@ -115,6 +122,54 @@ public class CodeAction extends ActionSupport{
 		}
 		
 		CodeService.DeleteCode(code);
+		
+	}
+	
+	//查询单一代码
+	public void QuerySingleCode() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+
+		String code_id = request.getParameter("code_id");
+		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		if(code_id == null || code_id == "" || code_id.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		int cid = Integer.valueOf(code_id);
+		
+		code = CodeService.QueryCode(cid);
+		
+		if(code == null) {
+			out.println("Fail");
+			out.flush(); 
+			out.close();
+			return ;
+		}
+		
+		JSONObject jo = JSONObject.fromObject(code);
+		
+		out.println(code.toString());
+        out.flush(); 
+        out.close();
 		
 	}
 	
@@ -167,8 +222,8 @@ public class CodeAction extends ActionSupport{
 		
 	}
 	
-	//根据用户查询代码
-	public void QueryCodeByAccount() throws Exception{
+	//根据用户id查询代码
+	public void QueryCodeByUserId() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
 		HttpServletRequest request= ServletActionContext.getRequest();
@@ -256,8 +311,8 @@ public class CodeAction extends ActionSupport{
 		
 	}
 	
-	//根据用户查询代码总数
-	public void CountCodeByAccount() throws Exception{
+	//根据用户id查询代码总数
+	public void CountCodeByUserId() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
 		HttpServletRequest request= ServletActionContext.getRequest();
@@ -302,4 +357,64 @@ public class CodeAction extends ActionSupport{
 		
 	}
 	
+	//根据用户账号查询代码
+	public void QueryCodeByUserAccount() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		if(useraccount == null || useraccount == "" || useraccount.equals("")) {
+			out.println("Fail");
+	        out.flush(); 
+	        out.close();
+	        return ;
+		}
+		
+		String page = request.getParameter("page");
+		String size = request.getParameter("limit");
+		
+		
+		int row = Integer.valueOf(page);
+		int PageSize = Integer.valueOf(size); 
+		
+		List<Code>  CodeList = CodeService.QueryCodeByUserAccountByPageSize(useraccount,row,PageSize);
+		
+		JSONArray ja = JSONArray.fromObject(CodeList);
+		
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+		
+	}
+	
+	//根据用户账号查询代码总数
+	public void CountCodeByUserAccount() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		HttpSession session = request.getSession();
+		String useraccount = (String) session.getAttribute("useraccount");
+		
+		int cnt = CodeService.CountUserCode(useraccount);
+		
+		JSONObject jo = new JSONObject();
+		jo.put("CodeCount", cnt);
+		
+		out.println(jo.toString());
+        out.flush(); 
+        out.close();
+		
+	}
 }
